@@ -203,3 +203,15 @@ a
   @media screen and (max-width 600px)
     font-size calc(100vw / 30)
   text-align center
+
+.floating-button
+  bottom calc(var(--header-base-size) * 0.2)
+  right calc(var(--header-base-size) * 0.2)
+  height var(--header-base-size)
+  width var(--header-base-size)
+  background-color red
+  position fixed
+
+@media screen and (min-width 600px)
+  .floating-button
+    display none
