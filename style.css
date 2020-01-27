@@ -43,13 +43,13 @@ html,
 body {
   margin: 0;
   background-color: var(--main-bg);
-  font-family: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', '????', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--header-base-size);
+  margin: calc(var(--header-base-size) * 1.5) 0 calc(var(--header-base-size) * 0.5);
   color: var(--main-text);
   background-color: var(--main-bg);
 }
