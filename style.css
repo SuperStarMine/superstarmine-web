@@ -115,7 +115,7 @@ nav {
   top: calc(var(--header-base-size) * 0.1);
   height: calc(var(--header-base-size) * 0.8);
   display: block;
-  background-color: #808080;
+  background-color: var(--ui-text);
 }
 @media screen and (min-width: 600px) {
   .nav_item:hover {

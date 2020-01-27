@@ -118,7 +118,7 @@ nav
   top calc(var(--header-base-size) * 0.1)
   height calc(var(--header-base-size) * 0.8)
   display block
-  background-color gray
+  background-color var(--ui-text)
 
 .nav_item:hover
   @media screen and (min-width 600px)
@@ -132,12 +132,12 @@ main
   main
     padding env(safe-area-inset-right) env(safe-area-inset-left)
 
-.tile
+.main-section
   color var(--main-text)
   p
     margin 0
 
-.tile_title
+.main-section_title
   margin 0
 
 footer
