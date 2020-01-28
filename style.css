@@ -107,6 +107,9 @@ nav {
   .nav_item:first-child {
     display: none;
   }
+  .nav_item+.nav_item:nth-child(2):before {
+    display: none;
+  }
 }
 .nav_item+.nav_item:before {
   content: '';
