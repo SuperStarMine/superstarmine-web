@@ -1,5 +1,5 @@
 // ########################################
-// ÄÂÄšÂÄÂĂÂ¤ÄÂĂÂÄÂĂÂÄÂĂÂÄÂĂÂ°ÄÂĂÂÄÂĂÂĂĹĄĂÂÄÂÄšÂĂĹĄĂÂÄÂĂÂĂÂĂÂ§ĂĹĄÄšĹžĂĹĄĂÂ 
+// 変数の定義
 :root
   --ui-bg rgba(0,0,0,0.6)
   --ui-bg2 rgba(178, 178, 178, 0.6)
@@ -52,7 +52,7 @@ vendorarg(prop, arg)
 html,body
   margin 0
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ăĄă¤ăŞăŞ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 .hero
   display flex
@@ -139,6 +139,7 @@ main
 .main-section
   color var(--main-text)
   display flex
+  width 100vw
 
 .main-section_title
   display flex
@@ -154,10 +155,61 @@ main
     font-size 1.1em
 
 .main-section_article
-  flex 0 0 70%
-  width 70%
+  width 70vw
 
-#NEWS
+.main-section_card
+  flex 0 0 15em
+  width 15em
+  padding 5px
+  filter 0px 15px 30px -15px
+  box-shadow 0px 20px 30px -15px gray
+  background-color var(--main-bg)
+
+.main-section_card+.main-section_card
+  margin-left calc(var(--header-base-size) * 0.4)
+
+.main-section_card_title
+  line-height 1
+  margin 0
+
+.main-section_card_article
+  width 15em
+  line-height 1
+  height 6em
+  display -webkit-box
+  -webkit-box-orient vertical
+  -webkit-line-clamp 5
+  overflow hidden
+
+.main-section_card:after
+  content ''
+  display block
+  position relative
+  width calc(100% + 4px)
+  left -5px
+  bottom -10px
+  border-top 5px solid lightgray
+  border-right 3px solid transparent
+  border-left 3px solid transparent
+
+.card-container
+  display flex
+  position relative
+  overflow scroll visible
+  overflow-x scroll
+  overflow-y visible
+  -webkit-overflow-scrolling: touch;
+  padding calc(var(--header-base-size) * 0.4) 0 calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4 + 5px)
+
+.card_padding-fixer
+  flex 0 0 0px
+  width 0px
+  padding 0
+
+.card_padding-fixer:after
+  border-top 5px solid transparent
+
+#NEWS
   .main-section_title
     color var(--ui-text)
 
@@ -220,49 +272,6 @@ main
     background-color:hsl(var(--contacts-key-color), 50%, 90%);
   }
 }
-
-.card-container
-  display flex
-  overflow scroll visible
-  overflow-x scroll
-  overflow-y visible
-  padding calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4 + 5px)
-
-.main-section_card
-  flex 0 0 auto
-  width 15em
-  padding 5px
-  box-shadow 0px 10px 5px 3px gray
-  background-color var(--main-bg)
-
-.main-section_card+.main-section_card
-  margin-left calc(var(--header-base-size) * 0.4)
-
-.main-section_card_title
-  line-height 1
-  margin 0
-
-.main-section_card_article
-  height 6em
-  width 15
-  p
-    width 100%
-    margin 0
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow hidden
-
-.main-section_card:after
-  content ''
-  display block
-  position relative
-  width calc(100% + 4px)
-  left -5px
-  bottom -10px
-  border-top 5px solid lightgray
-  border-right 3px solid transparent
-  border-left 3px solid transparent
 
 footer
   position relative
