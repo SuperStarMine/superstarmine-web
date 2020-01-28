@@ -1,5 +1,5 @@
 // ########################################
-// ĂĹĂÂ¤ĂÂĂÂĂÂĂÂ°ĂÂĂÂÄšËĂĹÄšËĂÂÄÂ§ÄšĹžÄšÂ 
+// ÄÂÄšÂÄÂĂÂ¤ÄÂĂÂÄÂĂÂÄÂĂÂÄÂĂÂ°ÄÂĂÂÄÂĂÂĂĹĄĂÂÄÂÄšÂĂĹĄĂÂÄÂĂÂĂÂĂÂ§ĂĹĄÄšĹžĂĹĄĂÂ 
 :root
   --ui-bg rgba(0,0,0,0.6)
   --ui-bg2 rgba(178, 178, 178, 0.6)
@@ -52,7 +52,7 @@ vendorarg(prop, arg)
 html,body
   margin 0
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ăĄă¤ăŞăŞ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 .hero
   display flex
@@ -145,8 +145,7 @@ main
   flex-direction column
   justify-content center
   align-items center
-  flex 0 0 30%
-  width 30%
+  width 30vw
   h2,h3
     margin 0
 
