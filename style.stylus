@@ -132,9 +132,9 @@ main
   box-sizing border-box
   background-color var(--main-bg)
 
-@supports (padding: calc(max(0px)))
-  main
-    padding env(safe-area-inset-right) env(safe-area-inset-left)
+// @supports (padding: calc(max(0px)))
+//   main
+//     padding env(safe-area-inset-right) env(safe-area-inset-left)
 
 .main-section
   color var(--main-text)
@@ -146,6 +146,7 @@ main
   flex-direction column
   justify-content center
   align-items center
+  box-sizing border-box
   width 30vw
   h2,h3
     margin 0
@@ -155,13 +156,13 @@ main
     font-size 1.1em
 
 .main-section_article
+  box-sizing border-box
   width 70vw
 
 .main-section_card
   flex 0 0 15em
   width 15em
   padding 5px
-  filter 0px 15px 30px -15px
   box-shadow 0px 20px 30px -15px gray
   background-color var(--main-bg)
 
@@ -202,22 +203,33 @@ main
   padding calc(var(--header-base-size) * 0.4) 0 calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4 + 5px)
 
 .card_padding-fixer
-  flex 0 0 0px
-  width 0px
-  padding 0
+  flex 0 0 calc(var(--header-base-size) * 0.4)
+  width calc(var(--header-base-size) * 0.4)
 
 .card_padding-fixer:after
-  border-top 5px solid transparent
+  content: none
 
-#NEWS
+#NEWS
   .main-section_title
     color var(--ui-text)
+    @supports (padding: calc(max(0px)))
+      padding-left env(safe-area-inset-left)
+
+  @supports (padding: calc(max(0px)))
+    .card_padding-fixer
+      flex 0 0 calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
+      width calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
 
 #WORKS
   flex-direction row-reverse
 
   .main-section_title
     color var(--ui-text)
+    @supports (padding: calc(max(0px)))
+      padding-right env(safe-area-inset-right)
+
+  .card-container
+    padding-left calc(var(--header-base-size) * 0.4 + env(safe-area-inset-left))
 
 #ABOUT
   .main-section_title
