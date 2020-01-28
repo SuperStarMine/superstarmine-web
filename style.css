@@ -228,35 +228,35 @@ main {
 }
 
 #NEWS .main-section_title{
-  background-color:hsl(var(--news-key-color), 100%, 50%);
+  background-color:hsl(var(--news-key-color), 75%, 50%);
 }
 
 #NEWS .main-section_article{
-  background-color:hsl(var(--news-key-color), 50%, 90%);
+  background-color:hsl(var(--news-key-color), 75%, 90%);
 }
 
 #WORKS .main-section_title{
-  background-color:hsl(var(--works-key-color), 100%, 50%);
+  background-color:hsl(var(--works-key-color), 75%, 50%);
 }
 
 #WORKS .main-section_article{
-  background-color:hsl(var(--works-key-color), 50%, 90%);
+  background-color:hsl(var(--works-key-color), 75%, 90%);
 }
 
 #ABOUT .main-section_title{
-  background-color:hsl(var(--about-key-color), 100%, 50%);
+  background-color:hsl(var(--about-key-color), 75%, 50%);
 }
 
 #ABOUT .main-section_article{
-  background-color:hsl(var(--about-key-color), 50%, 90%);
+  background-color:hsl(var(--about-key-color), 75%, 90%);
 }
 
 #TEAM .main-section_title{
-  background-color:hsl(var(--team-key-color), 100%, 50%);
+  background-color:hsl(var(--team-key-color), 75%, 50%);
 }
 
 #TEAM .main-section_article{
-  background-color:hsl(var(--team-key-color), 50%, 90%);
+  background-color:hsl(var(--team-key-color), 75%, 90%);
 }
 
 #CONTACTS .main-section_title{
