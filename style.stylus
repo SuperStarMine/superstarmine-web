@@ -8,12 +8,13 @@
   --ui-text #cdcdcd
   --ui-focus #545454
   --ui-hover #656565
-  --key-color #3f95da
   --header-base-size 4vw
   --header-font-size 2vw
-  --hero-font-size 6vw
-  --hero-sub-font-size 2vw
-  --window-height 100vh
+  --news-key-color 200
+  --works-key-color 0
+  --about-key-color 110
+  --team-key-color 36
+  --contacts-key-color 270
 
 @media screen and (max-width 600px)
   :root
@@ -160,28 +161,66 @@ main
 #NEWS
   .main-section_title
     color var(--ui-text)
-    background-color deepskyblue
-
-  .main-section_article
-    background-color lightcyan
 
 #WORKS
   flex-direction row-reverse
 
   .main-section_title
     color var(--ui-text)
-    background-color red
-
-  .main-section_article
-    background-color mistyrose
 
 #ABOUT
   .main-section_title
     color var(--ui-text)
-    background-color deepskyblue
 
-  .main-section_article
-    background-color lightcyan
+#TEAM
+  .main-section_title
+    color var(--ui-text)
+
+#CONTACTS
+  .main-section_title
+    color var(--ui-text)
+
+@css{
+  #NEWS.main-section_title{
+    background-color:hsl(var(--news-key-color), 100%, 100%);
+  }
+
+  #NEWS.main-section_article{
+    background-color:hsl(var(--news-key-color), 50%, 100%);
+  }
+
+  #WORKS.main-section_title{
+    background-color:hsl(var(--works-key-color), 100%, 100%);
+  }
+
+  #WORKS.main-section_article{
+    background-color:hsl(var(--works-key-color), 50%, 100%);
+  }
+
+  #ABOUT.main-section_title{
+    background-color:hsl(var(--about-key-color), 100%, 100%);
+  }
+
+  #ABOUT.main-section_article{
+    background-color:hsl(var(--about-key-color), 50%, 100%);
+  }
+
+  #TEAM.main-section_title{
+    background-color:hsl(var(--team-key-color), 100%, 100%);
+  }
+
+  #TEAM.main-section_article{
+    background-color:hsl(var(--team-key-color), 50%, 100%);
+  }
+
+  #CONTACTS.main-section_title{
+    background-color:hsl(var(--contacts-key-color), 100%, 100%);
+  }
+
+  #CONTACTS.main-section_article{
+    background-color:hsl(var(--contacts-key-color), 50%, 100%);
+  }
+}
 
 .card-container
   display flex
