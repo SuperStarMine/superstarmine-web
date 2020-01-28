@@ -180,47 +180,48 @@ main {
   color: var(--ui-text);
 }
 
-#NEWS.main-section_title{
-  background-color:hsl(var(--news-key-color), 100%, 100%);
+#NEWS .main-section_title{
+  background-color:hsl(var(--news-key-color), 100%, 50%);
 }
 
-#NEWS.main-section_article{
-  background-color:hsl(var(--news-key-color), 50%, 100%);
+#NEWS .main-section_article{
+  background-color:hsl(var(--news-key-color), 50%, 90%);
 }
 
-#WORKS.main-section_title{
-  background-color:hsl(var(--works-key-color), 100%, 100%);
+#WORKS .main-section_title{
+  background-color:hsl(var(--works-key-color), 100%, 50%);
 }
 
-#WORKS.main-section_article{
-  background-color:hsl(var(--works-key-color), 50%, 100%);
+#WORKS .main-section_article{
+  background-color:hsl(var(--works-key-color), 50%, 90%);
 }
 
-#ABOUT.main-section_title{
-  background-color:hsl(var(--about-key-color), 100%, 100%);
+#ABOUT .main-section_title{
+  background-color:hsl(var(--about-key-color), 100%, 50%);
 }
 
-#ABOUT.main-section_article{
-  background-color:hsl(var(--about-key-color), 50%, 100%);
+#ABOUT .main-section_article{
+  background-color:hsl(var(--about-key-color), 50%, 90%);
 }
 
-#TEAM.main-section_title{
-  background-color:hsl(var(--team-key-color), 100%, 100%);
+#TEAM .main-section_title{
+  background-color:hsl(var(--team-key-color), 100%, 50%);
 }
 
-#TEAM.main-section_article{
-  background-color:hsl(var(--team-key-color), 50%, 100%);
+#TEAM .main-section_article{
+  background-color:hsl(var(--team-key-color), 50%, 90%);
 }
 
-#CONTACTS.main-section_title{
-  background-color:hsl(var(--contacts-key-color), 100%, 100%);
+#CONTACTS .main-section_title{
+  background-color:hsl(var(--contacts-key-color), 100%, 50%);
 }
 
-#CONTACTS.main-section_article{
-  background-color:hsl(var(--contacts-key-color), 50%, 100%);
+#CONTACTS .main-section_article{
+  background-color:hsl(var(--contacts-key-color), 50%, 90%);
 }
 .card-container {
   display: flex;
+  overflow: scroll visible;
   overflow-x: scroll;
   overflow-y: visible;
   padding: calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4 + 5px);
