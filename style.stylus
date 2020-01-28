@@ -153,6 +153,10 @@ main
   .main-section_title h2,h3
     font-size 1.1em
 
+.main-section_article
+  flex 0 0 70%
+  width 70%
+
 #NEWS
   .main-section_title
     color var(--ui-text)
@@ -161,7 +165,23 @@ main
   .main-section_article
     background-color lightcyan
 
+#WORKS
+  flex-direction row-reverse
 
+  .main-section_title
+    color var(--ui-text)
+    background-color red
+
+  .main-section_article
+    background-color mistyrose
+
+#ABOUT
+  .main-section_title
+    color var(--ui-text)
+    background-color deepskyblue
+
+  .main-section_article
+    background-color lightcyan
 
 .card-container
   display flex

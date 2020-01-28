@@ -156,6 +156,27 @@ main {
     font-size: 1.1em;
   }
 }
+.main-section_article {
+  flex: 0 0 70%;
+  width: 70%;
+}
+#NEWS .main-section_title {
+  color: var(--ui-text);
+  background-color: #00bfff;
+}
+#NEWS .main-section_article {
+  background-color: #e0ffff;
+}
+#WORKS {
+  flex-direction: row-reverse;
+}
+#WORKS .main-section_title {
+  color: var(--ui-text);
+  background-color: #f00;
+}
+#WORKS .main-section_article {
+  background-color: #ffe4e1;
+}
 #NEWS .main-section_title {
   color: var(--ui-text);
   background-color: #00bfff;
