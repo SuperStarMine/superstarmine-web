@@ -134,11 +134,68 @@ main
 
 .main-section
   color var(--main-text)
-  p
-    margin 0
+  display flex
 
 .main-section_title
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  flex 0 0 30%
+  width 30%
+  h2,h3
+    margin 0
+
+#NEWS
+  .main-section_title
+    color white
+    background-color deepskyblue
+
+  .main-section_article
+    background-color lightcyan
+
+.card-container
+  display flex
+  overflow-x scroll
+  overflow-y visible
+  padding calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4 + 5px)
+  background-color white
+
+.main-section_card
+  flex 0 0 auto
+  width 15em
+  padding 5px
+  box-shadow 0px 25px 5px -15px gray
+  background-color white
+
+.main-section_card+.main-section_card
+  margin-left calc(var(--header-base-size) * 0.4)
+
+.main-section_card_title
+  line-height 1
   margin 0
+
+.main-section_card_article
+  height 6em
+  width 15
+  p
+    width 100%
+    margin 0
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow hidden
+
+.main-section_card:after
+  content ''
+  display block
+  position relative
+  width calc(100% + 4px)
+  left -5px
+  bottom -10px
+  border-top 5px solid lightgray
+  border-right 3px solid transparent
+  border-left 3px solid transparent
 
 footer
   position relative
