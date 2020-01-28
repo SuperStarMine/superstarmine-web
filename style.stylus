@@ -45,9 +45,9 @@ vendor(prop, args)
   {prop} args
 
 vendorarg(prop, arg)
- {prop} -webkit-+arg
- {prop} -moz-+arg
- {prop} arg
+  {prop} -webkit-+arg
+  {prop} -moz-+arg
+  {prop} arg
 // ########################################
 html,body
   margin 0
