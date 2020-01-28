@@ -8,10 +8,10 @@
   --ui-hover: #656565;
   --header-base-size: 4vw;
   --header-font-size: 2vw;
-  --news-key-color: 200;
-  --works-key-color: 0;
-  --about-key-color: 110;
-  --team-key-color: 36;
+  --news-key-color: 217;
+  --works-key-color: 5;
+  --about-key-color: 47;
+  --team-key-color: 20;
   --contacts-key-color: 270;
 }
 @media screen and (max-width: 600px) {
@@ -260,11 +260,11 @@ main {
 }
 
 #CONTACTS .main-section_title{
-  background-color:hsl(var(--contacts-key-color), 100%, 50%);
+  background-color:hsl(var(--contacts-key-color), 0%, 0%);
 }
 
 #CONTACTS .main-section_article{
-  background-color:hsl(var(--contacts-key-color), 50%, 90%);
+  background-color:hsl(var(--contacts-key-color), 0%, 90%);
 }
 footer {
   position: relative;
