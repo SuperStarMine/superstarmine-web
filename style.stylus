@@ -1,11 +1,11 @@
 // ########################################
-// 変数の定義
+// ĺ¤ć°ăŽĺŽçžŠ
 :root
   --ui-bg rgba(0,0,0,0.6)
   --ui-bg2 rgba(178, 178, 178, 0.6)
   --main-bg #fff
   --main-text #000
-  --ui-text #cdcdcd
+  --ui-text #fff
   --ui-focus #545454
   --ui-hover #656565
   --header-base-size 4vw
@@ -23,21 +23,21 @@
     --header-base-size 12vw
     --header-font-size 3.6vw
 
-@media (prefers-color-scheme light)
-  :root
-    --ui-bg rgba(0,0,0,0.6)
-    --ui-bg2 rgba(178, 178, 178, 0.6)
-    --ui-text #fff
-    --main-bg #fff
-    --main-text #000
+// @media (prefers-color-scheme light)
+//   :root
+//     --ui-bg rgba(0,0,0,0.6)
+//     --ui-bg2 rgba(178, 178, 178, 0.6)
+//     --ui-text #fff
+//     --main-bg #fff
+//     --main-text #000
 
-@media (prefers-color-scheme dark)
-  :root
-    --ui-bg rgba(255,255,255,0.6)
-    --ui-bg2 rgba(76, 76, 76, 0.6)
-    --ui-text #1c1c1c
-    --main-bg #000
-    --main-text #fff
+// @media (prefers-color-scheme dark)
+//   :root
+//     --ui-bg rgba(255,255,255,0.6)
+//     --ui-bg2 rgba(76, 76, 76, 0.6)
+//     --ui-text #1c1c1c
+//     --main-bg #000
+//     --main-text #fff
 
 vendor(prop, args)
   -webkit-{prop} args
@@ -52,7 +52,7 @@ vendorarg(prop, arg)
 html,body
   margin 0
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ăĄă¤ăŞăŞ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 .hero
   display flex
