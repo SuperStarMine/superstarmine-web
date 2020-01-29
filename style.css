@@ -25,6 +25,7 @@
 html,
 body {
   margin: 0;
+  scroll-behavior: smooth;
   background-color: var(--main-bg);
   font-family: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
@@ -141,14 +142,22 @@ main {
 .main-section_article {
   box-sizing: border-box;
   width: 70vw;
+  padding: calc(var(--header-base-size) * 0.4);
 }
 .main-section_card {
-  flex: 0 0 15em;
-  width: 15em;
+  flex: 0 0 32vw;
+  width: 32vw;
   padding: 5px;
   box-shadow: 0px 20px 30px -15px #808080;
   background-color: var(--main-bg);
   position: relative;
+  color: var(--main-text);
+}
+@media screen and (max-width: 600px) {
+  .main-section_card {
+    flex: 0 0 56vw;
+    width: 56vw;
+  }
 }
 .main-section_card:after {
   content: '';
@@ -164,12 +173,30 @@ main {
 .image-card {
   padding: 0;
 }
-.image-card .main-section_card_title {
+.image-card_banner {
+  width: 100%;
+  background-color: var(--ui-bg);
+  -webkit-backdrop-filter: blur(1px);
+  -moz-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 0;
+  bottom: 0;
+  padding: 0 5px 5px 5px;
+  box-sizing: border-box;
+  text-align: right;
+}
+.image-card_banner_title {
+  margin: 0;
+  line-height: 1.5;
+  height: 1.5em;
   color: var(--ui-text);
-  text-shadow: 0 1px 1px var(--main-text);
+}
+.image-card_banner_caption {
+  line-height: 0.5;
+  height: 0.5em;
+  font-size: 0.5em;
+  color: #c0c0c0;
 }
 .image-card:after {
   width: calc(100% - 6px);
@@ -181,15 +208,22 @@ main {
 }
 .main-section_card_title {
   line-height: 2;
+  height: 2em;
   margin: 0;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.main-section_card_date {
+  font-size: 0.5em;
+  color: #808080;
+  text-align: right;
 }
 .main-section_card_article {
-  width: 15em;
   line-height: 1;
   height: 6em;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 6;
   overflow: hidden;
 }
 .main-section_card_article p {
@@ -202,7 +236,7 @@ main {
   overflow-x: scroll;
   overflow-y: visible;
   -webkit-overflow-scrolling: touch;
-  padding: calc(var(--header-base-size) * 0.4) 0 calc(var(--header-base-size) * 0.4) calc(var(--header-base-size) * 0.4 + 5px);
+  padding-right: 0;
 }
 .card_padding-fixer {
   flex: 0 0 calc(var(--header-base-size) * 0.4);
