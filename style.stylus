@@ -1,5 +1,5 @@
 // ########################################
-// 変数の定義
+// ĺ¤ć°ăŽĺŽçžŠ
 :root
   --ui-bg rgba(0,0,0,0.6)
   --ui-bg2 rgba(178, 178, 178, 0.6)
@@ -51,8 +51,9 @@ vendorarg(prop, arg)
 // ########################################
 html,body
   margin 0
+  scroll-behavior smooth
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ăĄă¤ăŞăŞ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 .hero
   display flex
