@@ -6,8 +6,8 @@
   --main-bg #fff
   --main-text #000
   --ui-text #fff
-  --ui-focus #545454
-  --ui-hover #656565
+  --ui-focus rgba(68, 68, 68, 0.6)
+  --ui-hover rgba(68, 68, 68, 0.6)
   --header-base-size 4vw
   --header-font-size 2vw
   --news-key-color 217
@@ -72,6 +72,7 @@ header
   height var(--header-base-size)
   z-index 1
   background-color var(--ui-bg)
+  vendor(backdrop-filter, blur(10px))
 
 @supports (padding: calc(max(0px)))
   @media screen and (orientation: landscape)
@@ -170,7 +171,7 @@ main
   width calc(100% + 4px)
   left -5px
   bottom -10px
-  border-top 5px solid lightgray
+  border-top 5px solid silver
   border-right 3px solid transparent
   border-left 3px solid transparent
 
