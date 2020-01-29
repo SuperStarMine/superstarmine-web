@@ -1,6 +1,6 @@
 const card_container = document.getElementsByClassName("card-container");
 let scroll_offset = [0, 0];
-let auto_scroll = [true, true]
+let auto_scroll = [true, true];
 
 for (let i = 0; i < card_container.length; i++) {
   card_container[i].onmouseover = () => auto_scroll[i] = false;
