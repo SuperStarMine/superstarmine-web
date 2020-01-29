@@ -132,10 +132,6 @@ main
   box-sizing border-box
   background-color var(--main-bg)
 
-// @supports (padding: calc(max(0px)))
-//   main
-//     padding env(safe-area-inset-right) env(safe-area-inset-left)
-
 .main-section
   color var(--main-text)
   display flex
