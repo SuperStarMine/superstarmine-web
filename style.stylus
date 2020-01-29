@@ -369,10 +369,9 @@ a
 .floating-button
   bottom calc(var(--header-base-size) * 0.2)
   right calc(var(--header-base-size) * 0.2)
-  height var(--header-base-size)
   width var(--header-base-size)
-  background-color red
   position fixed
+  filter drop-shadow(0 8px 5px gray)
 
 @media screen and (min-width 600px)
   .floating-button
