@@ -188,7 +188,7 @@ main
     text-shadow 0 1px var(--main-text)
 
 .image-card:after
-  width 100%
+  width calc(100% - 6px)
   left 0
   bottom 3px
 
