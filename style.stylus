@@ -203,11 +203,8 @@ main
     margin 0
 
 .card_padding-fixer
-  flex 0 0 calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
-  width calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
-
-.card_padding-fixer:after
-  content: none
+  flex 0 0 calc(var(--header-base-size) * 0.4)
+  width calc(var(--header-base-size) * 0.4)
 
 .image-card
   padding 0
@@ -253,11 +250,14 @@ main
   -webkit-text-stroke-color var(--ui-bg)
   -webkit-text-stroke-width medium
 
-#NEWS
+#NEWS,#ABOUT
   .main-section_title
     padding-left env(safe-area-inset-left)
+  .card_padding-fixer
+    flex 0 0 calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
+    width calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
 
-#WORKS
+#WORKS,#TEAM
   flex-direction row-reverse
   .main-section_title
     padding-right env(safe-area-inset-right)
