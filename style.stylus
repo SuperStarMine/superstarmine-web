@@ -259,10 +259,8 @@ main
 
 #WORKS
   flex-direction row-reverse
-
   .main-section_title
     padding-right env(safe-area-inset-right)
-
   .card-container
     padding-left calc(var(--header-base-size) * 0.4 + env(safe-area-inset-left))
 
