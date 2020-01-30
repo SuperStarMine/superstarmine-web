@@ -51,7 +51,7 @@ html,body
   margin 0
   scroll-behavior smooth
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ãƒ¡ã‚¤ãƒªã‚ª', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 a
   text-decoration: none
@@ -373,6 +373,18 @@ footer
   width var(--header-base-size)
   position fixed
   filter drop-shadow(0 8px 5px gray)
+  animation-name bounce
+  animation-duration 1s
+  animation-iteration-count infinite
+  animation-direction alternate
+  @keyframes bounce
+    from
+      bottom calc(var(--header-base-size) * 0.2)
+      filter drop-shadow(0 8px 5px gray)
+    to
+      bottom calc(var(--header-base-size) * 0.2 + 5px)
+      filter drop-shadow(0 13px 6px gray)
+
 
 @media screen and (min-width 600px)
   .floating-button
