@@ -390,10 +390,7 @@ footer {
   width: var(--header-base-size);
   position: fixed;
   filter: drop-shadow(0 8px 5px #808080);
-  animation-name: bounce;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  animation: bounce 1s ease-in-out infinite alternate;
 }
 @-moz-keyframes bounce {
   from {
