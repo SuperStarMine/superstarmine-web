@@ -51,7 +51,7 @@ html,body
   margin 0
   scroll-behavior smooth
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ÃƒÆ’Ã‚Â£Ãƒâ€ Ã¢â‚¬â„¢Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã‚Â£Ãƒâ€ Ã¢â‚¬â„¢Ãƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Âª', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 a
   text-decoration: none
@@ -259,29 +259,32 @@ main
 .profile-card_article
   box-sizing border-box
   display flex
+  padding calc(var(--header-base-size) * 0.2)
 
 .profile-card_avatar
   flex 0 0 30%
   width 30%
+  margin-right calc(var(--header-base-size) * 0.2)
   img
     border-radius 50%
     height auto
 
 .profile-card_social
-  box-sizing border-box
   display flex
   justify-content center
   width 100%
 
 .profile-card_social_icon
   flex 1 1 100%
+  display flex
+  justify-content center
+  align-items center
+  padding 0 5px
   height 2em
-  text-align center
+  color var(--ui-text)
   img
-    display inline-block
-    margin 0 auto
-    width auto
     height 100%
+    width auto
 
 .twitter
   background-color #1da1f3
