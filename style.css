@@ -27,7 +27,7 @@ body {
   margin: 0;
   scroll-behavior: smooth;
   background-color: var(--main-bg);
-  font-family: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ãƒ¡ã‚¤ãƒªã‚ª', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 a {
   text-decoration: none;
@@ -432,49 +432,49 @@ footer {
 .floating-button {
   bottom: calc(var(--header-base-size) * 0.2);
   right: calc(var(--header-base-size) * 0.2);
-  width: var(--header-base-size);
+  width: calc(var(--header-base-size) * 0.75);
   position: fixed;
-  filter: drop-shadow(0 8px 5px #808080);
+  filter: drop-shadow(0 8px 5px #000);
   animation: bounce 1s ease-in-out infinite alternate;
 }
 @-moz-keyframes bounce {
   from {
     bottom: calc(var(--header-base-size) * 0.2);
-    filter: drop-shadow(0 8px 5px #808080);
+    filter: drop-shadow(0 3px 2px #000);
   }
   to {
     bottom: calc(var(--header-base-size) * 0.2 + 5px);
-    filter: drop-shadow(0 13px 6px #808080);
+    filter: drop-shadow(0 8px 6px #000);
   }
 }
 @-webkit-keyframes bounce {
   from {
     bottom: calc(var(--header-base-size) * 0.2);
-    filter: drop-shadow(0 8px 5px #808080);
+    filter: drop-shadow(0 3px 2px #000);
   }
   to {
     bottom: calc(var(--header-base-size) * 0.2 + 5px);
-    filter: drop-shadow(0 13px 6px #808080);
+    filter: drop-shadow(0 8px 6px #000);
   }
 }
 @-o-keyframes bounce {
   from {
     bottom: calc(var(--header-base-size) * 0.2);
-    filter: drop-shadow(0 8px 5px #808080);
+    filter: drop-shadow(0 3px 2px #000);
   }
   to {
     bottom: calc(var(--header-base-size) * 0.2 + 5px);
-    filter: drop-shadow(0 13px 6px #808080);
+    filter: drop-shadow(0 8px 6px #000);
   }
 }
 @keyframes bounce {
   from {
     bottom: calc(var(--header-base-size) * 0.2);
-    filter: drop-shadow(0 8px 5px #808080);
+    filter: drop-shadow(0 3px 2px #000);
   }
   to {
     bottom: calc(var(--header-base-size) * 0.2 + 5px);
-    filter: drop-shadow(0 13px 6px #808080);
+    filter: drop-shadow(0 8px 6px #000);
   }
 }
 @media screen and (min-width: 600px) {
