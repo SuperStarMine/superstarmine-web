@@ -394,7 +394,7 @@ footer {
   color: #fff;
   border: none;
   background-color: #000;
-  font-size: var(--header-font-size);
+  font-size: calc(var(--header-font-size) * 0.9);
 }
 @media screen and (max-width: 600px) {
   .footer_link_item {
@@ -416,7 +416,7 @@ footer {
     }
 }
 }
-.icon {
+.footer_link_item i {
   display: inline;
   margin-right: 0.5rem;
 }

@@ -370,9 +370,7 @@ footer
   justify-content space-between
   align-content space-between
   box-sizing border-box
-
-@supports (padding: calc(max(0px)))
-  .footer_link
+  @supports (padding: calc(max(0px)))
     padding 2vw calc(max(env(safe-area-inset-right), 2vw)) 2vw calc(max(env(safe-area-inset-left), 2vw))
 
 .footer_link_item
@@ -387,21 +385,17 @@ footer
   color #fff
   border none
   background-color #000
-  font-size var(--header-font-size)
-
-.footer_link_item:hover
-  @media screen and (min-width 600px)
-    background-color var(--ui-hover)
-
-@supports (padding: calc(max(0px)))
-  .footer_link_item
+  font-size calc(var(--header-font-size) * 0.9)
+  &:hover
+    @media screen and (min-width 600px)
+      background-color var(--ui-hover)
+  @supports (padding: calc(max(0px)))
     flex-basis calc((90vw - max(env(safe-area-inset-left), 2vw) - max(env(safe-area-inset-right), 2vw)) / 4)
     @media screen and (max-width 600px)
       flex-basis calc((98vw - max(env(safe-area-inset-left), 2vw) - max(env(safe-area-inset-right), 2vw)) / 2)
-
-.icon
-  display inline
-  margin-right 0.5rem
+  i
+    display inline
+    margin-right 0.5rem
 
 .footer_copywrite
   height 2rem
