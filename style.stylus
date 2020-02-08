@@ -51,7 +51,7 @@ html,body
   margin 0
   scroll-behavior smooth
   background-color var(--main-bg)
-  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'ãƒ¡ã‚¤ãƒªã‚ª', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
 a
   text-decoration: none
