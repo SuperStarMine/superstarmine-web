@@ -355,9 +355,9 @@ footer
   position relative
   bottom 0
   padding-bottom env(safe-area-inset-bottom)
-  height calc(4rem + 4vw)
-  @media screen and (max-width 600px)
-    height calc(6rem + 8vw)
+  // height calc(4rem + 4vw)
+  // @media screen and (max-width 600px)
+  //   height calc(6rem + 8vw)
   background-color var(--ui-bg2)
 
 .footer_link
