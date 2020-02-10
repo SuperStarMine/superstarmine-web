@@ -372,6 +372,12 @@ main
   .card-container
     padding-left calc(var(--header-base-size) * 0.4 + env(safe-area-inset-left))
 
+#CONTACTS
+  .main-section_title
+    padding-left env(safe-area-inset-left)
+  .card-container
+    padding-right calc(var(--header-base-size) * 0.4 + env(safe-area-inset-left))
+
 @css{
   #NEWS .main-section_title{
     background-color:hsl(var(--news-key-color), 75%, 50%);
