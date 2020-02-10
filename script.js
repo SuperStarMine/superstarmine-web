@@ -8,8 +8,8 @@ addEventListener("load", () => {
   let timer = [];
 
   for (let i = 0; i < card_container.length; i++) {
-    card_container[i].onmouseover = () => auto_scroll[i] = false;
-    card_container[i].ontouchend = () => auto_scroll[i] = false;
+    card_container[i].addEventListener("mouseover", () => auto_scroll[i] = false);
+    card_container[i].addEventListener("touchend", () => auto_scroll[i] = false);
   }
 
   for (let i = 0; i < card_container.length; i++) {
