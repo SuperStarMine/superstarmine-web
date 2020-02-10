@@ -83,6 +83,8 @@ a
   top 0
   z-index -2
   width 100vw
+  height 100%
+  object-fit cover
 
 header
   position fixed
@@ -140,6 +142,13 @@ nav
     &+&:nth-child(2):before
       content none
 
+.pc-hide
+  @media screen and (min-width 600px)
+    display none
+
+.mobile-hide
+  @media screen and (max-width 600px)
+    display none
 
 main
   position relative
@@ -160,7 +169,7 @@ main
   color var(--ui-text)
   h2,h3
     margin 0
-    @media screen and (max-width 680px)
+    @media screen and (max-width 600px)
       font-size 1.1em
 
 .main-section_article
@@ -176,6 +185,24 @@ main
   overflow-y visible
   -webkit-overflow-scrolling: touch
   padding-right 0
+
+.iframe-container
+  height 43vw
+  iframe
+    width 100%
+    height 100%
+
+@media screen and (max-width 600px)
+  #CONTACTS
+    display block
+
+    .main-section_title
+      width 100vw
+      height 8.01em
+
+    .main-section_article
+      width 100vw
+      height calc(100vh - var(--header-base-size))
 
 .main-section_card
   flex 0 0 32vw
@@ -268,6 +295,7 @@ main
   right 5px
   color var(--ui-text)
   font-weight bold
+  mix-blend-mode difference
   -webkit-text-stroke-color var(--ui-bg)
   -webkit-text-stroke-width medium
 
@@ -286,10 +314,23 @@ main
 .profile-card_avatar
   flex 0 0 30%
   width 30%
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
   margin-right calc(var(--header-base-size) * 0.2)
   img
     border-radius 50%
     height auto
+
+.profile-card_article_layout
+  display flex
+  flex-direction column
+  justify-content space-around
+  align-items flex-start
+
+.profile-card_article_name
+  margin 0
 
 .profile-card_social
   display flex
