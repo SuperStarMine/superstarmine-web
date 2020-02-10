@@ -14,7 +14,7 @@
   --team-key-color 20
   --contacts-key-color 270
 
-@media screen and (max-width 600px)
+@media screen and (max-width 680px)
   :root
     --hero-font-size 9vw
     --hero-sub-font-size 3vw
@@ -60,19 +60,36 @@ a
   display flex
   align-items center
   justify-content center
-  margin calc(var(--header-base-size) * 1.5) 0 calc(var(--header-base-size) * 0.5)
+  padding calc(var(--header-base-size) * 1.5) 0 calc(var(--header-base-size) * 0.5)
   color var(--main-text)
   background-color var(--main-bg)
+  position relative
+  z-index 0
 
 .hero_logo
   width: 50vw
+
+.hero_background-blur
+  position absolute
+  top 0
+  z-index -1
+  width 100%
+  height 100%
+  background-color rgba(128,128,128,0.5)
+  vendor(backdrop-filter, blur(3px))
+
+.hero_background-video
+  position absolute
+  top 0
+  z-index -2
+  width 100vw
 
 header
   position fixed
   width 100vw
   top 0
   height var(--header-base-size)
-  z-index 1
+  z-index 2
   background-color var(--ui-bg)
   vendor(backdrop-filter, blur(10px))
   padding env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)
@@ -125,6 +142,8 @@ nav
 
 
 main
+  position relative
+  z-index 0
   background-color var(--main-bg)
 
 .main-section
@@ -141,7 +160,7 @@ main
   color var(--ui-text)
   h2,h3
     margin 0
-    @media screen and (max-width 600px)
+    @media screen and (max-width 680px)
       font-size 1.1em
 
 .main-section_article
@@ -161,7 +180,7 @@ main
 .main-section_card
   flex 0 0 32vw
   width 32vw
-  @media screen and (max-width 600px)
+  @media screen and (max-width 680px)
     flex 0 0 56vw
     width 56vw
   padding 5px
@@ -189,8 +208,9 @@ main
   white-space nowrap
   overflow-x scroll
 
-.break-point
+.break-scope
   display inline-block
+  white-space nowrap
 
 .main-section_card_article
   line-height 1
@@ -219,7 +239,7 @@ main
   vendor(backdrop-filter, blur(1px))
   position absolute
   bottom 0
-  padding 0 5px 5px 5px
+  padding-bottom 5px
   box-sizing border-box
   text-align right
 
@@ -227,7 +247,8 @@ main
   margin 0
   line-height 1
   height 2em
-  padding 0.5em 0.5em
+  padding 0.5em
+  padding-left 0
   display flex
   flex-wrap wrap
   align-items center
@@ -237,6 +258,7 @@ main
 .image-card_banner_sub
   line-height 0.5
   height 0.5em
+  padding 0 5px
   font-size 0.5em
   color lightgray
 
@@ -356,7 +378,7 @@ footer
   bottom 0
   padding-bottom env(safe-area-inset-bottom)
   // height calc(4rem + 4vw)
-  // @media screen and (max-width 600px)
+  // @media screen and (max-width 680px)
   //   height calc(6rem + 8vw)
   background-color var(--ui-bg2)
 
@@ -364,7 +386,7 @@ footer
 //   display flex
 //   height calc(2rem + 4vw)
 //   padding 2vw
-//   @media screen and (max-width 600px)
+//   @media screen and (max-width 680px)
 //     height calc(4rem + 6vw)
 //   flex-wrap wrap
 //   justify-content space-between
@@ -376,7 +398,7 @@ footer
 // .footer_link_item
 //   box-sizing border-box
 //   flex-basis calc(90vw / 4)
-//   @media screen and (max-width 600px)
+//   @media screen and (max-width 680px)
 //     flex-basis 47vw
 //   display block
 //   height 2rem
@@ -402,7 +424,7 @@ footer
   line-height 2rem
   font-size 1rem
   color var(--main-text)
-  @media screen and (max-width 600px)
+  @media screen and (max-width 680px)
     font-size calc(100vw / 30)
   text-align center
 
