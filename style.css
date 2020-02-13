@@ -294,11 +294,9 @@ main {
   position: absolute;
   top: 5px;
   right: 5px;
+  width: 8%;
   color: var(--ui-text);
-  font-weight: bold;
   mix-blend-mode: difference;
-  -webkit-text-stroke-color: var(--ui-bg);
-  -webkit-text-stroke-width: medium;
 }
 .profile-card {
   padding: 0;
