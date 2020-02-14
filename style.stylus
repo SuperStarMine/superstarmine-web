@@ -342,6 +342,12 @@ main
 .note
   background-color #41c8b5
 
+.github
+  background-color #171516
+
+.qiita
+  background-color #55C500
+
 #NEWS,#ABOUT
   .main-section_title
     padding-left env(safe-area-inset-left)

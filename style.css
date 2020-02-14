@@ -344,6 +344,12 @@ main {
 .note {
   background-color: #41c8b5;
 }
+.github {
+  background-color: #171516;
+}
+.qiita {
+  background-color: #55c500;
+}
 #NEWS .main-section_title,
 #ABOUT .main-section_title {
   padding-left: env(safe-area-inset-left);
