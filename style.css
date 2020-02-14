@@ -76,10 +76,6 @@ header {
   backdrop-filter: blur(10px);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
-.picture_img {
-  width: 100%;
-  height: 100%;
-}
 nav {
   position: absolute;
   top: 0;
@@ -240,6 +236,12 @@ main {
   width: calc(100% - 5px);
   left: 0;
   bottom: -5px;
+}
+.picture_img,
+.image-card_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .image-card_banner {
   width: 100%;
