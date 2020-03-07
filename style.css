@@ -146,6 +146,10 @@ nav {
 .dev-tool .label {
   display: inline-block;
   flex-shrink: 4;
+  -webkit-text-stroke: 1px #fff;
+  -moz-text-stroke: 1px #fff;
+  text-stroke: 1px #fff;
+  font-weight: bold;
 }
 .dev-tool .slider {
   width: 94vw;

@@ -23,6 +23,7 @@ addEventListener('load', () => {
       } else {
         color[index] = elem.value;
         board.style.backgroundColor = `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
+        target.style.color = `rgb(${index==0?elem.value:0},${index==1?elem.value:0},${index==2?elem.value:0})`
       }
     }
   }

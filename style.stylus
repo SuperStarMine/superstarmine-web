@@ -160,6 +160,8 @@ nav
   .label
     display inline-block
     flex-shrink 4
+    vendor(text-stroke, 1px #fff)
+    font-weight bold
   .slider
     width 94vw
     padding 0 3vw 0
