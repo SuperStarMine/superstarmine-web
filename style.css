@@ -130,7 +130,7 @@ nav {
   -webkit-backdrop-filter: blur(10px);
   -moz-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   bottom: 0;
   overflow: scroll;
 }
