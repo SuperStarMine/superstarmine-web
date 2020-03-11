@@ -41,34 +41,47 @@
     </video>
   </section>
   <section class="dev-tool">
-    <div>
-      <button class="nav_item">Normal</button>
-      <button class="nav_item">Normal</button>
-      <button class="nav_item">Multiply</button>
-      <button class="nav_item">Screen</button>
-      <button class="nav_item">Overlay</button>
-      <button class="nav_item">Hard-light</button>
-      <button class="nav_item">Soft-light</button>
+    <div class="bts">
+      <button class="blend">normal</button>
+      <button class="blend">multiply</button>
+      <button class="blend">screen</button>
+      <button class="blend">overlay</button>
+      <button class="blend">darken</button>
+      <button class="blend">lighten</button>
+      <button class="blend">color-dodge</button>
+      <button class="blend">color-burn</button>
+      <button class="blend">hard-light</button>
+      <button class="blend">soft-light</button>
+      <button class="blend">difference</button>
+      <button class="blend">exclusion</button>
+      <button class="blend">hue</button>
+      <button class="blend">saturation</button>
+      <button class="blend">color</button>
+      <button class="blend">luminosity</button>
+    </div>
+    <div class="slider rgb">
+      <div class="label">RGB</div>
+      <input type="range" name="red" min="0" max="255" step="1" value="128" id="dev-rgb" class="nav_item sl">
     </div>
     <div class="slider r">
-      <div class="nav_item label" id="disp-red">R</div>
-      <input type="range" name="red" min="0" max="255" step="1" value="128" id="dev-red" class="nav_item">
+      <div class="label">R</div>
+      <input type="range" name="red" min="0" max="255" step="1" value="128" id="dev-red" class="nav_item sl">
     </div>
     <div class="slider g">
-      <div class="nav_item label" id="disp-green">G</div>
-      <input type="range" name="green" min="0" max="255" step="1" value="128" id="dev-green" class="nav_item">
+      <div class="label">G</div>
+      <input type="range" name="green" min="0" max="255" step="1" value="128" id="dev-green" class="nav_item sl">
     </div>
     <div class="slider b">
-      <div class="nav_item label" id="disp-blue">B</div>
-      <input type="range" name="blue" min="0" max="255" step="1" value="128" id="dev-blue" class="nav_item">
+      <div class="label">B</div>
+      <input type="range" name="blue" min="0" max="255" step="1" value="128" id="dev-blue" class="nav_item sl">
     </div>
     <div class="slider a">
-      <div class="nav_item label" id="disp-alpha">A</div>
-      <input type="range" name="alpha" min="0" max="1" step="0.01" value="0.5" id="dev-alpha" class="nav_item">
+      <div class="label">A</div>
+      <input type="range" name="alpha" min="0" max="1" step="0.01" value="0.5" id="dev-alpha" class="nav_item sl">
     </div>
     <div class="slider blur">
-      <div class="nav_item label" id="disp-blur">Blur</div>
-      <input type="range" name="blur" min="0" max="100" step="0.1" value="3" id="dev-blur" class="nav_item">
+      <div class="label">Blur</div>
+      <input type="range" name="blur" min="0" max="100" step="0.1" value="3" id="dev-blur" class="nav_item sl">
     </div>
   </section>
   <main>
