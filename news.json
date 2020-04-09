@@ -1,0 +1,64 @@
+{
+  "articles": [
+    {
+      "id": "C98",
+      "title": [
+        "コミックマーケット98",
+        "に出展します！"
+      ],
+      "date": "2019-03-11",
+      "link": "https://twitter.com/necromance_chan/status/1237667082193358848",
+      "img_filename_extension": "png"
+    },
+    {
+      "id": "necromance_trial",
+      "title": [
+        "れーぞく！ネクロマンスちゃん",
+        "無料体験版を公開しました！"
+      ],
+      "date": "2020-02-13",
+      "link": "https://superstarmine.booth.pm/items/1829293",
+      "img_filename_extension": "png"
+    },
+    {
+      "id": "GIE4",
+      "title": [
+        "第4回ゲーム業界交流会にて",
+        "『SPINNER』を出展しました！"
+      ],
+      "date": "2020-02-06",
+      "link": "https://game.creators-guild.com/g4c/%E3%82%B2%E3%83%BC%E3%83%A0%E6%A5%AD%E7%95%8C%E4%BA%A4%E6%B5%81%E4%BC%9A%E3%81%AB%E6%BD%9C%E5%85%A5%EF%BC%81/",
+      "img_filename_extension": "jpg"
+    },
+    {
+      "id": "C97",
+      "title": [
+        "コミックマーケット97",
+        "に出展しました！"
+      ],
+      "date": "2019-12-31",
+      "link": "https://note.com/machikou_mk2/n/na47c3ac7425a",
+      "img_filename_extension": "jpg"
+    },
+    {
+      "id": "Interview",
+      "title": [
+        "GCGさんによる当チームへの",
+        "インタビュー記事が公開！"
+      ],
+      "date": "2019-12-27",
+      "link": "https://game.creators-guild.com/g4c/interview-studentgamescreator-20190114/",
+      "img_filename_extension": "jpg"
+    },
+    {
+      "id": "GCG-EXPO",
+      "title": [
+        "GCG EXPO 2019に出場し、",
+        "最優秀賞を頂きました！"
+      ],
+      "date": "2019-11-30",
+      "link": "https://game.creators-guild.com/g4c/event-realevent-20191205/",
+      "img_filename_extension": "jpg"
+    }
+  ]
+}
