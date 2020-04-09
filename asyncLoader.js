@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", e => {
           const img = document.createElement('img');
           img.classList.add('image-card_image');
           img.setAttribute('sizes', '(min-width: 600px) 32vw, 56vw');
-          icon.setAttribute('src', `/img/NEWS/NEWS_${content.id}-1000w.${content.img_filename_extension}`);
+          img.setAttribute('src', `/img/NEWS/NEWS_${content.id}-1000w.${content.img_filename_extension}`);
           const srcset = [];
           for (let j = 2000; j >= 250; j -= 250) {
             srcset.push(`/img/NEWS/NEWS_${content.id}-${j}w.${content.img_filename_extension} ${j}w`);
