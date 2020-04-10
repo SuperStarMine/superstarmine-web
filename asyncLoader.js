@@ -12,7 +12,7 @@ function asyncload() {
         for (let i = 0; i < contents.articles.length; i++) {
           const content = contents.articles[i];
           const card = content.link ? document.createElement('a') : document.createElement('div');
-          card.setAttribute('href', content.link);
+          content.link ? card.setAttribute('href', content.link) : 0;
           card.classList.add('main-section_card', 'image-card');
           const banner = document.createElement('div');
           banner.classList.add('image-card_banner');
