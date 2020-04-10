@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", e => {
+let timer;
+function asyncload() {
   fetch('/news.json', {
     method: 'GET',
     mode: 'cors'
@@ -55,7 +56,11 @@ document.addEventListener("DOMContentLoaded", e => {
         const padding = document.createElement('div');
         padding.classList.add('card_padding-fixer');
         container.insertAdjacentElement('beforeend', padding);
+        timer ? clearTimeout(timer) : 0;
       });
+    } else {
+      timer = setTimeout(() => asyncload(), 3000);
     }
   });
-});
+}
+document.addEventListener("DOMContentLoaded", e => asyncload(e));
