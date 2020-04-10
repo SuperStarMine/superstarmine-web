@@ -1,4 +1,4 @@
-addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const card_container = document.getElementsByClassName("card-container");
   const auto_scroll_resumer = document.getElementsByClassName("auto-scroll-resumer");
   const scroll_offset = new Array(card_container.length).fill(0);
