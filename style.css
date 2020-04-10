@@ -513,6 +513,10 @@ footer {
   filter: drop-shadow(0 8px 5px #000);
   animation: bounce 1s ease-in-out infinite alternate;
 }
+.floating-button img {
+  width: 100%;
+  height: auto;
+}
 @-moz-keyframes bounce {
   from {
     bottom: calc(var(--header-base-size) * 0.2);
