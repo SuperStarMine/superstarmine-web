@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let timer = [];
 
   for (let i = 0; i < card_container.length; i++) {
-    card_container[i].addEventListener("mouseover", () => is_auto_scrolling[i] = false);
-    card_container[i].addEventListener("touchend", () => is_auto_scrolling[i] = false);
+    card_container[i].addEventListener("mouseover", () => is_auto_scrolling[i] = false, {passive: true});
+    card_container[i].addEventListener("touchend", () => is_auto_scrolling[i] = false, {passive: true});
   }
 
   for (let i = 0; i < card_container.length; i++) {
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
         is_auto_scrolling[i] = true;
         scroll_offset[i] = card_container[i].scrollLeft;
       }
-    });
+    }, {passive: true});
     auto_scroll_resumer[i].addEventListener("touchstart", () => {
       if (!is_auto_scrolling[i]) {
         is_auto_scrolling[i] = true;
         scroll_offset[i] = card_container[i].scrollLeft;
       }
-    });
+    }, {passive: true});
   }
 
   function auto_scroller() {
@@ -51,4 +51,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   auto_scroller();
-});
+}, {passive: true});
