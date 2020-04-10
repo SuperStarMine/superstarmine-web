@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const auto_scroll_resumer = document.getElementsByClassName("auto-scroll-resumer");
   const scroll_offset = new Array(card_container.length).fill(0);
   const is_auto_scrolling = new Array(card_container.length).fill(true);
-  const distance = new Array(card_container.length).fill(1);
-  const time = new Array(card_container.length).fill(33);
+  const distance_value = 1;
+  const time_value = 33;
+  const distance = new Array(card_container.length).fill(distance_value);
+  const time = new Array(card_container.length).fill(time_value);
   let timer = [];
 
   for (let i = 0; i < card_container.length; i++) {
@@ -32,16 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
       timer[i] = setInterval(() => {
         if (is_auto_scrolling[i] && card_container[i].scrollWidth > card_container[i].clientWidth) {
           card_container[i].scrollTo({ left: scroll_offset[i] += distance[i], behavior: 'smooth' });
-          if (card_container[i].scrollLeft >= card_container[i].scrollWidth - card_container[i].clientWidth || card_container[0].scrollLeft <= 0) {
-            switch (card_container[i].scrollLeft) {
-              case 0:
-                distance[i] = 1;
-                time[i] = 33;
-                break;
-              default:
-                distance[i] = -50;
-                time[i] = 5;
-                break;
+          if (card_container[i].scrollLeft >= card_container[i].scrollWidth - card_container[i].clientWidth || card_container[i].scrollLeft <= 0) {
+            if (card_container[i].scrollLeft <= 0) {
+              card_container[i].scrollLeft = 0;
+              distance[i] = distance_value;
+              time[i] = time_value;
+            } else {
+              distance[i] = -50;
+              time[i] = 5;
             }
             card_container[i].scrollTo({ left: scroll_offset[i] += distance[i], behavior: 'smooth' });
           }
