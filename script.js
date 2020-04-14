@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let timer = [];
 
   for (let i = 0; i < card_container.length; i++) {
-    card_container[i].addEventListener(ontouchstart ? "mouseover" : "touchend", () => is_auto_scrolling[i] = false, {passive: true});
+    card_container[i].addEventListener(window.ontouchstart ? "mouseover" : "touchend", () => is_auto_scrolling[i] = false, {passive: true});
   }
 
   for (let i = 0; i < card_container.length; i++) {
-    auto_scroll_resumer[i].addEventListener(ontouchstart ? "touchstart" : "click", () => {
+    auto_scroll_resumer[i].addEventListener(window.ontouchstart ? "touchstart" : "click", () => {
       if (!is_auto_scrolling[i]) {
         is_auto_scrolling[i] = true;
         scroll_offset[i] = card_container[i].scrollLeft;
