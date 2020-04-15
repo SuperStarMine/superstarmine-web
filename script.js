@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   for (let i = 0; i < card_container.length; i++) {
     auto_scroll_resumer[i].addEventListener(('ontouchstart' in document) && ('orientation' in window) ? "touchstart" : "click", () => {
+      if (is_paused[i]) scroll_offset[i] = card_container[i].scrollLeft;
       is_paused[i] = false;
-      scroll_offset[i] = card_container[i].scrollLeft;
     }, { passive: true });
   }
 
