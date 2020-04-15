@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function auto_scroller(time) {
     if (!last_time) {
       last_time = time;
-      console.log(`Start:${last_time}`);
       requestAnimationFrame(auto_scroller);
       return;
     }
@@ -39,8 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
           timeout[i] = setTimeout(() => is_waiting[i] = false, 500);
           speed[i] = -1000;
         } else {
-          const d = (time - last_time) / 1e3 * speed[i];
-          card_container[i].scrollTo({ left: scroll_offset[i] += d, behavior: 'smooth' });
+          card_container[i].scrollTo({ left: scroll_offset[i] += (time - last_time) / 1e3 * speed[i], behavior: 'smooth' });
         }
       }
     }
