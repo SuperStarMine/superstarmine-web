@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
         is_paused = new Array(card_container.length).fill(false),
         is_waiting = new Array(card_container.length).fill(false),
         is_rewinding = new Array(card_container.length).fill(false),
-        speed_value = 45, //px/s
+        rewind_duration = 500,
+        rewind_start_time = [],
+        max_scroll = [],
+        speed_value = 30, //px/s
         speed = new Array(card_container.length).fill(speed_value);
   let last_time,
       timeout = [];
@@ -18,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     auto_scroll_resumer[i].addEventListener(window.ontouchstart ? "touchstart" : "click", () => is_paused[i] = false, {passive: true});
   }
 
+  function easeInOutCubic(x) {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  }
+
   function auto_scroller(time) {
     if (!last_time) {
       last_time = time;
@@ -26,17 +33,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     for (let i = 0; i < card_container.length; i++) {
       if (!is_waiting[i] && !is_paused[i] && card_container[i].scrollWidth > card_container[i].clientWidth) {
-        if (card_container[i].scrollLeft <= 0 && is_rewinding[i]) {
-          speed[i] = speed_value;
-          is_rewinding[i] = false;
-          is_waiting[i] = true;
-          timeout[i] = setTimeout(() => is_waiting[i] = false, 1000);
+        if (is_rewinding[i]) {
+          if (!rewind_start_time[i]) rewind_start_time[i] = time;
+          if (!max_scroll[i]) max_scroll[i] = scroll_offset[i];
+          scroll_offset[i] = max_scroll[i] * (1 - easeInOutCubic((time - rewind_start_time[i]) / rewind_duration));
+          if (card_container[i].scrollLeft <= 0) {
+            is_rewinding[i] = false;
+            rewind_start_time[i] = null;
+            max_scroll[i] = null;
+            is_waiting[i] = true;
+            timeout[i] = setTimeout(() => is_waiting[i] = false, 1000);
+          }
         }
         if (card_container[i].scrollLeft >= card_container[i].scrollWidth - card_container[i].clientWidth && !is_rewinding[i]) {
           is_rewinding[i] = true;
           is_waiting[i] = true;
           timeout[i] = setTimeout(() => is_waiting[i] = false, 500);
-          speed[i] = -1000;
         } else {
           card_container[i].scrollTo({ left: scroll_offset[i] += (time - last_time) / 1e3 * speed[i], behavior: 'smooth' });
         }
