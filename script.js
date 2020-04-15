@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
       timeout = [];
 
   for (let i = 0; i < card_container.length; i++) {
-    card_container[i].addEventListener(window.ontouchstart ? "touchend" : "mouseover", () => is_paused[i] = true, { passive: true });
+    card_container[i].addEventListener(('ontouchstart' in document) && ('orientation' in window) ? "touchstart" : "mouseover", () => is_paused[i] = true, { passive: true });
   }
 
   for (let i = 0; i < card_container.length; i++) {
-    auto_scroll_resumer[i].addEventListener(window.ontouchstart ? "touchstart" : "click", () => {
+    auto_scroll_resumer[i].addEventListener(('ontouchstart' in document) && ('orientation' in window) ? "touchstart" : "click", () => {
       is_paused[i] = false;
       scroll_offset[i] = card_container[i].scrollLeft;
     }, { passive: true });
