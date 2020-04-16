@@ -36,7 +36,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60vh;
   padding: calc(var(--header-base-size) * 1.5) 0 calc(var(--header-base-size) * 0.5);
   color: var(--main-text);
   background-color: var(--main-bg);
@@ -44,18 +43,22 @@ a {
   z-index: 0;
 }
 .hero_logo {
-  height: 80%;
-  width: auto;
+  width: 25%;
+  height: auto;
 }
 .hero_title {
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 1;
 }
 .hero_title .heavy {
+  width: 100%;
   font-size: 10vw;
+  text-align: center;
 }
 .hero_title .regular {
+  width: 100%;
   font-size: calc(10vw / (80 / 55));
+  text-align: center;
 }
 .heavy {
   font-weight: 900;
