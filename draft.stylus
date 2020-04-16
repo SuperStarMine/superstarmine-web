@@ -1,0 +1,569 @@
+:root
+  --ui-bg rgba(0,0,0,0.6)
+  --ui-bg2 rgba(178, 178, 178, 0.6)
+  --main-bg #fff
+  --main-text #000
+  --ui-text #fff
+  --ui-focus rgba(68, 68, 68, 0.6)
+  --ui-hover rgba(68, 68, 68, 0.6)
+  --header-base-size 4vw
+  --header-font-size 2vw
+  --news-key-color 217
+  --works-key-color 5
+  --about-key-color 47
+  --team-key-color 20
+  --contacts-key-color 270
+
+@media screen and (max-width 680px)
+  :root
+    --hero-font-size 9vw
+    --hero-sub-font-size 3vw
+    --header-base-size 12vw
+    --header-font-size 3.6vw
+
+// @media (prefers-color-scheme light)
+//   :root
+//     --ui-bg rgba(0,0,0,0.6)
+//     --ui-bg2 rgba(178, 178, 178, 0.6)
+//     --ui-text #fff
+//     --main-bg #fff
+//     --main-text #000
+
+// @media (prefers-color-scheme dark)
+//   :root
+//     --ui-bg rgba(255,255,255,0.6)
+//     --ui-bg2 rgba(76, 76, 76, 0.6)
+//     --ui-text #1c1c1c
+//     --main-bg #000
+//     --main-text #fff
+
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  {prop} args
+
+vendorarg(prop, arg)
+  {prop} -webkit-+arg
+  {prop} -moz-+arg
+  {prop} arg
+// ########################################
+html,body
+  margin 0
+  scroll-behavior smooth
+  background-color var(--main-bg)
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+
+a
+  text-decoration: none
+
+.hero
+  display flex
+  align-items center
+  justify-content center
+  height 60vh
+  padding calc(var(--header-base-size) * 1.5) 0 calc(var(--header-base-size) * 0.5)
+  color var(--main-text)
+  background-color var(--main-bg)
+  position relative
+  z-index 0
+
+.hero_logo
+  height 80%
+  width auto
+
+.hero_title
+  font-family 'Noto Sans KR', sans-serif
+  line-height 1
+  .heavy
+    font-size 10vw
+  .regular
+    font-size calc(10vw / (80 /55))
+
+.heavy
+  font-weight 900
+
+.regular
+  font-weight 400
+
+.hero_background-blur
+  position absolute
+  top 0
+  z-index -1
+  width 100%
+  height 100%
+  background-color rgba(255, 255, 255,0.5)
+  vendor(backdrop-filter, blur(3px))
+
+.hero_background-video
+  position absolute
+  top 0
+  z-index -2
+  width 100vw
+  height 100%
+  object-fit cover
+
+header
+  position fixed
+  width 100vw
+  top 0
+  height var(--header-base-size)
+  z-index 2
+  background-color var(--ui-bg)
+  vendor(backdrop-filter, blur(10px))
+  padding env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)
+
+nav
+  position absolute
+  top 0
+  display flex
+  justify-content space-between
+  width 100vw
+  height var(--header-base-size)
+  line-height var(--header-base-size)
+  width calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right))
+  left env(safe-area-inset-left)
+
+.nav_item
+  display inline-block
+  width 100%
+  margin 0
+  padding 0
+  border none
+  text-align center
+  font-size var(--header-font-size)
+  color var(--ui-text)
+  background-color transparent
+
+  &:hover
+    @media screen and (min-width 600px)
+      background-color var(--ui-hover)
+
+  &+&:before
+    content ''
+    position absolute
+    width 1px
+    top calc(var(--header-base-size) * 0.1)
+    height calc(var(--header-base-size) * 0.8)
+    display block
+    background-color var(--ui-text)
+
+  @media screen and (max-width 600px)
+    &:first-child
+      display:none
+
+    &+&:nth-child(2):before
+      content none
+
+.dev-tool
+  position fixed
+  width 100vw
+  bottom 0
+  height calc(var(--header-base-size) * 4)
+  z-index 2
+  background-color var(--ui-bg)
+  vendor(backdrop-filter, blur(10px))
+  padding 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
+  bottom 0
+  overflow scroll
+
+.label
+  display inline-block
+  margin 0
+  padding 0
+  border none
+  text-align center
+  font-size var(--header-font-size)
+  color var(--ui-text)
+  background-color transparent
+  flex-shrink 4
+  vendor(text-stroke, 1px #fff)
+  font-weight bold
+
+.slider
+  width 94vw
+  padding 0 3vw 0
+  display flex
+  justify-content space-between
+  height var(--header-base-size)
+  line-height var(--header-base-size)
+
+.bts
+  position relative
+  overflow scroll visible
+  overflow-x scroll
+  overflow-y visible
+  -webkit-overflow-scrolling: touch
+  padding-right 0
+
+.blend
+  display block
+  margin 0
+  padding 0
+  border none
+  text-align center
+  font-size var(--header-font-size)
+  color var(--ui-text)
+  background-color transparent
+
+  &:hover
+    @media screen and (min-width 600px)
+      background-color var(--ui-hover)
+
+  &+&:before
+    content ''
+    position absolute
+    width 1px
+    top calc(var(--header-base-size) * 0.1)
+    height calc(var(--header-base-size) * 0.8)
+    display block
+    background-color var(--ui-text)
+
+.pc-hide
+  @media screen and (min-width 600px)
+    display none
+
+.mobile-hide
+  @media screen and (max-width 600px)
+    display none
+
+main
+  position relative
+  z-index 0
+  background-color var(--main-bg)
+
+.main-section
+  color var(--main-text)
+  display flex
+  width 100vw
+
+.main-section_title
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  width 30vw
+  color var(--ui-text)
+  h2,h3
+    margin 0
+    @media screen and (max-width 600px)
+      font-size 1.1em
+
+.main-section_article
+  box-sizing border-box
+  width 70vw
+  padding calc(var(--header-base-size) * 0.4)
+
+.card-container
+  display flex
+  position relative
+  overflow scroll visible
+  overflow-x scroll
+  overflow-y visible
+  -webkit-overflow-scrolling: touch
+  padding-right 0
+
+.iframe-container
+  height 43vw
+  iframe
+    width 100%
+    height 100%
+
+@media screen and (max-width 600px)
+  #CONTACTS
+    display block
+
+    .main-section_title
+      width 100vw
+      height 8.01em
+
+    .main-section_article
+      width 100vw
+      height calc(100vh - var(--header-base-size))
+
+.main-section_card
+  flex 0 0 32vw
+  width 32vw
+  @media screen and (max-width 680px)
+    flex 0 0 56vw
+    width 56vw
+  padding 5px
+  box-shadow 0px 20px 30px -15px gray
+  background-color var(--main-bg)
+  position relative
+  color var(--main-text)
+  &+&
+    margin-left calc(var(--header-base-size) * 0.4)
+  &:after
+    content ''
+    display block
+    position absolute
+    width calc(100% + 4px)
+    left -5px
+    bottom -10px
+    border-top 5px solid silver
+    border-right 3px solid transparent
+    border-left 3px solid transparent
+
+.break-scope
+  display inline-block
+  white-space nowrap
+
+.card_padding-fixer
+  flex 0 0 calc(var(--header-base-size) * 0.4)
+  width calc(var(--header-base-size) * 0.4)
+
+.image-card
+  padding 0
+  &:after
+    width calc(100% - 5px)
+    left 0
+    bottom -5px
+
+.picture_img
+
+.image-card_image
+  width 100%
+  height 100%
+  object-fit cover
+
+.image-card_banner
+  width 100%
+  background-color var(--ui-bg)
+  vendor(backdrop-filter, blur(1px))
+  position absolute
+  bottom 0
+  padding-bottom 5px
+  box-sizing border-box
+  text-align right
+
+.image-card_banner_title
+  margin 0
+  line-height 1
+  height 2em
+  padding 0.5em
+  padding-left 0
+  display flex
+  flex-wrap wrap
+  align-items center
+  justify-content flex-end
+  color var(--ui-text)
+
+.image-card_banner_sub
+  display block
+  line-height 0.5
+  height 0.5em
+  padding 0 5px
+  font-size 0.5em
+  color lightgray
+
+.image-card_link-icon
+  position absolute
+  top 5px
+  right 5px
+  width 8%
+  color var(--ui-text)
+  mix-blend-mode difference
+
+.profile-card
+  padding 0
+  &:after
+    width calc(100% - 5px)
+    left 0
+    bottom -5px
+
+.profile-card_article
+  box-sizing border-box
+  display flex
+  padding calc(var(--header-base-size) * 0.2)
+
+.profile-card_avatar
+  flex 0 0 30%
+  width 30%
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  margin-right calc(var(--header-base-size) * 0.2)
+  img
+    border-radius 50%
+    height auto
+
+.profile-card_article_layout
+  display flex
+  flex-direction column
+  justify-content space-around
+  align-items flex-start
+
+.profile-card_article_name
+  margin 0
+
+.profile-card_social
+  display flex
+  justify-content center
+  width 100%
+
+.profile-card_social_icon
+  flex 1 1 100%
+  display flex
+  justify-content center
+  align-items center
+  padding 0 5px
+  height 2em
+  color var(--ui-text)
+  img
+    height 100%
+    width auto
+
+.twitter
+  background-color #1da1f3
+
+.facebook
+  background-color #1877f2
+
+.note
+  background-color #41c8b5
+
+.github
+  background-color #171516
+
+.qiita
+  background-color #55C500
+
+#NEWS,#ABOUT
+  .main-section_title
+    padding-left env(safe-area-inset-left)
+  .card_padding-fixer
+    flex 0 0 calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
+    width calc(var(--header-base-size) * 0.4 + env(safe-area-inset-right))
+
+#WORKS,#TEAM
+  flex-direction row-reverse
+  .main-section_title
+    padding-right env(safe-area-inset-right)
+  .card-container
+    padding-left calc(var(--header-base-size) * 0.4 + env(safe-area-inset-left))
+
+#CONTACTS
+  .main-section_title
+    padding-left env(safe-area-inset-left)
+  .card-container
+    padding-right calc(var(--header-base-size) * 0.4 + env(safe-area-inset-left))
+
+@css{
+  #NEWS .main-section_title{
+    background-color:hsl(var(--news-key-color), 75%, 50%);
+  }
+
+  #NEWS .main-section_article{
+    background-color:hsl(var(--news-key-color), 75%, 90%);
+  }
+
+  #WORKS .main-section_title{
+    background-color:hsl(var(--works-key-color), 75%, 50%);
+  }
+
+  #WORKS .main-section_article{
+    background-color:hsl(var(--works-key-color), 75%, 90%);
+  }
+
+  #ABOUT .main-section_title{
+    background-color:hsl(var(--about-key-color), 75%, 50%);
+  }
+
+  #ABOUT .main-section_article{
+    background-color:hsl(var(--about-key-color), 75%, 90%);
+  }
+
+  #TEAM .main-section_title{
+    background-color:hsl(var(--team-key-color), 75%, 50%);
+  }
+
+  #TEAM .main-section_article{
+    background-color:hsl(var(--team-key-color), 75%, 90%);
+  }
+
+  #CONTACTS .main-section_title{
+    background-color:hsl(var(--contacts-key-color), 0%, 0%);
+  }
+
+  #CONTACTS .main-section_article{
+    background-color:hsl(var(--contacts-key-color), 0%, 90%);
+  }
+}
+
+footer
+  position relative
+  bottom 0
+  padding-bottom env(safe-area-inset-bottom)
+  // height calc(4rem + 4vw)
+  // @media screen and (max-width 680px)
+  //   height calc(6rem + 8vw)
+  background-color var(--ui-bg2)
+
+// .footer_link
+//   display flex
+//   height calc(2rem + 4vw)
+//   padding 2vw
+//   @media screen and (max-width 680px)
+//     height calc(4rem + 6vw)
+//   flex-wrap wrap
+//   justify-content space-between
+//   align-content space-between
+//   box-sizing border-box
+//   @supports (padding: calc(max(0px)))
+//     padding 2vw calc(max(env(safe-area-inset-right), 2vw)) 2vw calc(max(env(safe-area-inset-left), 2vw))
+
+// .footer_link_item
+//   box-sizing border-box
+//   flex-basis calc(90vw / 4)
+//   @media screen and (max-width 680px)
+//     flex-basis 47vw
+//   display block
+//   height 2rem
+//   line-height 2rem
+//   padding 0 1vw
+//   color #fff
+//   border none
+//   background-color #000
+//   font-size calc(var(--header-font-size) * 0.9)
+//   &:hover
+//     @media screen and (min-width 600px)
+//       background-color var(--ui-hover)
+//   @supports (padding: calc(max(0px)))
+//     flex-basis calc((90vw - max(env(safe-area-inset-left), 2vw) - max(env(safe-area-inset-right), 2vw)) / 4)
+//     @media screen and (max-width 600px)
+//       flex-basis calc((98vw - max(env(safe-area-inset-left), 2vw) - max(env(safe-area-inset-right), 2vw)) / 2)
+//   i
+//     display inline
+//     margin-right 0.5rem
+
+.footer_copywrite
+  height 2rem
+  line-height 2rem
+  font-size 1rem
+  color var(--main-text)
+  @media screen and (max-width 680px)
+    font-size calc(100vw / 30)
+  text-align center
+
+.floating-button
+  bottom calc(var(--header-base-size) * 0.2)
+  right calc(var(--header-base-size) * 0.2)
+  width calc(var(--header-base-size) * 0.75)
+  position fixed
+  filter drop-shadow(0 8px 5px black)
+  animation bounce 1s ease-in-out infinite alternate
+  @keyframes bounce
+    from
+      bottom calc(var(--header-base-size) * 0.2)
+      filter drop-shadow(0 3px 2px black)
+    to
+      bottom calc(var(--header-base-size) * 0.2 + 5px)
+      filter drop-shadow(0 8px 6px black)
+  img
+    width 100%
+    height auto
+
+@media screen and (min-width 600px)
+  .floating-button
+    display none
