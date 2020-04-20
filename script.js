@@ -13,15 +13,34 @@ document.addEventListener("DOMContentLoaded", () => {
   let last_time,
       timeout = [];
 
-  for (let i = 0; i < card_container.length; i++) {
-    card_container[i].addEventListener(('ontouchstart' in document) && ('orientation' in window) ? "touchstart" : "mouseover", () => is_paused[i] = true, { passive: true });
+  if (('ontouchstart' in document) && ('orientation' in window)) {
+    for (let i = 0; i < card_container.length; i++) {
+      card_container[i].addEventListener("touchstart", () => is_paused[i] = true, { passive: true });
+    }
   }
 
-  for (let i = 0; i < card_container.length; i++) {
-    auto_scroll_resumer[i].addEventListener(('ontouchstart' in document) && ('orientation' in window) ? "touchstart" : "click", () => {
-      if (is_paused[i]) scroll_offset[i] = card_container[i].scrollLeft;
-      is_paused[i] = false;
-    }, { passive: true });
+  if (('onclick' in window)) {
+    for (let i = 0; i < card_container.length; i++) {
+      card_container[i].addEventListener("mouseover", () => is_paused[i] = true, { passive: true });
+    }
+  }
+
+  if (('ontouchstart' in document) && ('orientation' in window)) {
+    for (let i = 0; i < card_container.length; i++) {
+      auto_scroll_resumer[i].addEventListener("touchstart", () => {
+        if (is_paused[i]) scroll_offset[i] = card_container[i].scrollLeft;
+        is_paused[i] = false;
+      }, { passive: true });
+    }
+  }
+
+  if (('onclick' in window)) {
+    for (let i = 0; i < card_container.length; i++) {
+      auto_scroll_resumer[i].addEventListener("click", () => {
+        if (is_paused[i]) scroll_offset[i] = card_container[i].scrollLeft;
+        is_paused[i] = false;
+      }, { passive: true });
+    }
   }
 
   function easeInOutCubic(x) {
