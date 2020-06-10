@@ -1,12 +1,22 @@
 {
   "articles": [
     {
+      "id": "Interview-designer",
+      "title": [
+        "GCGさんによるデザイナーへの",
+        "インタビュー記事が公開！"
+      ],
+      "date": "2020-06-09",
+      "link": "https://note.com/gcg/n/n03248060cacb",
+      "img_filename_extension": "png"
+    },
+    {
       "id": "C98",
       "title": [
         "コミックマーケット98",
         "に出展します！"
       ],
-      "date": "2019-03-11",
+      "date": "2020-03-11",
       "link": "https://twitter.com/necromance_chan/status/1237667082193358848",
       "img_filename_extension": "png"
     },
