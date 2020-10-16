@@ -247,6 +247,13 @@ main {
 .iframe-container iframe {
   width: 100%;
   height: 100%;
+  background-color: var(--main-bg);
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 200ms;
+}
+.iframe-container iframe.isLoaded {
+  opacity: 1;
 }
 @media screen and (max-width: 600px) {
   #CONTACTS {

@@ -12,6 +12,7 @@
   <link rel="preload" href="/news.json" as="object">
   <script src="asyncLoader.js" defer="defer"></script>
   <script src="script.js" defer="defer"></script>
+  <script src="iframe-lazy.js" defer="defer"></script>
 </head>
 
 <body>
@@ -181,7 +182,16 @@
         <h3>連絡先</h3>
       </div>
       <div class="main-section_article iframe-container">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd6Z3feC7onaq9SJa1Blfdd7frPFCsm4zQUCfQr9XqPxM3gzA/viewform?embedded=true" width="640" height="931" frameborder="0" marginheight="0" marginwidth="0" title="問い合せフォーム">読み込んでいます…</iframe>
+        <div data-iframe="{
+          'src':'https://docs.google.com/forms/d/e/1FAIpQLSd6Z3feC7onaq9SJa1Blfdd7frPFCsm4zQUCfQr9XqPxM3gzA/viewform?embedded:true',
+          'width':'640',
+          'height':'931',
+          'frameborder':'0',
+          'marginheight':'0',
+          'marginwidth':'0',
+          'title':'問い合せフォーム',
+          'loading':'lazy'
+        }">チームへの問合せフォーム</div>
       </div>
     </section>
   </main>
