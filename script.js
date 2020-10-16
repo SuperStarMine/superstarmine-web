@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-    requestAnimationFrame(auto_scroller);
     last_time = time;
+    requestAnimationFrame(auto_scroller);
   }
 
   requestAnimationFrame(auto_scroller);
