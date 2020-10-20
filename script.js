@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
           is_waiting[i] = true;
           timeout[i] = setTimeout(() => is_waiting[i] = false, 500);
         } else {
-          card_container[i].scrollTo({ left: scroll_offset[i] += (time - last_time) / 1e3 * speed[i], behavior: 'smooth' });
+          card_container[i].scrollTo({ left: scroll_offset[i] += (time - last_time) / 1e3 * speed[i]});
         }
       }
     }
