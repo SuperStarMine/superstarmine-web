@@ -26,5 +26,6 @@ function materializeElements(ghosts) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const ghosts = document.querySelectorAll("[data-iframe]");
+  materializeElements(ghosts);
   addEventListener("scroll", () => materializeElements(ghosts));
 });
