@@ -49,7 +49,6 @@ vendorarg(prop, arg)
 // ########################################
 html,body
   margin 0
-  scroll-behavior smooth
   background-color var(--main-bg)
   font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 
