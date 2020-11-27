@@ -16,18 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (('ontouchstart' in document) && ('orientation' in window)) {
     for (let i = 0; i < card_container.length; i++) {
       card_container[i].addEventListener("touchstart", () => is_paused[i] = true, { passive: true });
-    }
-  }
-
-  if (('onclick' in window)) {
-    for (let i = 0; i < card_container.length; i++) {
-      card_container[i].addEventListener("mouseover", () => is_paused[i] = true, { passive: true });
-    }
-  }
-
-  if (('ontouchstart' in document) && ('orientation' in window)) {
-    for (let i = 0; i < card_container.length; i++) {
-      auto_scroll_resumer[i].addEventListener("touchstart", () => {
+      auto_scroll_resumer[i].addEventListener("touchend", () => {
         if (is_paused[i]) scroll_offset[i] = card_container[i].scrollLeft;
         is_paused[i] = false;
       }, { passive: true });
@@ -36,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (('onclick' in window)) {
     for (let i = 0; i < card_container.length; i++) {
+      card_container[i].addEventListener("mouseover", () => is_paused[i] = true, { passive: true });
       auto_scroll_resumer[i].addEventListener("click", () => {
         if (is_paused[i]) scroll_offset[i] = card_container[i].scrollLeft;
         is_paused[i] = false;
