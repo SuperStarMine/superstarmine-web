@@ -1,6 +1,26 @@
 {
   "articles": [
     {
+      "id": "Interview-wadaisyo",
+      "title": [
+        "GCGさんで話題賞を受賞し、",
+        "インタビュー記事が公開！"
+      ],
+      "date": "2020-11-24",
+      "link": "https://game.creators-guild.com/g4c/interview-studentgamescreator-20201120-01/",
+      "img_filename_extension": "png"
+    },
+    {
+      "id": "Interview-planner",
+      "title": [
+        "GCGさんによるプランナーへの",
+        "インタビュー記事が公開！"
+      ],
+      "date": "2020-06-11",
+      "link": "https://game.creators-guild.com/g4c/interview-studentgamescreator/",
+      "img_filename_extension": "png"
+    },
+    {
       "id": "Interview-designer",
       "title": [
         "GCGさんによるデザイナーへの",
