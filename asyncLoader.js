@@ -1,6 +1,7 @@
 let timer;
 function asyncload() {
-  fetch('/news.json', {
+  console.log(`Fetch: ${document.querySelector('link[as="fetch"]').href} now.`);
+  fetch(document.querySelector('link[as="fetch"]').href, {
     method: 'GET',
     mode: 'cors'
   })
