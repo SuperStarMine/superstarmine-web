@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SUPER STAR MINE</title>
+  <link rel="stylesheet" href="/draft.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap">
+  <link rel="preload" href="/asyncLoader.js" as="script">
+  <link rel="preload" href="/news.json" as="fetch">
+  <script src="asyncLoader.js" defer="defer"></script>
+  <script src="script.js" defer="defer"></script>
+</head>
+
+<body>
+  <header data-scroll-header>
+    <nav>
+      <a data-scroll href="#" class="nav_item">TOP</a>
+      <a data-scroll href="#NEWS" class="nav_item">NEWS</a>
+      <a data-scroll href="#WORKS" class="nav_item">WORKS</a>
+      <a data-scroll href="#ABOUT" class="nav_item">ABOUT</a>
+      <a data-scroll href="#TEAM" class="nav_item">TEAM</a>
+      <a data-scroll href="#CONTACTS" class="nav_item">CONTACTS</a>
+    </nav>
+  </header>
+  <section class="hero">
+    <img class="hero_logo" sizes="50vw" src="/img/next/logo-1000w.png" srcset="/img/next/logo-2000w.png 2000w, /img/next/logo-1750w.png 1750w, /img/next/logo-1500w.png 1500w, /img/next/logo-1250w.png 1250w, /img/next/logo-1000w.png 1000w, /img/next/logo-750w.png 750w, /img/next/logo-500w.png 500w, /img/next/logo-250w.png 250w" alt="ロゴ">
+    <div class="hero_title">
+      <div class="heavy">SU<span style="letter-spacing:0.005em;">P</span><span style="letter-spacing:0.005em;">E</span><span style="letter-spacing:0.010em;">R</span></div>
+      <div class="regular"><span style="letter-spacing:0.015em;">S</span><span style="letter-spacing:0.015em;">T</span><span style="letter-spacing:0.025em;">A</span><span style="letter-spacing:0.025em;">R</span><span style="letter-spacing:-0.075em;"> </span><span style="letter-spacing:0.005em;">M</span><span style="letter-spacing:0.005em;">I</span><span style="letter-spacing:-0.040em;">N</span><span style="letter-spacing:-0.040em;">E</span></div>
+    </div>
+    <div class="hero_background-blur"></div>
+  </section>
+  <main>
+    <section class="main-section" id="NEWS">
+      <div class="main-section_title auto-scroll-resumer">
+        <h2>NEWS</h2>
+        <h3>ニュース</h3>
+      </div>
+      <div class="main-section_article card-container">
+      </div>
+    </section>
+    <section class="main-section" id="WORKS">
+      <div class="main-section_title auto-scroll-resumer">
+        <h2>WORKS</h2>
+        <h3>作品</h3>
+      </div>
+      <div class="main-section_article card-container">
+        <a class="main-section_card image-card" href="https://superstarmine.booth.pm/items/1829293">
+          <div class="image-card_banner">
+            <h4 class="image-card_banner_title"><span class="break-scope">れーぞく！</span><span class="break-scope">ネクロマンスちゃん</span></h4>
+            <div class="image-card_banner_sub">コミカルポップ全方位STG</div>
+          </div>
+          <img class="image-card_image" sizes="(min-width:600px) 32vw, 56vw" src="/img/WORKS/necromance_ss-1000w.png" srcset="/img/WORKS/necromance_ss-2000w.png 2000w, /img/WORKS/necromance_ss-1750w.png 1750w, /img/WORKS/necromance_ss-1500w.png 1500w, /img/WORKS/necromance_ss-1250w.png 1250w, /img/WORKS/necromance_ss-1000w.png 1000w, /img/WORKS/necromance_ss-750w.png 750w, /img/WORKS/necromance_ss-500w.png 500w, /img/WORKS/necromance_ss-250w.png 250w" alt="れーぞく！ネクロマンスちゃんの画像">
+        </a>
+        <div class="main-section_card image-card">
+          <div class="image-card_banner">
+            <h4 class="image-card_banner_title"><span class="break-scope">SPINNER</span></h4>
+            <div class="image-card_banner_sub">ハイスピード対戦アクション</div>
+          </div>
+          <img class="image-card_image" sizes="(min-width:600px) 32vw, 56vw" src="/img/WORKS/spinner_ss-1000w.png" srcset="/img/WORKS/spinner_ss-2000w.png 2000w, /img/WORKS/spinner_ss-1750w.png 1750w, /img/WORKS/spinner_ss-1500w.png 1500w, /img/WORKS/spinner_ss-1250w.png 1250w, /img/WORKS/spinner_ss-1000w.png 1000w, /img/WORKS/spinner_ss-750w.png 750w, /img/WORKS/spinner_ss-500w.png 500w, /img/WORKS/spinner_ss-250w.png 250w" alt="SPINNERの画像">
+        </div>
+        <div class="card_padding-fixer"></div>
+      </div>
+    </section>
+    <section class="main-section" id="ABOUT">
+      <div class="main-section_title">
+        <h2>ABOUT</h2>
+        <h3>概要</h3>
+      </div>
+      <div class="main-section_article single-card-container">
+        <div class="single-card">
+          <h1 class="single-card_title">スーパースターマイン</h1>
+          <div class="single-card_article">
+            <p>大学サークル発、新進気鋭のゲーム制作チーム。</p>
+            <p>面白いものが大好きです。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="main-section" id="TEAM">
+      <div class="main-section_title auto-scroll-resumer">
+        <h2>TEAM</h2>
+        <h3>チーム</h3>
+      </div>
+      <div class="main-section_article card-container">
+        <div class="main-section_card profile-card">
+          <div class="profile-card_article">
+            <div class="profile-card_avatar">
+              <img class="picture_img" sizes="9.6vw" src="/img/TEAM/machikou_avatar-1000w.png" srcset="/img/TEAM/machikou_avatar-2000w.png 2000w, /img/TEAM/machikou_avatar-1750w.png 1750w, /img/TEAM/machikou_avatar-1500w.png 1500w, /img/TEAM/machikou_avatar-1250w.png 1250w, /img/TEAM/machikou_avatar-1000w.png 1000w, /img/TEAM/machikou_avatar-750w.png 750w, /img/TEAM/machikou_avatar-500w.png 500w, /img/TEAM/machikou_avatar-250w.png 250w" alt="まちこーのアバター画像">
+            </div>
+            <div class="profile-card_article_layout">
+              <h4 class="profile-card_article_name">マチコー</h4>
+              <div class="profile-card_article_role"><span class="break-scope">リーダー/</span><span class="break-scope">プランナー</span></div>
+            </div>
+          </div>
+          <div class="profile-card_social">
+            <a class="profile-card_social_icon twitter" href="https://twitter.com/MachiCollider">
+              <img src="/img/icon/twitter-logo.png" width="400" height="400" alt="Twitterのアイコン"><span class="mobile-hide"><!--@MachiCollider--></span>
+            </a>
+            <a class="profile-card_social_icon facebook" href="https://www.facebook.com/MachiCollider">
+              <img src="/img/icon/facebook-logo.png" width="400" height="400" alt="Facebookのアイコン">
+            </a>
+            <a class="profile-card_social_icon note" href="https://note.com/machikou_mk2">
+              <img src="/img/icon/note-logo.png" width="400" height="400" alt="noteのアイコン">
+            </a>
+          </div>
+        </div>
+        <div class="main-section_card profile-card">
+          <div class="profile-card_article">
+            <div class="profile-card_avatar">
+              <img class="picture_img" sizes="9.6vw" src="/img/TEAM/i-da_avatar-1000w.png" srcset="/img/TEAM/i-da_avatar-2000w.png 2000w, /img/TEAM/i-da_avatar-1750w.png 1750w, /img/TEAM/i-da_avatar-1500w.png 1500w, /img/TEAM/i-da_avatar-1250w.png 1250w, /img/TEAM/i-da_avatar-1000w.png 1000w, /img/TEAM/i-da_avatar-750w.png 750w, /img/TEAM/i-da_avatar-500w.png 500w, /img/TEAM/i-da_avatar-250w.png 250w" alt="いーだのアバター画像">
+            </div>
+            <div class="profile-card_article_layout">
+              <h4 class="profile-card_article_name">いーだ</h4>
+              <div class="profile-card_article_role">プログラマー</div>
+            </div>
+          </div>
+          <div class="profile-card_social">
+            <a class="profile-card_social_icon twitter" href="https://twitter.com/GoodPaddyField5">
+              <img src="/img/icon/twitter-logo.png" width="400" height="400" alt="Twitterのアイコン"><span class="mobile-hide">@GoodPaddyField5</span>
+            </a>
+          </div>
+        </div>
+        <div class="main-section_card profile-card">
+          <div class="profile-card_article">
+            <div class="profile-card_avatar">
+              <img class="picture_img" sizes="9.6vw" src="/img/TEAM/Amu_avatar-1000w.png" srcset="/img/TEAM/Amu_avatar-2000w.png 2000w, /img/TEAM/Amu_avatar-1750w.png 1750w, /img/TEAM/Amu_avatar-1500w.png 1500w, /img/TEAM/Amu_avatar-1250w.png 1250w, /img/TEAM/Amu_avatar-1000w.png 1000w, /img/TEAM/Amu_avatar-750w.png 750w, /img/TEAM/Amu_avatar-500w.png 500w, /img/TEAM/Amu_avatar-250w.png 250w" alt="Amuのアバター画像">
+            </div>
+            <div class="profile-card_article_layout">
+              <h4 class="profile-card_article_name">Amu</h4>
+              <div class="profile-card_article_role">デザイナー</div>
+            </div>
+          </div>
+          <div class="profile-card_social">
+            <a class="profile-card_social_icon twitter" href="https://twitter.com/Amu_dsgn">
+              <img src="/img/icon/twitter-logo.png" width="400" height="400" alt="Twitterのアイコン"><span class="mobile-hide">@Amu_dsgn</span>
+            </a>
+          </div>
+        </div>
+        <div class="main-section_card profile-card">
+          <div class="profile-card_article">
+            <div class="profile-card_avatar">
+              <img class="picture_img" sizes="9.6vw" src="/img/TEAM/HIBIKI_avatar-1000w.png" srcset="/img/TEAM/HIBIKI_avatar-2000w.png 2000w, /img/TEAM/HIBIKI_avatar-1750w.png 1750w, /img/TEAM/HIBIKI_avatar-1500w.png 1500w, /img/TEAM/HIBIKI_avatar-1250w.png 1250w, /img/TEAM/HIBIKI_avatar-1000w.png 1000w, /img/TEAM/HIBIKI_avatar-750w.png 750w, /img/TEAM/HIBIKI_avatar-500w.png 500w, /img/TEAM/HIBIKI_avatar-250w.png 250w" alt="HIBIKIのアバター画像">
+            </div>
+            <div class="profile-card_article_layout">
+              <h4 class="profile-card_article_name">HIBIKI CUBE</h4>
+              <div class="profile-card_article_role">Webエンジニア</div>
+            </div>
+          </div>
+          <div class="profile-card_social">
+            <a class="profile-card_social_icon twitter" href="https://twitter.com/hibiki_cube">
+              <img src="/img/icon/twitter-logo.png" width="400" height="400" alt="Twitterのアイコン"><span class="mobile-hide"><!--@hibiki_cube--></span>
+            </a>
+            <a class="profile-card_social_icon github" href="https://github.com/HIBIKI-CUBE">
+              <img src="/img/icon/github-logo.png" width="400" height="400" alt="GitHubのアイコン">
+            </a>
+            <a class="profile-card_social_icon qiita" href="https://qiita.com/HIBIKI-CUBE">
+              <img src="/img/icon/qiita-logo.png" width="1058" height="400" alt="Qiitaのアイコン">
+            </a>
+          </div>
+        </div>
+        <div class="card_padding-fixer"></div>
+      </div>
+    </section>
+    <section class="main-section" id="CONTACTS">
+      <div class="main-section_title">
+        <h2>CONTACTS</h2>
+        <h3>連絡先</h3>
+      </div>
+      <div class="main-section_article iframe-container">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd6Z3feC7onaq9SJa1Blfdd7frPFCsm4zQUCfQr9XqPxM3gzA/viewform?embedded=true" width="640" height="931" frameborder="0" marginheight="0" marginwidth="0" title="問い合せフォーム">読み込んでいます…</iframe>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <!-- <section class="footer_link">
+        <a class="footer_link_item" href="https://twitter.com/"><i class="icon fab fa-twitter"></i>Twitter</a>
+    </section> -->
+    <section class="footer_copywrite">&copy; スーパースターマイン</section>
+  </footer>
+  <a data-scroll href="#" class="floating-button">
+    <img sizes="(max-width:680px) 9vw, 3vw" src="/img/dotArrow.png" alt="TOPへ戻る">
+  </a>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.min.js"></script>
+  <script>
+    var scroll = new SmoothScroll('a[href*="#"]', {
+      header: '[data-scroll-header]'
+    });
+  </script>
+</body>
+</html>
