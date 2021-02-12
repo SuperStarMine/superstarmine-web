@@ -1,9 +1,8 @@
 <script>
-  import Color from 'color'
+  import Color from 'color';
   export let title;
   export let subtitle;
   export let themeColor;
-  let id = title.toLowerCase();
   let backgroundColor = Color(themeColor).lightness(80)
 </script>
 
@@ -12,6 +11,7 @@
     background-color: var(--backgroundColor)
     width: 100%
     margin: 0
+    border-bottom: solid 1px white;
     h2, h3
       margin: 0
       margin-right: 1ch
@@ -27,9 +27,11 @@
       padding: 0 5vw 0
 </style>
 
-<section {id} style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}">
+<section style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}">
   <div>
-    <h2>{title}</h2>
+    {#if title}
+      <h2>{title}</h2>
+    {/if}
     {#if subtitle}
       <h3>{subtitle}</h3>
     {/if}

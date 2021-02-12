@@ -5,21 +5,31 @@ const app = new App({
   props: {
     contents: [
       {
-        titleType: 'slideshow'
+        sectionType: 'slideshow',
+        pairId: 'hero'
       },
       {
-        titleType: 'static',
+        sectionType: 'cycle',
+        pairId: 'hero'
+      },
+      {
+        sectionType: 'cycle',
+        cycleType: 'compact',
         title: 'NEWS',
         subtitle: 'チームからのお知らせ',
-        themeColor: '#ff0200'
+        themeColor: '#ff0200',
+        contentType: 'cycle',
+        contents: []
       },
       {
-        titleType: 'static',
+        sectionType: 'static',
         title: 'ABOUT',
-        themeColor: '#f15a23'
+        themeColor: '#f15a23',
+        contentType: 'static',
+        contents: []
       },
       {
-        titleType: 'static',
+        sectionType: 'cards',
         title: 'MEMBERS',
         themeColor: '#f7931d'
       }

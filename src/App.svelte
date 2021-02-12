@@ -7,10 +7,8 @@
 </style>
 
 <main>
-  {#each contents as {titleType, title, subtitle, themeColor}}
-    {#if titleType=="static"}
-      <Cframe {title} {subtitle} {themeColor}>
-      </Cframe>
-    {/if}
+  {#each contents as {title, subtitle, themeColor}}
+    <Cframe {title} {subtitle} {themeColor}>
+    </Cframe>
   {/each}
 </main>
