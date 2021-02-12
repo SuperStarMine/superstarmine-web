@@ -43,7 +43,6 @@ export default {
         sourceMap: !production,
         defaults: {
           markup: 'html',
-          script: 'javascript',
           style: 'stylus'
         },
       }),
