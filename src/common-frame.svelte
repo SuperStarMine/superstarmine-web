@@ -3,7 +3,7 @@
   export let title;
   export let subtitle;
   export let themeColor;
-  let backgroundColor = Color(themeColor).lightness(80)
+  let backgroundColor = Color(themeColor).lightness(96)
 </script>
 
 <style>
@@ -19,7 +19,7 @@
       line-height: 100%
       color: white
     div
-      background: linear-gradient(var(--themeColor) 60%, var(--backgroundColor))
+      background: linear-gradient(var(--themeColor) 75%, var(--backgroundColor))
       display: flex
       align-items: center
       width: 100%
