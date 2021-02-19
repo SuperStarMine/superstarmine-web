@@ -27,8 +27,13 @@ picture
   img
     width: 100%
 
-.text
+.right-column
   flex: 0 0 60vw
+
+.text
+  margin-bottom: 1em
+  p
+    margin: 0
 
 .buttons
   display: flex

@@ -2661,7 +2661,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (55:4) {#each imageExtensionsShort as ext, i}
+    // (61:4) {#each imageExtensionsShort as ext, i}
     function create_each_block_2(ctx) {
     	let source;
 
@@ -2671,7 +2671,7 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[14]);
     			attr_dev(source, "sizes", "30vw");
     			attr_dev(source, "srcset", /*imageSrcset*/ ctx[1][/*i*/ ctx[11]]);
-    			add_location(source, file$1, 55, 6, 1264);
+    			add_location(source, file$1, 61, 6, 1329);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -2686,14 +2686,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(55:4) {#each imageExtensionsShort as ext, i}",
+    		source: "(61:4) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (62:6) {#each article as article}
+    // (68:6) {#each article as article}
     function create_each_block_1(ctx) {
     	let p;
     	let t_value = /*article*/ ctx[5] + "";
@@ -2703,7 +2703,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$1, 62, 8, 1496);
+    			attr_dev(p, "class", "svelte-135d468");
+    			add_location(p, file$1, 68, 8, 1561);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -2719,14 +2720,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(62:6) {#each article as article}",
+    		source: "(68:6) {#each article as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:8) {:else}
+    // (76:8) {:else}
     function create_else_block(ctx) {
     	let button;
     	let t_value = /*button*/ ctx[9].title + "";
@@ -2738,8 +2739,8 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(button, "onclick", /*button*/ ctx[9].target);
     			attr_dev(button, "style", "margin-" + /*buttonsLayout*/ ctx[2] + ": 0");
-    			attr_dev(button, "class", "svelte-1i8xnbf");
-    			add_location(button, file$1, 70, 10, 1748);
+    			attr_dev(button, "class", "svelte-135d468");
+    			add_location(button, file$1, 76, 10, 1813);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2755,14 +2756,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(70:8) {:else}",
+    		source: "(76:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:8) {#if isAnchor[i]}
+    // (74:8) {#if isAnchor[i]}
     function create_if_block$1(ctx) {
     	let a;
     	let t_value = /*button*/ ctx[9].title + "";
@@ -2774,8 +2775,8 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(a, "href", /*button*/ ctx[9].target);
     			attr_dev(a, "style", "margin-" + /*buttonsLayout*/ ctx[2] + ": 0");
-    			attr_dev(a, "class", "svelte-1i8xnbf");
-    			add_location(a, file$1, 68, 10, 1643);
+    			attr_dev(a, "class", "svelte-135d468");
+    			add_location(a, file$1, 74, 10, 1708);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -2791,14 +2792,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(68:8) {#if isAnchor[i]}",
+    		source: "(74:8) {#if isAnchor[i]}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:6) {#each buttons as button, i}
+    // (73:6) {#each buttons as button, i}
     function create_each_block(ctx) {
     	let if_block_anchor;
 
@@ -2832,7 +2833,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(67:6) {#each buttons as button, i}",
+    		source: "(73:6) {#each buttons as button, i}",
     		ctx
     	});
 
@@ -2899,19 +2900,19 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(img, "class", "header_logo svelte-1i8xnbf");
+    			attr_dev(img, "class", "header_logo svelte-135d468");
     			attr_dev(img, "alt", "画像");
-    			add_location(img, file$1, 57, 4, 1347);
-    			attr_dev(picture, "class", "svelte-1i8xnbf");
-    			add_location(picture, file$1, 53, 2, 1205);
-    			attr_dev(section0, "class", "text svelte-1i8xnbf");
-    			add_location(section0, file$1, 60, 4, 1432);
-    			attr_dev(section1, "class", "buttons svelte-1i8xnbf");
-    			add_location(section1, file$1, 65, 4, 1546);
-    			attr_dev(section2, "class", "right-column");
-    			add_location(section2, file$1, 59, 2, 1397);
-    			attr_dev(div, "class", "container svelte-1i8xnbf");
-    			add_location(div, file$1, 52, 0, 1179);
+    			add_location(img, file$1, 63, 4, 1412);
+    			attr_dev(picture, "class", "svelte-135d468");
+    			add_location(picture, file$1, 59, 2, 1270);
+    			attr_dev(section0, "class", "text svelte-135d468");
+    			add_location(section0, file$1, 66, 4, 1497);
+    			attr_dev(section1, "class", "buttons svelte-135d468");
+    			add_location(section1, file$1, 71, 4, 1611);
+    			attr_dev(section2, "class", "right-column svelte-135d468");
+    			add_location(section2, file$1, 65, 2, 1462);
+    			attr_dev(div, "class", "container svelte-135d468");
+    			add_location(div, file$1, 58, 0, 1244);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
