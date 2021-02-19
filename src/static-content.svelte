@@ -32,7 +32,7 @@ picture
     {#each imageExtensionsShort as ext, i}
       <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
     {/each}
-    <img class="header_logo" src={`${contents.imageDirectory}${contents.imageId}@250w.${imageExtensionsShort.includes("png")?'png':imageExtensionsShort.includes("jpg")?'jpg':'webp'}`} alt="画像">
+    <img class="header_logo" alt="画像">
   </picture>
   <section class="text">
     {#each article as article}

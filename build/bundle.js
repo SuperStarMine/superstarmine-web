@@ -2640,7 +2640,7 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[2] = list[i];
     	return child_ctx;
     }
 
@@ -2660,7 +2660,7 @@ var app = (function () {
     			source = element("source");
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[7]);
     			attr_dev(source, "sizes", "30vw");
-    			attr_dev(source, "srcset", /*imageSrcset*/ ctx[2][/*i*/ ctx[9]]);
+    			attr_dev(source, "srcset", /*imageSrcset*/ ctx[1][/*i*/ ctx[9]]);
     			add_location(source, file$1, 33, 6, 741);
     		},
     		m: function mount(target, anchor) {
@@ -2686,14 +2686,14 @@ var app = (function () {
     // (39:4) {#each article as article}
     function create_each_block(ctx) {
     	let p;
-    	let t_value = /*article*/ ctx[3] + "";
+    	let t_value = /*article*/ ctx[2] + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$1, 39, 6, 1089);
+    			add_location(p, file$1, 39, 6, 934);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -2721,10 +2721,9 @@ var app = (function () {
     	let picture;
     	let t0;
     	let img;
-    	let img_src_value;
     	let t1;
     	let section;
-    	let each_value_1 = /*imageExtensionsShort*/ ctx[1];
+    	let each_value_1 = /*imageExtensionsShort*/ ctx[0];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -2732,7 +2731,7 @@ var app = (function () {
     		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
-    	let each_value = /*article*/ ctx[3];
+    	let each_value = /*article*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2759,19 +2758,12 @@ var app = (function () {
     			}
 
     			attr_dev(img, "class", "header_logo svelte-ozh2xs");
-
-    			if (img.src !== (img_src_value = `${/*contents*/ ctx[0].imageDirectory}${/*contents*/ ctx[0].imageId}@250w.${/*imageExtensionsShort*/ ctx[1].includes("png")
-			? "png"
-			: /*imageExtensionsShort*/ ctx[1].includes("jpg")
-				? "jpg"
-				: "webp"}`)) attr_dev(img, "src", img_src_value);
-
     			attr_dev(img, "alt", "画像");
     			add_location(img, file$1, 35, 4, 824);
     			attr_dev(picture, "class", "svelte-ozh2xs");
     			add_location(picture, file$1, 31, 2, 682);
     			attr_dev(section, "class", "text svelte-ozh2xs");
-    			add_location(section, file$1, 37, 2, 1029);
+    			add_location(section, file$1, 37, 2, 874);
     			attr_dev(div, "class", "container svelte-ozh2xs");
     			add_location(div, file$1, 30, 0, 656);
     		},
@@ -2796,8 +2788,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*imageExtensionsShort, imageSrcset*/ 6) {
-    				each_value_1 = /*imageExtensionsShort*/ ctx[1];
+    			if (dirty & /*imageExtensionsShort, imageSrcset*/ 3) {
+    				each_value_1 = /*imageExtensionsShort*/ ctx[0];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -2820,16 +2812,8 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*contents*/ 1 && img.src !== (img_src_value = `${/*contents*/ ctx[0].imageDirectory}${/*contents*/ ctx[0].imageId}@250w.${/*imageExtensionsShort*/ ctx[1].includes("png")
-			? "png"
-			: /*imageExtensionsShort*/ ctx[1].includes("jpg")
-				? "jpg"
-				: "webp"}`)) {
-    				attr_dev(img, "src", img_src_value);
-    			}
-
-    			if (dirty & /*article*/ 8) {
-    				each_value = /*article*/ ctx[3];
+    			if (dirty & /*article*/ 4) {
+    				each_value = /*article*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -2891,7 +2875,7 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
+    		if ("contents" in $$props) $$invalidate(3, contents = $$props.contents);
     	};
 
     	$$self.$capture_state = () => ({
@@ -2903,23 +2887,23 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(1, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSrcset" in $$props) $$invalidate(2, imageSrcset = $$props.imageSrcset);
-    		if ("article" in $$props) $$invalidate(3, article = $$props.article);
+    		if ("contents" in $$props) $$invalidate(3, contents = $$props.contents);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(0, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSrcset" in $$props) $$invalidate(1, imageSrcset = $$props.imageSrcset);
+    		if ("article" in $$props) $$invalidate(2, article = $$props.article);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [contents, imageExtensionsShort, imageSrcset, article];
+    	return [imageExtensionsShort, imageSrcset, article, contents];
     }
 
     class Static_content extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { contents: 0 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { contents: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2931,7 +2915,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[0] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[3] === undefined && !("contents" in props)) {
     			console.warn("<Static_content> was created without expected prop 'contents'");
     		}
     	}
