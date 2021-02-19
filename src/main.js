@@ -33,11 +33,17 @@ const app = new App({
             "スーパースターマインは大学サークル発、新進気鋭のゲーム制作チーム。",
             "面白いものが大好きです。"
           ],
-          bottomButton: {
-            type: 'anchor',
-            title: 'お問い合わせ・連絡',
-            action: 'https://google.com'
-          }
+          bottomButtonsLayout: 'left',
+          bottomButtons: [
+            {
+              title: 'お問い合わせ・連絡',
+              target: 'https://google.com'
+            },
+            {
+              title: 'Test',
+              target: 'alert("Hello")'
+            },
+          ]
         }
       },
       {
