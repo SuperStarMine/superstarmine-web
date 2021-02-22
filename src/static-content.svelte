@@ -1,6 +1,7 @@
 <script>
   export let contents;
   let imageExtensionsShort = contents.imageExtensionsShort;
+  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
   const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
   let imageSrcset = imageExtensionsShort.map(ext => {
     return imageSizes.map(size => `${contents.imageDirectory}${contents.imageId}@${size}w.${ext} ${size}w`);
@@ -57,7 +58,7 @@ picture
     {#each imageExtensionsShort as ext, i}
       <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
     {/each}
-    <img class="header_logo" alt="画像">
+    <img class="header_logo" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
   </picture>
   <section class="right-column">
     <section class="text">

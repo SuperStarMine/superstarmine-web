@@ -2643,35 +2643,35 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[9] = list[i];
-    	child_ctx[11] = i;
+    	child_ctx[10] = list[i];
+    	child_ctx[12] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[5] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
-    	child_ctx[11] = i;
+    	child_ctx[15] = list[i];
+    	child_ctx[12] = i;
     	return child_ctx;
     }
 
-    // (61:4) {#each imageExtensionsShort as ext, i}
+    // (62:4) {#each imageExtensionsShort as ext, i}
     function create_each_block_2(ctx) {
     	let source;
 
     	const block = {
     		c: function create() {
     			source = element("source");
-    			attr_dev(source, "type", "image/" + /*ext*/ ctx[14]);
+    			attr_dev(source, "type", "image/" + /*ext*/ ctx[15]);
     			attr_dev(source, "sizes", "30vw");
-    			attr_dev(source, "srcset", /*imageSrcset*/ ctx[1][/*i*/ ctx[11]]);
-    			add_location(source, file$1, 61, 6, 1329);
+    			attr_dev(source, "srcset", /*imageSrcset*/ ctx[2][/*i*/ ctx[12]]);
+    			add_location(source, file$1, 62, 6, 1424);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -2686,17 +2686,17 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(61:4) {#each imageExtensionsShort as ext, i}",
+    		source: "(62:4) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:6) {#each article as article}
+    // (69:6) {#each article as article}
     function create_each_block_1(ctx) {
     	let p;
-    	let t_value = /*article*/ ctx[5] + "";
+    	let t_value = /*article*/ ctx[6] + "";
     	let t;
 
     	const block = {
@@ -2704,7 +2704,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			attr_dev(p, "class", "svelte-135d468");
-    			add_location(p, file$1, 68, 8, 1561);
+    			add_location(p, file$1, 69, 8, 1717);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -2720,27 +2720,27 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(68:6) {#each article as article}",
+    		source: "(69:6) {#each article as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (76:8) {:else}
+    // (77:8) {:else}
     function create_else_block(ctx) {
     	let button;
-    	let t_value = /*button*/ ctx[9].title + "";
+    	let t_value = /*button*/ ctx[10].title + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "onclick", /*button*/ ctx[9].target);
-    			attr_dev(button, "style", "margin-" + /*buttonsLayout*/ ctx[2] + ": 0");
+    			attr_dev(button, "onclick", /*button*/ ctx[10].target);
+    			attr_dev(button, "style", "margin-" + /*buttonsLayout*/ ctx[3] + ": 0");
     			attr_dev(button, "class", "svelte-135d468");
-    			add_location(button, file$1, 76, 10, 1813);
+    			add_location(button, file$1, 77, 10, 1969);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2756,27 +2756,27 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(76:8) {:else}",
+    		source: "(77:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (74:8) {#if isAnchor[i]}
+    // (75:8) {#if isAnchor[i]}
     function create_if_block$1(ctx) {
     	let a;
-    	let t_value = /*button*/ ctx[9].title + "";
+    	let t_value = /*button*/ ctx[10].title + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			a = element("a");
     			t = text(t_value);
-    			attr_dev(a, "href", /*button*/ ctx[9].target);
-    			attr_dev(a, "style", "margin-" + /*buttonsLayout*/ ctx[2] + ": 0");
+    			attr_dev(a, "href", /*button*/ ctx[10].target);
+    			attr_dev(a, "style", "margin-" + /*buttonsLayout*/ ctx[3] + ": 0");
     			attr_dev(a, "class", "svelte-135d468");
-    			add_location(a, file$1, 74, 10, 1708);
+    			add_location(a, file$1, 75, 10, 1864);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -2792,19 +2792,19 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(74:8) {#if isAnchor[i]}",
+    		source: "(75:8) {#if isAnchor[i]}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (73:6) {#each buttons as button, i}
+    // (74:6) {#each buttons as button, i}
     function create_each_block(ctx) {
     	let if_block_anchor;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*isAnchor*/ ctx[4][/*i*/ ctx[11]]) return create_if_block$1;
+    		if (/*isAnchor*/ ctx[5][/*i*/ ctx[12]]) return create_if_block$1;
     		return create_else_block;
     	}
 
@@ -2833,7 +2833,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(73:6) {#each buttons as button, i}",
+    		source: "(74:6) {#each buttons as button, i}",
     		ctx
     	});
 
@@ -2858,7 +2858,7 @@ var app = (function () {
     		each_blocks_2[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
     	}
 
-    	let each_value_1 = /*article*/ ctx[5];
+    	let each_value_1 = /*article*/ ctx[6];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -2866,7 +2866,7 @@ var app = (function () {
     		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
-    	let each_value = /*buttons*/ ctx[3];
+    	let each_value = /*buttons*/ ctx[4];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2901,18 +2901,20 @@ var app = (function () {
     			}
 
     			attr_dev(img, "class", "header_logo svelte-135d468");
+    			attr_dev(img, "sizes", "30vw");
+    			attr_dev(img, "srcset", /*imageSrcset*/ ctx[2][/*safeImageExtensionIndex*/ ctx[1]]);
     			attr_dev(img, "alt", "画像");
-    			add_location(img, file$1, 63, 4, 1412);
+    			add_location(img, file$1, 64, 4, 1507);
     			attr_dev(picture, "class", "svelte-135d468");
-    			add_location(picture, file$1, 59, 2, 1270);
+    			add_location(picture, file$1, 60, 2, 1365);
     			attr_dev(section0, "class", "text svelte-135d468");
-    			add_location(section0, file$1, 66, 4, 1497);
+    			add_location(section0, file$1, 67, 4, 1653);
     			attr_dev(section1, "class", "buttons svelte-135d468");
-    			add_location(section1, file$1, 71, 4, 1611);
+    			add_location(section1, file$1, 72, 4, 1767);
     			attr_dev(section2, "class", "right-column svelte-135d468");
-    			add_location(section2, file$1, 65, 2, 1462);
+    			add_location(section2, file$1, 66, 2, 1618);
     			attr_dev(div, "class", "container svelte-135d468");
-    			add_location(div, file$1, 58, 0, 1244);
+    			add_location(div, file$1, 59, 0, 1339);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2943,7 +2945,7 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*imageExtensionsShort, imageSrcset*/ 3) {
+    			if (dirty & /*imageExtensionsShort, imageSrcset*/ 5) {
     				each_value_2 = /*imageExtensionsShort*/ ctx[0];
     				validate_each_argument(each_value_2);
     				let i;
@@ -2967,8 +2969,8 @@ var app = (function () {
     				each_blocks_2.length = each_value_2.length;
     			}
 
-    			if (dirty & /*article*/ 32) {
-    				each_value_1 = /*article*/ ctx[5];
+    			if (dirty & /*article*/ 64) {
+    				each_value_1 = /*article*/ ctx[6];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -2991,8 +2993,8 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*buttons, buttonsLayout, isAnchor*/ 28) {
-    				each_value = /*buttons*/ ctx[3];
+    			if (dirty & /*buttons, buttonsLayout, isAnchor*/ 56) {
+    				each_value = /*buttons*/ ctx[4];
     				validate_each_argument(each_value);
     				let i;
 
@@ -3041,6 +3043,7 @@ var app = (function () {
     	validate_slots("Static_content", slots, []);
     	let { contents } = $$props;
     	let imageExtensionsShort = contents.imageExtensionsShort;
+    	let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
     	const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
 
     	let imageSrcset = imageExtensionsShort.map(ext => {
@@ -3059,12 +3062,13 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(6, contents = $$props.contents);
+    		if ("contents" in $$props) $$invalidate(7, contents = $$props.contents);
     	};
 
     	$$self.$capture_state = () => ({
     		contents,
     		imageExtensionsShort,
+    		safeImageExtensionIndex,
     		imageSizes,
     		imageSrcset,
     		article,
@@ -3075,14 +3079,15 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(6, contents = $$props.contents);
+    		if ("contents" in $$props) $$invalidate(7, contents = $$props.contents);
     		if ("imageExtensionsShort" in $$props) $$invalidate(0, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSrcset" in $$props) $$invalidate(1, imageSrcset = $$props.imageSrcset);
-    		if ("article" in $$props) $$invalidate(5, article = $$props.article);
-    		if ("buttonsLayout" in $$props) $$invalidate(2, buttonsLayout = $$props.buttonsLayout);
-    		if ("buttons" in $$props) $$invalidate(3, buttons = $$props.buttons);
+    		if ("safeImageExtensionIndex" in $$props) $$invalidate(1, safeImageExtensionIndex = $$props.safeImageExtensionIndex);
+    		if ("imageSrcset" in $$props) $$invalidate(2, imageSrcset = $$props.imageSrcset);
+    		if ("article" in $$props) $$invalidate(6, article = $$props.article);
+    		if ("buttonsLayout" in $$props) $$invalidate(3, buttonsLayout = $$props.buttonsLayout);
+    		if ("buttons" in $$props) $$invalidate(4, buttons = $$props.buttons);
     		if ("hasHttpProtocol" in $$props) hasHttpProtocol = $$props.hasHttpProtocol;
-    		if ("isAnchor" in $$props) $$invalidate(4, isAnchor = $$props.isAnchor);
+    		if ("isAnchor" in $$props) $$invalidate(5, isAnchor = $$props.isAnchor);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3091,6 +3096,7 @@ var app = (function () {
 
     	return [
     		imageExtensionsShort,
+    		safeImageExtensionIndex,
     		imageSrcset,
     		buttonsLayout,
     		buttons,
@@ -3103,7 +3109,7 @@ var app = (function () {
     class Static_content extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { contents: 6 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { contents: 7 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -3115,7 +3121,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[6] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[7] === undefined && !("contents" in props)) {
     			console.warn("<Static_content> was created without expected prop 'contents'");
     		}
     	}
