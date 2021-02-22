@@ -1,4 +1,5 @@
 <script>
+  import Button from "./button.svelte";
   export let contents;
   let imageExtensionsShort = contents.imageExtensionsShort;
   let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
@@ -9,8 +10,6 @@
   let article = contents.article;
   let buttonsLayout = contents.bottomButtonsLayout;
   let buttons = contents.bottomButtons;
-  let hasHttpProtocol = new RegExp("^https?:\/\/");
-  let isAnchor = buttons.map(i => hasHttpProtocol.test(i.target));
 </script>
 
 <style>
@@ -40,17 +39,6 @@ picture
   display: flex
   align-items: stretch
   width: 100%
-  a, button
-    margin: 0 10% 0
-    width: 45%
-    box-sizing: border-box
-    border: none
-    border-radius: 0.5ch
-    padding: 0.5ch
-    font-size: 1em
-    text-align: center
-    color: #fff
-    background-color: var(--themeColor)
 </style>
 
 <div class="container">
@@ -67,12 +55,8 @@ picture
       {/each}
     </section>
     <section class="buttons">
-      {#each buttons as button, i}
-        {#if isAnchor[i]}
-          <a href="{button.target}" style="margin-{buttonsLayout}: 0">{button.title}</a>
-        {:else}
-          <button onclick="{button.target}" style="margin-{buttonsLayout}: 0">{button.title}</button>
-        {/if}
+      {#each buttons as button}
+        <Button target="{button.target}" title="{button.title}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}"/>
       {/each}
     </section>
   </section>
