@@ -2,6 +2,12 @@
   export let target, marginLeft, marginRight;
   let isAnchor = RegExp("^https?:\/\/").test(target);
   let style = "";
+  if(!isAnchor){
+    let event = new CustomEvent(target);
+    target = function(){
+      document.dispatchEvent(event);
+    }
+  }
   if(!marginLeft && !marginRight) {
     style = "margin-left: 0;margin-right: 0"
   }else if(!marginRight) {
@@ -28,5 +34,5 @@ a, button
 {#if isAnchor}
   <a href="{target}" style="{style}"><slot></slot></a>
 {:else}
-  <button on:click|once={target} style="{style}"><slot></slot></button>
+  <button on:click={target} style="{style}"><slot></slot></button>
 {/if}
