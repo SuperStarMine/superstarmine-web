@@ -1,5 +1,5 @@
 <script>
-  export let target, title, marginLeft, marginRight;
+  export let target, marginLeft, marginRight;
   let isAnchor = RegExp("^https?:\/\/").test(target);
   let style = "";
   if(!marginLeft && !marginRight) {
