@@ -26,7 +26,7 @@ a, button
 </style>
 
 {#if isAnchor}
-  <a href="{target}" style="{style}">{title}</a>
+  <a href="{target}" style="{style}"><slot></slot></a>
 {:else}
-  <button on:click|once={target} style="{style}">{title}</button>
+  <button on:click|once={target} style="{style}"><slot></slot></button>
 {/if}

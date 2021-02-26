@@ -55,7 +55,7 @@ picture
     </section>
     <section class="buttons">
       {#each buttons as button}
-        <Button target="{button.target}" title="{button.title}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}"/>
+        <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">{button.title}</Button>
       {/each}
     </section>
   </section>
