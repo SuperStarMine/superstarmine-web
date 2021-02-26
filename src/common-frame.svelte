@@ -18,7 +18,7 @@
       height: 100%
       line-height: 100%
       color: white
-    div
+    .title-bar
       background: linear-gradient(var(--themeColor) 75%, var(--backgroundColor))
       display: flex
       align-items: center
@@ -26,10 +26,12 @@
       height: 100%
       box-sizing: border-box
       padding: 0 5vw 0
+    .padding
+      padding: 3vw 10vw
 </style>
 
 <section style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}">
-  <div>
+  <div class="title-bar">
     {#if title}
       <h2>{title}</h2>
     {/if}
@@ -37,5 +39,7 @@
       <h3>{subtitle}</h3>
     {/if}
   </div>
-  <slot></slot>
+  <div class="padding">
+    <slot></slot>
+  </div>
 </section>

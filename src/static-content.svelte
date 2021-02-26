@@ -14,7 +14,6 @@
 
 <style>
 .container
-  padding: 2.5vw
   display: flex
   align-items: center
   justify-content: center
@@ -22,13 +21,13 @@
 picture
   background-color #fff
   box-shadow: 0 0 10px #ccc
-  flex: 0 0 30vw
-  margin-right: 5vw
+  flex: 0 0 30%
+  margin-right: 5%
   img
     width: 100%
 
 .right-column
-  flex: 0 0 60vw
+  flex: 0 0 60%
 
 .text
   margin-bottom: 1em
