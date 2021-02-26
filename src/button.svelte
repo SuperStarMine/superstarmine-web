@@ -4,11 +4,9 @@
   let style = "";
   if(!marginLeft && !marginRight) {
     style = "margin-left: 0;margin-right: 0"
-  }
-  if(!marginRight) {
+  }else if(!marginRight) {
     style = "margin-right: 0"
-  }
-  if(!marginLeft) {
+  }else if(!marginLeft) {
     style = "margin-left: 0"
   }
 </script>
@@ -30,5 +28,5 @@ a, button
 {#if isAnchor}
   <a href="{target}" style="{style}">{title}</a>
 {:else}
-  <button onclick="{target}" style="{style}">{title}</button>
+  <button on:click|once={target} style="{style}">{title}</button>
 {/if}
