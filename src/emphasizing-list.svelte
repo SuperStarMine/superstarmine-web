@@ -104,7 +104,7 @@ picture
         background-color: var(--themeColor)
         filter: blur(1px)
         opacity: 0
-        transition: opacity var(--transitionDuration) ease-in-out 0s
+        transition: opacity calc(var(--transitionDuration) / 2) ease-in-out 0s
   h3
     margin: 0
     transition: clip-path calc(var(--transitionDuration) / 2) ease-in-out 0s
@@ -114,7 +114,7 @@ picture
       clip-path: inset(0 100% 0 0)
   .articleWrapper
     height: var(--height)
-    transition: height calc(var(--transitionDuration) / 2) ease-in-out 0s
+    transition: height calc(var(--transitionDuration) / 2) cubic-bezier(0.87, 0, 0.13, 1) 0s
     overflow-y: hidden
     &.shown
       height: var(--height)

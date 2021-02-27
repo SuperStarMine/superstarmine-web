@@ -3509,7 +3509,7 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[19]);
     			attr_dev(source, "sizes", "30vw");
     			attr_dev(source, "srcset", source_srcset_value = /*imageSrcset*/ ctx[6][/*i*/ ctx[16]]);
-    			add_location(source, file$3, 142, 8, 3547);
+    			add_location(source, file$3, 142, 8, 3576);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -3545,8 +3545,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "svelte-1swn94l");
-    			add_location(p, file$3, 153, 12, 4186);
+    			attr_dev(p, "class", "svelte-gv0cq0");
+    			add_location(p, file$3, 153, 12, 4215);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -3588,9 +3588,9 @@ var app = (function () {
 
     			attr_dev(li, "class", li_class_value = "listed-title " + (/*selectedArticleIndex*/ ctx[1] == /*i*/ ctx[16]
     			? "isSelected"
-    			: "") + " svelte-1swn94l");
+    			: "") + " svelte-gv0cq0");
 
-    			add_location(li, file$3, 159, 8, 4390);
+    			add_location(li, file$3, 159, 8, 4419);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -3606,7 +3606,7 @@ var app = (function () {
 
     			if (dirty & /*selectedArticleIndex*/ 2 && li_class_value !== (li_class_value = "listed-title " + (/*selectedArticleIndex*/ ctx[1] == /*i*/ ctx[16]
     			? "isSelected"
-    			: "") + " svelte-1swn94l")) {
+    			: "") + " svelte-gv0cq0")) {
     				attr_dev(li, "class", li_class_value);
     			}
     		},
@@ -3753,29 +3753,29 @@ var app = (function () {
 
     			t5 = space();
     			create_component(button.$$.fragment);
-    			attr_dev(img, "class", img_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"));
+    			attr_dev(img, "class", img_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-gv0cq0"));
     			attr_dev(img, "sizes", "30vw");
     			attr_dev(img, "srcset", img_srcset_value = /*imageSrcset*/ ctx[6][/*safeImageExtensionIndex*/ ctx[8]]);
     			attr_dev(img, "alt", "画像");
-    			add_location(img, file$3, 144, 6, 3634);
-    			attr_dev(picture, "class", "svelte-1swn94l");
-    			add_location(picture, file$3, 140, 4, 3484);
-    			attr_dev(h3, "class", h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"));
-    			add_location(h3, file$3, 147, 6, 3804);
-    			add_location(article, file$3, 151, 8, 4051);
-    			attr_dev(div0, "class", div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l");
+    			add_location(img, file$3, 144, 6, 3663);
+    			attr_dev(picture, "class", "svelte-gv0cq0");
+    			add_location(picture, file$3, 140, 4, 3513);
+    			attr_dev(h3, "class", h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-gv0cq0"));
+    			add_location(h3, file$3, 147, 6, 3833);
+    			add_location(article, file$3, 151, 8, 4080);
+    			attr_dev(div0, "class", div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-gv0cq0");
     			set_style(div0, "--height", /*articleHeight*/ ctx[3] + "px");
-    			add_location(div0, file$3, 150, 6, 3948);
+    			add_location(div0, file$3, 150, 6, 3977);
     			set_style(ul, "height", /*contents*/ ctx[0].listItemsCount + "em");
-    			attr_dev(ul, "class", "svelte-1swn94l");
-    			add_location(ul, file$3, 157, 6, 4259);
-    			attr_dev(section, "class", "right-column svelte-1swn94l");
-    			add_location(section, file$3, 146, 4, 3767);
-    			attr_dev(div1, "class", "columns svelte-1swn94l");
-    			add_location(div1, file$3, 139, 2, 3458);
-    			attr_dev(div2, "class", "container svelte-1swn94l");
+    			attr_dev(ul, "class", "svelte-gv0cq0");
+    			add_location(ul, file$3, 157, 6, 4288);
+    			attr_dev(section, "class", "right-column svelte-gv0cq0");
+    			add_location(section, file$3, 146, 4, 3796);
+    			attr_dev(div1, "class", "columns svelte-gv0cq0");
+    			add_location(div1, file$3, 139, 2, 3487);
+    			attr_dev(div2, "class", "container svelte-gv0cq0");
     			set_style(div2, "--transitionDuration", transitionDuration + "ms");
-    			add_location(div2, file$3, 138, 0, 3379);
+    			add_location(div2, file$3, 138, 0, 3408);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3839,7 +3839,7 @@ var app = (function () {
     				each_blocks_2.length = each_value_2.length;
     			}
 
-    			if (!current || dirty & /*hiding*/ 16 && img_class_value !== (img_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"))) {
+    			if (!current || dirty & /*hiding*/ 16 && img_class_value !== (img_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-gv0cq0"))) {
     				attr_dev(img, "class", img_class_value);
     			}
 
@@ -3851,7 +3851,7 @@ var app = (function () {
     			? /*selectedArticleIndexLast*/ ctx[2]
     			: /*selectedArticleIndex*/ ctx[1]].title + "")) set_data_dev(t2, t2_value);
 
-    			if (!current || dirty & /*hiding*/ 16 && h3_class_value !== (h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"))) {
+    			if (!current || dirty & /*hiding*/ 16 && h3_class_value !== (h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-gv0cq0"))) {
     				attr_dev(h3, "class", h3_class_value);
     			}
 
@@ -3882,7 +3882,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (!current || dirty & /*hiding*/ 16 && div0_class_value !== (div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l")) {
+    			if (!current || dirty & /*hiding*/ 16 && div0_class_value !== (div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-gv0cq0")) {
     				attr_dev(div0, "class", div0_class_value);
     			}
 
