@@ -69,6 +69,9 @@ var app = (function () {
             slot.p(slot_context, slot_changes);
         }
     }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -96,6 +99,10 @@ var app = (function () {
     }
     function empty() {
         return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
     }
     function attr(node, attribute, value) {
         if (value == null)
@@ -358,6 +365,19 @@ var app = (function () {
     function detach_dev(node) {
         dispatch_dev('SvelteDOMRemove', { node });
         detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
     }
     function attr_dev(node, attribute, value) {
         attr(node, attribute, value);
@@ -2646,37 +2666,74 @@ var app = (function () {
 
     const file$1 = "src/button.svelte";
 
-    // (33:0) {:else}
+    // (37:0) {:else}
     function create_else_block(ctx) {
     	let button;
-    	let t;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	const default_slot_template = /*#slots*/ ctx[6].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[5], null);
 
     	const block = {
     		c: function create() {
     			button = element("button");
-    			t = text(/*title*/ ctx[1]);
-    			attr_dev(button, "onclick", /*target*/ ctx[0]);
-    			attr_dev(button, "style", /*style*/ ctx[2]);
+    			if (default_slot) default_slot.c();
+    			attr_dev(button, "style", /*style*/ ctx[1]);
     			attr_dev(button, "class", "svelte-1891uv8");
-    			add_location(button, file$1, 33, 2, 654);
+    			add_location(button, file$1, 37, 2, 787);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
-    			append_dev(button, t);
+
+    			if (default_slot) {
+    				default_slot.m(button, null);
+    			}
+
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(
+    					button,
+    					"click",
+    					function () {
+    						if (is_function(/*target*/ ctx[0])) /*target*/ ctx[0].apply(this, arguments);
+    					},
+    					false,
+    					false,
+    					false
+    				);
+
+    				mounted = true;
+    			}
     		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*title*/ 2) set_data_dev(t, /*title*/ ctx[1]);
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
 
-    			if (dirty & /*target*/ 1) {
-    				attr_dev(button, "onclick", /*target*/ ctx[0]);
+    			if (default_slot) {
+    				if (default_slot.p && dirty & /*$$scope*/ 32) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[5], dirty, null, null);
+    				}
     			}
 
-    			if (dirty & /*style*/ 4) {
-    				attr_dev(button, "style", /*style*/ ctx[2]);
+    			if (!current || dirty & /*style*/ 2) {
+    				attr_dev(button, "style", /*style*/ ctx[1]);
     			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(button);
+    			if (default_slot) default_slot.d(detaching);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -2684,44 +2741,65 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(33:0) {:else}",
+    		source: "(37:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (31:0) {#if isAnchor}
+    // (35:0) {#if isAnchor}
     function create_if_block$1(ctx) {
     	let a;
-    	let t;
+    	let current;
+    	const default_slot_template = /*#slots*/ ctx[6].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[5], null);
 
     	const block = {
     		c: function create() {
     			a = element("a");
-    			t = text(/*title*/ ctx[1]);
+    			if (default_slot) default_slot.c();
     			attr_dev(a, "href", /*target*/ ctx[0]);
-    			attr_dev(a, "style", /*style*/ ctx[2]);
+    			attr_dev(a, "style", /*style*/ ctx[1]);
     			attr_dev(a, "class", "svelte-1891uv8");
-    			add_location(a, file$1, 31, 2, 597);
+    			add_location(a, file$1, 35, 2, 724);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
-    			append_dev(a, t);
+
+    			if (default_slot) {
+    				default_slot.m(a, null);
+    			}
+
+    			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*title*/ 2) set_data_dev(t, /*title*/ ctx[1]);
+    			if (default_slot) {
+    				if (default_slot.p && dirty & /*$$scope*/ 32) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[5], dirty, null, null);
+    				}
+    			}
 
-    			if (dirty & /*target*/ 1) {
+    			if (!current || dirty & /*target*/ 1) {
     				attr_dev(a, "href", /*target*/ ctx[0]);
     			}
 
-    			if (dirty & /*style*/ 4) {
-    				attr_dev(a, "style", /*style*/ ctx[2]);
+    			if (!current || dirty & /*style*/ 2) {
+    				attr_dev(a, "style", /*style*/ ctx[1]);
     			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(a);
+    			if (default_slot) default_slot.d(detaching);
     		}
     	};
 
@@ -2729,7 +2807,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(31:0) {#if isAnchor}",
+    		source: "(35:0) {#if isAnchor}",
     		ctx
     	});
 
@@ -2737,15 +2815,20 @@ var app = (function () {
     }
 
     function create_fragment$1(ctx) {
+    	let current_block_type_index;
+    	let if_block;
     	let if_block_anchor;
+    	let current;
+    	const if_block_creators = [create_if_block$1, create_else_block];
+    	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*isAnchor*/ ctx[3]) return create_if_block$1;
-    		return create_else_block;
+    		if (/*isAnchor*/ ctx[2]) return 0;
+    		return 1;
     	}
 
-    	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
+    	current_block_type_index = select_block_type(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const block = {
     		c: function create() {
@@ -2756,16 +2839,24 @@ var app = (function () {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
+    			if_blocks[current_block_type_index].m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			if_block.p(ctx, dirty);
     		},
-    		i: noop,
-    		o: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
+    			if_blocks[current_block_type_index].d(detaching);
     			if (detaching) detach_dev(if_block_anchor);
     		}
     	};
@@ -2783,29 +2874,28 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots("Button", slots, []);
-
-    	let { target } = $$props,
-    		{ title } = $$props,
-    		{ marginLeft } = $$props,
-    		{ marginRight } = $$props;
-
+    	validate_slots("Button", slots, ['default']);
+    	let { target } = $$props, { marginLeft } = $$props, { marginRight } = $$props;
     	let isAnchor = RegExp("^https?://").test(target);
     	let style = "";
 
+    	if (!isAnchor) {
+    		let event = new CustomEvent(target);
+
+    		target = function () {
+    			document.dispatchEvent(event);
+    		};
+    	}
+
     	if (!marginLeft && !marginRight) {
     		style = "margin-left: 0;margin-right: 0";
-    	}
-
-    	if (!marginRight) {
+    	} else if (!marginRight) {
     		style = "margin-right: 0";
-    	}
-
-    	if (!marginLeft) {
+    	} else if (!marginLeft) {
     		style = "margin-left: 0";
     	}
 
-    	const writable_props = ["target", "title", "marginLeft", "marginRight"];
+    	const writable_props = ["target", "marginLeft", "marginRight"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Button> was created with unknown prop '${key}'`);
@@ -2813,14 +2903,13 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ("target" in $$props) $$invalidate(0, target = $$props.target);
-    		if ("title" in $$props) $$invalidate(1, title = $$props.title);
-    		if ("marginLeft" in $$props) $$invalidate(4, marginLeft = $$props.marginLeft);
-    		if ("marginRight" in $$props) $$invalidate(5, marginRight = $$props.marginRight);
+    		if ("marginLeft" in $$props) $$invalidate(3, marginLeft = $$props.marginLeft);
+    		if ("marginRight" in $$props) $$invalidate(4, marginRight = $$props.marginRight);
+    		if ("$$scope" in $$props) $$invalidate(5, $$scope = $$props.$$scope);
     	};
 
     	$$self.$capture_state = () => ({
     		target,
-    		title,
     		marginLeft,
     		marginRight,
     		isAnchor,
@@ -2829,30 +2918,23 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ("target" in $$props) $$invalidate(0, target = $$props.target);
-    		if ("title" in $$props) $$invalidate(1, title = $$props.title);
-    		if ("marginLeft" in $$props) $$invalidate(4, marginLeft = $$props.marginLeft);
-    		if ("marginRight" in $$props) $$invalidate(5, marginRight = $$props.marginRight);
-    		if ("isAnchor" in $$props) $$invalidate(3, isAnchor = $$props.isAnchor);
-    		if ("style" in $$props) $$invalidate(2, style = $$props.style);
+    		if ("marginLeft" in $$props) $$invalidate(3, marginLeft = $$props.marginLeft);
+    		if ("marginRight" in $$props) $$invalidate(4, marginRight = $$props.marginRight);
+    		if ("isAnchor" in $$props) $$invalidate(2, isAnchor = $$props.isAnchor);
+    		if ("style" in $$props) $$invalidate(1, style = $$props.style);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [target, title, style, isAnchor, marginLeft, marginRight];
+    	return [target, style, isAnchor, marginLeft, marginRight, $$scope, slots];
     }
 
     class Button extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			target: 0,
-    			title: 1,
-    			marginLeft: 4,
-    			marginRight: 5
-    		});
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { target: 0, marginLeft: 3, marginRight: 4 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2868,15 +2950,11 @@ var app = (function () {
     			console.warn("<Button> was created without expected prop 'target'");
     		}
 
-    		if (/*title*/ ctx[1] === undefined && !("title" in props)) {
-    			console.warn("<Button> was created without expected prop 'title'");
-    		}
-
-    		if (/*marginLeft*/ ctx[4] === undefined && !("marginLeft" in props)) {
+    		if (/*marginLeft*/ ctx[3] === undefined && !("marginLeft" in props)) {
     			console.warn("<Button> was created without expected prop 'marginLeft'");
     		}
 
-    		if (/*marginRight*/ ctx[5] === undefined && !("marginRight" in props)) {
+    		if (/*marginRight*/ ctx[4] === undefined && !("marginRight" in props)) {
     			console.warn("<Button> was created without expected prop 'marginRight'");
     		}
     	}
@@ -2886,14 +2964,6 @@ var app = (function () {
     	}
 
     	set target(value) {
-    		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get title() {
-    		throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set title(value) {
     		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -3002,6 +3072,35 @@ var app = (function () {
     	return block;
     }
 
+    // (60:8) <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">
+    function create_default_slot(ctx) {
+    	let t_value = /*button*/ ctx[8].title + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text(t_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot.name,
+    		type: "slot",
+    		source: "(60:8) <Button target=\\\"{button.target}\\\" marginLeft=\\\"{buttonsLayout=='right'}\\\" marginRight=\\\"{buttonsLayout=='left'}\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     // (59:6) {#each buttons as button}
     function create_each_block(ctx) {
     	let button;
@@ -3010,9 +3109,10 @@ var app = (function () {
     	button = new Button({
     			props: {
     				target: /*button*/ ctx[8].target,
-    				title: /*button*/ ctx[8].title,
     				marginLeft: /*buttonsLayout*/ ctx[3] == "right",
-    				marginRight: /*buttonsLayout*/ ctx[3] == "left"
+    				marginRight: /*buttonsLayout*/ ctx[3] == "left",
+    				$$slots: { default: [create_default_slot] },
+    				$$scope: { ctx }
     			},
     			$$inline: true
     		});
@@ -3025,7 +3125,15 @@ var app = (function () {
     			mount_component(button, target, anchor);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			const button_changes = {};
+
+    			if (dirty & /*$$scope*/ 65536) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(button.$$.fragment, local);
@@ -3372,29 +3480,140 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[7] = list[i];
+    	child_ctx[14] = list[i];
+    	child_ctx[16] = i;
     	return child_ctx;
     }
 
-    // (44:4) {#each articles as article}
+    function get_each_context_1$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[14] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_2$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[19] = list[i];
+    	child_ctx[16] = i;
+    	return child_ctx;
+    }
+
+    // (142:6) {#each imageExtensionsShort as ext, i}
+    function create_each_block_2$1(ctx) {
+    	let source;
+    	let source_srcset_value;
+
+    	const block = {
+    		c: function create() {
+    			source = element("source");
+    			attr_dev(source, "type", "image/" + /*ext*/ ctx[19]);
+    			attr_dev(source, "sizes", "30vw");
+    			attr_dev(source, "srcset", source_srcset_value = /*imageSrcset*/ ctx[6][/*i*/ ctx[16]]);
+    			add_location(source, file$3, 142, 8, 3547);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, source, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*imageSrcset*/ 64 && source_srcset_value !== (source_srcset_value = /*imageSrcset*/ ctx[6][/*i*/ ctx[16]])) {
+    				attr_dev(source, "srcset", source_srcset_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(source);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2$1.name,
+    		type: "each",
+    		source: "(142:6) {#each imageExtensionsShort as ext, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (153:10) {#each articles[articleSwitched ? selectedArticleIndex : selectedArticleIndexLast].article as article}
+    function create_each_block_1$1(ctx) {
+    	let p;
+    	let t_value = /*article*/ ctx[14] + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			t = text(t_value);
+    			attr_dev(p, "class", "svelte-1swn94l");
+    			add_location(p, file$3, 153, 12, 4186);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			append_dev(p, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*articleSwitched, selectedArticleIndex, selectedArticleIndexLast*/ 38 && t_value !== (t_value = /*article*/ ctx[14] + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$1.name,
+    		type: "each",
+    		source: "(153:10) {#each articles[articleSwitched ? selectedArticleIndex : selectedArticleIndexLast].article as article}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (159:6) {#each articles.slice(0, contents.listItemsCount + 1) as article, i}
     function create_each_block$1(ctx) {
     	let li;
-    	let t_value = /*article*/ ctx[7].title + "";
+    	let t_value = /*article*/ ctx[14].title + "";
     	let t;
+    	let li_class_value;
+    	let mounted;
+    	let dispose;
 
     	const block = {
     		c: function create() {
     			li = element("li");
     			t = text(t_value);
-    			add_location(li, file$3, 44, 6, 1251);
+    			attr_dev(li, "data-article-index", /*i*/ ctx[16]);
+
+    			attr_dev(li, "class", li_class_value = "listed-title " + (/*selectedArticleIndex*/ ctx[1] == /*i*/ ctx[16]
+    			? "isSelected"
+    			: "") + " svelte-1swn94l");
+
+    			add_location(li, file$3, 159, 8, 4390);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, t);
+
+    			if (!mounted) {
+    				dispose = listen_dev(li, "click", /*setSelectedArticle*/ ctx[10], false, false, false);
+    				mounted = true;
+    			}
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*article*/ ctx[14].title + "")) set_data_dev(t, t_value);
+
+    			if (dirty & /*selectedArticleIndex*/ 2 && li_class_value !== (li_class_value = "listed-title " + (/*selectedArticleIndex*/ ctx[1] == /*i*/ ctx[16]
+    			? "isSelected"
+    			: "") + " svelte-1swn94l")) {
+    				attr_dev(li, "class", li_class_value);
+    			}
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -3402,7 +3621,34 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(44:4) {#each articles as article}",
+    		source: "(159:6) {#each articles.slice(0, contents.listItemsCount + 1) as article, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (165:2) <Button target="toggleExpand" marginLeft="{true}" marginRight="{false}">
+    function create_default_slot$1(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("もっと見る");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot$1.name,
+    		type: "slot",
+    		source: "(165:2) <Button target=\\\"toggleExpand\\\" marginLeft=\\\"{true}\\\" marginRight=\\\"{false}\\\">",
     		ctx
     	});
 
@@ -3410,12 +3656,52 @@ var app = (function () {
     }
 
     function create_fragment$3(ctx) {
-    	let div;
+    	let div2;
+    	let div1;
+    	let picture;
+    	let t0;
+    	let img;
+    	let img_class_value;
+    	let img_srcset_value;
+    	let t1;
     	let section;
     	let h3;
-    	let t1;
+
+    	let t2_value = /*articles*/ ctx[9][/*hiding*/ ctx[4]
+    	? /*selectedArticleIndexLast*/ ctx[2]
+    	: /*selectedArticleIndex*/ ctx[1]].title + "";
+
+    	let t2;
+    	let h3_class_value;
+    	let t3;
+    	let div0;
+    	let article;
+    	let div0_class_value;
+    	let t4;
     	let ul;
-    	let each_value = /*articles*/ ctx[0];
+    	let t5;
+    	let button;
+    	let current;
+    	let each_value_2 = /*imageExtensionsShort*/ ctx[7];
+    	validate_each_argument(each_value_2);
+    	let each_blocks_2 = [];
+
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks_2[i] = create_each_block_2$1(get_each_context_2$1(ctx, each_value_2, i));
+    	}
+
+    	let each_value_1 = /*articles*/ ctx[9][/*articleSwitched*/ ctx[5]
+    	? /*selectedArticleIndex*/ ctx[1]
+    	: /*selectedArticleIndexLast*/ ctx[2]].article;
+
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*articles*/ ctx[9].slice(0, /*contents*/ ctx[0].listItemsCount + 1);
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -3423,43 +3709,189 @@ var app = (function () {
     		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
     	}
 
+    	button = new Button({
+    			props: {
+    				target: "toggleExpand",
+    				marginLeft: true,
+    				marginRight: false,
+    				$$slots: { default: [create_default_slot$1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div2 = element("div");
+    			div1 = element("div");
+    			picture = element("picture");
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].c();
+    			}
+
+    			t0 = space();
+    			img = element("img");
+    			t1 = space();
     			section = element("section");
     			h3 = element("h3");
-    			h3.textContent = `${/*articles*/ ctx[0][/*selectedArticleIndex*/ ctx[1]].title}`;
-    			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = space();
+    			div0 = element("div");
+    			article = element("article");
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t4 = space();
     			ul = element("ul");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			add_location(h3, file$3, 41, 4, 1156);
-    			add_location(ul, file$3, 42, 4, 1208);
-    			attr_dev(section, "class", "right-column svelte-1s98eh4");
-    			add_location(section, file$3, 40, 2, 1121);
-    			attr_dev(div, "class", "container svelte-1s98eh4");
-    			add_location(div, file$3, 33, 0, 833);
+    			t5 = space();
+    			create_component(button.$$.fragment);
+    			attr_dev(img, "class", img_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"));
+    			attr_dev(img, "sizes", "30vw");
+    			attr_dev(img, "srcset", img_srcset_value = /*imageSrcset*/ ctx[6][/*safeImageExtensionIndex*/ ctx[8]]);
+    			attr_dev(img, "alt", "画像");
+    			add_location(img, file$3, 144, 6, 3634);
+    			attr_dev(picture, "class", "svelte-1swn94l");
+    			add_location(picture, file$3, 140, 4, 3484);
+    			attr_dev(h3, "class", h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"));
+    			add_location(h3, file$3, 147, 6, 3804);
+    			add_location(article, file$3, 151, 8, 4051);
+    			attr_dev(div0, "class", div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l");
+    			set_style(div0, "--height", /*articleHeight*/ ctx[3] + "px");
+    			add_location(div0, file$3, 150, 6, 3948);
+    			set_style(ul, "height", /*contents*/ ctx[0].listItemsCount + "em");
+    			attr_dev(ul, "class", "svelte-1swn94l");
+    			add_location(ul, file$3, 157, 6, 4259);
+    			attr_dev(section, "class", "right-column svelte-1swn94l");
+    			add_location(section, file$3, 146, 4, 3767);
+    			attr_dev(div1, "class", "columns svelte-1swn94l");
+    			add_location(div1, file$3, 139, 2, 3458);
+    			attr_dev(div2, "class", "container svelte-1swn94l");
+    			set_style(div2, "--transitionDuration", transitionDuration + "ms");
+    			add_location(div2, file$3, 138, 0, 3379);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, section);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, picture);
+
+    			for (let i = 0; i < each_blocks_2.length; i += 1) {
+    				each_blocks_2[i].m(picture, null);
+    			}
+
+    			append_dev(picture, t0);
+    			append_dev(picture, img);
+    			append_dev(div1, t1);
+    			append_dev(div1, section);
     			append_dev(section, h3);
-    			append_dev(section, t1);
+    			append_dev(h3, t2);
+    			append_dev(section, t3);
+    			append_dev(section, div0);
+    			append_dev(div0, article);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(article, null);
+    			}
+
+    			append_dev(section, t4);
     			append_dev(section, ul);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(ul, null);
     			}
+
+    			append_dev(div2, t5);
+    			mount_component(button, div2, null);
+    			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*articles*/ 1) {
-    				each_value = /*articles*/ ctx[0];
+    			if (dirty & /*imageExtensionsShort, imageSrcset*/ 192) {
+    				each_value_2 = /*imageExtensionsShort*/ ctx[7];
+    				validate_each_argument(each_value_2);
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2$1(ctx, each_value_2, i);
+
+    					if (each_blocks_2[i]) {
+    						each_blocks_2[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_2[i] = create_each_block_2$1(child_ctx);
+    						each_blocks_2[i].c();
+    						each_blocks_2[i].m(picture, t0);
+    					}
+    				}
+
+    				for (; i < each_blocks_2.length; i += 1) {
+    					each_blocks_2[i].d(1);
+    				}
+
+    				each_blocks_2.length = each_value_2.length;
+    			}
+
+    			if (!current || dirty & /*hiding*/ 16 && img_class_value !== (img_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"))) {
+    				attr_dev(img, "class", img_class_value);
+    			}
+
+    			if (!current || dirty & /*imageSrcset*/ 64 && img_srcset_value !== (img_srcset_value = /*imageSrcset*/ ctx[6][/*safeImageExtensionIndex*/ ctx[8]])) {
+    				attr_dev(img, "srcset", img_srcset_value);
+    			}
+
+    			if ((!current || dirty & /*hiding, selectedArticleIndexLast, selectedArticleIndex*/ 22) && t2_value !== (t2_value = /*articles*/ ctx[9][/*hiding*/ ctx[4]
+    			? /*selectedArticleIndexLast*/ ctx[2]
+    			: /*selectedArticleIndex*/ ctx[1]].title + "")) set_data_dev(t2, t2_value);
+
+    			if (!current || dirty & /*hiding*/ 16 && h3_class_value !== (h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l"))) {
+    				attr_dev(h3, "class", h3_class_value);
+    			}
+
+    			if (dirty & /*articles, articleSwitched, selectedArticleIndex, selectedArticleIndexLast*/ 550) {
+    				each_value_1 = /*articles*/ ctx[9][/*articleSwitched*/ ctx[5]
+    				? /*selectedArticleIndex*/ ctx[1]
+    				: /*selectedArticleIndexLast*/ ctx[2]].article;
+
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1$1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(article, null);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (!current || dirty & /*hiding*/ 16 && div0_class_value !== (div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1swn94l")) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
+
+    			if (!current || dirty & /*articleHeight*/ 8) {
+    				set_style(div0, "--height", /*articleHeight*/ ctx[3] + "px");
+    			}
+
+    			if (dirty & /*selectedArticleIndex, setSelectedArticle, articles, contents*/ 1539) {
+    				each_value = /*articles*/ ctx[9].slice(0, /*contents*/ ctx[0].listItemsCount + 1);
     				validate_each_argument(each_value);
     				let i;
 
@@ -3481,12 +3913,34 @@ var app = (function () {
 
     				each_blocks.length = each_value.length;
     			}
+
+    			if (!current || dirty & /*contents*/ 1) {
+    				set_style(ul, "height", /*contents*/ ctx[0].listItemsCount + "em");
+    			}
+
+    			const button_changes = {};
+
+    			if (dirty & /*$$scope*/ 2097152) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
     		},
-    		i: noop,
-    		o: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(button.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(button.$$.fragment, local);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div2);
+    			destroy_each(each_blocks_2, detaching);
+    			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);
+    			destroy_component(button);
     		}
     	};
 
@@ -3501,6 +3955,8 @@ var app = (function () {
     	return block;
     }
 
+    const transitionDuration = 500;
+
     function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Emphasizing_list", slots, []);
@@ -3508,13 +3964,61 @@ var app = (function () {
     	let imageExtensionsShort = contents.imageExtensionsShort;
     	let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
     	const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
+    	let articles = contents.articles;
+    	let selectedArticleIndex = 0;
+    	let selectedArticleIndexLast;
+    	let articleElement;
+    	let articleHeight;
+    	let hiding = false;
+    	let articleSwitched = true;
 
-    	let imageSrcset = imageExtensionsShort.map(ext => {
-    		return imageSizes.map(size => `${contents.imageDirectory}${contents.imageId}@${size}w.${ext} ${size}w`);
+    	function setImageSrcset(index) {
+    		$$invalidate(6, imageSrcset = imageExtensionsShort.map(ext => {
+    			return imageSizes.map(size => `${contents.imageDirectory}${articles[index].imageId}@${size}w.${ext} ${size}w`);
+    		}));
+    	}
+
+    	let imageSrcset;
+    	setImageSrcset(selectedArticleIndex);
+
+    	function setSelectedArticle(value) {
+    		$$invalidate(2, selectedArticleIndexLast = selectedArticleIndex);
+
+    		if (isNaN(value)) {
+    			var target = value.target.dataset.articleIndex;
+    		} else {
+    			var target = value;
+    		}
+
+    		if (target != selectedArticleIndexLast) {
+    			$$invalidate(4, hiding = true);
+    			$$invalidate(5, articleSwitched = false);
+    			$$invalidate(1, selectedArticleIndex = target);
+
+    			setTimeout(
+    				() => {
+    					$$invalidate(5, articleSwitched = true);
+    				},
+    				transitionDuration / 2
+    			);
+
+    			setTimeout(
+    				() => {
+    					setImageSrcset(selectedArticleIndex);
+    					$$invalidate(3, articleHeight = articleElement.clientHeight);
+    					$$invalidate(4, hiding = false);
+    				},
+    				transitionDuration / 2
+    			);
+    		}
+    	}
+
+    	document.addEventListener("DOMContentLoaded", () => {
+    		articleElement = document.querySelector("article");
+    		$$invalidate(3, articleHeight = articleElement.clientHeight);
     	});
 
-    	let articles = contents.articles;
-    	let selectedArticleIndex = 2;
+    	document.addEventListener("toggleExpand", () => alert("done!"));
     	const writable_props = ["contents"];
 
     	Object.keys($$props).forEach(key => {
@@ -3522,7 +4026,7 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(2, contents = $$props.contents);
+    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3531,31 +4035,56 @@ var app = (function () {
     		imageExtensionsShort,
     		safeImageExtensionIndex,
     		imageSizes,
-    		imageSrcset,
+    		transitionDuration,
     		articles,
-    		selectedArticleIndex
+    		selectedArticleIndex,
+    		selectedArticleIndexLast,
+    		articleElement,
+    		articleHeight,
+    		hiding,
+    		articleSwitched,
+    		setImageSrcset,
+    		imageSrcset,
+    		setSelectedArticle
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(2, contents = $$props.contents);
-    		if ("imageExtensionsShort" in $$props) imageExtensionsShort = $$props.imageExtensionsShort;
-    		if ("safeImageExtensionIndex" in $$props) safeImageExtensionIndex = $$props.safeImageExtensionIndex;
-    		if ("imageSrcset" in $$props) imageSrcset = $$props.imageSrcset;
-    		if ("articles" in $$props) $$invalidate(0, articles = $$props.articles);
+    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(7, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("safeImageExtensionIndex" in $$props) $$invalidate(8, safeImageExtensionIndex = $$props.safeImageExtensionIndex);
+    		if ("articles" in $$props) $$invalidate(9, articles = $$props.articles);
     		if ("selectedArticleIndex" in $$props) $$invalidate(1, selectedArticleIndex = $$props.selectedArticleIndex);
+    		if ("selectedArticleIndexLast" in $$props) $$invalidate(2, selectedArticleIndexLast = $$props.selectedArticleIndexLast);
+    		if ("articleElement" in $$props) articleElement = $$props.articleElement;
+    		if ("articleHeight" in $$props) $$invalidate(3, articleHeight = $$props.articleHeight);
+    		if ("hiding" in $$props) $$invalidate(4, hiding = $$props.hiding);
+    		if ("articleSwitched" in $$props) $$invalidate(5, articleSwitched = $$props.articleSwitched);
+    		if ("imageSrcset" in $$props) $$invalidate(6, imageSrcset = $$props.imageSrcset);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [articles, selectedArticleIndex, contents];
+    	return [
+    		contents,
+    		selectedArticleIndex,
+    		selectedArticleIndexLast,
+    		articleHeight,
+    		hiding,
+    		articleSwitched,
+    		imageSrcset,
+    		imageExtensionsShort,
+    		safeImageExtensionIndex,
+    		articles,
+    		setSelectedArticle
+    	];
     }
 
     class Emphasizing_list extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { contents: 2 });
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { contents: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -3567,7 +4096,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[2] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[0] === undefined && !("contents" in props)) {
     			console.warn("<Emphasizing_list> was created without expected prop 'contents'");
     		}
     	}
@@ -3695,7 +4224,7 @@ var app = (function () {
     }
 
     // (12:4) <Cframe {title} {subtitle} {themeColor}>
-    function create_default_slot(ctx) {
+    function create_default_slot$2(ctx) {
     	let current_block_type_index;
     	let if_block;
     	let t;
@@ -3782,7 +4311,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot.name,
+    		id: create_default_slot$2.name,
     		type: "slot",
     		source: "(12:4) <Cframe {title} {subtitle} {themeColor}>",
     		ctx
@@ -3801,7 +4330,7 @@ var app = (function () {
     				title: /*title*/ ctx[1],
     				subtitle: /*subtitle*/ ctx[2],
     				themeColor: /*themeColor*/ ctx[3],
-    				$$slots: { default: [create_default_slot] },
+    				$$slots: { default: [create_default_slot$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -4028,7 +4557,7 @@ var app = (function () {
             subtitle: 'チームからのお知らせ',
             themeColor: '#ff0200',
             contents: {
-              listItemsCount: 3,
+              listItemsCount: 5,
               autoCyclePeriodInMs: 5000,
               stopAutoCycleWhenClicked: true,
               imageDirectory: '/img/',

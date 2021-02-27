@@ -1,0 +1,154 @@
+<script>
+  import Button from "./button.svelte";
+  export let contents;
+  let imageExtensionsShort = contents.imageExtensionsShort;
+  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
+  const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
+  const transitionDuration = 500;
+  let articles = contents.articles;
+  let selectedArticleIndex = 0;
+  let selectedArticleIndexLast;
+  let articleElement;
+  let articleHeight;
+  let hiding = false;
+  let articleSwitched = true;
+
+  function setImageSrcset(index) {
+    imageSrcset = imageExtensionsShort.map(ext => {
+      return imageSizes.map(size => `${contents.imageDirectory}${articles[index].imageId}@${size}w.${ext} ${size}w`);
+    });
+  }
+  let imageSrcset;
+  setImageSrcset(selectedArticleIndex);
+
+
+  function setSelectedArticle(value) {
+    selectedArticleIndexLast = selectedArticleIndex;
+    if(isNaN(value)){
+      var target = value.target.dataset.articleIndex;
+    }else{
+      var target = value;
+    }
+    if(target != selectedArticleIndexLast){
+      hiding = true;
+      articleSwitched = false;
+      selectedArticleIndex = target;
+      setTimeout(() => {
+        articleSwitched = true;
+      }, transitionDuration / 2);
+      setTimeout(() => {
+        setImageSrcset(selectedArticleIndex);
+        articleHeight = articleElement.clientHeight;
+        hiding = false;
+      }, transitionDuration / 2);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    articleElement = document.querySelector('article');
+    articleHeight = articleElement.clientHeight;
+  });
+  document.addEventListener('toggleExpand', () => alert('done!'));
+</script>
+
+<style>
+.container
+  display: flex
+  flex-direction: column
+  /* align-items: center */
+
+.columns
+  display: flex
+  align-items: center
+  justify-content: center
+
+picture
+  background-color #fff
+  box-shadow: 0 0 10px #ccc
+  flex: 0 0 30%
+  height: calc(80vw * 0.3 / 3 * 2)
+  margin-right: 5%
+  img
+    object-fit: contain
+    width: 100%
+    height: 100%
+    transition: opacity calc(var(--transitionDuration) / 2) ease-in-out 0s
+    &.hidden
+      opacity: 0
+    &.shown
+      opacity: 1
+
+.right-column
+  flex: 0 0 60%
+  ul
+    margin: .5em 0
+    line-height: 100%
+    list-style: none
+    padding: 0
+    li
+      &.isSelected:before
+        content: ''
+        display: inline-block
+        width: 1ch
+        height: 1ch
+        border-radius: 50%
+        background-color: var(--themeColor)
+        filter: blur(1px)
+        opacity: 1
+      &:not(.isSelected):before
+        content: ''
+        display: inline-block
+        width: 1ch
+        height: 1ch
+        border-radius: 50%
+        background-color: var(--themeColor)
+        filter: blur(1px)
+        opacity: 0
+        transition: opacity var(--transitionDuration) ease-in-out 0s
+  h3
+    margin: 0
+    transition: clip-path calc(var(--transitionDuration) / 2) ease-in-out 0s
+    &.shown
+      clip-path: inset(0 0% 0 0)
+    &.hidden
+      clip-path: inset(0 100% 0 0)
+  .articleWrapper
+    height: var(--height)
+    transition: height calc(var(--transitionDuration) / 2) ease-in-out 0s
+    overflow-y: hidden
+    &.shown
+      height: var(--height)
+    &.hidden
+      height: 0px
+    p
+      margin: 0
+</style>
+
+<div class="container" style="--transitionDuration: {transitionDuration}ms">
+  <div class="columns">
+    <picture>
+      {#each imageExtensionsShort as ext, i}
+        <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
+      {/each}
+      <img class="{hiding ? 'hidden' : 'shown'}" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
+    </picture>
+    <section class="right-column">
+      <h3 class="{hiding ? 'hidden' : 'shown'}">
+        {articles[hiding ? selectedArticleIndexLast : selectedArticleIndex].title}
+      </h3>
+      <div class="articleWrapper {hiding ? 'hidden' : 'shown'}" style="--height: {articleHeight}px">
+        <article>
+          {#each articles[articleSwitched ? selectedArticleIndex : selectedArticleIndexLast].article as article}
+            <p>{article}</p>
+          {/each}
+        </article>
+      </div>
+      <ul style="height:{contents.listItemsCount}em">
+      {#each articles.slice(0, contents.listItemsCount + 1) as article, i}
+        <li data-article-index="{i}" on:click={setSelectedArticle} class="listed-title {selectedArticleIndex==i?'isSelected':''}">{article.title}</li>
+      {/each}
+      </ul>
+    </section>
+  </div>
+  <Button target="toggleExpand" marginLeft="{true}" marginRight="{false}">もっと見る</Button>
+</div>
