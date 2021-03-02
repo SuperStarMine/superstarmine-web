@@ -3,7 +3,8 @@
   export let title;
   export let subtitle;
   export let themeColor;
-  let backgroundColor = Color(themeColor).lightness(96)
+  $: backgroundColor = Color(themeColor).lightness(96);
+  $: textColor = Color(themeColor).luminosity() > 0.7 ? '#000' : '#fff';
 </script>
 
 <style>
@@ -17,7 +18,7 @@
       margin-right: 1ch
       height: 100%
       line-height: 100%
-      color: white
+      color: var(--textColor)
     .title-bar
       background: linear-gradient(var(--themeColor) 75%, var(--backgroundColor))
       display: flex
@@ -30,7 +31,7 @@
       padding: 3vw 10vw
 </style>
 
-<section style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}">
+<section style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}; --textColor: {textColor}">
   <div class="title-bar">
     {#if title}
       <h2>{title}</h2>
