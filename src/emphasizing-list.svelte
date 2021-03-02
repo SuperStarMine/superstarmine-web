@@ -55,7 +55,7 @@
 .container
   display: flex
   flex-direction: column
-  /* align-items: center */
+  align-items: center
 
 .columns
   display: flex
@@ -150,5 +150,5 @@ picture
       </ul>
     </section>
   </div>
-  <Button target="toggleExpand" marginLeft="{true}" marginRight="{false}">もっと見る</Button>
+  <Button target="toggleExpand" marginLeft="{false}" marginRight="{false}">もっと見る</Button>
 </div>
