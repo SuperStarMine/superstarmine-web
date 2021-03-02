@@ -12,6 +12,27 @@
   let buttons = contents.bottomButtons;
 </script>
 
+<div class="container">
+  <picture>
+    {#each imageExtensionsShort as ext, i}
+      <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
+    {/each}
+    <img class="header_logo" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
+  </picture>
+  <section class="right-column">
+    <section class="text">
+      {#each article as article}
+        <p>{article}</p>
+      {/each}
+    </section>
+    <section class="buttons">
+      {#each buttons as button}
+        <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">{button.title}</Button>
+      {/each}
+    </section>
+  </section>
+</div>
+
 <style>
 .container
   display: flex
@@ -39,24 +60,3 @@ picture
   align-items: stretch
   width: 100%
 </style>
-
-<div class="container">
-  <picture>
-    {#each imageExtensionsShort as ext, i}
-      <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
-    {/each}
-    <img class="header_logo" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
-  </picture>
-  <section class="right-column">
-    <section class="text">
-      {#each article as article}
-        <p>{article}</p>
-      {/each}
-    </section>
-    <section class="buttons">
-      {#each buttons as button}
-        <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">{button.title}</Button>
-      {/each}
-    </section>
-  </section>
-</div>
