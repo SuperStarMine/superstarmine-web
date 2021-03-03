@@ -8,14 +8,7 @@
 <style>
 </style>
 
-<main>
-  {#each settings as {title, subtitle, themeColor, sectionType, contents}}
-    <Cframe {title} {subtitle} {themeColor}>
-      {#if sectionType == "static"}
-        <Static {title} {contents} />
-      {:else if sectionType == "emphasizingList"}
-        <Elist {contents} />
-      {/if}
-    </Cframe>
+<main style="--standardWidth: {settings.find(v => v.sectionType == 'globalSettings').standardWidth}vw">
+    {:else if sectionType != "globalSettings"}
   {/each}
 </main>

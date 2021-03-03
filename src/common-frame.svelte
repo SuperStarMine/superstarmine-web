@@ -28,7 +28,7 @@
       box-sizing: border-box
       padding: 0 5vw 0
     .padding
-      padding: 3vw 10vw
+      padding: 3vw calc((100vw - var(--standardWidth)) / 2)
 </style>
 
 <section style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}; --textColor: {textColor}">

@@ -66,7 +66,7 @@ picture
   background-color #fff
   box-shadow: 0 0 10px #ccc
   flex: 0 0 30%
-  height: calc(80vw * 0.3 / 3 * 2)
+  height: calc(var(--standardWidth) * 0.3 / 4 * 3)
   margin-right: 5%
   img
     object-fit: contain
