@@ -37,12 +37,12 @@
 .container
   display: flex
   align-items: center
-  justify-content: center
+  justify-content: space-between
 
 picture
   background-color #fff
   box-shadow: 0 0 10px #ccc
-  flex: 0 0 30%
+  flex: 0 0 35%
   margin-right: 5%
   img
     width: 100%
@@ -57,6 +57,5 @@ picture
 
 .buttons
   display: flex
-  align-items: stretch
   width: 100%
 </style>
