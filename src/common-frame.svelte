@@ -12,7 +12,8 @@
     background-color: var(--backgroundColor)
     width: 100%
     margin: 0
-    border-bottom: solid 1px white;
+    border-bottom: solid 1px white
+    transition: background-color 500ms ease-in-out 0s
     h2, h3
       margin: 0
       margin-right: 1ch

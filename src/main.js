@@ -5,12 +5,55 @@ const app = new App({
   props: {
     settings: [
       {
-        sectionType: 'slideshow',
+        sectionType: 'globalSettings',
+        standardWidth: '80', // vw
+      },
+      {
+        sectionType: 'slideHero',
         pairId: 'hero'
       },
       {
-        sectionType: 'cycle',
-        pairId: 'hero'
+        sectionType: 'slideDesc',
+        pairId: 'hero',
+        isParent: true,
+        contents: {
+          imageDirectory: '/img/',
+          imageExtensionsShort: ['webp', 'png'],
+          articles: [
+            {
+              title: 'フォーリンパフェ',
+              subtitle: 'パフェが落ちるやつ',
+              themeColor: '#4ae0ef',
+              imageId: 'fall_in_parfait-ss1',
+              alt: 'テスト画像1',
+              description: 'フォーリンパフェの説明文です。ここにゲームの説明文を入れます。この左にスクリーンショットなどを表示し、この下に対応ハードなどを書くといいと思います。ダウンロードリンクなどのボタンも設置予定。'
+            },
+            {
+              title: 'Cup Runmen',
+              subtitle: 'VRMカップ麺ボブスレーレース',
+              themeColor: '#1f83d8',
+              imageId: 'cup-run_ss',
+              alt: 'テスト画像2',
+              description: 'Cup Runmenの説明文です。ここにゲームの説明文を入れます。この左にスクリーンショットなどを表示し、この下に対応ハードなどを書くといいと思います。ダウンロードリンクなどのボタンも設置予定。'
+            },
+            {
+              title: 'れーぞく！ネクロマンスちゃん',
+              subtitle: 'コミカルポップ全方位シューティング',
+              themeColor: '#fdaa2b',
+              imageId: 'necromance_ss',
+              alt: 'テスト画像3',
+              description: 'れーぞく！ネクロマンスちゃんの説明文です。ここにゲームの説明文を入れます。この左にスクリーンショットなどを表示し、この下に対応ハードなどを書くといいと思います。ダウンロードリンクなどのボタンも設置予定。'
+            },
+            {
+              title: 'SPINNER',
+              subtitle: 'ハイスピード対戦アクション',
+              themeColor: '#000',
+              imageId: 'spinner_ss',
+              alt: 'テスト画像4',
+              description: 'SPINNERの説明文です。ここにゲームの説明文を入れます。この左にスクリーンショットなどを表示し、この下に対応ハードなどを書くといいと思います。ダウンロードリンクなどのボタンも設置予定。'
+            }
+          ]
+        }
       },
       {
         sectionType: 'emphasizingList',
@@ -92,8 +135,8 @@ const app = new App({
             },
             {
               title: 'Test',
-              target: 'alert("Hello")'
-            },
+              target: 'toggleExpand'
+            }
           ]
         }
       },
