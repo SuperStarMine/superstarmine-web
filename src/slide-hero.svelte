@@ -40,7 +40,7 @@
 
 <svelte:head>
   {#each imageSrcsets as srcset, i}
-    <link rel="preload" as="image" href="{contents.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= innerWidth * devicePixelRatio * standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcset}" imagesizes="80vw">
+    <link rel="preload" as="image" href="{contents.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= window.innerWidth * window.devicePixelRatio * standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcset}" imagesizes="80vw">
   {/each}
 </svelte:head>
 
