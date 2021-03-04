@@ -58,15 +58,18 @@
   align-items: center
 
 .columns
+  width: 100%
   display: flex
   align-items: center
-  justify-content: center
+  justify-content: space-between
+  &:not(:last-child)
+    margin-bottom: 1em
 
 picture
   background-color #fff
   box-shadow: 0 0 10px #ccc
-  flex: 0 0 30%
-  height: calc(var(--standardWidth) * 0.3 / 4 * 3)
+  flex: 0 0 35%
+  height: calc(var(--standardWidth) * 0.35 / 4 * 3)
   margin-right: 5%
   img
     object-fit: contain
@@ -81,13 +84,20 @@ picture
 .right-column
   flex: 0 0 60%
   ul
-    margin: .5em 0
+    margin: .5em 1ch
     line-height: 100%
     list-style: none
     padding: 0
     li
+      width: calc(var(--standardWidth) * 0.6 - 1ch)
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      position: relative
+      virtical-align: middle
       &.isSelected:before
         content: ''
+        margin: 0 .5ch
         display: inline-block
         width: 1ch
         height: 1ch
@@ -97,6 +107,7 @@ picture
         opacity: 1
       &:not(.isSelected):before
         content: ''
+        margin: 0 .5ch
         display: inline-block
         width: 1ch
         height: 1ch
