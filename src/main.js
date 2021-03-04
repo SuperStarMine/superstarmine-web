@@ -17,7 +17,7 @@ const app = new App({
         pairId: 'hero',
         isParent: true,
         contents: {
-          imageDirectory: '/img/',
+          imageDirectory: './img/',
           imageExtensionsShort: ['webp', 'png'],
           articles: [
             {
@@ -65,7 +65,7 @@ const app = new App({
           listItemsCount: 5,
           autoCyclePeriodInMs: 5000,
           stopAutoCycleWhenClicked: true,
-          imageDirectory: '/img/',
+          imageDirectory: './img/',
           imageExtensionsShort: ['webp', 'png'],
           articles: [
             {
@@ -121,7 +121,7 @@ const app = new App({
         themeColor: '#f15a23',
         contents: {
           imageId: 'ssm-logo-landscape',
-          imageDirectory: '/img/',
+          imageDirectory: './img/',
           imageExtensionsShort: ['webp', 'png'],
           article: [
             "スーパースターマインは大学サークル発、新進気鋭のゲーム制作チーム。",
