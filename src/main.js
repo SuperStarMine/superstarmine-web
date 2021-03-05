@@ -3,11 +3,14 @@ import App from './App.svelte';
 const app = new App({
   target: document.body,
   props: {
+    globalSettings: {
+      standardWidth: '80', // vw
+      imageDirectory: './img/',
+      imageExtensionsShort: ['webp', 'png'],
+      imageSizes: [250, 500, 750, 1000, 1250, 1500, 1750, 2000],
+      transitionDuration: 500, //ms
+    },
     settings: [
-      {
-        sectionType: 'globalSettings',
-        standardWidth: '80', // vw
-      },
       {
         sectionType: 'slideHero',
         pairId: 'hero'
@@ -17,8 +20,6 @@ const app = new App({
         pairId: 'hero',
         isParent: true,
         contents: {
-          imageDirectory: './img/',
-          imageExtensionsShort: ['webp', 'png'],
           articles: [
             {
               title: 'フォーリンパフェ',
@@ -65,8 +66,6 @@ const app = new App({
           listItemsCount: 5,
           autoCyclePeriodInMs: 5000,
           stopAutoCycleWhenClicked: true,
-          imageDirectory: './img/',
-          imageExtensionsShort: ['webp', 'png'],
           articles: [
             {
               imageId: 'ssm-logo-landscape',
@@ -121,8 +120,6 @@ const app = new App({
         themeColor: '#f15a23',
         contents: {
           imageId: 'ssm-logo-landscape',
-          imageDirectory: './img/',
-          imageExtensionsShort: ['webp', 'png'],
           article: [
             "スーパースターマインは大学サークル発、新進気鋭のゲーム制作チーム。",
             "面白いものが大好きです。"

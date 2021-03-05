@@ -1,9 +1,10 @@
 <script>
   import Cframe from "./common-frame.svelte";
   import { sync } from './sync-store.js';
-  export let pairId;
-  export let isParent;
-  export let contents;
+  export let pairId, isParent, globalSettings, contents;
+  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
+  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
+  let imageSizes = contents.imageSizes || globalSettings.imageSizes;
   if(isParent) $sync[pairId]
     = {
       slide: 0,

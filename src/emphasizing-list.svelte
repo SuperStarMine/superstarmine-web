@@ -1,10 +1,10 @@
 <script>
   import Button from "./button.svelte";
-  export let contents;
-  let imageExtensionsShort = contents.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
-  const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
-  const transitionDuration = 500;
+  export let contents, globalSettings;
+  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
+  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
+  const imageSizes = contents.imageSizes || globalSettings.imageSizes;
+  let transitionDuration = globalSettings.transitionDuration;
   let articles = contents.articles;
   let selectedArticleIndex = 0;
   let selectedArticleIndexLast;
@@ -15,7 +15,7 @@
 
   function setImageSrcset(index) {
     imageSrcset = imageExtensionsShort.map(ext => {
-      return imageSizes.map(size => `${contents.imageDirectory}${articles[index].imageId}@${size}w.${ext} ${size}w`);
+      return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${articles[index].imageId}@${size}w.${ext} ${size}w`);
     });
   }
   let imageSrcset;

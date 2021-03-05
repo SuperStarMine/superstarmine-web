@@ -1,8 +1,6 @@
 <script>
   import Color from 'color';
-  export let title;
-  export let subtitle;
-  export let themeColor;
+  export let title, subtitle, themeColor, globalSettings;
   $: backgroundColor = Color(themeColor).lightness(96);
   $: textColor = Color(themeColor).luminosity() > 0.7 ? '#000' : '#fff';
 </script>
@@ -13,7 +11,7 @@
     width: 100%
     margin: 0
     border-bottom: solid 1px white
-    transition: background-color 500ms ease-in-out 0s
+    transition: background-color var(--transitionDuration) ease-in-out 0s
     h2, h3
       margin: 0
       margin-right: 1ch

@@ -1,23 +1,20 @@
 <script>
   import { sync } from './sync-store.js';
   import supportsWebP from 'supports-webp';
-  export let contents;
-  export let pairId;
-  export let standardWidth;
-  let imageExtensionsShort = contents.imageExtensionsShort;
+  export let contents, pairId, isParent, globalSettings;
+  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
   let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
-  const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
-
+  let imageSizes = contents.imageSizes || globalSettings.imageSizes;
   let imageSrcsets = [];
   for(let i = 0; i < contents.articles.length; i++) {
     imageSrcsets[i] = imageExtensionsShort.map(ext => {
-      return imageSizes.map(size => `${contents.imageDirectory}${contents.articles[i].imageId}@${size}w.${ext} ${size}w`);
+      return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${contents.articles[i].imageId}@${size}w.${ext} ${size}w`);
     });
   }
 
   const imageColumn = [-1, 0, 1, 2];
 
-  const transitionDuration = 200;
+  const transitionDuration = globalSettings.transitionDuration;
   let slideOffset = '0vw';
   function slide(v) {
     $sync[pairId].inTransition = true;
@@ -40,7 +37,7 @@
 
 <svelte:head>
   {#each imageSrcsets as srcset, i}
-    <link rel="preload" as="image" href="{contents.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= window.innerWidth * window.devicePixelRatio * standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcset}" imagesizes="80vw">
+    <link rel="preload" as="image" href="{contents.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= window.innerWidth * window.devicePixelRatio * globalSettings.standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{supportsWebP ? 'webp' : imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcset}" imagesizes="80vw">
   {/each}
 </svelte:head>
 

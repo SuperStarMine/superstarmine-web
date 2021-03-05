@@ -1,11 +1,11 @@
 <script>
   import Button from "./button.svelte";
-  export let contents;
-  let imageExtensionsShort = contents.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png");
-  const imageSizes = [250, 500, 750, 1000, 1250, 1500, 1750, 2000];
+  export let contents, globalSettings;
+  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
+  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
+  const imageSizes = contents.imageSizes || globalSettings.imageSizes;
   let imageSrcset = imageExtensionsShort.map(ext => {
-    return imageSizes.map(size => `${contents.imageDirectory}${contents.imageId}@${size}w.${ext} ${size}w`);
+    return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${contents.imageId}@${size}w.${ext} ${size}w`);
   });
   let article = contents.article;
   let buttonsLayout = contents.bottomButtonsLayout;
