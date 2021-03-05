@@ -5,7 +5,7 @@
   $: textColor = Color(themeColor).luminosity() > 0.7 ? '#000' : '#fff';
 </script>
 
-<style>
+<style lang="stylus">
   section
     background-color: var(--backgroundColor)
     width: 100%

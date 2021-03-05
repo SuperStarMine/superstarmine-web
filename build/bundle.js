@@ -2412,7 +2412,7 @@ var app = (function () {
     			h2 = element("h2");
     			t = text(/*title*/ ctx[0]);
     			attr_dev(h2, "class", "svelte-1pgvz7t");
-    			add_location(h2, file, 39, 6, 1021);
+    			add_location(h2, file, 39, 6, 1035);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
@@ -2447,7 +2447,7 @@ var app = (function () {
     			h3 = element("h3");
     			t = text(/*subtitle*/ ctx[1]);
     			attr_dev(h3, "class", "svelte-1pgvz7t");
-    			add_location(h3, file, 42, 6, 1073);
+    			add_location(h3, file, 42, 6, 1087);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h3, anchor);
@@ -2495,14 +2495,14 @@ var app = (function () {
     			div1 = element("div");
     			if (default_slot) default_slot.c();
     			attr_dev(div0, "class", "title-bar svelte-1pgvz7t");
-    			add_location(div0, file, 37, 2, 975);
+    			add_location(div0, file, 37, 2, 989);
     			attr_dev(div1, "class", "padding svelte-1pgvz7t");
-    			add_location(div1, file, 45, 2, 1114);
+    			add_location(div1, file, 45, 2, 1128);
     			set_style(section, "--themeColor", /*themeColor*/ ctx[2]);
     			set_style(section, "--backgroundColor", /*backgroundColor*/ ctx[3]);
     			set_style(section, "--textColor", /*textColor*/ ctx[4]);
     			attr_dev(section, "class", "svelte-1pgvz7t");
-    			add_location(section, file, 36, 0, 864);
+    			add_location(section, file, 36, 0, 878);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2755,7 +2755,7 @@ var app = (function () {
     			if (default_slot) default_slot.c();
     			attr_dev(button, "style", /*style*/ ctx[1]);
     			attr_dev(button, "class", "svelte-1891uv8");
-    			add_location(button, file$1, 37, 2, 787);
+    			add_location(button, file$1, 37, 2, 801);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -2836,7 +2836,7 @@ var app = (function () {
     			attr_dev(a, "href", /*target*/ ctx[0]);
     			attr_dev(a, "style", /*style*/ ctx[1]);
     			attr_dev(a, "class", "svelte-1891uv8");
-    			add_location(a, file$1, 35, 2, 724);
+    			add_location(a, file$1, 35, 2, 738);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -3599,7 +3599,7 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[21]);
     			attr_dev(source, "sizes", "30vw");
     			attr_dev(source, "srcset", source_srcset_value = /*imageSrcset*/ ctx[6][/*i*/ ctx[18]]);
-    			add_location(source, file$3, 156, 8, 4019);
+    			add_location(source, file$3, 156, 8, 4033);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -3636,7 +3636,7 @@ var app = (function () {
     			p = element("p");
     			t = text(t_value);
     			attr_dev(p, "class", "svelte-1v7fw9d");
-    			add_location(p, file$3, 167, 12, 4658);
+    			add_location(p, file$3, 167, 12, 4672);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -3680,7 +3680,7 @@ var app = (function () {
     			? "isSelected"
     			: "") + " svelte-1v7fw9d");
 
-    			add_location(li, file$3, 173, 8, 4862);
+    			add_location(li, file$3, 173, 8, 4876);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -3847,25 +3847,25 @@ var app = (function () {
     			attr_dev(img, "sizes", "30vw");
     			attr_dev(img, "srcset", img_srcset_value = /*imageSrcset*/ ctx[6][/*safeImageExtensionIndex*/ ctx[8]]);
     			attr_dev(img, "alt", "画像");
-    			add_location(img, file$3, 158, 6, 4106);
+    			add_location(img, file$3, 158, 6, 4120);
     			attr_dev(picture, "class", "svelte-1v7fw9d");
-    			add_location(picture, file$3, 154, 4, 3956);
+    			add_location(picture, file$3, 154, 4, 3970);
     			attr_dev(h3, "class", h3_class_value = "" + (null_to_empty(/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1v7fw9d"));
-    			add_location(h3, file$3, 161, 6, 4276);
-    			add_location(article, file$3, 165, 8, 4523);
+    			add_location(h3, file$3, 161, 6, 4290);
+    			add_location(article, file$3, 165, 8, 4537);
     			attr_dev(div0, "class", div0_class_value = "articleWrapper " + (/*hiding*/ ctx[4] ? "hidden" : "shown") + " svelte-1v7fw9d");
     			set_style(div0, "--height", /*articleHeight*/ ctx[3] + "px");
-    			add_location(div0, file$3, 164, 6, 4420);
+    			add_location(div0, file$3, 164, 6, 4434);
     			set_style(ul, "height", /*contents*/ ctx[0].listItemsCount + "em");
     			attr_dev(ul, "class", "svelte-1v7fw9d");
-    			add_location(ul, file$3, 171, 6, 4731);
+    			add_location(ul, file$3, 171, 6, 4745);
     			attr_dev(section, "class", "right-column svelte-1v7fw9d");
-    			add_location(section, file$3, 160, 4, 4239);
+    			add_location(section, file$3, 160, 4, 4253);
     			attr_dev(div1, "class", "columns svelte-1v7fw9d");
-    			add_location(div1, file$3, 153, 2, 3930);
+    			add_location(div1, file$3, 153, 2, 3944);
     			attr_dev(div2, "class", "container svelte-1v7fw9d");
     			set_style(div2, "--transitionDuration", /*transitionDuration*/ ctx[9] + "ms");
-    			add_location(div2, file$3, 152, 0, 3851);
+    			add_location(div2, file$3, 152, 0, 3865);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4300,13 +4300,13 @@ var app = (function () {
 
     function get_each_context_2$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
+    	child_ctx[18] = list[i];
     	child_ctx[20] = i;
     	return child_ctx;
     }
 
-    // (39:2) {#each imageSrcsets as srcset, i}
-    function create_each_block_2$2(ctx) {
+    // (40:4) {#if ext == 'webp' && supportsWebP}
+    function create_if_block$2(ctx) {
     	let link;
     	let link_href_value;
     	let link_imagesrcset_value;
@@ -4317,25 +4317,25 @@ var app = (function () {
     			attr_dev(link, "rel", "preload");
     			attr_dev(link, "as", "image");
 
-    			attr_dev(link, "href", link_href_value = "" + (/*contents*/ ctx[0].imageDirectory + /*contents*/ ctx[0].articles[0].imageId + "@" + (/*imageSizes*/ ctx[8].find(/*func*/ ctx[13]) || /*imageSizes*/ ctx[8].sort(func_1)[0]) + "w." + (supportsWebp_commonJs
+    			attr_dev(link, "href", link_href_value = "" + ((/*contents*/ ctx[0].imageDirectory || /*globalSettings*/ ctx[2].imageDirectory) + /*contents*/ ctx[0].articles[0].imageId + "@" + (/*imageSizes*/ ctx[8].find(/*func*/ ctx[13]) || /*imageSizes*/ ctx[8].sort(func_1)[0]) + "w." + (supportsWebp_commonJs
     			? "webp"
     			: /*imageExtensionsShort*/ ctx[6][/*safeImageExtensionIndex*/ ctx[7]])));
 
-    			attr_dev(link, "imagesrcset", link_imagesrcset_value = /*srcset*/ ctx[21]);
+    			attr_dev(link, "imagesrcset", link_imagesrcset_value = /*imageSrcsets*/ ctx[3][/*i*/ ctx[20]]);
     			attr_dev(link, "imagesizes", "80vw");
-    			add_location(link, file$4, 39, 4, 1485);
+    			add_location(link, file$4, 40, 6, 1532);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, link, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents, globalSettings*/ 5 && link_href_value !== (link_href_value = "" + (/*contents*/ ctx[0].imageDirectory + /*contents*/ ctx[0].articles[0].imageId + "@" + (/*imageSizes*/ ctx[8].find(/*func*/ ctx[13]) || /*imageSizes*/ ctx[8].sort(func_1)[0]) + "w." + (supportsWebp_commonJs
+    			if (dirty & /*contents, globalSettings*/ 5 && link_href_value !== (link_href_value = "" + ((/*contents*/ ctx[0].imageDirectory || /*globalSettings*/ ctx[2].imageDirectory) + /*contents*/ ctx[0].articles[0].imageId + "@" + (/*imageSizes*/ ctx[8].find(/*func*/ ctx[13]) || /*imageSizes*/ ctx[8].sort(func_1)[0]) + "w." + (supportsWebp_commonJs
     			? "webp"
     			: /*imageExtensionsShort*/ ctx[6][/*safeImageExtensionIndex*/ ctx[7]])))) {
     				attr_dev(link, "href", link_href_value);
     			}
 
-    			if (dirty & /*imageSrcsets*/ 8 && link_imagesrcset_value !== (link_imagesrcset_value = /*srcset*/ ctx[21])) {
+    			if (dirty & /*imageSrcsets*/ 8 && link_imagesrcset_value !== (link_imagesrcset_value = /*imageSrcsets*/ ctx[3][/*i*/ ctx[20]])) {
     				attr_dev(link, "imagesrcset", link_imagesrcset_value);
     			}
     		},
@@ -4346,16 +4346,50 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_2$2.name,
-    		type: "each",
-    		source: "(39:2) {#each imageSrcsets as srcset, i}",
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(40:4) {#if ext == 'webp' && supportsWebP}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:6) {#each imageExtensionsShort as ext, i}
+    // (39:2) {#each imageExtensionsShort as ext, i}
+    function create_each_block_2$2(ctx) {
+    	let if_block_anchor;
+    	let if_block = /*ext*/ ctx[18] == "webp" && supportsWebp_commonJs && create_if_block$2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*ext*/ ctx[18] == "webp" && supportsWebp_commonJs) if_block.p(ctx, dirty);
+    		},
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2$2.name,
+    		type: "each",
+    		source: "(39:2) {#each imageExtensionsShort as ext, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (49:6) {#each imageExtensionsShort as ext, i}
     function create_each_block_1$2(ctx) {
     	let source;
     	let source_srcset_value;
@@ -4370,7 +4404,7 @@ var app = (function () {
     			? 0
     			: /*$sync*/ ctx[5][/*pairId*/ ctx[1]].slide + /*v*/ ctx[15])[/*i*/ ctx[20]]);
 
-    			add_location(source, file$4, 47, 8, 2155);
+    			add_location(source, file$4, 49, 8, 2254);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -4391,14 +4425,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$2.name,
     		type: "each",
-    		source: "(47:6) {#each imageExtensionsShort as ext, i}",
+    		source: "(49:6) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (45:2) {#each imageColumn as v}
+    // (47:2) {#each imageColumn as v}
     function create_each_block$2(ctx) {
     	let picture;
     	let t0;
@@ -4439,13 +4473,13 @@ var app = (function () {
 
     			attr_dev(img, "alt", "画像");
     			attr_dev(img, "class", "svelte-1t0sc69");
-    			add_location(img, file$4, 49, 6, 2327);
+    			add_location(img, file$4, 51, 6, 2426);
 
     			attr_dev(picture, "class", picture_class_value = "" + (null_to_empty(/*$sync*/ ctx[5][/*pairId*/ ctx[1]].inTransition
     			? "inTransition"
     			: "") + " svelte-1t0sc69"));
 
-    			add_location(picture, file$4, 45, 4, 2007);
+    			add_location(picture, file$4, 47, 4, 2106);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, picture, anchor);
@@ -4514,7 +4548,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(45:2) {#each imageColumn as v}",
+    		source: "(47:2) {#each imageColumn as v}",
     		ctx
     	});
 
@@ -4525,7 +4559,7 @@ var app = (function () {
     	let each0_anchor;
     	let t;
     	let div;
-    	let each_value_2 = /*imageSrcsets*/ ctx[3];
+    	let each_value_2 = /*imageExtensionsShort*/ ctx[6];
     	validate_each_argument(each_value_2);
     	let each_blocks_1 = [];
 
@@ -4558,7 +4592,7 @@ var app = (function () {
     			attr_dev(div, "class", "container svelte-1t0sc69");
     			set_style(div, "--transitionDuration", /*transitionDuration*/ ctx[10] + "ms");
     			set_style(div, "--slideOffset", /*slideOffset*/ ctx[4]);
-    			add_location(div, file$4, 43, 0, 1869);
+    			add_location(div, file$4, 45, 0, 1968);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4577,8 +4611,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*contents, imageSizes, window, globalSettings, supportsWebP, imageExtensionsShort, safeImageExtensionIndex, imageSrcsets*/ 461) {
-    				each_value_2 = /*imageSrcsets*/ ctx[3];
+    			if (dirty & /*contents, globalSettings, imageSizes, window, supportsWebP, imageExtensionsShort, safeImageExtensionIndex, imageSrcsets*/ 461) {
+    				each_value_2 = /*imageExtensionsShort*/ ctx[6];
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -5214,7 +5248,7 @@ var app = (function () {
     }
 
     // (15:4) {#if sectionType == "slideHero"}
-    function create_if_block$2(ctx) {
+    function create_if_block$3(ctx) {
     	let hero;
     	let current;
 
@@ -5265,7 +5299,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(15:4) {#if sectionType == \\\"slideHero\\\"}",
     		ctx
@@ -5481,7 +5515,7 @@ var app = (function () {
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block$2, create_if_block_1$1, create_if_block_2];
+    	const if_block_creators = [create_if_block$3, create_if_block_1$1, create_if_block_2];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -5598,7 +5632,7 @@ var app = (function () {
 
     			set_style(main, "--standardWidth", /*globalSettings*/ ctx[1].standardWidth + "vw");
     			set_style(main, "--transitionDuration", /*globalSettings*/ ctx[1].transitionDuration + "ms");
-    			add_location(main, file$5, 12, 0, 323);
+    			add_location(main, file$5, 12, 0, 337);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

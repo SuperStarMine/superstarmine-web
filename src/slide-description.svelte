@@ -17,5 +17,5 @@
   {contents.articles[$sync[pairId].slide].description}
 </Cframe>
 
-<style>
+<style lang="stylus">
 </style>

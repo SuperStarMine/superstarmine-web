@@ -33,7 +33,7 @@
   </section>
 </div>
 
-<style>
+<style lang="stylus">
 .container
   display: flex
   align-items: center

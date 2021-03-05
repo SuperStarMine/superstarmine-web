@@ -51,7 +51,7 @@
   document.addEventListener('toggleExpand', () => alert('done!'));
 </script>
 
-<style>
+<style lang="stylus">
 .container
   display: flex
   flex-direction: column

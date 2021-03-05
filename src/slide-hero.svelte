@@ -52,7 +52,7 @@
   {/each}
 </div>
 
-<style>
+<style lang="stylus">
 .container
   display: flex
   overflow: hidden

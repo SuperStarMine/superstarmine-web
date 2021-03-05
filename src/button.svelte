@@ -17,7 +17,7 @@
   }
 </script>
 
-<style>
+<style lang="stylus">
 a, button
   margin: 0 10% 0
   width: 45%

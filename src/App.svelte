@@ -8,7 +8,7 @@
   export let globalSettings;
 </script>
 
-<style>
+<style lang="stylus">
 </style>
 
 <main style="--standardWidth: {globalSettings.standardWidth}vw; --transitionDuration: {globalSettings.transitionDuration}ms">
