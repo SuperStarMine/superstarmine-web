@@ -36,8 +36,8 @@
 </script>
 
 <svelte:head>
-  {#each imageSrcsets as srcset, i}
-    <link rel="preload" as="image" href="{contents.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= window.innerWidth * window.devicePixelRatio * globalSettings.standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{supportsWebP ? 'webp' : imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcset}" imagesizes="80vw">
+  {#each imageSrcsets as srcsets}
+    <link rel="preload" as="image" href="{contents.imageDirectory || globalSettings.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= window.innerWidth * window.devicePixelRatio * globalSettings.standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{supportsWebP ? 'webp' : imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcsets[supportsWebP && imageExtensionsShort.includes('webp') ? imageExtensionsShort.findIndex(v => v == 'webp') : 0]}" imagesizes="80vw">
   {/each}
 </svelte:head>
 

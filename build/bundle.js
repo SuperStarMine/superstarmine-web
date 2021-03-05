@@ -4300,13 +4300,12 @@ var app = (function () {
 
     function get_each_context_2$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[18] = list[i];
-    	child_ctx[20] = i;
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
-    // (40:4) {#if ext == 'webp' && supportsWebP}
-    function create_if_block$2(ctx) {
+    // (39:2) {#each imageSrcsets as srcsets}
+    function create_each_block_2$2(ctx) {
     	let link;
     	let link_href_value;
     	let link_imagesrcset_value;
@@ -4321,9 +4320,12 @@ var app = (function () {
     			? "webp"
     			: /*imageExtensionsShort*/ ctx[6][/*safeImageExtensionIndex*/ ctx[7]])));
 
-    			attr_dev(link, "imagesrcset", link_imagesrcset_value = /*imageSrcsets*/ ctx[3][/*i*/ ctx[20]]);
+    			attr_dev(link, "imagesrcset", link_imagesrcset_value = /*srcsets*/ ctx[21][supportsWebp_commonJs && /*imageExtensionsShort*/ ctx[6].includes("webp")
+    			? /*imageExtensionsShort*/ ctx[6].findIndex(func_2)
+    			: 0]);
+
     			attr_dev(link, "imagesizes", "80vw");
-    			add_location(link, file$4, 40, 6, 1532);
+    			add_location(link, file$4, 39, 4, 1483);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, link, anchor);
@@ -4335,7 +4337,9 @@ var app = (function () {
     				attr_dev(link, "href", link_href_value);
     			}
 
-    			if (dirty & /*imageSrcsets*/ 8 && link_imagesrcset_value !== (link_imagesrcset_value = /*imageSrcsets*/ ctx[3][/*i*/ ctx[20]])) {
+    			if (dirty & /*imageSrcsets*/ 8 && link_imagesrcset_value !== (link_imagesrcset_value = /*srcsets*/ ctx[21][supportsWebp_commonJs && /*imageExtensionsShort*/ ctx[6].includes("webp")
+    			? /*imageExtensionsShort*/ ctx[6].findIndex(func_2)
+    			: 0])) {
     				attr_dev(link, "imagesrcset", link_imagesrcset_value);
     			}
     		},
@@ -4346,50 +4350,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
-    		type: "if",
-    		source: "(40:4) {#if ext == 'webp' && supportsWebP}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (39:2) {#each imageExtensionsShort as ext, i}
-    function create_each_block_2$2(ctx) {
-    	let if_block_anchor;
-    	let if_block = /*ext*/ ctx[18] == "webp" && supportsWebp_commonJs && create_if_block$2(ctx);
-
-    	const block = {
-    		c: function create() {
-    			if (if_block) if_block.c();
-    			if_block_anchor = empty();
-    		},
-    		m: function mount(target, anchor) {
-    			if (if_block) if_block.m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (/*ext*/ ctx[18] == "webp" && supportsWebp_commonJs) if_block.p(ctx, dirty);
-    		},
-    		d: function destroy(detaching) {
-    			if (if_block) if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
     		id: create_each_block_2$2.name,
     		type: "each",
-    		source: "(39:2) {#each imageExtensionsShort as ext, i}",
+    		source: "(39:2) {#each imageSrcsets as srcsets}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:6) {#each imageExtensionsShort as ext, i}
+    // (47:6) {#each imageExtensionsShort as ext, i}
     function create_each_block_1$2(ctx) {
     	let source;
     	let source_srcset_value;
@@ -4404,7 +4374,7 @@ var app = (function () {
     			? 0
     			: /*$sync*/ ctx[5][/*pairId*/ ctx[1]].slide + /*v*/ ctx[15])[/*i*/ ctx[20]]);
 
-    			add_location(source, file$4, 49, 8, 2254);
+    			add_location(source, file$4, 47, 8, 2297);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -4425,14 +4395,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$2.name,
     		type: "each",
-    		source: "(49:6) {#each imageExtensionsShort as ext, i}",
+    		source: "(47:6) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:2) {#each imageColumn as v}
+    // (45:2) {#each imageColumn as v}
     function create_each_block$2(ctx) {
     	let picture;
     	let t0;
@@ -4473,13 +4443,13 @@ var app = (function () {
 
     			attr_dev(img, "alt", "画像");
     			attr_dev(img, "class", "svelte-1t0sc69");
-    			add_location(img, file$4, 51, 6, 2426);
+    			add_location(img, file$4, 49, 6, 2469);
 
     			attr_dev(picture, "class", picture_class_value = "" + (null_to_empty(/*$sync*/ ctx[5][/*pairId*/ ctx[1]].inTransition
     			? "inTransition"
     			: "") + " svelte-1t0sc69"));
 
-    			add_location(picture, file$4, 47, 4, 2106);
+    			add_location(picture, file$4, 45, 4, 2149);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, picture, anchor);
@@ -4548,7 +4518,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(47:2) {#each imageColumn as v}",
+    		source: "(45:2) {#each imageColumn as v}",
     		ctx
     	});
 
@@ -4559,7 +4529,7 @@ var app = (function () {
     	let each0_anchor;
     	let t;
     	let div;
-    	let each_value_2 = /*imageExtensionsShort*/ ctx[6];
+    	let each_value_2 = /*imageSrcsets*/ ctx[3];
     	validate_each_argument(each_value_2);
     	let each_blocks_1 = [];
 
@@ -4592,7 +4562,7 @@ var app = (function () {
     			attr_dev(div, "class", "container svelte-1t0sc69");
     			set_style(div, "--transitionDuration", /*transitionDuration*/ ctx[10] + "ms");
     			set_style(div, "--slideOffset", /*slideOffset*/ ctx[4]);
-    			add_location(div, file$4, 45, 0, 1968);
+    			add_location(div, file$4, 43, 0, 2011);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4612,7 +4582,7 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*contents, globalSettings, imageSizes, window, supportsWebP, imageExtensionsShort, safeImageExtensionIndex, imageSrcsets*/ 461) {
-    				each_value_2 = /*imageExtensionsShort*/ ctx[6];
+    				each_value_2 = /*imageSrcsets*/ ctx[3];
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -4686,6 +4656,7 @@ var app = (function () {
     }
 
     const func_1 = (a, b) => b - a;
+    const func_2 = v => v == "webp";
 
     function instance$4($$self, $$props, $$invalidate) {
     	let $sync;
@@ -5248,7 +5219,7 @@ var app = (function () {
     }
 
     // (15:4) {#if sectionType == "slideHero"}
-    function create_if_block$3(ctx) {
+    function create_if_block$2(ctx) {
     	let hero;
     	let current;
 
@@ -5299,7 +5270,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(15:4) {#if sectionType == \\\"slideHero\\\"}",
     		ctx
@@ -5515,7 +5486,7 @@ var app = (function () {
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block$3, create_if_block_1$1, create_if_block_2];
+    	const if_block_creators = [create_if_block$2, create_if_block_1$1, create_if_block_2];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
