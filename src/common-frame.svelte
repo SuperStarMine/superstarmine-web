@@ -1,6 +1,6 @@
 <script>
   import Color from 'color';
-  export let title, subtitle, themeColor, globalSettings;
+  export let title, subtitle, themeColor, id, globalSettings;
   $: backgroundColor = Color(themeColor).lightness(96);
   $: textColor = Color(themeColor).luminosity() > 0.7 ? '#000' : '#fff';
 </script>
@@ -30,7 +30,7 @@
       padding: 3vw calc((100vw - var(--standardWidth)) / 2)
 </style>
 
-<section style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}; --textColor: {textColor}">
+<section id={id} style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}; --textColor: {textColor}">
   <div class="title-bar">
     {#if title}
       <h2>{title}</h2>

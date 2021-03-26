@@ -12,8 +12,22 @@ const app = new App({
     },
     settings: [
       {
+        sectionType: 'navHeader',
+        themeColor: '#fff',
+        contents: {
+          imageId: 'ssm-logo-landscape',
+          items: [
+            {id: 'works', label: '作品'},
+            {id: 'news', label: 'ニュース'},
+            {id: 'about', label: 'チームについて'},
+            {id: 'members', label: 'メンバー'}
+          ]
+        }
+      },
+      {
         sectionType: 'slideHero',
-        pairId: 'hero'
+        pairId: 'hero',
+        id: 'info'
       },
       {
         sectionType: 'slideDesc',
@@ -62,6 +76,7 @@ const app = new App({
         title: 'NEWS',
         subtitle: 'チームからのお知らせ',
         themeColor: '#ff0200',
+        id: 'news',
         contents: {
           listItemsCount: 5,
           autoCyclePeriodInMs: 5000,
