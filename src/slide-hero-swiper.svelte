@@ -1,7 +1,9 @@
 <script>
 
   import { Swiper, SwiperSlide } from 'swiper/svelte';
+  import SwiperCore, { Controller } from 'swiper/core';
   import { sync } from './sync-store.js';
+  import { onMount } from 'svelte';
   import supportsWebP from 'supports-webp';
   export let contents, pairId, isParent, globalSettings;
   let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
@@ -17,12 +19,17 @@
   const transitionDuration = globalSettings.transitionDuration;
   const slidesPerView = 1.2
 
+  SwiperCore.use([Controller]);
+
+  let controlledSwiper = null;
+  onMount(() => {
+    setTimeout(() => {
+      controlledSwiper = $sync.controlledSwiper;
+    },50);
+  });
 </script>
 
 <svelte:head>
-  {#each imageSrcsets as srcsets}
-    <link rel="preload" as="image" href="{contents.imageDirectory || globalSettings.imageDirectory}{contents.articles[0].imageId}@{imageSizes.find(v => v >= window.innerWidth * window.devicePixelRatio * globalSettings.standardWidth / 100) || imageSizes.sort((a, b) => b - a)[0]}w.{supportsWebP ? 'webp' : imageExtensionsShort[safeImageExtensionIndex]}" imagesrcset="{srcsets[supportsWebP && imageExtensionsShort.includes('webp') ? imageExtensionsShort.findIndex(v => v == 'webp') : 0]}" imagesizes="80vw">
-  {/each}
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
@@ -32,9 +39,11 @@
   slidesPerView={slidesPerView}
   grabCursor={true}
   speed={transitionDuration}
+  slideToClickedSlide={true}
   loop={true}
-  on:slideChange=""
-  on:swiper={(e) => console.log(e.detail[0])}
+  loopAdditionalSlides={2}
+  controller={{ control: controlledSwiper }}
+  on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}
 >
   {#each imageSrcsets as src}
     <SwiperSlide>

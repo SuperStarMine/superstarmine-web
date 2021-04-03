@@ -95,7 +95,7 @@ const app = new App({
             },
             {
               title: '爆買いマーケット',
-              subtitle: 'れーぞく全方位シューティングゲーム',
+              subtitle: '爆買いアクションランゲーム',
               themeColor: '#c65017',
               imageId: 'fall_in_parfait-ss1',
               alt: '',

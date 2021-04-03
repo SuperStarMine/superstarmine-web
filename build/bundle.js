@@ -215,15 +215,6 @@ var app = (function () {
             }
         };
     }
-    // TODO figure out if we still want to support
-    // shorthand events, or if we want to implement
-    // a real bubbling mechanism
-    function bubble(component, event) {
-        const callbacks = component.$$.callbacks[event.type];
-        if (callbacks) {
-            callbacks.slice().forEach(fn => fn(event));
-        }
-    }
 
     const dirty_components = [];
     const binding_callbacks = [];
@@ -329,12 +320,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals = (typeof window !== 'undefined'
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : global);
 
     function get_spread_update(levels, updates) {
         const update = {};
@@ -10201,6 +10186,286 @@ var app = (function () {
     });
     Swiper.use([Resize, Observer$1]);
 
+    function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1.apply(this, arguments); }
+    var Controller = {
+      LinearSpline: function LinearSpline(x, y) {
+        var binarySearch = function search() {
+          var maxIndex;
+          var minIndex;
+          var guess;
+          return function (array, val) {
+            minIndex = -1;
+            maxIndex = array.length;
+
+            while (maxIndex - minIndex > 1) {
+              guess = maxIndex + minIndex >> 1;
+
+              if (array[guess] <= val) {
+                minIndex = guess;
+              } else {
+                maxIndex = guess;
+              }
+            }
+
+            return maxIndex;
+          };
+        }();
+
+        this.x = x;
+        this.y = y;
+        this.lastIndex = x.length - 1; // Given an x value (x2), return the expected y2 value:
+        // (x1,y1) is the known point before given value,
+        // (x3,y3) is the known point after given value.
+
+        var i1;
+        var i3;
+
+        this.interpolate = function interpolate(x2) {
+          if (!x2) return 0; // Get the indexes of x1 and x3 (the array indexes before and after given x2):
+
+          i3 = binarySearch(this.x, x2);
+          i1 = i3 - 1; // We have our indexes i1 & i3, so we can calculate already:
+          // y2 := ((x2−x1) × (y3−y1)) ÷ (x3−x1) + y1
+
+          return (x2 - this.x[i1]) * (this.y[i3] - this.y[i1]) / (this.x[i3] - this.x[i1]) + this.y[i1];
+        };
+
+        return this;
+      },
+      // xxx: for now i will just save one spline function to to
+      getInterpolateFunction: function getInterpolateFunction(c) {
+        var swiper = this;
+
+        if (!swiper.controller.spline) {
+          swiper.controller.spline = swiper.params.loop ? new Controller.LinearSpline(swiper.slidesGrid, c.slidesGrid) : new Controller.LinearSpline(swiper.snapGrid, c.snapGrid);
+        }
+      },
+      setTranslate: function setTranslate(_setTranslate, byController) {
+        var swiper = this;
+        var controlled = swiper.controller.control;
+        var multiplier;
+        var controlledTranslate;
+        var Swiper = swiper.constructor;
+
+        function setControlledTranslate(c) {
+          // this will create an Interpolate function based on the snapGrids
+          // x is the Grid of the scrolled scroller and y will be the controlled scroller
+          // it makes sense to create this only once and recall it for the interpolation
+          // the function does a lot of value caching for performance
+          var translate = swiper.rtlTranslate ? -swiper.translate : swiper.translate;
+
+          if (swiper.params.controller.by === 'slide') {
+            swiper.controller.getInterpolateFunction(c); // i am not sure why the values have to be multiplicated this way, tried to invert the snapGrid
+            // but it did not work out
+
+            controlledTranslate = -swiper.controller.spline.interpolate(-translate);
+          }
+
+          if (!controlledTranslate || swiper.params.controller.by === 'container') {
+            multiplier = (c.maxTranslate() - c.minTranslate()) / (swiper.maxTranslate() - swiper.minTranslate());
+            controlledTranslate = (translate - swiper.minTranslate()) * multiplier + c.minTranslate();
+          }
+
+          if (swiper.params.controller.inverse) {
+            controlledTranslate = c.maxTranslate() - controlledTranslate;
+          }
+
+          c.updateProgress(controlledTranslate);
+          c.setTranslate(controlledTranslate, swiper);
+          c.updateActiveIndex();
+          c.updateSlidesClasses();
+        }
+
+        if (Array.isArray(controlled)) {
+          for (var i = 0; i < controlled.length; i += 1) {
+            if (controlled[i] !== byController && controlled[i] instanceof Swiper) {
+              setControlledTranslate(controlled[i]);
+            }
+          }
+        } else if (controlled instanceof Swiper && byController !== controlled) {
+          setControlledTranslate(controlled);
+        }
+      },
+      setTransition: function setTransition(duration, byController) {
+        var swiper = this;
+        var Swiper = swiper.constructor;
+        var controlled = swiper.controller.control;
+        var i;
+
+        function setControlledTransition(c) {
+          c.setTransition(duration, swiper);
+
+          if (duration !== 0) {
+            c.transitionStart();
+
+            if (c.params.autoHeight) {
+              nextTick(function () {
+                c.updateAutoHeight();
+              });
+            }
+
+            c.$wrapperEl.transitionEnd(function () {
+              if (!controlled) return;
+
+              if (c.params.loop && swiper.params.controller.by === 'slide') {
+                c.loopFix();
+              }
+
+              c.transitionEnd();
+            });
+          }
+        }
+
+        if (Array.isArray(controlled)) {
+          for (i = 0; i < controlled.length; i += 1) {
+            if (controlled[i] !== byController && controlled[i] instanceof Swiper) {
+              setControlledTransition(controlled[i]);
+            }
+          }
+        } else if (controlled instanceof Swiper && byController !== controlled) {
+          setControlledTransition(controlled);
+        }
+      }
+    };
+    var Controller$1 = {
+      name: 'controller',
+      params: {
+        controller: {
+          control: undefined,
+          inverse: false,
+          by: 'slide' // or 'container'
+
+        }
+      },
+      create: function create() {
+        var swiper = this;
+        bindModuleMethods(swiper, {
+          controller: _extends$1({
+            control: swiper.params.controller.control
+          }, Controller)
+        });
+      },
+      on: {
+        update: function update(swiper) {
+          if (!swiper.controller.control) return;
+
+          if (swiper.controller.spline) {
+            swiper.controller.spline = undefined;
+            delete swiper.controller.spline;
+          }
+        },
+        resize: function resize(swiper) {
+          if (!swiper.controller.control) return;
+
+          if (swiper.controller.spline) {
+            swiper.controller.spline = undefined;
+            delete swiper.controller.spline;
+          }
+        },
+        observerUpdate: function observerUpdate(swiper) {
+          if (!swiper.controller.control) return;
+
+          if (swiper.controller.spline) {
+            swiper.controller.spline = undefined;
+            delete swiper.controller.spline;
+          }
+        },
+        setTranslate: function setTranslate(swiper, translate, byController) {
+          if (!swiper.controller.control) return;
+          swiper.controller.setTranslate(translate, byController);
+        },
+        setTransition: function setTransition(swiper, duration, byController) {
+          if (!swiper.controller.control) return;
+          swiper.controller.setTransition(duration, byController);
+        }
+      }
+    };
+
+    function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+    var Fade = {
+      setTranslate: function setTranslate() {
+        var swiper = this;
+        var slides = swiper.slides;
+
+        for (var i = 0; i < slides.length; i += 1) {
+          var $slideEl = swiper.slides.eq(i);
+          var offset = $slideEl[0].swiperSlideOffset;
+          var tx = -offset;
+          if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+          var ty = 0;
+
+          if (!swiper.isHorizontal()) {
+            ty = tx;
+            tx = 0;
+          }
+
+          var slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs($slideEl[0].progress), 0) : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+          $slideEl.css({
+            opacity: slideOpacity
+          }).transform("translate3d(" + tx + "px, " + ty + "px, 0px)");
+        }
+      },
+      setTransition: function setTransition(duration) {
+        var swiper = this;
+        var slides = swiper.slides,
+            $wrapperEl = swiper.$wrapperEl;
+        slides.transition(duration);
+
+        if (swiper.params.virtualTranslate && duration !== 0) {
+          var eventTriggered = false;
+          slides.transitionEnd(function () {
+            if (eventTriggered) return;
+            if (!swiper || swiper.destroyed) return;
+            eventTriggered = true;
+            swiper.animating = false;
+            var triggerEvents = ['webkitTransitionEnd', 'transitionend'];
+
+            for (var i = 0; i < triggerEvents.length; i += 1) {
+              $wrapperEl.trigger(triggerEvents[i]);
+            }
+          });
+        }
+      }
+    };
+    var EffectFade = {
+      name: 'effect-fade',
+      params: {
+        fadeEffect: {
+          crossFade: false
+        }
+      },
+      create: function create() {
+        var swiper = this;
+        bindModuleMethods(swiper, {
+          fadeEffect: _extends$2({}, Fade)
+        });
+      },
+      on: {
+        beforeInit: function beforeInit(swiper) {
+          if (swiper.params.effect !== 'fade') return;
+          swiper.classNames.push(swiper.params.containerModifierClass + "fade");
+          var overwriteParams = {
+            slidesPerView: 1,
+            slidesPerColumn: 1,
+            slidesPerGroup: 1,
+            watchSlidesProgress: true,
+            spaceBetween: 0,
+            virtualTranslate: true
+          };
+          extend$1(swiper.params, overwriteParams);
+          extend$1(swiper.originalParams, overwriteParams);
+        },
+        setTranslate: function setTranslate(swiper) {
+          if (swiper.params.effect !== 'fade') return;
+          swiper.fadeEffect.setTranslate();
+        },
+        setTransition: function setTransition(swiper, duration) {
+          if (swiper.params.effect !== 'fade') return;
+          swiper.fadeEffect.setTransition(duration);
+        }
+      }
+    };
+
     function isObject$2(o) {
       return typeof o === 'object' && o !== null && o.constructor && Object.prototype.toString.call(o).slice(8, -1) === 'Object';
     }
@@ -11359,8 +11624,6 @@ var app = (function () {
     var supportsWebp_commonJs = index$1;
 
     /* src/slide-hero-swiper.svelte generated by Svelte v3.32.1 */
-
-    const { console: console_1 } = globals;
     const file$5 = "src/slide-hero-swiper.svelte";
 
     function get_each_context$3(ctx, list, i) {
@@ -11376,68 +11639,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    function get_each_context_2$2(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[18] = list[i];
-    	return child_ctx;
-    }
-
-    // (23:2) {#each imageSrcsets as srcsets}
-    function create_each_block_2$2(ctx) {
-    	let link;
-    	let link_href_value;
-    	let link_imagesrcset_value;
-
-    	const block = {
-    		c: function create() {
-    			link = element("link");
-    			attr_dev(link, "rel", "preload");
-    			attr_dev(link, "as", "image");
-
-    			attr_dev(link, "href", link_href_value = "" + ((/*contents*/ ctx[0].imageDirectory || /*globalSettings*/ ctx[1].imageDirectory) + /*contents*/ ctx[0].articles[0].imageId + "@" + (/*imageSizes*/ ctx[5].find(/*func*/ ctx[9]) || /*imageSizes*/ ctx[5].sort(func_1)[0]) + "w." + (supportsWebp_commonJs
-    			? "webp"
-    			: /*imageExtensionsShort*/ ctx[3][/*safeImageExtensionIndex*/ ctx[4]])));
-
-    			attr_dev(link, "imagesrcset", link_imagesrcset_value = /*srcsets*/ ctx[18][supportsWebp_commonJs && /*imageExtensionsShort*/ ctx[3].includes("webp")
-    			? /*imageExtensionsShort*/ ctx[3].findIndex(func_2)
-    			: 0]);
-
-    			attr_dev(link, "imagesizes", "80vw");
-    			add_location(link, file$5, 23, 4, 936);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, link, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*contents, globalSettings*/ 3 && link_href_value !== (link_href_value = "" + ((/*contents*/ ctx[0].imageDirectory || /*globalSettings*/ ctx[1].imageDirectory) + /*contents*/ ctx[0].articles[0].imageId + "@" + (/*imageSizes*/ ctx[5].find(/*func*/ ctx[9]) || /*imageSizes*/ ctx[5].sort(func_1)[0]) + "w." + (supportsWebp_commonJs
-    			? "webp"
-    			: /*imageExtensionsShort*/ ctx[3][/*safeImageExtensionIndex*/ ctx[4]])))) {
-    				attr_dev(link, "href", link_href_value);
-    			}
-
-    			if (dirty & /*imageSrcsets*/ 4 && link_imagesrcset_value !== (link_imagesrcset_value = /*srcsets*/ ctx[18][supportsWebp_commonJs && /*imageExtensionsShort*/ ctx[3].includes("webp")
-    			? /*imageExtensionsShort*/ ctx[3].findIndex(func_2)
-    			: 0])) {
-    				attr_dev(link, "imagesrcset", link_imagesrcset_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(link);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_2$2.name,
-    		type: "each",
-    		source: "(23:2) {#each imageSrcsets as srcsets}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (42:8) {#each imageExtensionsShort as ext, i}
+    // (51:8) {#each imageExtensionsShort as ext, i}
     function create_each_block_1$3(ctx) {
     	let source;
     	let source_srcset_value;
@@ -11448,13 +11650,13 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[15]);
     			attr_dev(source, "sizes", "100vw");
     			attr_dev(source, "srcset", source_srcset_value = /*src*/ ctx[12][/*i*/ ctx[17]]);
-    			add_location(source, file$5, 42, 10, 1871);
+    			add_location(source, file$5, 51, 10, 1738);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageSrcsets*/ 4 && source_srcset_value !== (source_srcset_value = /*src*/ ctx[12][/*i*/ ctx[17]])) {
+    			if (dirty & /*imageSrcsets*/ 1 && source_srcset_value !== (source_srcset_value = /*src*/ ctx[12][/*i*/ ctx[17]])) {
     				attr_dev(source, "srcset", source_srcset_value);
     			}
     		},
@@ -11467,21 +11669,21 @@ var app = (function () {
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(42:8) {#each imageExtensionsShort as ext, i}",
+    		source: "(51:8) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (40:4) <SwiperSlide>
+    // (49:4) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t0;
     	let img;
     	let img_srcset_value;
     	let t1;
-    	let each_value_1 = /*imageExtensionsShort*/ ctx[3];
+    	let each_value_1 = /*imageExtensionsShort*/ ctx[2];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -11501,12 +11703,12 @@ var app = (function () {
     			img = element("img");
     			t1 = space();
     			attr_dev(img, "sizes", "100vw");
-    			attr_dev(img, "srcset", img_srcset_value = /*src*/ ctx[12][/*safeImageExtensionIndex*/ ctx[4]]);
+    			attr_dev(img, "srcset", img_srcset_value = /*src*/ ctx[12][/*safeImageExtensionIndex*/ ctx[3]]);
     			attr_dev(img, "alt", "画像");
     			attr_dev(img, "class", "svelte-78arb9");
-    			add_location(img, file$5, 44, 8, 1955);
+    			add_location(img, file$5, 53, 8, 1822);
     			attr_dev(picture, "class", "svelte-78arb9");
-    			add_location(picture, file$5, 40, 6, 1804);
+    			add_location(picture, file$5, 49, 6, 1671);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, picture, anchor);
@@ -11520,8 +11722,8 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageExtensionsShort, imageSrcsets*/ 12) {
-    				each_value_1 = /*imageExtensionsShort*/ ctx[3];
+    			if (dirty & /*imageExtensionsShort, imageSrcsets*/ 5) {
+    				each_value_1 = /*imageExtensionsShort*/ ctx[2];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -11544,7 +11746,7 @@ var app = (function () {
     				each_blocks.length = each_value_1.length;
     			}
 
-    			if (dirty & /*imageSrcsets*/ 4 && img_srcset_value !== (img_srcset_value = /*src*/ ctx[12][/*safeImageExtensionIndex*/ ctx[4]])) {
+    			if (dirty & /*imageSrcsets*/ 1 && img_srcset_value !== (img_srcset_value = /*src*/ ctx[12][/*safeImageExtensionIndex*/ ctx[3]])) {
     				attr_dev(img, "srcset", img_srcset_value);
     			}
     		},
@@ -11559,14 +11761,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(40:4) <SwiperSlide>",
+    		source: "(49:4) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (39:2) {#each imageSrcsets as src}
+    // (48:2) {#each imageSrcsets as src}
     function create_each_block$3(ctx) {
     	let swiperslide;
     	let current;
@@ -11590,7 +11792,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const swiperslide_changes = {};
 
-    			if (dirty & /*$$scope, imageSrcsets*/ 2097156) {
+    			if (dirty & /*$$scope, imageSrcsets*/ 262145) {
     				swiperslide_changes.$$scope = { dirty, ctx };
     			}
 
@@ -11614,18 +11816,18 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(39:2) {#each imageSrcsets as src}",
+    		source: "(48:2) {#each imageSrcsets as src}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (29:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   loop={true}   on:slideChange=""   on:swiper={(e) => console.log(e.detail[0])} >
+    // (36:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
-    	let each_value = /*imageSrcsets*/ ctx[2];
+    	let each_value = /*imageSrcsets*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -11654,8 +11856,8 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageSrcsets, safeImageExtensionIndex, imageExtensionsShort*/ 28) {
-    				each_value = /*imageSrcsets*/ ctx[2];
+    			if (dirty & /*imageSrcsets, safeImageExtensionIndex, imageExtensionsShort*/ 13) {
+    				each_value = /*imageSrcsets*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
 
@@ -11710,7 +11912,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(29:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   loop={true}   on:slideChange=\\\"\\\"   on:swiper={(e) => console.log(e.detail[0])} >",
+    		source: "(36:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >",
     		ctx
     	});
 
@@ -11722,13 +11924,6 @@ var app = (function () {
     	let t;
     	let swiper;
     	let current;
-    	let each_value_2 = /*imageSrcsets*/ ctx[2];
-    	validate_each_argument(each_value_2);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value_2.length; i += 1) {
-    		each_blocks[i] = create_each_block_2$2(get_each_context_2$2(ctx, each_value_2, i));
-    	}
 
     	swiper = new Swiper$1({
     			props: {
@@ -11736,72 +11931,43 @@ var app = (function () {
     				spaceBetween: 0,
     				slidesPerView,
     				grabCursor: true,
-    				speed: /*transitionDuration*/ ctx[6],
+    				speed: /*transitionDuration*/ ctx[4],
+    				slideToClickedSlide: true,
     				loop: true,
+    				loopAdditionalSlides: 2,
+    				controller: { control: /*controlledSwiper*/ ctx[1] },
     				$$slots: { default: [create_default_slot$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	swiper.$on("slideChange", /*slideChange_handler*/ ctx[10]);
-    	swiper.$on("swiper", /*swiper_handler*/ ctx[11]);
+    	swiper.$on("slideChangeTransitionStart", /*slideChangeTransitionStart_handler*/ ctx[9]);
 
     	const block = {
     		c: function create() {
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
     			link = element("link");
     			t = space();
     			create_component(swiper.$$.fragment);
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$5, 25, 2, 1450);
+    			add_location(link, file$5, 32, 2, 1163);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(document.head, null);
-    			}
-
     			append_dev(document.head, link);
     			insert_dev(target, t, anchor);
     			mount_component(swiper, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*contents, globalSettings, imageSizes, window, supportsWebP, imageExtensionsShort, safeImageExtensionIndex, imageSrcsets*/ 63) {
-    				each_value_2 = /*imageSrcsets*/ ctx[2];
-    				validate_each_argument(each_value_2);
-    				let i;
-
-    				for (i = 0; i < each_value_2.length; i += 1) {
-    					const child_ctx = get_each_context_2$2(ctx, each_value_2, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block_2$2(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(link.parentNode, link);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value_2.length;
-    			}
-
     			const swiper_changes = {};
+    			if (dirty & /*controlledSwiper*/ 2) swiper_changes.controller = { control: /*controlledSwiper*/ ctx[1] };
 
-    			if (dirty & /*$$scope, imageSrcsets*/ 2097156) {
+    			if (dirty & /*$$scope, imageSrcsets*/ 262145) {
     				swiper_changes.$$scope = { dirty, ctx };
     			}
 
@@ -11817,7 +11983,6 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_each(each_blocks, detaching);
     			detach_dev(link);
     			if (detaching) detach_dev(t);
     			destroy_component(swiper, detaching);
@@ -11836,10 +12001,11 @@ var app = (function () {
     }
 
     const slidesPerView = 1.2;
-    const func_1 = (a, b) => b - a;
-    const func_2 = v => v == "webp";
 
     function instance$7($$self, $$props, $$invalidate) {
+    	let $sync;
+    	validate_store(sync, "sync");
+    	component_subscribe($$self, sync, $$value => $$invalidate(10, $sync = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Slide_hero_swiper", slots, []);
 
@@ -11860,31 +12026,40 @@ var app = (function () {
     	}
 
     	const transitionDuration = globalSettings.transitionDuration;
+    	Swiper.use([Controller$1]);
+    	let controlledSwiper = null;
+
+    	onMount(() => {
+    		setTimeout(
+    			() => {
+    				$$invalidate(1, controlledSwiper = $sync.controlledSwiper);
+    			},
+    			50
+    		);
+    	});
+
     	const writable_props = ["contents", "pairId", "isParent", "globalSettings"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Slide_hero_swiper> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Slide_hero_swiper> was created with unknown prop '${key}'`);
     	});
 
-    	const func = v => v >= window.innerWidth * window.devicePixelRatio * globalSettings.standardWidth / 100;
-
-    	function slideChange_handler(event) {
-    		bubble($$self, event);
-    	}
-
-    	const swiper_handler = e => console.log(e.detail[0]);
+    	const slideChangeTransitionStart_handler = e => window.dispatchEvent(new window.CustomEvent("slide", { detail: e.detail[0][0] }));
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
-    		if ("pairId" in $$props) $$invalidate(7, pairId = $$props.pairId);
-    		if ("isParent" in $$props) $$invalidate(8, isParent = $$props.isParent);
-    		if ("globalSettings" in $$props) $$invalidate(1, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(5, contents = $$props.contents);
+    		if ("pairId" in $$props) $$invalidate(6, pairId = $$props.pairId);
+    		if ("isParent" in $$props) $$invalidate(7, isParent = $$props.isParent);
+    		if ("globalSettings" in $$props) $$invalidate(8, globalSettings = $$props.globalSettings);
     	};
 
     	$$self.$capture_state = () => ({
     		Swiper: Swiper$1,
     		SwiperSlide: Swiper$2,
+    		SwiperCore: Swiper,
+    		Controller: Controller$1,
     		sync,
+    		onMount,
     		supportsWebP: supportsWebp_commonJs,
     		contents,
     		pairId,
@@ -11895,18 +12070,21 @@ var app = (function () {
     		imageSizes,
     		imageSrcsets,
     		transitionDuration,
-    		slidesPerView
+    		slidesPerView,
+    		controlledSwiper,
+    		$sync
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
-    		if ("pairId" in $$props) $$invalidate(7, pairId = $$props.pairId);
-    		if ("isParent" in $$props) $$invalidate(8, isParent = $$props.isParent);
-    		if ("globalSettings" in $$props) $$invalidate(1, globalSettings = $$props.globalSettings);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(3, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("safeImageExtensionIndex" in $$props) $$invalidate(4, safeImageExtensionIndex = $$props.safeImageExtensionIndex);
-    		if ("imageSizes" in $$props) $$invalidate(5, imageSizes = $$props.imageSizes);
-    		if ("imageSrcsets" in $$props) $$invalidate(2, imageSrcsets = $$props.imageSrcsets);
+    		if ("contents" in $$props) $$invalidate(5, contents = $$props.contents);
+    		if ("pairId" in $$props) $$invalidate(6, pairId = $$props.pairId);
+    		if ("isParent" in $$props) $$invalidate(7, isParent = $$props.isParent);
+    		if ("globalSettings" in $$props) $$invalidate(8, globalSettings = $$props.globalSettings);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(2, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("safeImageExtensionIndex" in $$props) $$invalidate(3, safeImageExtensionIndex = $$props.safeImageExtensionIndex);
+    		if ("imageSizes" in $$props) imageSizes = $$props.imageSizes;
+    		if ("imageSrcsets" in $$props) $$invalidate(0, imageSrcsets = $$props.imageSrcsets);
+    		if ("controlledSwiper" in $$props) $$invalidate(1, controlledSwiper = $$props.controlledSwiper);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -11914,18 +12092,16 @@ var app = (function () {
     	}
 
     	return [
-    		contents,
-    		globalSettings,
     		imageSrcsets,
+    		controlledSwiper,
     		imageExtensionsShort,
     		safeImageExtensionIndex,
-    		imageSizes,
     		transitionDuration,
+    		contents,
     		pairId,
     		isParent,
-    		func,
-    		slideChange_handler,
-    		swiper_handler
+    		globalSettings,
+    		slideChangeTransitionStart_handler
     	];
     }
 
@@ -11934,10 +12110,10 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$7, create_fragment$7, safe_not_equal, {
-    			contents: 0,
-    			pairId: 7,
-    			isParent: 8,
-    			globalSettings: 1
+    			contents: 5,
+    			pairId: 6,
+    			isParent: 7,
+    			globalSettings: 8
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -11950,20 +12126,20 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[0] === undefined && !("contents" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'contents'");
+    		if (/*contents*/ ctx[5] === undefined && !("contents" in props)) {
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'contents'");
     		}
 
-    		if (/*pairId*/ ctx[7] === undefined && !("pairId" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'pairId'");
+    		if (/*pairId*/ ctx[6] === undefined && !("pairId" in props)) {
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'pairId'");
     		}
 
-    		if (/*isParent*/ ctx[8] === undefined && !("isParent" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'isParent'");
+    		if (/*isParent*/ ctx[7] === undefined && !("isParent" in props)) {
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'isParent'");
     		}
 
-    		if (/*globalSettings*/ ctx[1] === undefined && !("globalSettings" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'globalSettings'");
+    		if (/*globalSettings*/ ctx[8] === undefined && !("globalSettings" in props)) {
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'globalSettings'");
     		}
     	}
 
@@ -12005,13 +12181,19 @@ var app = (function () {
 
     function get_each_context$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[11] = list[i];
     	return child_ctx;
     }
 
-    // (21:2) {:else}
+    function get_each_context_1$4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[14] = list[i];
+    	return child_ctx;
+    }
+
+    // (52:8) {:else}
     function create_else_block$3(ctx) {
-    	let t_value = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].description + "";
+    	let t_value = /*article*/ ctx[11].description + "";
     	let t;
 
     	const block = {
@@ -12022,7 +12204,7 @@ var app = (function () {
     			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents, $sync, pairId*/ 7 && t_value !== (t_value = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].description + "")) set_data_dev(t, t_value);
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*article*/ ctx[11].description + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t);
@@ -12033,22 +12215,22 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(21:2) {:else}",
+    		source: "(52:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (17:2) {#if Array.isArray(contents.articles[$sync[pairId].slide].description)}
+    // (48:8) {#if Array.isArray(article.description)}
     function create_if_block$5(ctx) {
     	let each_1_anchor;
-    	let each_value = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].description;
-    	validate_each_argument(each_value);
+    	let each_value_1 = /*article*/ ctx[11].description;
+    	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$4(get_each_context$4(ctx, each_value, i));
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1$4(get_each_context_1$4(ctx, each_value_1, i));
     	}
 
     	const block = {
@@ -12067,18 +12249,18 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents, $sync, pairId*/ 7) {
-    				each_value = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].description;
-    				validate_each_argument(each_value);
+    			if (dirty & /*contents*/ 1) {
+    				each_value_1 = /*article*/ ctx[11].description;
+    				validate_each_argument(each_value_1);
     				let i;
 
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$4(ctx, each_value, i);
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$4(ctx, each_value_1, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks[i] = create_each_block$4(child_ctx);
+    						each_blocks[i] = create_each_block_1$4(child_ctx);
     						each_blocks[i].c();
     						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
     					}
@@ -12088,7 +12270,7 @@ var app = (function () {
     					each_blocks[i].d(1);
     				}
 
-    				each_blocks.length = each_value.length;
+    				each_blocks.length = each_value_1.length;
     			}
     		},
     		d: function destroy(detaching) {
@@ -12101,31 +12283,31 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(17:2) {#if Array.isArray(contents.articles[$sync[pairId].slide].description)}",
+    		source: "(48:8) {#if Array.isArray(article.description)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (18:4) {#each contents.articles[$sync[pairId].slide].description as p}
-    function create_each_block$4(ctx) {
+    // (49:10) {#each article.description as p}
+    function create_each_block_1$4(ctx) {
     	let p;
-    	let t_value = /*p*/ ctx[8] + "";
+    	let t_value = /*p*/ ctx[14] + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$6, 18, 6, 876);
+    			add_location(p, file$6, 49, 12, 1727);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
     			append_dev(p, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents, $sync, pairId*/ 7 && t_value !== (t_value = /*p*/ ctx[8] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*p*/ ctx[14] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -12134,22 +12316,22 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block$4.name,
+    		id: create_each_block_1$4.name,
     		type: "each",
-    		source: "(18:4) {#each contents.articles[$sync[pairId].slide].description as p}",
+    		source: "(49:10) {#each article.description as p}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (16:0) <Cframe title={contents.articles[$sync[pairId].slide].title} subtitle={contents.articles[$sync[pairId].slide].subtitle} themeColor={contents.articles[$sync[pairId].slide].themeColor}>
-    function create_default_slot$3(ctx) {
+    // (47:6) <SwiperSlide>
+    function create_default_slot_2(ctx) {
     	let show_if;
-    	let if_block_anchor;
+    	let t;
 
     	function select_block_type(ctx, dirty) {
-    		if (show_if == null || dirty & /*contents, $sync, pairId*/ 7) show_if = !!Array.isArray(/*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].description);
+    		if (show_if == null || dirty & /*contents*/ 1) show_if = !!Array.isArray(/*article*/ ctx[11].description);
     		if (show_if) return create_if_block$5;
     		return create_else_block$3;
     	}
@@ -12160,11 +12342,11 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			if_block.c();
-    			if_block_anchor = empty();
+    			t = space();
     		},
     		m: function mount(target, anchor) {
     			if_block.m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
+    			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
     			if (current_block_type === (current_block_type = select_block_type(ctx, dirty)) && if_block) {
@@ -12175,13 +12357,230 @@ var app = (function () {
 
     				if (if_block) {
     					if_block.c();
-    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    					if_block.m(t.parentNode, t);
     				}
     			}
     		},
     		d: function destroy(detaching) {
     			if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(47:6) <SwiperSlide>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (46:4) {#each contents.articles as article}
+    function create_each_block$4(ctx) {
+    	let swiperslide;
+    	let current;
+
+    	swiperslide = new Swiper$2({
+    			props: {
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(swiperslide.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(swiperslide, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const swiperslide_changes = {};
+
+    			if (dirty & /*$$scope, contents*/ 131073) {
+    				swiperslide_changes.$$scope = { dirty, ctx };
+    			}
+
+    			swiperslide.$set(swiperslide_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(swiperslide.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(swiperslide.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(swiperslide, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$4.name,
+    		type: "each",
+    		source: "(46:4) {#each contents.articles as article}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (34:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     on:swiper={setControlledSwiper}   >
+    function create_default_slot_1$1(ctx) {
+    	let each_1_anchor;
+    	let current;
+    	let each_value = /*contents*/ ctx[0].articles;
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$4(get_each_context$4(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents, Array*/ 1) {
+    				each_value = /*contents*/ ctx[0].articles;
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$4(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$4(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1$1.name,
+    		type: "slot",
+    		source: "(34:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     on:swiper={setControlledSwiper}   >",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (33:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
+    function create_default_slot$3(ctx) {
+    	let swiper;
+    	let current;
+
+    	swiper = new Swiper$1({
+    			props: {
+    				allowSlideNext: false,
+    				allowSlidePrev: false,
+    				allowTouchMove: false,
+    				autoHeight: true,
+    				spaceBetween: 0,
+    				slidesPerView: 1,
+    				speed: /*transitionDuration*/ ctx[2],
+    				loop: true,
+    				loopAdditionalSlides: 3,
+    				$$slots: { default: [create_default_slot_1$1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	swiper.$on("swiper", /*setControlledSwiper*/ ctx[3]);
+
+    	const block = {
+    		c: function create() {
+    			create_component(swiper.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(swiper, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const swiper_changes = {};
+
+    			if (dirty & /*$$scope, contents*/ 131073) {
+    				swiper_changes.$$scope = { dirty, ctx };
+    			}
+
+    			swiper.$set(swiper_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(swiper.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(swiper.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(swiper, detaching);
     		}
     	};
 
@@ -12189,7 +12588,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(16:0) <Cframe title={contents.articles[$sync[pairId].slide].title} subtitle={contents.articles[$sync[pairId].slide].subtitle} themeColor={contents.articles[$sync[pairId].slide].themeColor}>",
+    		source: "(33:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
     		ctx
     	});
 
@@ -12197,14 +12596,16 @@ var app = (function () {
     }
 
     function create_fragment$8(ctx) {
+    	let link;
+    	let t;
     	let cframe;
     	let current;
 
     	cframe = new Common_frame({
     			props: {
-    				title: /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].title,
-    				subtitle: /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].subtitle,
-    				themeColor: /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].themeColor,
+    				title: /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].title,
+    				subtitle: /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].subtitle,
+    				themeColor: /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].themeColor,
     				$$slots: { default: [create_default_slot$3] },
     				$$scope: { ctx }
     			},
@@ -12213,22 +12614,30 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			link = element("link");
+    			t = space();
     			create_component(cframe.$$.fragment);
+    			attr_dev(link, "rel", "stylesheet");
+    			attr_dev(link, "type", "text/css");
+    			attr_dev(link, "href", "/swiper-bundle.min.css");
+    			add_location(link, file$6, 29, 2, 1050);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			append_dev(document.head, link);
+    			insert_dev(target, t, anchor);
     			mount_component(cframe, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			const cframe_changes = {};
-    			if (dirty & /*contents, $sync, pairId*/ 7) cframe_changes.title = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].title;
-    			if (dirty & /*contents, $sync, pairId*/ 7) cframe_changes.subtitle = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].subtitle;
-    			if (dirty & /*contents, $sync, pairId*/ 7) cframe_changes.themeColor = /*contents*/ ctx[1].articles[/*$sync*/ ctx[2][/*pairId*/ ctx[0]].slide].themeColor;
+    			if (dirty & /*contents, realIndex*/ 3) cframe_changes.title = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].title;
+    			if (dirty & /*contents, realIndex*/ 3) cframe_changes.subtitle = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].subtitle;
+    			if (dirty & /*contents, realIndex*/ 3) cframe_changes.themeColor = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].themeColor;
 
-    			if (dirty & /*$$scope, contents, $sync, pairId*/ 2055) {
+    			if (dirty & /*$$scope, contents*/ 131073) {
     				cframe_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12244,6 +12653,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			detach_dev(link);
+    			if (detaching) detach_dev(t);
     			destroy_component(cframe, detaching);
     		}
     	};
@@ -12262,7 +12673,7 @@ var app = (function () {
     function instance$8($$self, $$props, $$invalidate) {
     	let $sync;
     	validate_store(sync, "sync");
-    	component_subscribe($$self, sync, $$value => $$invalidate(2, $sync = $$value));
+    	component_subscribe($$self, sync, $$value => $$invalidate(7, $sync = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Slide_description", slots, []);
 
@@ -12274,16 +12685,24 @@ var app = (function () {
     	let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
     	let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
     	let imageSizes = contents.imageSizes || globalSettings.imageSizes;
+    	const transitionDuration = globalSettings.transitionDuration;
+    	let realIndex = 0;
 
-    	if (isParent) set_store_value(
-    		sync,
-    		$sync[pairId] = {
-    			slide: 0,
-    			inTransition: false,
-    			transitionOffset: 0
-    		},
-    		$sync
-    	);
+    	addEventListener("slide", e => {
+    		$$invalidate(1, realIndex = e.detail.realIndex);
+    	});
+
+    	Swiper.use([Controller$1]);
+
+    	const setControlledSwiper = e => {
+    		const [swiper] = e.detail;
+    		set_store_value(sync, $sync.controlledSwiper = null, $sync);
+
+    		// set Controller swiper instance
+    		setTimeout(() => {
+    			set_store_value(sync, $sync.controlledSwiper = swiper, $sync);
+    		});
+    	};
 
     	const writable_props = ["pairId", "isParent", "globalSettings", "contents"];
 
@@ -12292,14 +12711,20 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("pairId" in $$props) $$invalidate(0, pairId = $$props.pairId);
-    		if ("isParent" in $$props) $$invalidate(3, isParent = $$props.isParent);
-    		if ("globalSettings" in $$props) $$invalidate(4, globalSettings = $$props.globalSettings);
-    		if ("contents" in $$props) $$invalidate(1, contents = $$props.contents);
+    		if ("pairId" in $$props) $$invalidate(4, pairId = $$props.pairId);
+    		if ("isParent" in $$props) $$invalidate(5, isParent = $$props.isParent);
+    		if ("globalSettings" in $$props) $$invalidate(6, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     	};
 
     	$$self.$capture_state = () => ({
     		Cframe: Common_frame,
+    		Swiper: Swiper$1,
+    		SwiperSlide: Swiper$2,
+    		SwiperCore: Swiper,
+    		Controller: Controller$1,
+    		EffectFade,
+    		onMount,
     		sync,
     		pairId,
     		isParent,
@@ -12308,24 +12733,36 @@ var app = (function () {
     		imageExtensionsShort,
     		safeImageExtensionIndex,
     		imageSizes,
+    		transitionDuration,
+    		realIndex,
+    		setControlledSwiper,
     		$sync
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("pairId" in $$props) $$invalidate(0, pairId = $$props.pairId);
-    		if ("isParent" in $$props) $$invalidate(3, isParent = $$props.isParent);
-    		if ("globalSettings" in $$props) $$invalidate(4, globalSettings = $$props.globalSettings);
-    		if ("contents" in $$props) $$invalidate(1, contents = $$props.contents);
+    		if ("pairId" in $$props) $$invalidate(4, pairId = $$props.pairId);
+    		if ("isParent" in $$props) $$invalidate(5, isParent = $$props.isParent);
+    		if ("globalSettings" in $$props) $$invalidate(6, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     		if ("imageExtensionsShort" in $$props) imageExtensionsShort = $$props.imageExtensionsShort;
     		if ("safeImageExtensionIndex" in $$props) safeImageExtensionIndex = $$props.safeImageExtensionIndex;
     		if ("imageSizes" in $$props) imageSizes = $$props.imageSizes;
+    		if ("realIndex" in $$props) $$invalidate(1, realIndex = $$props.realIndex);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [pairId, contents, $sync, isParent, globalSettings];
+    	return [
+    		contents,
+    		realIndex,
+    		transitionDuration,
+    		setControlledSwiper,
+    		pairId,
+    		isParent,
+    		globalSettings
+    	];
     }
 
     class Slide_description extends SvelteComponentDev {
@@ -12333,10 +12770,10 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$8, create_fragment$8, safe_not_equal, {
-    			pairId: 0,
-    			isParent: 3,
-    			globalSettings: 4,
-    			contents: 1
+    			pairId: 4,
+    			isParent: 5,
+    			globalSettings: 6,
+    			contents: 0
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -12349,19 +12786,19 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*pairId*/ ctx[0] === undefined && !("pairId" in props)) {
+    		if (/*pairId*/ ctx[4] === undefined && !("pairId" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'pairId'");
     		}
 
-    		if (/*isParent*/ ctx[3] === undefined && !("isParent" in props)) {
+    		if (/*isParent*/ ctx[5] === undefined && !("isParent" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'isParent'");
     		}
 
-    		if (/*globalSettings*/ ctx[4] === undefined && !("globalSettings" in props)) {
+    		if (/*globalSettings*/ ctx[6] === undefined && !("globalSettings" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'globalSettings'");
     		}
 
-    		if (/*contents*/ ctx[1] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[0] === undefined && !("contents" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'contents'");
     		}
     	}
@@ -12423,7 +12860,7 @@ var app = (function () {
 
     	nheader = new Nav_header({
     			props: {
-    				contents: /*settings*/ ctx[0].find(func_1$1).contents,
+    				contents: /*settings*/ ctx[0].find(func_1).contents,
     				globalSettings: /*globalSettings*/ ctx[1]
     			},
     			$$inline: true
@@ -12439,7 +12876,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const nheader_changes = {};
-    			if (dirty & /*settings*/ 1) nheader_changes.contents = /*settings*/ ctx[0].find(func_1$1).contents;
+    			if (dirty & /*settings*/ 1) nheader_changes.contents = /*settings*/ ctx[0].find(func_1).contents;
     			if (dirty & /*globalSettings*/ 2) nheader_changes.globalSettings = /*globalSettings*/ ctx[1];
     			nheader.$set(nheader_changes);
     		},
@@ -13097,7 +13534,7 @@ var app = (function () {
     }
 
     const func = v => v.sectionType == "navHeader";
-    const func_1$1 = v => v.sectionType == "navHeader";
+    const func_1 = v => v.sectionType == "navHeader";
 
     function instance$9($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
@@ -13276,7 +13713,7 @@ var app = (function () {
                 },
                 {
                   title: '爆買いマーケット',
-                  subtitle: 'れーぞく全方位シューティングゲーム',
+                  subtitle: '爆買いアクションランゲーム',
                   themeColor: '#c65017',
                   imageId: 'fall_in_parfait-ss1',
                   alt: '',
