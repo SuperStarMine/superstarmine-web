@@ -3,7 +3,6 @@
   import Nheader from "./nav-header.svelte";
   import Static from "./static-content.svelte";
   import Elist from "./emphasizing-list.svelte";
-  import Hero from "./slide-hero.svelte";
   import HeroS from "./slide-hero-swiper.svelte";
   import Desc from "./slide-description.svelte";
   export let settings;
