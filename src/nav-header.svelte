@@ -48,6 +48,13 @@
   }
 
   onMount(() => setTimeout(() => document.getElementById('header_button_checkbox').checked = false, 2000));
+
+  let isLandscape = matchMedia('screen and (orientation: landscape)').matches;
+  if(screen.orientation){
+    screen.orientation.addEventListener('change', () => isLandscape = matchMedia('screen and (orientation: landscape)').matches);
+  }else{
+    addEventListener('resize', () => isLandscape = matchMedia('screen and (orientation: landscape)').matches);
+  }
 </script>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
@@ -65,8 +72,15 @@
     </svg>
   </label>
   <nav class="header_navigation">
-    <label for="header_button_checkbox" class="header_navigation_list_items header_navigation_title">
-      <h3 class="header_navigation_title"><span class="break-scope">ナビゲーション</span>を<span class="break-scope">閉じる</span></h3>
+    <label for="header_button_checkbox" class="header_navigation_close_button">
+      {#if isLandscape}
+        <span class="break-scope">ナビゲーション</span>を<span class="break-scope">閉じる</span>
+      {:else}
+        <svg class="header_navigation_close_button_svg" viewbox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
+        </svg>
+      {/if}
     </label>
     {#each contents.items as item}
       <div class="header_navigation_list_items" on:click={() => triggerSmoothScroll(item.id)}>{item.label}</div>
@@ -89,7 +103,7 @@
   --ui-bg-hover #fff
   --ui-bg-focus #333
   --ui-over-text-color #000
-  --ui-over-bg #333
+  --ui-over-bg #222
   --ui-over-bg-hover #888
   --ui-over-text-hover-color #000
   --ui-text-color #FFF
@@ -198,17 +212,17 @@ picture img
   width var(--navigation-width)
   z-index 6000
   font-size var(--base-size-vw)
+  position fixed
+  top 0
+  right 0
+  background-color var(--ui-over-bg)
   @media screen and (orientation: portrait)
     flex-direction column
     width 50vw
-    z-index 4000
     font-size calc(var(--base-size) / 3)
-  position fixed
-  top 0
-  @media screen and (orientation: portrait)
     height 100vh
-  right 0
-  background-color transparent
+  @media screen and (orientation: landscape)
+    border-radius: calc(var(--base-size) / 6) 0 0 calc(var(--base-size) / 6)
   animation-name fold_navigation
   animation-duration 200ms
   animation-timing-function ease-out
@@ -217,12 +231,9 @@ picture img
 .header_navigation_list_items
   display block
   width 100%
-  background-color var(--ui-over-bg)
+  background-color transparent
   height var(--base-size)
   line-height var(--base-size)
-  @media screen and (orientation: portrait)
-    height calc((100vh - var(--base-size)) / var(--itemsCount))
-    line-height calc(100vh / var(--itemsCount))
   margin 0
   padding 0
   border none
@@ -233,10 +244,21 @@ picture img
     @media screen and (orientation: landscape)
       padding-right env(safe-area-inset-right)
 
+  @media screen and (orientation: portrait)
+    &:nth-last-child(2):after
+      content ''
+      position absolute
+      display block
+      background-color var(--ui-text-color)
+      height 1px
+      left calc(50vw * 0.05)
+      transform translate(0, calc(100% - 1px))
+      width calc(50vw * 0.9)
+
   &:hover
     background-color var(--ui-over-bg-hover)
 
-  &+&:before
+  &+&:not(:nth-child(2)):before
     content ''
     position absolute
     display block
@@ -252,24 +274,31 @@ picture img
       transform translate(0, -0.5px)
       width calc(50vw * 0.9)
 
-  @media screen and (orientation: portrait)
-    &+&:nth-child(2):before
-      content none
-
-.header_navigation_title
+.header_navigation_close_button
+  display flex
+  align-items center
   margin 0
   line-height calc(var(--base-size) / 2)
   font-weight normal
   box-sizing border-box
+  color var(--ui-text-color)
+  &:hover
+    background-color #ccc
+    & .header_navigation_close_button_svg
+      fill #ff0200
   @media screen and (orientation: landscape)
     border-radius: calc(var(--base-size) / 6) 0 0 calc(var(--base-size) / 6)
+    padding 0 1ch 0
   @media screen and (orientation: portrait)
-    line-height var(--base-size)
     height var(--base-size)
-    text-align left
     padding-left 1.5ch
     border-bottom solid 1px
 
+.header_navigation_close_button_svg
+  height 60%
+  z-index 8000
+  fill white
+  transition fill 150ms ease-in-out 0s
 
 #header_button_checkbox:checked ~ .header_navigation
   animation-name expand_navigation
