@@ -4,6 +4,7 @@
   import Static from "./static-content.svelte";
   import Elist from "./emphasizing-list.svelte";
   import Hero from "./slide-hero.svelte";
+  import HeroS from "./slide-hero-swiper.svelte";
   import Desc from "./slide-description.svelte";
   export let settings;
   export let globalSettings;
@@ -18,7 +19,7 @@
 <main style="--standardWidth: {globalSettings.standardWidth}vw; --transitionDuration: {globalSettings.transitionDuration}ms">
   {#each settings as {title, subtitle, themeColor, sectionType, contents, id, pairId, isParent}, i}
     {#if sectionType == "slideHero"}
-      <Hero contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent}/>
+      <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent}/>
     {:else if sectionType == "slideDesc"}
       <Desc {contents} {globalSettings} {pairId} {isParent}/>
     {:else if sectionType != "navHeader"}
