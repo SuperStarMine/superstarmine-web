@@ -19,7 +19,8 @@
     "stylus": "^0.54.8",
     "svelte": "^3.0.0",
     "svelte-check": "^1.2.3",
-    "svelte-preprocess": "^4.6.7"
+    "svelte-preprocess": "^4.6.7",
+    "swiper": "^6.5.3"
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
