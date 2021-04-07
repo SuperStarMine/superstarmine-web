@@ -12187,7 +12187,13 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (57:8) {:else}
+    function get_each_context_2$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[18] = list[i];
+    	return child_ctx;
+    }
+
+    // (59:10) {:else}
     function create_else_block$3(ctx) {
     	let t_value = /*article*/ ctx[12].description + "";
     	let t;
@@ -12211,22 +12217,22 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(57:8) {:else}",
+    		source: "(59:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (53:8) {#if Array.isArray(article.description)}
+    // (55:10) {#if Array.isArray(article.description)}
     function create_if_block$5(ctx) {
     	let each_1_anchor;
-    	let each_value_1 = /*article*/ ctx[12].description;
-    	validate_each_argument(each_value_1);
+    	let each_value_2 = /*article*/ ctx[12].description;
+    	validate_each_argument(each_value_2);
     	let each_blocks = [];
 
-    	for (let i = 0; i < each_value_1.length; i += 1) {
-    		each_blocks[i] = create_each_block_1$4(get_each_context_1$4(ctx, each_value_1, i));
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks[i] = create_each_block_2$2(get_each_context_2$2(ctx, each_value_2, i));
     	}
 
     	const block = {
@@ -12246,17 +12252,17 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*contents*/ 1) {
-    				each_value_1 = /*article*/ ctx[12].description;
-    				validate_each_argument(each_value_1);
+    				each_value_2 = /*article*/ ctx[12].description;
+    				validate_each_argument(each_value_2);
     				let i;
 
-    				for (i = 0; i < each_value_1.length; i += 1) {
-    					const child_ctx = get_each_context_1$4(ctx, each_value_1, i);
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2$2(ctx, each_value_2, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks[i] = create_each_block_1$4(child_ctx);
+    						each_blocks[i] = create_each_block_2$2(child_ctx);
     						each_blocks[i].c();
     						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
     					}
@@ -12266,7 +12272,7 @@ var app = (function () {
     					each_blocks[i].d(1);
     				}
 
-    				each_blocks.length = each_value_1.length;
+    				each_blocks.length = each_value_2.length;
     			}
     		},
     		d: function destroy(detaching) {
@@ -12279,31 +12285,31 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(53:8) {#if Array.isArray(article.description)}",
+    		source: "(55:10) {#if Array.isArray(article.description)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:10) {#each article.description as p}
-    function create_each_block_1$4(ctx) {
+    // (56:12) {#each article.description as p}
+    function create_each_block_2$2(ctx) {
     	let p;
-    	let t_value = /*p*/ ctx[15] + "";
+    	let t_value = /*p*/ ctx[18] + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$6, 54, 12, 1954);
+    			add_location(p, file$6, 56, 14, 2018);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
     			append_dev(p, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*p*/ ctx[15] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*p*/ ctx[18] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -12312,19 +12318,111 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_1$4.name,
+    		id: create_each_block_2$2.name,
     		type: "each",
-    		source: "(54:10) {#each article.description as p}",
+    		source: "(56:12) {#each article.description as p}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (52:6) <SwiperSlide>
-    function create_default_slot_2(ctx) {
-    	let show_if;
+    // (65:12) <Button target="{button.target}">
+    function create_default_slot_3(ctx) {
+    	let t_value = /*button*/ ctx[15].title + "";
     	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text(t_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*button*/ ctx[15].title + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_3.name,
+    		type: "slot",
+    		source: "(65:12) <Button target=\\\"{button.target}\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (64:10) {#each article.buttons as button}
+    function create_each_block_1$4(ctx) {
+    	let button;
+    	let current;
+
+    	button = new Button({
+    			props: {
+    				target: /*button*/ ctx[15].target,
+    				$$slots: { default: [create_default_slot_3] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(button.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(button, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const button_changes = {};
+    			if (dirty & /*contents*/ 1) button_changes.target = /*button*/ ctx[15].target;
+
+    			if (dirty & /*$$scope, contents*/ 2097153) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(button.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(button.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(button, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1$4.name,
+    		type: "each",
+    		source: "(64:10) {#each article.buttons as button}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (53:6) <SwiperSlide>
+    function create_default_slot_2(ctx) {
+    	let article;
+    	let show_if;
+    	let t0;
+    	let div;
+    	let t1;
+    	let current;
 
     	function select_block_type(ctx, dirty) {
     		if (show_if == null || dirty & /*contents*/ 1) show_if = !!Array.isArray(/*article*/ ctx[12].description);
@@ -12334,15 +12432,46 @@ var app = (function () {
 
     	let current_block_type = select_block_type(ctx, -1);
     	let if_block = current_block_type(ctx);
+    	let each_value_1 = /*article*/ ctx[12].buttons;
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1$4(get_each_context_1$4(ctx, each_value_1, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
 
     	const block = {
     		c: function create() {
+    			article = element("article");
     			if_block.c();
-    			t = space();
+    			t0 = space();
+    			div = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t1 = space();
+    			add_location(article, file$6, 53, 8, 1898);
+    			attr_dev(div, "class", "buttons svelte-1bqdkx8");
+    			add_location(div, file$6, 62, 8, 2144);
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, article, anchor);
+    			if_block.m(article, null);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+
+    			insert_dev(target, t1, anchor);
+    			current = true;
     		},
     		p: function update(ctx, dirty) {
     			if (current_block_type === (current_block_type = select_block_type(ctx, dirty)) && if_block) {
@@ -12353,13 +12482,63 @@ var app = (function () {
 
     				if (if_block) {
     					if_block.c();
-    					if_block.m(t.parentNode, t);
+    					if_block.m(article, null);
     				}
     			}
+
+    			if (dirty & /*contents*/ 1) {
+    				each_value_1 = /*article*/ ctx[12].buttons;
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1$4(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_1$4(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value_1.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value_1.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
     		},
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(article);
+    			if_block.d();
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(t1);
     		}
     	};
 
@@ -12367,14 +12546,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(52:6) <SwiperSlide>",
+    		source: "(53:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (51:4) {#each contents.articles as article}
+    // (52:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12398,7 +12577,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const swiperslide_changes = {};
 
-    			if (dirty & /*$$scope, contents*/ 262145) {
+    			if (dirty & /*$$scope, contents*/ 2097153) {
     				swiperslide_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12422,14 +12601,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(51:4) {#each contents.articles as article}",
+    		source: "(52:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (36:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
+    // (37:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
     function create_default_slot_1$1(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12518,14 +12697,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(36:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
+    		source: "(37:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (35:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
+    // (36:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
     function create_default_slot$3(ctx) {
     	let swiper;
     	let current;
@@ -12573,7 +12752,7 @@ var app = (function () {
     				: null
     			};
 
-    			if (dirty & /*$$scope, contents*/ 262145) {
+    			if (dirty & /*$$scope, contents*/ 2097153) {
     				swiper_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12597,7 +12776,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(35:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
+    		source: "(36:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
     		ctx
     	});
 
@@ -12629,7 +12808,7 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$6, 31, 2, 1151);
+    			add_location(link, file$6, 32, 2, 1191);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12646,7 +12825,7 @@ var app = (function () {
     			if (dirty & /*contents, realIndex*/ 3) cframe_changes.subtitle = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].subtitle;
     			if (dirty & /*contents, realIndex*/ 3) cframe_changes.themeColor = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].themeColor;
 
-    			if (dirty & /*$$scope, controlledSwiper, contents*/ 262149) {
+    			if (dirty & /*$$scope, controlledSwiper, contents*/ 2097157) {
     				cframe_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12734,6 +12913,7 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		Cframe: Common_frame,
+    		Button,
     		Swiper: Swiper$1,
     		SwiperSlide: Swiper$2,
     		SwiperCore: Swiper,
@@ -12878,7 +13058,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    function get_each_context_2$2(ctx, list, i) {
+    function get_each_context_2$3(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[12] = list[i];
     	child_ctx[14] = i;
@@ -13064,7 +13244,7 @@ var app = (function () {
     }
 
     // (49:16) {#each imageExtensionsShort as ext, i}
-    function create_each_block_2$2(ctx) {
+    function create_each_block_2$3(ctx) {
     	let source;
     	let source_srcset_value;
 
@@ -13091,7 +13271,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_2$2.name,
+    		id: create_each_block_2$3.name,
     		type: "each",
     		source: "(49:16) {#each imageExtensionsShort as ext, i}",
     		ctx
@@ -13216,7 +13396,7 @@ var app = (function () {
     	let each_blocks_1 = [];
 
     	for (let i = 0; i < each_value_2.length; i += 1) {
-    		each_blocks_1[i] = create_each_block_2$2(get_each_context_2$2(ctx, each_value_2, i));
+    		each_blocks_1[i] = create_each_block_2$3(get_each_context_2$3(ctx, each_value_2, i));
     	}
 
     	let each_value_1 = /*card*/ ctx[6].accounts;
@@ -13366,12 +13546,12 @@ var app = (function () {
     				let i;
 
     				for (i = 0; i < each_value_2.length; i += 1) {
-    					const child_ctx = get_each_context_2$2(ctx, each_value_2, i);
+    					const child_ctx = get_each_context_2$3(ctx, each_value_2, i);
 
     					if (each_blocks_1[i]) {
     						each_blocks_1[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks_1[i] = create_each_block_2$2(child_ctx);
+    						each_blocks_1[i] = create_each_block_2$3(child_ctx);
     						each_blocks_1[i].c();
     						each_blocks_1[i].m(picture, t4);
     					}
@@ -14502,6 +14682,12 @@ var app = (function () {
                     'ストーリーや世界観をこだわり抜き、カットイン映像やボイス付きシナリオパートといったリッチな表現にも挑戦。',
                     'ゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞、話題賞受賞。コミックマーケット97、デジゲー博2020に出展。',
                     'Boothにて体験版を配信中。'
+                  ],
+                  buttons: [
+                    {
+                      title: '体験版をダウンロード',
+                      target: 'https://superstarmine.booth.pm/items/2618292'
+                    }
                   ]
                 },
                 {
@@ -14515,6 +14701,12 @@ var app = (function () {
                     'ゴールがなく、パックが端のラインを超えると対となるラインにワープするという仕様が特徴。',
                     'GCGEXPO2019にて総合優勝。',
                     '2020年2月に開催され、200名近くの業界人が参加したゲーム業界年始あいさつ会では体験会を開催し、プロクリエイターの方々から建設的なフィードバックをいただいた。'
+                  ],
+                  buttons: [
+                    {
+                      title: '記事を読む',
+                      target: 'https://superstarmine.booth.pm/items/2618292'
+                    }
                   ]
                 },
                 {
@@ -14529,6 +14721,12 @@ var app = (function () {
                     'ステージの法線ベクトルから溢れるスープ量を算出する」という処理を行っている。',
                     'また、ローカルのVRMアバターをゲームに用いるという試みを行った。',
                     'ニコニコネット超会議超ハッカソンに出展。'
+                  ],
+                  buttons: [
+                    {
+                      title: 'unityroomで遊ぶ',
+                      target: ''
+                    }
                   ]
                 },
                 {
@@ -14545,6 +14743,12 @@ var app = (function () {
                     'Unity1Weekゲームジャムにて約500作品中総合部門46位、絵作り部門35位獲得。',
                     'デベロッパーズゲームコンテスト2020にて企業賞受賞。',
                     '福岡ゲームコンテスト2021、Ohayoo Casual Game Contestに出展。'
+                  ],
+                  buttons: [
+                    {
+                      title: 'unityroomで遊ぶ',
+                      target: ''
+                    }
                   ]
                 },
                 {
@@ -14558,6 +14762,12 @@ var app = (function () {
                     'ショッピングカートに搭乗してスーパーマーケットを爆走し、床の商品を拾ったり商品棚や他のプレイヤーを攻撃することでスコアを稼ぐ。',
                     '今回は初めてAIプレイヤーを導入した。それぞれのAIに性格付け（攻撃型・収集型・逃亡型）をすることで、プレイヤーは毎回刺激的なゲーム展開を楽しめるようになった。',
                     'Unity1Weekゲームジャムに出展。'
+                  ],
+                  buttons: [
+                    {
+                      title: 'unityroomで遊ぶ',
+                      target: ''
+                    }
                   ]
                 }
               ]

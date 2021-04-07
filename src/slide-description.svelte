@@ -1,5 +1,6 @@
 <script>
   import Cframe from "./common-frame.svelte";
+  import Button from "./button.svelte";
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
@@ -50,17 +51,28 @@
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        {#if Array.isArray(article.description)}
-          {#each article.description as p}
-            <p>{p}</p>
+        <article>
+          {#if Array.isArray(article.description)}
+            {#each article.description as p}
+              <p>{p}</p>
+            {/each}
+          {:else}
+            {article.description}
+          {/if}
+        </article>
+        <div class="buttons">
+          {#each article.buttons as button}
+            <Button target="{button.target}">{button.title}</Button>
           {/each}
-        {:else}
-          {article.description}
-        {/if}
+        </div>
       </SwiperSlide>
     {/each}
   </Swiper>
 </Cframe>
 
 <style lang="stylus">
+  .buttons
+    display flex
+    justify-content center
+    align-items center
 </style>
