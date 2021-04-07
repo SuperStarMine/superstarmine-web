@@ -1,9 +1,9 @@
 <script>
+  import Cframe from "./common-frame.svelte";
 
   import { Swiper, SwiperSlide } from 'swiper/svelte';
-  import SwiperCore, { Controller } from 'swiper/core';
+  import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
-  import { onMount } from 'svelte';
   import supportsWebP from 'supports-webp';
   export let contents, pairId, isParent, globalSettings;
   let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
@@ -19,13 +19,11 @@
   const transitionDuration = globalSettings.transitionDuration;
   const slidesPerView = 1.2
 
-  SwiperCore.use([Controller]);
+  SwiperCore.use([Controller, EffectFade]);
 
   let controlledSwiper = null;
-  onMount(() => {
-    setTimeout(() => {
-      controlledSwiper = $sync.controlledSwiper;
-    },50);
+  addEventListener('controllee_load', () => {
+    controlledSwiper = $sync.controlledSwiper;
   });
 </script>
 
@@ -49,7 +47,7 @@
     <SwiperSlide>
       <picture>
         {#each imageExtensionsShort as ext, i}
-          <source type="image/{ext}" sizes="100vw" srcset="{src[i]}">
+          <source type="image/{ext}" sizes="{100 / slidesPerView}vw" srcset="{src[i]}">
         {/each}
         <img sizes="100vw" srcset="{src[safeImageExtensionIndex]}" alt="画像">
       </picture>

@@ -1,9 +1,7 @@
 <script>
   import Cframe from "./common-frame.svelte";
   import { Swiper, SwiperSlide } from 'swiper/svelte';
-  import SwiperCore, { Controller } from 'swiper/core';
-  import { EffectFade } from 'swiper';
-  import { onMount } from 'svelte';
+  import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   export let pairId, isParent, globalSettings, contents;
   let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
@@ -15,14 +13,18 @@
   let realIndex = 0;
   addEventListener('slide', e => {realIndex = e.detail.realIndex});
 
-  SwiperCore.use([Controller]);
+  SwiperCore.use([Controller, EffectFade]);
+
+  let controlledSwiper = null;
   const setControlledSwiper = e => {
       const [swiper] = e.detail;
       $sync.controlledSwiper = null
       // set Controller swiper instance
       setTimeout(() => {
-        $sync.controlledSwiper = swiper;
-      });
+        controlledSwiper = swiper;
+        $sync.controlledSwiper = controlledSwiper;
+        dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}))
+      }, 50);
   };
 </script>
 
@@ -41,7 +43,10 @@
     speed={transitionDuration}
     loop={true}
     loopAdditionalSlides={3}
+    effect='fade'
+    fadeEffect={{crossFade: true}}
     on:swiper={setControlledSwiper}
+    controller={{ control: controlledSwiper ? controlledSwiper : null }}
   >
     {#each contents.articles as article}
       <SwiperSlide>

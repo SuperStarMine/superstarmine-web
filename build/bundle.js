@@ -11639,7 +11639,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (51:8) {#each imageExtensionsShort as ext, i}
+    // (49:8) {#each imageExtensionsShort as ext, i}
     function create_each_block_1$3(ctx) {
     	let source;
     	let source_srcset_value;
@@ -11648,9 +11648,9 @@ var app = (function () {
     		c: function create() {
     			source = element("source");
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[15]);
-    			attr_dev(source, "sizes", "100vw");
+    			attr_dev(source, "sizes", "" + (100 / slidesPerView + "vw"));
     			attr_dev(source, "srcset", source_srcset_value = /*src*/ ctx[12][/*i*/ ctx[17]]);
-    			add_location(source, file$5, 51, 10, 1738);
+    			add_location(source, file$5, 49, 10, 1759);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -11669,14 +11669,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(51:8) {#each imageExtensionsShort as ext, i}",
+    		source: "(49:8) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:4) <SwiperSlide>
+    // (47:4) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t0;
@@ -11706,9 +11706,9 @@ var app = (function () {
     			attr_dev(img, "srcset", img_srcset_value = /*src*/ ctx[12][/*safeImageExtensionIndex*/ ctx[3]]);
     			attr_dev(img, "alt", "画像");
     			attr_dev(img, "class", "svelte-78arb9");
-    			add_location(img, file$5, 53, 8, 1822);
+    			add_location(img, file$5, 51, 8, 1861);
     			attr_dev(picture, "class", "svelte-78arb9");
-    			add_location(picture, file$5, 49, 6, 1671);
+    			add_location(picture, file$5, 47, 6, 1692);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, picture, anchor);
@@ -11722,7 +11722,7 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageExtensionsShort, imageSrcsets*/ 5) {
+    			if (dirty & /*imageExtensionsShort, slidesPerView, imageSrcsets*/ 5) {
     				each_value_1 = /*imageExtensionsShort*/ ctx[2];
     				validate_each_argument(each_value_1);
     				let i;
@@ -11761,14 +11761,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(49:4) <SwiperSlide>",
+    		source: "(47:4) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (48:2) {#each imageSrcsets as src}
+    // (46:2) {#each imageSrcsets as src}
     function create_each_block$3(ctx) {
     	let swiperslide;
     	let current;
@@ -11816,14 +11816,14 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(48:2) {#each imageSrcsets as src}",
+    		source: "(46:2) {#each imageSrcsets as src}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (36:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >
+    // (34:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -11856,7 +11856,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageSrcsets, safeImageExtensionIndex, imageExtensionsShort*/ 13) {
+    			if (dirty & /*imageSrcsets, safeImageExtensionIndex, imageExtensionsShort, slidesPerView*/ 13) {
     				each_value = /*imageSrcsets*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -11912,7 +11912,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(36:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >",
+    		source: "(34:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >",
     		ctx
     	});
 
@@ -11952,7 +11952,7 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$5, 32, 2, 1163);
+    			add_location(link, file$5, 30, 2, 1184);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12026,16 +12026,11 @@ var app = (function () {
     	}
 
     	const transitionDuration = globalSettings.transitionDuration;
-    	Swiper.use([Controller$1]);
+    	Swiper.use([Controller$1, EffectFade]);
     	let controlledSwiper = null;
 
-    	onMount(() => {
-    		setTimeout(
-    			() => {
-    				$$invalidate(1, controlledSwiper = $sync.controlledSwiper);
-    			},
-    			50
-    		);
+    	addEventListener("controllee_load", () => {
+    		$$invalidate(1, controlledSwiper = $sync.controlledSwiper);
     	});
 
     	const writable_props = ["contents", "pairId", "isParent", "globalSettings"];
@@ -12054,12 +12049,13 @@ var app = (function () {
     	};
 
     	$$self.$capture_state = () => ({
+    		Cframe: Common_frame,
     		Swiper: Swiper$1,
     		SwiperSlide: Swiper$2,
     		SwiperCore: Swiper,
     		Controller: Controller$1,
+    		EffectFade,
     		sync,
-    		onMount,
     		supportsWebP: supportsWebp_commonJs,
     		contents,
     		pairId,
@@ -12181,19 +12177,19 @@ var app = (function () {
 
     function get_each_context$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
+    	child_ctx[15] = list[i];
     	return child_ctx;
     }
 
-    // (52:8) {:else}
+    // (57:8) {:else}
     function create_else_block$3(ctx) {
-    	let t_value = /*article*/ ctx[11].description + "";
+    	let t_value = /*article*/ ctx[12].description + "";
     	let t;
 
     	const block = {
@@ -12204,7 +12200,7 @@ var app = (function () {
     			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*article*/ ctx[11].description + "")) set_data_dev(t, t_value);
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*article*/ ctx[12].description + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t);
@@ -12215,17 +12211,17 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(52:8) {:else}",
+    		source: "(57:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (48:8) {#if Array.isArray(article.description)}
+    // (53:8) {#if Array.isArray(article.description)}
     function create_if_block$5(ctx) {
     	let each_1_anchor;
-    	let each_value_1 = /*article*/ ctx[11].description;
+    	let each_value_1 = /*article*/ ctx[12].description;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -12250,7 +12246,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*contents*/ 1) {
-    				each_value_1 = /*article*/ ctx[11].description;
+    				each_value_1 = /*article*/ ctx[12].description;
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -12283,31 +12279,31 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(48:8) {#if Array.isArray(article.description)}",
+    		source: "(53:8) {#if Array.isArray(article.description)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:10) {#each article.description as p}
+    // (54:10) {#each article.description as p}
     function create_each_block_1$4(ctx) {
     	let p;
-    	let t_value = /*p*/ ctx[14] + "";
+    	let t_value = /*p*/ ctx[15] + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$6, 49, 12, 1727);
+    			add_location(p, file$6, 54, 12, 1954);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
     			append_dev(p, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*p*/ ctx[14] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*p*/ ctx[15] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -12318,20 +12314,20 @@ var app = (function () {
     		block,
     		id: create_each_block_1$4.name,
     		type: "each",
-    		source: "(49:10) {#each article.description as p}",
+    		source: "(54:10) {#each article.description as p}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:6) <SwiperSlide>
+    // (52:6) <SwiperSlide>
     function create_default_slot_2(ctx) {
     	let show_if;
     	let t;
 
     	function select_block_type(ctx, dirty) {
-    		if (show_if == null || dirty & /*contents*/ 1) show_if = !!Array.isArray(/*article*/ ctx[11].description);
+    		if (show_if == null || dirty & /*contents*/ 1) show_if = !!Array.isArray(/*article*/ ctx[12].description);
     		if (show_if) return create_if_block$5;
     		return create_else_block$3;
     	}
@@ -12371,14 +12367,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(47:6) <SwiperSlide>",
+    		source: "(52:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (46:4) {#each contents.articles as article}
+    // (51:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12402,7 +12398,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const swiperslide_changes = {};
 
-    			if (dirty & /*$$scope, contents*/ 131073) {
+    			if (dirty & /*$$scope, contents*/ 262145) {
     				swiperslide_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12426,14 +12422,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(46:4) {#each contents.articles as article}",
+    		source: "(51:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     on:swiper={setControlledSwiper}   >
+    // (36:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
     function create_default_slot_1$1(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12522,14 +12518,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(34:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     on:swiper={setControlledSwiper}   >",
+    		source: "(36:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (33:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
+    // (35:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
     function create_default_slot$3(ctx) {
     	let swiper;
     	let current;
@@ -12542,16 +12538,23 @@ var app = (function () {
     				autoHeight: true,
     				spaceBetween: 0,
     				slidesPerView: 1,
-    				speed: /*transitionDuration*/ ctx[2],
+    				speed: /*transitionDuration*/ ctx[3],
     				loop: true,
     				loopAdditionalSlides: 3,
+    				effect: "fade",
+    				fadeEffect: { crossFade: true },
+    				controller: {
+    					control: /*controlledSwiper*/ ctx[2]
+    					? /*controlledSwiper*/ ctx[2]
+    					: null
+    				},
     				$$slots: { default: [create_default_slot_1$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	swiper.$on("swiper", /*setControlledSwiper*/ ctx[3]);
+    	swiper.$on("swiper", /*setControlledSwiper*/ ctx[4]);
 
     	const block = {
     		c: function create() {
@@ -12564,7 +12567,13 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const swiper_changes = {};
 
-    			if (dirty & /*$$scope, contents*/ 131073) {
+    			if (dirty & /*controlledSwiper*/ 4) swiper_changes.controller = {
+    				control: /*controlledSwiper*/ ctx[2]
+    				? /*controlledSwiper*/ ctx[2]
+    				: null
+    			};
+
+    			if (dirty & /*$$scope, contents*/ 262145) {
     				swiper_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12588,7 +12597,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(33:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
+    		source: "(35:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
     		ctx
     	});
 
@@ -12620,7 +12629,7 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$6, 29, 2, 1050);
+    			add_location(link, file$6, 31, 2, 1151);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12637,7 +12646,7 @@ var app = (function () {
     			if (dirty & /*contents, realIndex*/ 3) cframe_changes.subtitle = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].subtitle;
     			if (dirty & /*contents, realIndex*/ 3) cframe_changes.themeColor = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].themeColor;
 
-    			if (dirty & /*$$scope, contents*/ 131073) {
+    			if (dirty & /*$$scope, controlledSwiper, contents*/ 262149) {
     				cframe_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12673,7 +12682,7 @@ var app = (function () {
     function instance$8($$self, $$props, $$invalidate) {
     	let $sync;
     	validate_store(sync, "sync");
-    	component_subscribe($$self, sync, $$value => $$invalidate(7, $sync = $$value));
+    	component_subscribe($$self, sync, $$value => $$invalidate(8, $sync = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Slide_description", slots, []);
 
@@ -12692,16 +12701,22 @@ var app = (function () {
     		$$invalidate(1, realIndex = e.detail.realIndex);
     	});
 
-    	Swiper.use([Controller$1]);
+    	Swiper.use([Controller$1, EffectFade]);
+    	let controlledSwiper = null;
 
     	const setControlledSwiper = e => {
     		const [swiper] = e.detail;
     		set_store_value(sync, $sync.controlledSwiper = null, $sync);
 
     		// set Controller swiper instance
-    		setTimeout(() => {
-    			set_store_value(sync, $sync.controlledSwiper = swiper, $sync);
-    		});
+    		setTimeout(
+    			() => {
+    				$$invalidate(2, controlledSwiper = swiper);
+    				set_store_value(sync, $sync.controlledSwiper = controlledSwiper, $sync);
+    				dispatchEvent(new CustomEvent("controllee_load", { detail: pairId }));
+    			},
+    			50
+    		);
     	};
 
     	const writable_props = ["pairId", "isParent", "globalSettings", "contents"];
@@ -12711,9 +12726,9 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("pairId" in $$props) $$invalidate(4, pairId = $$props.pairId);
-    		if ("isParent" in $$props) $$invalidate(5, isParent = $$props.isParent);
-    		if ("globalSettings" in $$props) $$invalidate(6, globalSettings = $$props.globalSettings);
+    		if ("pairId" in $$props) $$invalidate(5, pairId = $$props.pairId);
+    		if ("isParent" in $$props) $$invalidate(6, isParent = $$props.isParent);
+    		if ("globalSettings" in $$props) $$invalidate(7, globalSettings = $$props.globalSettings);
     		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     	};
 
@@ -12724,7 +12739,6 @@ var app = (function () {
     		SwiperCore: Swiper,
     		Controller: Controller$1,
     		EffectFade,
-    		onMount,
     		sync,
     		pairId,
     		isParent,
@@ -12735,19 +12749,21 @@ var app = (function () {
     		imageSizes,
     		transitionDuration,
     		realIndex,
+    		controlledSwiper,
     		setControlledSwiper,
     		$sync
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("pairId" in $$props) $$invalidate(4, pairId = $$props.pairId);
-    		if ("isParent" in $$props) $$invalidate(5, isParent = $$props.isParent);
-    		if ("globalSettings" in $$props) $$invalidate(6, globalSettings = $$props.globalSettings);
+    		if ("pairId" in $$props) $$invalidate(5, pairId = $$props.pairId);
+    		if ("isParent" in $$props) $$invalidate(6, isParent = $$props.isParent);
+    		if ("globalSettings" in $$props) $$invalidate(7, globalSettings = $$props.globalSettings);
     		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     		if ("imageExtensionsShort" in $$props) imageExtensionsShort = $$props.imageExtensionsShort;
     		if ("safeImageExtensionIndex" in $$props) safeImageExtensionIndex = $$props.safeImageExtensionIndex;
     		if ("imageSizes" in $$props) imageSizes = $$props.imageSizes;
     		if ("realIndex" in $$props) $$invalidate(1, realIndex = $$props.realIndex);
+    		if ("controlledSwiper" in $$props) $$invalidate(2, controlledSwiper = $$props.controlledSwiper);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -12757,6 +12773,7 @@ var app = (function () {
     	return [
     		contents,
     		realIndex,
+    		controlledSwiper,
     		transitionDuration,
     		setControlledSwiper,
     		pairId,
@@ -12770,9 +12787,9 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$8, create_fragment$8, safe_not_equal, {
-    			pairId: 4,
-    			isParent: 5,
-    			globalSettings: 6,
+    			pairId: 5,
+    			isParent: 6,
+    			globalSettings: 7,
     			contents: 0
     		});
 
@@ -12786,15 +12803,15 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*pairId*/ ctx[4] === undefined && !("pairId" in props)) {
+    		if (/*pairId*/ ctx[5] === undefined && !("pairId" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'pairId'");
     		}
 
-    		if (/*isParent*/ ctx[5] === undefined && !("isParent" in props)) {
+    		if (/*isParent*/ ctx[6] === undefined && !("isParent" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'isParent'");
     		}
 
-    		if (/*globalSettings*/ ctx[6] === undefined && !("globalSettings" in props)) {
+    		if (/*globalSettings*/ ctx[7] === undefined && !("globalSettings" in props)) {
     			console.warn("<Slide_description> was created without expected prop 'globalSettings'");
     		}
 
@@ -12910,10 +12927,10 @@ var app = (function () {
     			attr_dev(img, "sizes", "100vw");
     			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[2], /*imageExtensionsShort*/ ctx[3], /*imageSizes*/ ctx[4], /*card*/ ctx[6].imageId)[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[3])]);
     			attr_dev(img, "alt", "画像");
-    			attr_dev(img, "class", "svelte-1gdyuq7");
+    			attr_dev(img, "class", "svelte-1dz3zdm");
     			add_location(img, file$7, 35, 16, 1302);
     			add_location(picture, file$7, 31, 14, 1044);
-    			attr_dev(div, "class", "left svelte-1gdyuq7");
+    			attr_dev(div, "class", "left svelte-1dz3zdm");
     			add_location(div, file$7, 30, 12, 1011);
     		},
     		m: function mount(target, anchor) {
@@ -13020,7 +13037,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-1gdyuq7");
+    			attr_dev(span, "class", "svelte-1dz3zdm");
     			add_location(span, file$7, 43, 16, 1728);
     		},
     		m: function mount(target, anchor) {
@@ -13107,11 +13124,11 @@ var app = (function () {
     			t2 = space();
     			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"));
-    			attr_dev(img, "class", "svelte-1gdyuq7");
+    			attr_dev(img, "class", "svelte-1dz3zdm");
     			add_location(img, file$7, 60, 14, 2675);
-    			attr_dev(span, "class", "id svelte-1gdyuq7");
+    			attr_dev(span, "class", "id svelte-1dz3zdm");
     			add_location(span, file$7, 61, 14, 2778);
-    			attr_dev(a, "class", a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1gdyuq7");
+    			attr_dev(a, "class", a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1dz3zdm");
     			set_style(a, "--bg", /*socialConsts*/ ctx[5].colors[/*account*/ ctx[9].name]);
     			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[5].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id);
     			add_location(a, file$7, 58, 12, 2466);
@@ -13135,7 +13152,7 @@ var app = (function () {
 
     			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[9].id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1gdyuq7")) {
+    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1dz3zdm")) {
     				attr_dev(a, "class", a_class_value);
     			}
 
@@ -13245,27 +13262,27 @@ var app = (function () {
     			}
 
     			t6 = space();
-    			attr_dev(div0, "class", "name svelte-1gdyuq7");
+    			attr_dev(div0, "class", "name svelte-1dz3zdm");
     			add_location(div0, file$7, 40, 12, 1605);
-    			attr_dev(div1, "class", "post svelte-1gdyuq7");
+    			attr_dev(div1, "class", "post svelte-1dz3zdm");
     			add_location(div1, file$7, 41, 12, 1653);
     			attr_dev(img, "sizes", "100vw");
     			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*globalSettings*/ ctx[1].imageDirectory, /*imageExtensionsShort*/ ctx[3], /*imageSizes*/ ctx[4], /*contents*/ ctx[0].logoImageId)[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[3])]);
     			attr_dev(img, "alt", "画像");
-    			attr_dev(img, "class", "svelte-1gdyuq7");
+    			attr_dev(img, "class", "svelte-1dz3zdm");
     			add_location(img, file$7, 51, 16, 2115);
     			add_location(picture, file$7, 47, 14, 1834);
-    			attr_dev(div2, "class", "logo svelte-1gdyuq7");
+    			attr_dev(div2, "class", "logo svelte-1dz3zdm");
     			add_location(div2, file$7, 46, 12, 1801);
-    			attr_dev(div3, "class", div3_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1gdyuq7");
+    			attr_dev(div3, "class", div3_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1dz3zdm");
     			add_location(div3, file$7, 39, 10, 1541);
-    			attr_dev(div4, "class", "upper svelte-1gdyuq7");
+    			attr_dev(div4, "class", "upper svelte-1dz3zdm");
     			add_location(div4, file$7, 28, 8, 950);
-    			attr_dev(div5, "class", "lower svelte-1gdyuq7");
+    			attr_dev(div5, "class", "lower svelte-1dz3zdm");
     			add_location(div5, file$7, 56, 8, 2391);
-    			attr_dev(div6, "class", "card svelte-1gdyuq7");
+    			attr_dev(div6, "class", "card svelte-1dz3zdm");
     			add_location(div6, file$7, 27, 6, 923);
-    			attr_dev(div7, "class", "card_wrapper svelte-1gdyuq7");
+    			attr_dev(div7, "class", "card_wrapper svelte-1dz3zdm");
     			add_location(div7, file$7, 26, 4, 890);
     		},
     		m: function mount(target, anchor) {
@@ -13371,7 +13388,7 @@ var app = (function () {
     				attr_dev(img, "srcset", img_srcset_value);
     			}
 
-    			if (dirty & /*contents*/ 1 && div3_class_value !== (div3_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1gdyuq7")) {
+    			if (dirty & /*contents*/ 1 && div3_class_value !== (div3_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1dz3zdm")) {
     				attr_dev(div3, "class", div3_class_value);
     			}
 
@@ -13437,7 +13454,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "card_container svelte-1gdyuq7");
+    			attr_dev(div, "class", "card_container svelte-1dz3zdm");
     			add_location(div, file$7, 24, 0, 824);
     		},
     		l: function claim(nodes) {
