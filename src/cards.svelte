@@ -27,7 +27,7 @@
     <div class="card_wrapper">
       <div class="card">
         <div class="upper">
-          {#if card.imageId != ''}
+          {#if card.imageId}
             <div class="left">
               <picture>
                 {#each imageExtensionsShort as ext, i}
@@ -37,7 +37,7 @@
               </picture>
             </div>
           {/if}
-          <div class="right">
+          <div class="right {card.imageId ? '' : 'noImage'}">
             <div class="name">{card.name}</div>
             <div class="post">
               {#each card.post as post}
@@ -133,10 +133,12 @@
     margin-left 2ch
     width calc(100% / 3 - 2ch)
     img
-      border-radius 20px 20px 40px 20px;
+      border-radius 20px 20px 40px 20px
   .right
     width 100%
     margin-left 2ch
+    .noImage&
+      margin-left 4ch
   .lower
     display: flex
     height: 2.5em

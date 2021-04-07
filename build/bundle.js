@@ -12881,7 +12881,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (30:10) {#if card.imageId != ''}
+    // (30:10) {#if card.imageId}
     function create_if_block$6(ctx) {
     	let div;
     	let picture;
@@ -12910,11 +12910,11 @@ var app = (function () {
     			attr_dev(img, "sizes", "100vw");
     			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[2], /*imageExtensionsShort*/ ctx[3], /*imageSizes*/ ctx[4], /*card*/ ctx[6].imageId)[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[3])]);
     			attr_dev(img, "alt", "画像");
-    			attr_dev(img, "class", "svelte-1rb66nl");
-    			add_location(img, file$7, 35, 16, 1308);
-    			add_location(picture, file$7, 31, 14, 1050);
-    			attr_dev(div, "class", "left svelte-1rb66nl");
-    			add_location(div, file$7, 30, 12, 1017);
+    			attr_dev(img, "class", "svelte-1gdyuq7");
+    			add_location(img, file$7, 35, 16, 1302);
+    			add_location(picture, file$7, 31, 14, 1044);
+    			attr_dev(div, "class", "left svelte-1gdyuq7");
+    			add_location(div, file$7, 30, 12, 1011);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12966,7 +12966,7 @@ var app = (function () {
     		block,
     		id: create_if_block$6.name,
     		type: "if",
-    		source: "(30:10) {#if card.imageId != ''}",
+    		source: "(30:10) {#if card.imageId}",
     		ctx
     	});
 
@@ -12984,7 +12984,7 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[12]);
     			attr_dev(source, "sizes", "100vw");
     			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[2], /*imageExtensionsShort*/ ctx[3], /*imageSizes*/ ctx[4], /*card*/ ctx[6].imageId)[/*i*/ ctx[14]]);
-    			add_location(source, file$7, 33, 18, 1133);
+    			add_location(source, file$7, 33, 18, 1127);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -13020,8 +13020,8 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-1rb66nl");
-    			add_location(span, file$7, 43, 16, 1702);
+    			attr_dev(span, "class", "svelte-1gdyuq7");
+    			add_location(span, file$7, 43, 16, 1728);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -13057,7 +13057,7 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[12]);
     			attr_dev(source, "sizes", "100vw");
     			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*globalSettings*/ ctx[1].imageDirectory, /*imageExtensionsShort*/ ctx[3], /*imageSizes*/ ctx[4], /*contents*/ ctx[0].logoImageId)[/*i*/ ctx[14]]);
-    			add_location(source, file$7, 49, 18, 1891);
+    			add_location(source, file$7, 49, 18, 1917);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -13107,14 +13107,14 @@ var app = (function () {
     			t2 = space();
     			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"));
-    			attr_dev(img, "class", "svelte-1rb66nl");
-    			add_location(img, file$7, 60, 14, 2649);
-    			attr_dev(span, "class", "id svelte-1rb66nl");
-    			add_location(span, file$7, 61, 14, 2752);
-    			attr_dev(a, "class", a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1rb66nl");
+    			attr_dev(img, "class", "svelte-1gdyuq7");
+    			add_location(img, file$7, 60, 14, 2675);
+    			attr_dev(span, "class", "id svelte-1gdyuq7");
+    			add_location(span, file$7, 61, 14, 2778);
+    			attr_dev(a, "class", a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1gdyuq7");
     			set_style(a, "--bg", /*socialConsts*/ ctx[5].colors[/*account*/ ctx[9].name]);
     			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[5].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id);
-    			add_location(a, file$7, 58, 12, 2440);
+    			add_location(a, file$7, 58, 12, 2466);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -13135,7 +13135,7 @@ var app = (function () {
 
     			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[9].id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1rb66nl")) {
+    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1gdyuq7")) {
     				attr_dev(a, "class", a_class_value);
     			}
 
@@ -13181,10 +13181,11 @@ var app = (function () {
     	let t4;
     	let img;
     	let img_srcset_value;
+    	let div3_class_value;
     	let t5;
     	let div5;
     	let t6;
-    	let if_block = /*card*/ ctx[6].imageId != "" && create_if_block$6(ctx);
+    	let if_block = /*card*/ ctx[6].imageId && create_if_block$6(ctx);
     	let each_value_3 = /*card*/ ctx[6].post;
     	validate_each_argument(each_value_3);
     	let each_blocks_2 = [];
@@ -13244,27 +13245,27 @@ var app = (function () {
     			}
 
     			t6 = space();
-    			attr_dev(div0, "class", "name svelte-1rb66nl");
-    			add_location(div0, file$7, 40, 12, 1579);
-    			attr_dev(div1, "class", "post svelte-1rb66nl");
-    			add_location(div1, file$7, 41, 12, 1627);
+    			attr_dev(div0, "class", "name svelte-1gdyuq7");
+    			add_location(div0, file$7, 40, 12, 1605);
+    			attr_dev(div1, "class", "post svelte-1gdyuq7");
+    			add_location(div1, file$7, 41, 12, 1653);
     			attr_dev(img, "sizes", "100vw");
     			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*globalSettings*/ ctx[1].imageDirectory, /*imageExtensionsShort*/ ctx[3], /*imageSizes*/ ctx[4], /*contents*/ ctx[0].logoImageId)[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[3])]);
     			attr_dev(img, "alt", "画像");
-    			attr_dev(img, "class", "svelte-1rb66nl");
-    			add_location(img, file$7, 51, 16, 2089);
-    			add_location(picture, file$7, 47, 14, 1808);
-    			attr_dev(div2, "class", "logo svelte-1rb66nl");
-    			add_location(div2, file$7, 46, 12, 1775);
-    			attr_dev(div3, "class", "right svelte-1rb66nl");
-    			add_location(div3, file$7, 39, 10, 1547);
-    			attr_dev(div4, "class", "upper svelte-1rb66nl");
+    			attr_dev(img, "class", "svelte-1gdyuq7");
+    			add_location(img, file$7, 51, 16, 2115);
+    			add_location(picture, file$7, 47, 14, 1834);
+    			attr_dev(div2, "class", "logo svelte-1gdyuq7");
+    			add_location(div2, file$7, 46, 12, 1801);
+    			attr_dev(div3, "class", div3_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1gdyuq7");
+    			add_location(div3, file$7, 39, 10, 1541);
+    			attr_dev(div4, "class", "upper svelte-1gdyuq7");
     			add_location(div4, file$7, 28, 8, 950);
-    			attr_dev(div5, "class", "lower svelte-1rb66nl");
-    			add_location(div5, file$7, 56, 8, 2365);
-    			attr_dev(div6, "class", "card svelte-1rb66nl");
+    			attr_dev(div5, "class", "lower svelte-1gdyuq7");
+    			add_location(div5, file$7, 56, 8, 2391);
+    			attr_dev(div6, "class", "card svelte-1gdyuq7");
     			add_location(div6, file$7, 27, 6, 923);
-    			attr_dev(div7, "class", "card_wrapper svelte-1rb66nl");
+    			attr_dev(div7, "class", "card_wrapper svelte-1gdyuq7");
     			add_location(div7, file$7, 26, 4, 890);
     		},
     		m: function mount(target, anchor) {
@@ -13303,7 +13304,7 @@ var app = (function () {
     			append_dev(div7, t6);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*card*/ ctx[6].imageId != "") {
+    			if (/*card*/ ctx[6].imageId) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -13370,6 +13371,10 @@ var app = (function () {
     				attr_dev(img, "srcset", img_srcset_value);
     			}
 
+    			if (dirty & /*contents*/ 1 && div3_class_value !== (div3_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1gdyuq7")) {
+    				attr_dev(div3, "class", div3_class_value);
+    			}
+
     			if (dirty & /*contents, socialConsts, globalSettings*/ 35) {
     				each_value_1 = /*card*/ ctx[6].accounts;
     				validate_each_argument(each_value_1);
@@ -13432,7 +13437,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "card_container svelte-1rb66nl");
+    			attr_dev(div, "class", "card_container svelte-1gdyuq7");
     			add_location(div, file$7, 24, 0, 824);
     		},
     		l: function claim(nodes) {
