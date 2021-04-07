@@ -62,5 +62,5 @@
     width 100%
     vertical-align top
   :global(.swiper-container)
-    height calc(100vw / var(--slidesPerView) / 16  * 9)
+    height calc(100vw / var(--slidesPerView) / 16 * 9)
 </style>
