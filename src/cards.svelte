@@ -154,12 +154,12 @@
       height 1em
       width auto
       object-fit fill
-      margin-right 1ch
-  .iconOnly
-    .id
+  .id
+    margin-left 1ch
+    .iconOnly &
       display: none
-    img
-      height 1.2em
+  .iconOnly img
+    height 1.3em
   img
     width 100%
     object-fit cover
