@@ -5,6 +5,7 @@
   import Elist from "./emphasizing-list.svelte";
   import HeroS from "./slide-hero-swiper.svelte";
   import Desc from "./slide-description.svelte";
+  import Cards from "./cards.svelte";
   export let settings;
   export let globalSettings;
 </script>
@@ -27,6 +28,8 @@
           <Static {contents} {globalSettings}/>
         {:else if sectionType == "emphasizingList"}
           <Elist {contents} {globalSettings}/>
+        {:else if sectionType == "cards"}
+          <Cards {contents} {globalSettings}/>
         {/if}
       </Cframe>
     {/if}

@@ -196,15 +196,142 @@ const app = new App({
         title: 'MEMBERS',
         themeColor: '#f7931d',
         contents: {
+          logoImageId: 'ssm-logo',
+          imageDirectory: './img/members/',
           cards: [
             {
-              imageId: 'ssm-logo',
               name: 'マチコー',
-              post: 'リーダー/プランナー',
+              imageId: 'machiko',
+              post: [
+                'リーダー',
+                'プランナー'
+              ],
               accounts: [
-                
+                {
+                  name: 'twitter',
+                  id: 'MachiCollider'
+                },
+                {
+                  name: 'facebook',
+                  id: 'MachiCollider'
+                },
+                {
+                  name: 'note',
+                  id: 'machikou_mk2'
+                }
               ]
-            }
+            },
+            {
+              name: 'いーだ',
+              imageId: 'i-da',
+              post: [
+                'プログラマー',
+                'マスタリングエンジニア'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'GoodPaddyField5'
+                },
+                {
+                  name: 'note',
+                  id: '203_'
+                }
+              ]
+            },
+            {
+              name: 'Amu',
+              imageId: 'amu',
+              post: [
+                'UI/ロゴデザイン',
+                'エフェクト'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'Amu＿dsgn'
+                }
+              ]
+            },
+            {
+              name: 'HIBIKI CUBE',
+              imageId: 'hibiki',
+              post: [
+                'Webエンジニア',
+                'CGモデラー'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'hibiki_cube'
+                },
+                {
+                  name: 'github',
+                  id: 'HIBIKI-CUBE'
+                },
+                {
+                  name: 'qiita',
+                  id: 'HIBIKI-CUBE'
+                }
+              ]
+            },
+            {
+              name: 'Matsu',
+              imageId: '',
+              post: [
+                'プログラマー',
+                'レベルデザイナ'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'sake_unity_stu'
+                },
+                {
+                  name: 'github',
+                  id: 'AtaruMatsudaira'
+                }
+              ]
+            },
+            {
+              name: 'ナミー',
+              imageId: '',
+              post: [
+                'デバッガー'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'fi_matsu'
+                }
+              ]
+            },
+            {
+              name: 'えちょ',
+              imageId: 'echo',
+              post: [
+                'レベルデザイン'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'ysXKPSlvMZqVtIW'
+                }
+              ]
+            },
+            {
+              name: '十二月ねこ',
+              imageId: '',
+              post: [
+                'CGモデラー'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'Subamaru_7'
+                }
+              ]
+            },
           ]
         }
       }
