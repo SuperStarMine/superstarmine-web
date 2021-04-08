@@ -161,5 +161,5 @@ picture
       </ul>
     </section>
   </div>
-  <Button target="toggleExpand" marginLeft="{false}" marginRight="{false}">もっと見る</Button>
+  <Button target="toggleExpand" disabled="{true}" marginLeft="{false}" marginRight="{false}">もっと見る</Button>
 </div>

@@ -1,5 +1,5 @@
 <script>
-  export let target, marginLeft, marginRight;
+  export let target, disabled = false, marginLeft, marginRight;
   let isAnchor = RegExp("^https?:\/\/").test(target);
   let style = "";
   if(!isAnchor){
@@ -9,11 +9,14 @@
     }
   }
   if(!marginLeft && !marginRight) {
-    style = "margin-left: 0;margin-right: 0"
+    style = "margin-left: 0;margin-right: 0;"
   }else if(!marginRight) {
-    style = "margin-right: 0"
+    style = "margin-right: 0;"
   }else if(!marginLeft) {
-    style = "margin-left: 0"
+    style = "margin-left: 0;"
+  }
+  if(disabled){
+    style = style + "--themeColor: #aaa";
   }
 </script>
 
@@ -35,7 +38,7 @@ a, button
 </style>
 
 {#if isAnchor}
-  <a href="{target}" style="{style}"><slot></slot></a>
+  <a href="{target}" style="{style}" {disabled}><slot></slot></a>
 {:else}
-  <button on:click={target} style="{style}"><slot></slot></button>
+  <button on:click={target} style="{style}" {disabled}><slot></slot></button>
 {/if}
