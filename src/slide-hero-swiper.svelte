@@ -2,7 +2,7 @@
   import Cframe from "./common-frame.svelte";
 
   import { Swiper, SwiperSlide } from 'swiper/svelte';
-  import SwiperCore, { Controller, EffectFade } from 'swiper';
+  import SwiperCore, { Controller, EffectFade, Autoplay } from 'swiper';
   import { sync } from './sync-store.js';
   import supportsWebP from 'supports-webp';
   export let contents, pairId, isParent, globalSettings;
@@ -19,7 +19,7 @@
   const transitionDuration = globalSettings.transitionDuration;
   const slidesPerView = 1.2
 
-  SwiperCore.use([Controller, EffectFade]);
+  SwiperCore.use([Controller, EffectFade, Autoplay]);
 
   let controlledSwiper = null;
   addEventListener('controllee_load', () => {
@@ -40,6 +40,7 @@
   slideToClickedSlide={true}
   loop={true}
   loopAdditionalSlides={2}
+  autoplay={{delay: 5000}}
   controller={{ control: controlledSwiper }}
   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}
 >

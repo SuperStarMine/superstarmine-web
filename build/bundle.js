@@ -10572,6 +10572,183 @@ var app = (function () {
     };
 
     function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+    var Autoplay = {
+      run: function run() {
+        var swiper = this;
+        var $activeSlideEl = swiper.slides.eq(swiper.activeIndex);
+        var delay = swiper.params.autoplay.delay;
+
+        if ($activeSlideEl.attr('data-swiper-autoplay')) {
+          delay = $activeSlideEl.attr('data-swiper-autoplay') || swiper.params.autoplay.delay;
+        }
+
+        clearTimeout(swiper.autoplay.timeout);
+        swiper.autoplay.timeout = nextTick(function () {
+          var autoplayResult;
+
+          if (swiper.params.autoplay.reverseDirection) {
+            if (swiper.params.loop) {
+              swiper.loopFix();
+              autoplayResult = swiper.slidePrev(swiper.params.speed, true, true);
+              swiper.emit('autoplay');
+            } else if (!swiper.isBeginning) {
+              autoplayResult = swiper.slidePrev(swiper.params.speed, true, true);
+              swiper.emit('autoplay');
+            } else if (!swiper.params.autoplay.stopOnLastSlide) {
+              autoplayResult = swiper.slideTo(swiper.slides.length - 1, swiper.params.speed, true, true);
+              swiper.emit('autoplay');
+            } else {
+              swiper.autoplay.stop();
+            }
+          } else if (swiper.params.loop) {
+            swiper.loopFix();
+            autoplayResult = swiper.slideNext(swiper.params.speed, true, true);
+            swiper.emit('autoplay');
+          } else if (!swiper.isEnd) {
+            autoplayResult = swiper.slideNext(swiper.params.speed, true, true);
+            swiper.emit('autoplay');
+          } else if (!swiper.params.autoplay.stopOnLastSlide) {
+            autoplayResult = swiper.slideTo(0, swiper.params.speed, true, true);
+            swiper.emit('autoplay');
+          } else {
+            swiper.autoplay.stop();
+          }
+
+          if (swiper.params.cssMode && swiper.autoplay.running) swiper.autoplay.run();else if (autoplayResult === false) {
+            swiper.autoplay.run();
+          }
+        }, delay);
+      },
+      start: function start() {
+        var swiper = this;
+        if (typeof swiper.autoplay.timeout !== 'undefined') return false;
+        if (swiper.autoplay.running) return false;
+        swiper.autoplay.running = true;
+        swiper.emit('autoplayStart');
+        swiper.autoplay.run();
+        return true;
+      },
+      stop: function stop() {
+        var swiper = this;
+        if (!swiper.autoplay.running) return false;
+        if (typeof swiper.autoplay.timeout === 'undefined') return false;
+
+        if (swiper.autoplay.timeout) {
+          clearTimeout(swiper.autoplay.timeout);
+          swiper.autoplay.timeout = undefined;
+        }
+
+        swiper.autoplay.running = false;
+        swiper.emit('autoplayStop');
+        return true;
+      },
+      pause: function pause(speed) {
+        var swiper = this;
+        if (!swiper.autoplay.running) return;
+        if (swiper.autoplay.paused) return;
+        if (swiper.autoplay.timeout) clearTimeout(swiper.autoplay.timeout);
+        swiper.autoplay.paused = true;
+
+        if (speed === 0 || !swiper.params.autoplay.waitForTransition) {
+          swiper.autoplay.paused = false;
+          swiper.autoplay.run();
+        } else {
+          swiper.$wrapperEl[0].addEventListener('transitionend', swiper.autoplay.onTransitionEnd);
+          swiper.$wrapperEl[0].addEventListener('webkitTransitionEnd', swiper.autoplay.onTransitionEnd);
+        }
+      },
+      onVisibilityChange: function onVisibilityChange() {
+        var swiper = this;
+        var document = getDocument();
+
+        if (document.visibilityState === 'hidden' && swiper.autoplay.running) {
+          swiper.autoplay.pause();
+        }
+
+        if (document.visibilityState === 'visible' && swiper.autoplay.paused) {
+          swiper.autoplay.run();
+          swiper.autoplay.paused = false;
+        }
+      },
+      onTransitionEnd: function onTransitionEnd(e) {
+        var swiper = this;
+        if (!swiper || swiper.destroyed || !swiper.$wrapperEl) return;
+        if (e.target !== swiper.$wrapperEl[0]) return;
+        swiper.$wrapperEl[0].removeEventListener('transitionend', swiper.autoplay.onTransitionEnd);
+        swiper.$wrapperEl[0].removeEventListener('webkitTransitionEnd', swiper.autoplay.onTransitionEnd);
+        swiper.autoplay.paused = false;
+
+        if (!swiper.autoplay.running) {
+          swiper.autoplay.stop();
+        } else {
+          swiper.autoplay.run();
+        }
+      }
+    };
+    var Autoplay$1 = {
+      name: 'autoplay',
+      params: {
+        autoplay: {
+          enabled: false,
+          delay: 3000,
+          waitForTransition: true,
+          disableOnInteraction: true,
+          stopOnLastSlide: false,
+          reverseDirection: false
+        }
+      },
+      create: function create() {
+        var swiper = this;
+        bindModuleMethods(swiper, {
+          autoplay: _extends$2({}, Autoplay, {
+            running: false,
+            paused: false
+          })
+        });
+      },
+      on: {
+        init: function init(swiper) {
+          if (swiper.params.autoplay.enabled) {
+            swiper.autoplay.start();
+            var document = getDocument();
+            document.addEventListener('visibilitychange', swiper.autoplay.onVisibilityChange);
+          }
+        },
+        beforeTransitionStart: function beforeTransitionStart(swiper, speed, internal) {
+          if (swiper.autoplay.running) {
+            if (internal || !swiper.params.autoplay.disableOnInteraction) {
+              swiper.autoplay.pause(speed);
+            } else {
+              swiper.autoplay.stop();
+            }
+          }
+        },
+        sliderFirstMove: function sliderFirstMove(swiper) {
+          if (swiper.autoplay.running) {
+            if (swiper.params.autoplay.disableOnInteraction) {
+              swiper.autoplay.stop();
+            } else {
+              swiper.autoplay.pause();
+            }
+          }
+        },
+        touchEnd: function touchEnd(swiper) {
+          if (swiper.params.cssMode && swiper.autoplay.paused && !swiper.params.autoplay.disableOnInteraction) {
+            swiper.autoplay.run();
+          }
+        },
+        destroy: function destroy(swiper) {
+          if (swiper.autoplay.running) {
+            swiper.autoplay.stop();
+          }
+
+          var document = getDocument();
+          document.removeEventListener('visibilitychange', swiper.autoplay.onVisibilityChange);
+        }
+      }
+    };
+
+    function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
     var Fade = {
       setTranslate: function setTranslate() {
         var swiper = this;
@@ -10627,7 +10804,7 @@ var app = (function () {
       create: function create() {
         var swiper = this;
         bindModuleMethods(swiper, {
-          fadeEffect: _extends$2({}, Fade)
+          fadeEffect: _extends$3({}, Fade)
         });
       },
       on: {
@@ -11829,7 +12006,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (49:8) {#each imageExtensionsShort as ext, i}
+    // (50:8) {#each imageExtensionsShort as ext, i}
     function create_each_block_1$3(ctx) {
     	let source;
     	let source_srcset_value;
@@ -11840,7 +12017,7 @@ var app = (function () {
     			attr_dev(source, "type", "image/" + /*ext*/ ctx[15]);
     			attr_dev(source, "sizes", "" + (100 / slidesPerView + "vw"));
     			attr_dev(source, "srcset", source_srcset_value = /*src*/ ctx[12][/*i*/ ctx[17]]);
-    			add_location(source, file$5, 49, 10, 1759);
+    			add_location(source, file$5, 50, 10, 1806);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
@@ -11859,14 +12036,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(49:8) {#each imageExtensionsShort as ext, i}",
+    		source: "(50:8) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:4) <SwiperSlide>
+    // (48:4) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t0;
@@ -11896,9 +12073,9 @@ var app = (function () {
     			attr_dev(img, "srcset", img_srcset_value = /*src*/ ctx[12][/*safeImageExtensionIndex*/ ctx[3]]);
     			attr_dev(img, "alt", "画像");
     			attr_dev(img, "class", "svelte-78arb9");
-    			add_location(img, file$5, 51, 8, 1861);
+    			add_location(img, file$5, 52, 8, 1908);
     			attr_dev(picture, "class", "svelte-78arb9");
-    			add_location(picture, file$5, 47, 6, 1692);
+    			add_location(picture, file$5, 48, 6, 1739);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, picture, anchor);
@@ -11951,14 +12128,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(47:4) <SwiperSlide>",
+    		source: "(48:4) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (46:2) {#each imageSrcsets as src}
+    // (47:2) {#each imageSrcsets as src}
     function create_each_block$3(ctx) {
     	let swiperslide;
     	let current;
@@ -12006,14 +12183,14 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(46:2) {#each imageSrcsets as src}",
+    		source: "(47:2) {#each imageSrcsets as src}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >
+    // (34:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   autoplay={{delay: 5000}}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12102,7 +12279,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(34:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >",
+    		source: "(34:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   autoplay={{delay: 5000}}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >",
     		ctx
     	});
 
@@ -12125,6 +12302,7 @@ var app = (function () {
     				slideToClickedSlide: true,
     				loop: true,
     				loopAdditionalSlides: 2,
+    				autoplay: { delay: 5000 },
     				controller: { control: /*controlledSwiper*/ ctx[1] },
     				$$slots: { default: [create_default_slot$2] },
     				$$scope: { ctx }
@@ -12142,7 +12320,7 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$5, 30, 2, 1184);
+    			add_location(link, file$5, 30, 2, 1204);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12216,7 +12394,7 @@ var app = (function () {
     	}
 
     	const transitionDuration = globalSettings.transitionDuration;
-    	Swiper.use([Controller$1, EffectFade]);
+    	Swiper.use([Controller$1, EffectFade, Autoplay$1]);
     	let controlledSwiper = null;
 
     	addEventListener("controllee_load", () => {
@@ -12245,6 +12423,7 @@ var app = (function () {
     		SwiperCore: Swiper,
     		Controller: Controller$1,
     		EffectFade,
+    		Autoplay: Autoplay$1,
     		sync,
     		supportsWebP: supportsWebp_commonJs,
     		contents,
