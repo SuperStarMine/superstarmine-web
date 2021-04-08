@@ -1,10 +1,7 @@
 <script>
-  import Cframe from "./common-frame.svelte";
-
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade, Autoplay } from 'swiper';
   import { sync } from './sync-store.js';
-  import supportsWebP from 'supports-webp';
   export let contents, pairId, isParent, globalSettings;
   let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
   let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
@@ -17,7 +14,7 @@
   }
 
   const transitionDuration = globalSettings.transitionDuration;
-  const slidesPerView = 1.2
+  const slidesPerView = 1.25
 
   SwiperCore.use([Controller, EffectFade, Autoplay]);
 
