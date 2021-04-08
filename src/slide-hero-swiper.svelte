@@ -2,6 +2,7 @@
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade, Autoplay } from 'swiper';
   import { sync } from './sync-store.js';
+  import { onMount } from 'svelte';
   export let contents, pairId, isParent, globalSettings;
   let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
   let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
@@ -12,6 +13,27 @@
       return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${contents.articles[i].imageId}@${size}w.${ext} ${size}w`);
     });
   }
+
+  let target;
+  onMount(() => {
+    target = document.querySelector('.swiper-container');
+    addEventListener('DOMContentLoaded', () => {
+      console.log(target.getBoundingClientRect().y);
+      if(target.getBoundingClientRect().y < 0) target.swiper.autoplay.stop();
+    });
+    new IntersectionObserver((entries, object) => entries.forEach((entry, i) => {
+      if(!entry.isIntersecting){
+        if(scrollY < 100){
+          target.swiper.autoplay.start();
+        }else{
+          target.swiper.autoplay.stop();
+        }
+      }
+    }),
+    {
+      rootMargin: '0px 0px -100%'
+    }).observe(target);
+  });
 
   const transitionDuration = globalSettings.transitionDuration;
   const slidesPerView = 1.25
