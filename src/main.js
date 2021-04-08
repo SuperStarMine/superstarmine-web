@@ -218,8 +218,8 @@ const app = new App({
               target: 'https://google.com'
             },
             {
-              title: 'Test',
-              target: 'toggleExpand'
+              title: 'Twitter',
+              target: 'https://twitter.com/necromance_chan'
             }
           ]
         }
