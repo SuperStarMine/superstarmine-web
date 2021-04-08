@@ -51,10 +51,33 @@ const app = new App({
               ],
               buttons: [
                 {
-                  title: '体験版をダウンロード',
+                  title: [
+                    '体験版を',
+                    'ダウンロード'
+                  ],
                   target: 'https://superstarmine.booth.pm/items/2618292'
                 }
-              ]
+              ],
+              specs: {
+                times: [
+                  {
+                    time: '2019-08',
+                    Annotation: '〜',
+                  }
+                ],
+                platforms: [
+                  {
+                    name: 'Windows',
+                    version: '7',
+                    orLater: true
+                  },
+                  {
+                    name: 'macOS',
+                    version: 'Sierra',
+                    orLater: true
+                  }
+                ]
+              }
             },
             {
               title: 'SPINNER',
@@ -73,7 +96,27 @@ const app = new App({
                   title: '記事を読む',
                   target: 'https://superstarmine.booth.pm/items/2618292'
                 }
-              ]
+              ],
+              specs: {
+                times: [
+                  {
+                    time: '2019-11',
+                    Annotation: '(2週間)',
+                  }
+                ],
+                platforms: [
+                  {
+                    name: 'Windows',
+                    version: '7',
+                    orLater: true
+                  },
+                  {
+                    name: 'macOS',
+                    version: 'Sierra',
+                    orLater: true
+                  }
+                ]
+              }
             },
             {
               title: 'CUPRUNMEN',
@@ -90,10 +133,26 @@ const app = new App({
               ],
               buttons: [
                 {
-                  title: 'unityroomで遊ぶ',
-                  target: ''
+                  title: [
+                    'unityroomで',
+                    '遊ぶ'
+                  ],
+                  target: 'https://unityroom.com/games/cuprunmen'
                 }
-              ]
+              ],
+              specs: {
+                times: [
+                  {
+                    time: '2020-04',
+                    Annotation: '(5日)',
+                  }
+                ],
+                platforms: [
+                  {
+                    name: 'WebGL'
+                  }
+                ]
+              }
             },
             {
               title: 'フォーリンパフェ',
@@ -112,10 +171,40 @@ const app = new App({
               ],
               buttons: [
                 {
-                  title: 'unityroomで遊ぶ',
-                  target: ''
+                  title: [
+                    'unityroomで',
+                    '遊ぶ'
+                  ],
+                  target: 'https://unityroom.com/games/fallinparfait'
                 }
-              ]
+              ],
+              specs: {
+                times: [
+                  {
+                    time: '2020-08',
+                    Annotation: '(1週間)',
+                  },
+                  {
+                    time: '2020-12',
+                    Annotation: '(1ヶ月)',
+                  }
+                ],
+                platforms: [
+                  {
+                    name: 'iOS',
+                    version: '10',
+                    orLater: true
+                  },
+                  {
+                    name: 'Android',
+                    version: '8',
+                    orLater: true
+                  },
+                  {
+                    name: 'WebGL'
+                  }
+                ]
+              }
             },
             {
               title: '爆買いマーケット',
@@ -131,10 +220,26 @@ const app = new App({
               ],
               buttons: [
                 {
-                  title: 'unityroomで遊ぶ',
-                  target: ''
+                  title: [
+                    'unityroomで',
+                    '遊ぶ'
+                  ],
+                  target: 'https://unityroom.com/games/bakugaimarket'
                 }
-              ]
+              ],
+              specs: {
+                times: [
+                  {
+                    time: '2020-02',
+                    Annotation: '(12日)',
+                  }
+                ],
+                platforms: [
+                  {
+                    name: 'WebGL'
+                  }
+                ]
+              }
             }
           ]
         }

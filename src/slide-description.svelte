@@ -62,7 +62,15 @@
         </article>
         <div class="buttons">
           {#each article.buttons as button}
-            <Button target="{button.target}">{button.title}</Button>
+            <Button target="{button.target}">
+              {#if Array.isArray(button.title)}
+                {#each button.title as title}
+                  <span class="break-scope">{title}</span>
+                {/each}
+              {:else}
+                {button.title}
+              {/if}
+            </Button>
           {/each}
         </div>
       </SwiperSlide>
