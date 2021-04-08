@@ -5,13 +5,6 @@
         imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
         imageSizes = contents.imageSizes || globalSettings.imageSizes,
         socialConsts = {
-          colors: {
-            'twitter':'#1da1f3',
-            'facebook':'#1877f2',
-            'note':'#41c8b5',
-            'github':'#171516',
-            'qiita':'#55c500'
-          },
           urls: {
             'twitter':'twitter.com',
             'facebook':'facebook.com',
@@ -56,8 +49,8 @@
         </div>
         <div class="lower">
           {#each card.accounts as account}
-            <a class="social-button {card.accounts.length > 2 ? 'iconOnly' : ''}"
-            style="--bg: {socialConsts.colors[account.name]}" href="https://{socialConsts.urls[account.name]}/{account.id}">
+            <a class="social-button {account.name} {card.accounts.length > 2 ? 'iconOnly' : ''}"
+            href="https://{socialConsts.urls[account.name]}/{account.id}">
               <img src="{globalSettings.imageDirectory}/{account.name}.svg" alt="{account.name}のアイコン">
               <span class="id">
                 {account.id}
@@ -149,7 +142,6 @@
     color: white
     width 100%
     height 100%
-    background-color var(--bg)
     img
       height 1em
       width auto
