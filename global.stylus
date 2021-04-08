@@ -26,6 +26,9 @@ a
 .regular
   font-weight 400
 
+.break-scope
+  white-space nowrap
+
 .pc-hide
   @media screen and (min-width 600px)
     display none
