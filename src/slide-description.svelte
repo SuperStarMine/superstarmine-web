@@ -1,14 +1,11 @@
 <script>
   import Cframe from "./common-frame.svelte";
   import Button from "./button.svelte";
+  import Yframe from "./youtube-iframe.svelte";
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   export let pairId, isParent, globalSettings, contents;
-  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
-  let imageSizes = contents.imageSizes || globalSettings.imageSizes;
-
   const transitionDuration = globalSettings.transitionDuration;
 
   let realIndex = 0;
@@ -23,10 +20,11 @@
       // set Controller swiper instance
       setTimeout(() => {
         controlledSwiper = swiper;
+        controlledSwiper.updateAutoHeight();
         $sync.controlledSwiper = controlledSwiper;
         dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}))
       }, 100);
-  };
+  }
 </script>
 
 <svelte:head>
@@ -53,29 +51,49 @@
       <SwiperSlide>
         <div class="wrapper">
           <div class="left">
-            <div class="specs">
-              {#if article.specs.times}
-                <div class="times">
-                  制作時期：
-                  {#each article.specs.times as time}
-                    <!-- svelte-ignore component-name-lowercase -->
-                    <time datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
-                      {(time.year ? time.year + "年" : "") + (time.month ? time.month + "月" : "") + (time.day ? time.day + "日" : "")}{time.annotation}
-                    </time>
-                  {/each}
-                </div>
+            {#if article.slides}
+              <Swiper
+                centeredSlides={true}
+                autoHeight={true}
+                spaceBetween={0}
+                slidesPerView={1}
+                speed={transitionDuration}
+                updateOnImagesReady={true}
+              >
+                {#each article.slides as slide}
+                  <SwiperSlide>
+                    {#if slide.type == "youtube"}
+                      <Yframe {contents} {globalSettings} id={slide.id} />
+                    {/if}
+                  </SwiperSlide>
+                {/each}
+              </Swiper>
               {/if}
-              {#if article.specs.platforms}
-                <div class="platforms">
-                  対応プラットフォーム：
-                  {#each article.specs.platforms as platform}
-                    <div>
-                      {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}
-                    </div>
-                  {/each}
-                </div>
-              {/if}
-            </div>
+            {#if article.specs}
+              <div class="specs">
+                {#if article.specs.times}
+                  <div class="times">
+                    制作時期：
+                    {#each article.specs.times as time}
+                      <!-- svelte-ignore component-name-lowercase -->
+                      <time datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
+                        {(time.year ? time.year + "年" : "") + (time.month ? time.month + "月" : "") + (time.day ? time.day + "日" : "")}{time.annotation}
+                      </time>
+                    {/each}
+                  </div>
+                {/if}
+                {#if article.specs.platforms}
+                  <div class="platforms">
+                    対応プラットフォーム：
+                    {#each article.specs.platforms as platform}
+                      <div>
+                        {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}
+                      </div>
+                    {/each}
+                  </div>
+                {/if}
+              </div>
+            {/if}
           </div>
           <div class="right">
             <article>

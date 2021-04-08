@@ -58,6 +58,12 @@ const app = new App({
                   target: 'https://superstarmine.booth.pm/items/2618292'
                 }
               ],
+              slides: [
+                {
+                  type: 'youtube',
+                  id: 'kQc84ApB2OM'
+                }
+              ],
               specs: {
                 times: [
                   {
@@ -142,6 +148,12 @@ const app = new App({
                   target: 'https://unityroom.com/games/cuprunmen'
                 }
               ],
+              slides: [
+                {
+                  type: 'youtube',
+                  id: 'm44wTn8nk9Y'
+                }
+              ],
               specs: {
                 times: [
                   {
@@ -179,6 +191,12 @@ const app = new App({
                     '遊ぶ'
                   ],
                   target: 'https://unityroom.com/games/fallinparfait'
+                }
+              ],
+              slides: [
+                {
+                  type: 'youtube',
+                  id: 'ZIFt6yuOMAQ'
                 }
               ],
               specs: {
@@ -230,6 +248,12 @@ const app = new App({
                     '遊ぶ'
                   ],
                   target: 'https://unityroom.com/games/bakugaimarket'
+                }
+              ],
+              slides: [
+                {
+                  type: 'youtube',
+                  id: 'vTsy8NCYSNE'
                 }
               ],
               specs: {
