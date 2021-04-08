@@ -51,27 +51,56 @@
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <article>
-          {#if Array.isArray(article.description)}
-            {#each article.description as p}
-              <p>{p}</p>
-            {/each}
-          {:else}
-            {article.description}
-          {/if}
-        </article>
-        <div class="buttons">
-          {#each article.buttons as button}
-            <Button target="{button.target}">
-              {#if Array.isArray(button.title)}
-                {#each button.title as title}
-                  <span class="break-scope">{title}</span>
+        <div class="wrapper">
+          <div class="left">
+            <div class="specs">
+              {#if article.specs.times}
+                <div class="times">
+                  制作時期：
+                  {#each article.specs.times as time}
+                    <!-- svelte-ignore component-name-lowercase -->
+                    <time datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
+                      {(time.year ? time.year + "年" : "") + (time.month ? time.month + "月" : "") + (time.day ? time.day + "日" : "")}{time.annotation}
+                    </time>
+                  {/each}
+                </div>
+              {/if}
+              {#if article.specs.platforms}
+                <div class="platforms">
+                  対応プラットフォーム：
+                  {#each article.specs.platforms as platform}
+                    <div>
+                      {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}
+                    </div>
+                  {/each}
+                </div>
+              {/if}
+            </div>
+          </div>
+          <div class="right">
+            <article>
+              {#if Array.isArray(article.description)}
+                {#each article.description as p}
+                  <p>{p}</p>
                 {/each}
               {:else}
-                {button.title}
+                {article.description}
               {/if}
-            </Button>
-          {/each}
+            </article>
+            <div class="buttons">
+              {#each article.buttons as button}
+                <Button target="{button.target}">
+                  {#if Array.isArray(button.title)}
+                    {#each button.title as title}
+                      <span class="break-scope">{title}</span>
+                    {/each}
+                  {:else}
+                    {button.title}
+                  {/if}
+                </Button>
+              {/each}
+            </div>
+          </div>
         </div>
       </SwiperSlide>
     {/each}
@@ -83,4 +112,9 @@
     display flex
     justify-content center
     align-items center
+  .times time
+    display block
+    margin-left 2ch
+  .platforms div
+    margin-left 2ch
 </style>

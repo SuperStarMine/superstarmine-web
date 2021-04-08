@@ -61,8 +61,9 @@ const app = new App({
               specs: {
                 times: [
                   {
-                    time: '2019-08',
-                    Annotation: '〜',
+                    year: '2019',
+                    month: '8',
+                    annotation: '〜',
                   }
                 ],
                 platforms: [
@@ -100,8 +101,9 @@ const app = new App({
               specs: {
                 times: [
                   {
-                    time: '2019-11',
-                    Annotation: '(2週間)',
+                    year: '2019',
+                    month: '11',
+                    annotation: '(2週間)',
                   }
                 ],
                 platforms: [
@@ -143,8 +145,9 @@ const app = new App({
               specs: {
                 times: [
                   {
-                    time: '2020-04',
-                    Annotation: '(5日)',
+                    year: '2020',
+                    month: '4',
+                    annotation: '(5日)',
                   }
                 ],
                 platforms: [
@@ -181,12 +184,14 @@ const app = new App({
               specs: {
                 times: [
                   {
-                    time: '2020-08',
-                    Annotation: '(1週間)',
+                    year: '2020',
+                    month: '8',
+                    annotation: '(1週間)',
                   },
                   {
-                    time: '2020-12',
-                    Annotation: '(1ヶ月)',
+                    year: '2020',
+                    month: '12',
+                    annotation: '(1ヶ月)',
                   }
                 ],
                 platforms: [
@@ -230,8 +235,9 @@ const app = new App({
               specs: {
                 times: [
                   {
-                    time: '2020-02',
-                    Annotation: '(12日)',
+                    year: '2020',
+                    month: '2',
+                    annotation: '(12日)',
                   }
                 ],
                 platforms: [

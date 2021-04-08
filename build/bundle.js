@@ -12568,7 +12568,290 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (59:10) {:else}
+    function get_each_context_4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[24] = list[i];
+    	return child_ctx;
+    }
+
+    function get_each_context_5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[27] = list[i];
+    	return child_ctx;
+    }
+
+    // (57:14) {#if article.specs.times}
+    function create_if_block_3(ctx) {
+    	let div;
+    	let t;
+    	let each_value_5 = /*article*/ ctx[12].specs.times;
+    	validate_each_argument(each_value_5);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_5.length; i += 1) {
+    		each_blocks[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t = text("制作時期：\n                  ");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(div, "class", "times svelte-1vgfees");
+    			add_location(div, file$6, 57, 16, 2038);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents*/ 1) {
+    				each_value_5 = /*article*/ ctx[12].specs.times;
+    				validate_each_argument(each_value_5);
+    				let i;
+
+    				for (i = 0; i < each_value_5.length; i += 1) {
+    					const child_ctx = get_each_context_5(ctx, each_value_5, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_5(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_5.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3.name,
+    		type: "if",
+    		source: "(57:14) {#if article.specs.times}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (60:18) {#each article.specs.times as time}
+    function create_each_block_5(ctx) {
+    	let time;
+
+    	let t0_value = (/*time*/ ctx[27].year ? /*time*/ ctx[27].year + "年" : "") + (/*time*/ ctx[27].month
+    	? /*time*/ ctx[27].month + "月"
+    	: "") + (/*time*/ ctx[27].day ? /*time*/ ctx[27].day + "日" : "") + "";
+
+    	let t0;
+    	let t1_value = /*time*/ ctx[27].annotation + "";
+    	let t1;
+    	let t2;
+    	let time_datetime_value;
+
+    	const block = {
+    		c: function create() {
+    			time = element("time");
+    			t0 = text(t0_value);
+    			t1 = text(t1_value);
+    			t2 = space();
+
+    			attr_dev(time, "datetime", time_datetime_value = (/*time*/ ctx[27].year
+    			? ("0000" + /*time*/ ctx[27].year).slice(-4)
+    			: "") + (/*time*/ ctx[27].month
+    			? "-" + ("00" + /*time*/ ctx[27].month).slice(-2)
+    			: "") + (/*time*/ ctx[27].day
+    			? "-" + ("00" + /*time*/ ctx[27].day).slice(-2)
+    			: ""));
+
+    			attr_dev(time, "class", "svelte-1vgfees");
+    			add_location(time, file$6, 61, 20, 2224);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, time, anchor);
+    			append_dev(time, t0);
+    			append_dev(time, t1);
+    			append_dev(time, t2);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents*/ 1 && t0_value !== (t0_value = (/*time*/ ctx[27].year ? /*time*/ ctx[27].year + "年" : "") + (/*time*/ ctx[27].month
+    			? /*time*/ ctx[27].month + "月"
+    			: "") + (/*time*/ ctx[27].day ? /*time*/ ctx[27].day + "日" : "") + "")) set_data_dev(t0, t0_value);
+
+    			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*time*/ ctx[27].annotation + "")) set_data_dev(t1, t1_value);
+
+    			if (dirty & /*contents*/ 1 && time_datetime_value !== (time_datetime_value = (/*time*/ ctx[27].year
+    			? ("0000" + /*time*/ ctx[27].year).slice(-4)
+    			: "") + (/*time*/ ctx[27].month
+    			? "-" + ("00" + /*time*/ ctx[27].month).slice(-2)
+    			: "") + (/*time*/ ctx[27].day
+    			? "-" + ("00" + /*time*/ ctx[27].day).slice(-2)
+    			: ""))) {
+    				attr_dev(time, "datetime", time_datetime_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(time);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_5.name,
+    		type: "each",
+    		source: "(60:18) {#each article.specs.times as time}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (68:14) {#if article.specs.platforms}
+    function create_if_block_2$1(ctx) {
+    	let div;
+    	let t;
+    	let each_value_4 = /*article*/ ctx[12].specs.platforms;
+    	validate_each_argument(each_value_4);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t = text("対応プラットフォーム：\n                  ");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(div, "class", "platforms svelte-1vgfees");
+    			add_location(div, file$6, 68, 16, 2707);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents*/ 1) {
+    				each_value_4 = /*article*/ ctx[12].specs.platforms;
+    				validate_each_argument(each_value_4);
+    				let i;
+
+    				for (i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_4(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_4.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$1.name,
+    		type: "if",
+    		source: "(68:14) {#if article.specs.platforms}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (71:18) {#each article.specs.platforms as platform}
+    function create_each_block_4(ctx) {
+    	let div;
+    	let t0_value = /*platform*/ ctx[24].name + "";
+    	let t0;
+    	let t1;
+    	let t2_value = (/*platform*/ ctx[24].version || "") + "";
+    	let t2;
+    	let t3_value = (/*platform*/ ctx[24].orLater ? "以降" : "") + "";
+    	let t3;
+    	let t4;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = text(t3_value);
+    			t4 = space();
+    			attr_dev(div, "class", "svelte-1vgfees");
+    			add_location(div, file$6, 71, 20, 2843);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    			append_dev(div, t2);
+    			append_dev(div, t3);
+    			append_dev(div, t4);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*contents*/ 1 && t0_value !== (t0_value = /*platform*/ ctx[24].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*contents*/ 1 && t2_value !== (t2_value = (/*platform*/ ctx[24].version || "") + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*contents*/ 1 && t3_value !== (t3_value = (/*platform*/ ctx[24].orLater ? "以降" : "") + "")) set_data_dev(t3, t3_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_4.name,
+    		type: "each",
+    		source: "(71:18) {#each article.specs.platforms as platform}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (86:14) {:else}
     function create_else_block_1(ctx) {
     	let t_value = /*article*/ ctx[12].description + "";
     	let t;
@@ -12592,14 +12875,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(59:10) {:else}",
+    		source: "(86:14) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (55:10) {#if Array.isArray(article.description)}
+    // (82:14) {#if Array.isArray(article.description)}
     function create_if_block_1$2(ctx) {
     	let each_1_anchor;
     	let each_value_3 = /*article*/ ctx[12].description;
@@ -12660,14 +12943,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(55:10) {#if Array.isArray(article.description)}",
+    		source: "(82:14) {#if Array.isArray(article.description)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (56:12) {#each article.description as p}
+    // (83:16) {#each article.description as p}
     function create_each_block_3$1(ctx) {
     	let p;
     	let t_value = /*p*/ ctx[21] + "";
@@ -12677,7 +12960,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$6, 56, 14, 2019);
+    			add_location(p, file$6, 83, 18, 3248);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -12695,14 +12978,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3$1.name,
     		type: "each",
-    		source: "(56:12) {#each article.description as p}",
+    		source: "(83:16) {#each article.description as p}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:14) {:else}
+    // (97:18) {:else}
     function create_else_block$4(ctx) {
     	let t_value = /*button*/ ctx[15].title + "";
     	let t;
@@ -12726,14 +13009,14 @@ var app = (function () {
     		block,
     		id: create_else_block$4.name,
     		type: "else",
-    		source: "(70:14) {:else}",
+    		source: "(97:18) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (66:14) {#if Array.isArray(button.title)}
+    // (93:18) {#if Array.isArray(button.title)}
     function create_if_block$6(ctx) {
     	let each_1_anchor;
     	let each_value_2 = /*button*/ ctx[15].title;
@@ -12794,14 +13077,14 @@ var app = (function () {
     		block,
     		id: create_if_block$6.name,
     		type: "if",
-    		source: "(66:14) {#if Array.isArray(button.title)}",
+    		source: "(93:18) {#if Array.isArray(button.title)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:16) {#each button.title as title}
+    // (94:20) {#each button.title as title}
     function create_each_block_2$2(ctx) {
     	let span;
     	let t_value = /*title*/ ctx[18] + "";
@@ -12812,7 +13095,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$6, 67, 18, 2369);
+    			add_location(span, file$6, 94, 22, 3642);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -12830,14 +13113,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2$2.name,
     		type: "each",
-    		source: "(67:16) {#each button.title as title}",
+    		source: "(94:20) {#each button.title as title}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (65:12) <Button target="{button.target}">
+    // (92:16) <Button target="{button.target}">
     function create_default_slot_3(ctx) {
     	let show_if;
     	let t;
@@ -12883,14 +13166,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(65:12) <Button target=\\\"{button.target}\\\">",
+    		source: "(92:16) <Button target=\\\"{button.target}\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (64:10) {#each article.buttons as button}
+    // (91:14) {#each article.buttons as button}
     function create_each_block_1$4(ctx) {
     	let button;
     	let current;
@@ -12916,7 +13199,7 @@ var app = (function () {
     			const button_changes = {};
     			if (dirty & /*contents*/ 1) button_changes.target = /*button*/ ctx[15].target;
 
-    			if (dirty & /*$$scope, contents*/ 16777217) {
+    			if (dirty & /*$$scope, contents*/ 1073741825) {
     				button_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12940,7 +13223,7 @@ var app = (function () {
     		block,
     		id: create_each_block_1$4.name,
     		type: "each",
-    		source: "(64:10) {#each article.buttons as button}",
+    		source: "(91:14) {#each article.buttons as button}",
     		ctx
     	});
 
@@ -12949,12 +13232,20 @@ var app = (function () {
 
     // (53:6) <SwiperSlide>
     function create_default_slot_2(ctx) {
+    	let div4;
+    	let div1;
+    	let div0;
+    	let t0;
+    	let t1;
+    	let div3;
     	let article;
     	let show_if;
-    	let t0;
-    	let div;
-    	let t1;
+    	let t2;
+    	let div2;
+    	let t3;
     	let current;
+    	let if_block0 = /*article*/ ctx[12].specs.times && create_if_block_3(ctx);
+    	let if_block1 = /*article*/ ctx[12].specs.platforms && create_if_block_2$1(ctx);
 
     	function select_block_type(ctx, dirty) {
     		if (show_if == null || dirty & /*contents*/ 1) show_if = !!Array.isArray(/*article*/ ctx[12].description);
@@ -12963,7 +13254,7 @@ var app = (function () {
     	}
 
     	let current_block_type = select_block_type(ctx, -1);
-    	let if_block = current_block_type(ctx);
+    	let if_block2 = current_block_type(ctx);
     	let each_value_1 = /*article*/ ctx[12].buttons;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
@@ -12978,43 +13269,93 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			article = element("article");
-    			if_block.c();
+    			div4 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			if (if_block0) if_block0.c();
     			t0 = space();
-    			div = element("div");
+    			if (if_block1) if_block1.c();
+    			t1 = space();
+    			div3 = element("div");
+    			article = element("article");
+    			if_block2.c();
+    			t2 = space();
+    			div2 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t1 = space();
-    			add_location(article, file$6, 53, 8, 1899);
-    			attr_dev(div, "class", "buttons svelte-1bqdkx8");
-    			add_location(div, file$6, 62, 8, 2145);
+    			t3 = space();
+    			attr_dev(div0, "class", "specs");
+    			add_location(div0, file$6, 55, 12, 1962);
+    			attr_dev(div1, "class", "left");
+    			add_location(div1, file$6, 54, 10, 1931);
+    			add_location(article, file$6, 80, 12, 3116);
+    			attr_dev(div2, "class", "buttons svelte-1vgfees");
+    			add_location(div2, file$6, 89, 12, 3398);
+    			attr_dev(div3, "class", "right");
+    			add_location(div3, file$6, 79, 10, 3084);
+    			attr_dev(div4, "class", "wrapper");
+    			add_location(div4, file$6, 53, 8, 1899);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, article, anchor);
-    			if_block.m(article, null);
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, div, anchor);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div1);
+    			append_dev(div1, div0);
+    			if (if_block0) if_block0.m(div0, null);
+    			append_dev(div0, t0);
+    			if (if_block1) if_block1.m(div0, null);
+    			append_dev(div4, t1);
+    			append_dev(div4, div3);
+    			append_dev(div3, article);
+    			if_block2.m(article, null);
+    			append_dev(div3, t2);
+    			append_dev(div3, div2);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div, null);
+    				each_blocks[i].m(div2, null);
     			}
 
-    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t3, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (current_block_type === (current_block_type = select_block_type(ctx, dirty)) && if_block) {
-    				if_block.p(ctx, dirty);
-    			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
+    			if (/*article*/ ctx[12].specs.times) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_3(ctx);
+    					if_block0.c();
+    					if_block0.m(div0, t0);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
 
-    				if (if_block) {
-    					if_block.c();
-    					if_block.m(article, null);
+    			if (/*article*/ ctx[12].specs.platforms) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block_2$1(ctx);
+    					if_block1.c();
+    					if_block1.m(div0, null);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+
+    			if (current_block_type === (current_block_type = select_block_type(ctx, dirty)) && if_block2) {
+    				if_block2.p(ctx, dirty);
+    			} else {
+    				if_block2.d(1);
+    				if_block2 = current_block_type(ctx);
+
+    				if (if_block2) {
+    					if_block2.c();
+    					if_block2.m(article, null);
     				}
     			}
 
@@ -13033,7 +13374,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block_1$4(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div, null);
+    						each_blocks[i].m(div2, null);
     					}
     				}
 
@@ -13065,12 +13406,12 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(article);
-    			if_block.d();
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div4);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
+    			if_block2.d();
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t3);
     		}
     	};
 
@@ -13109,7 +13450,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const swiperslide_changes = {};
 
-    			if (dirty & /*$$scope, contents*/ 16777217) {
+    			if (dirty & /*$$scope, contents*/ 1073741825) {
     				swiperslide_changes.$$scope = { dirty, ctx };
     			}
 
@@ -13284,7 +13625,7 @@ var app = (function () {
     				: null
     			};
 
-    			if (dirty & /*$$scope, contents*/ 16777217) {
+    			if (dirty & /*$$scope, contents*/ 1073741825) {
     				swiper_changes.$$scope = { dirty, ctx };
     			}
 
@@ -13357,7 +13698,7 @@ var app = (function () {
     			if (dirty & /*contents, realIndex*/ 3) cframe_changes.subtitle = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].subtitle;
     			if (dirty & /*contents, realIndex*/ 3) cframe_changes.themeColor = /*contents*/ ctx[0].articles[/*realIndex*/ ctx[1]].themeColor;
 
-    			if (dirty & /*$$scope, controlledSwiper, contents*/ 16777221) {
+    			if (dirty & /*$$scope, controlledSwiper, contents*/ 1073741829) {
     				cframe_changes.$$scope = { dirty, ctx };
     			}
 
@@ -13603,7 +13944,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    function get_each_context_4(ctx, list, i) {
+    function get_each_context_4$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[12] = list[i];
     	child_ctx[14] = i;
@@ -13622,7 +13963,7 @@ var app = (function () {
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value_4.length; i += 1) {
-    		each_blocks[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    		each_blocks[i] = create_each_block_4$1(get_each_context_4$1(ctx, each_value_4, i));
     	}
 
     	const block = {
@@ -13663,12 +14004,12 @@ var app = (function () {
     				let i;
 
     				for (i = 0; i < each_value_4.length; i += 1) {
-    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+    					const child_ctx = get_each_context_4$1(ctx, each_value_4, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks[i] = create_each_block_4(child_ctx);
+    						each_blocks[i] = create_each_block_4$1(child_ctx);
     						each_blocks[i].c();
     						each_blocks[i].m(picture, t);
     					}
@@ -13703,7 +14044,7 @@ var app = (function () {
     }
 
     // (26:16) {#each imageExtensionsShort as ext, i}
-    function create_each_block_4(ctx) {
+    function create_each_block_4$1(ctx) {
     	let source;
     	let source_srcset_value;
 
@@ -13730,7 +14071,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block_4.name,
+    		id: create_each_block_4$1.name,
     		type: "each",
     		source: "(26:16) {#each imageExtensionsShort as ext, i}",
     		ctx
@@ -14388,7 +14729,7 @@ var app = (function () {
     }
 
     // (24:41) 
-    function create_if_block_2$1(ctx) {
+    function create_if_block_2$2(ctx) {
     	let cframe;
     	let current;
 
@@ -14443,7 +14784,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2$1.name,
+    		id: create_if_block_2$2.name,
     		type: "if",
     		source: "(24:41) ",
     		ctx
@@ -14674,7 +15015,7 @@ var app = (function () {
     }
 
     // (26:8) {#if sectionType == "static"}
-    function create_if_block_3(ctx) {
+    function create_if_block_3$1(ctx) {
     	let static_1;
     	let current;
 
@@ -14716,7 +15057,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_3.name,
+    		id: create_if_block_3$1.name,
     		type: "if",
     		source: "(26:8) {#if sectionType == \\\"static\\\"}",
     		ctx
@@ -14731,7 +15072,7 @@ var app = (function () {
     	let if_block;
     	let t;
     	let current;
-    	const if_block_creators = [create_if_block_3, create_if_block_4, create_if_block_5];
+    	const if_block_creators = [create_if_block_3$1, create_if_block_4, create_if_block_5];
     	const if_blocks = [];
 
     	function select_block_type_1(ctx, dirty) {
@@ -14829,7 +15170,7 @@ var app = (function () {
     	let if_block;
     	let if_block_anchor;
     	let current;
-    	const if_block_creators = [create_if_block$8, create_if_block_1$3, create_if_block_2$1];
+    	const if_block_creators = [create_if_block$8, create_if_block_1$3, create_if_block_2$2];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -15212,11 +15553,18 @@ var app = (function () {
                       target: 'https://superstarmine.booth.pm/items/2618292'
                     }
                   ],
+                  slides: [
+                    {
+                      type: 'iframe',
+                      url: 'https://www.youtube-nocookie.com/embed/kQc84ApB2OM'
+                    }
+                  ],
                   specs: {
                     times: [
                       {
-                        time: '2019-08',
-                        Annotation: '〜',
+                        year: '2019',
+                        month: '8',
+                        annotation: '〜',
                       }
                     ],
                     platforms: [
@@ -15254,8 +15602,9 @@ var app = (function () {
                   specs: {
                     times: [
                       {
-                        time: '2019-11',
-                        Annotation: '(2週間)',
+                        year: '2019',
+                        month: '11',
+                        annotation: '(2週間)',
                       }
                     ],
                     platforms: [
@@ -15297,8 +15646,9 @@ var app = (function () {
                   specs: {
                     times: [
                       {
-                        time: '2020-04',
-                        Annotation: '(5日)',
+                        year: '2020',
+                        month: '4',
+                        annotation: '(5日)',
                       }
                     ],
                     platforms: [
@@ -15335,12 +15685,14 @@ var app = (function () {
                   specs: {
                     times: [
                       {
-                        time: '2020-08',
-                        Annotation: '(1週間)',
+                        year: '2020',
+                        month: '8',
+                        annotation: '(1週間)',
                       },
                       {
-                        time: '2020-12',
-                        Annotation: '(1ヶ月)',
+                        year: '2020',
+                        month: '12',
+                        annotation: '(1ヶ月)',
                       }
                     ],
                     platforms: [
@@ -15384,8 +15736,9 @@ var app = (function () {
                   specs: {
                     times: [
                       {
-                        time: '2020-02',
-                        Annotation: '(12日)',
+                        year: '2020',
+                        month: '2',
+                        annotation: '(12日)',
                       }
                     ],
                     platforms: [
