@@ -4,7 +4,7 @@
   let load = false
 </script>
 
-<div class="youtube-wrapper"  on:click={() => load = true}>
+<div class="youtube-wrapper {load ? 'load' : ''}"  on:click={() => load = true}>
   <img class="play-icon" src="/img/youtube.svg" alt="YouTubeの再生ボタン">
   <Picture {contents} {globalSettings} imageId={id}/>
   {#if load}
@@ -17,13 +17,12 @@
     width 100%
     height calc(var(--standardWidth) / 16 * 9)
     position relative
-  iframe
+    &.load
+      height 0
+      padding-top calc(var(--standardWidth) / 16 * 9)
+  iframe, picture, img
     width 100%
     height 100%
-    position absolute
-    top 0
-    left 0
-  picture
     position absolute
     top 0
     left 0

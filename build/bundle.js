@@ -12931,8 +12931,8 @@ var app = (function () {
     			attr_dev(iframe, "allow", "accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture");
     			iframe.allowFullscreen = "";
     			attr_dev(iframe, "loading", "lazy");
-    			attr_dev(iframe, "class", "svelte-2dwuc0");
-    			add_location(iframe, file$7, 10, 4, 324);
+    			attr_dev(iframe, "class", "svelte-1v4fdn5");
+    			add_location(iframe, file$7, 10, 4, 345);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, iframe, anchor);
@@ -12966,6 +12966,7 @@ var app = (function () {
     	let t0;
     	let picture;
     	let t1;
+    	let div_class_value;
     	let current;
     	let mounted;
     	let dispose;
@@ -12989,11 +12990,11 @@ var app = (function () {
     			create_component(picture.$$.fragment);
     			t1 = space();
     			if (if_block) if_block.c();
-    			attr_dev(img, "class", "play-icon svelte-2dwuc0");
+    			attr_dev(img, "class", "play-icon svelte-1v4fdn5");
     			if (img.src !== (img_src_value = "/img/youtube.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "YouTubeの再生ボタン");
-    			add_location(img, file$7, 7, 2, 186);
-    			attr_dev(div, "class", "youtube-wrapper svelte-2dwuc0");
+    			add_location(img, file$7, 7, 2, 207);
+    			attr_dev(div, "class", div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-1v4fdn5");
     			add_location(div, file$7, 6, 0, 124);
     		},
     		l: function claim(nodes) {
@@ -13031,6 +13032,10 @@ var app = (function () {
     			} else if (if_block) {
     				if_block.d(1);
     				if_block = null;
+    			}
+
+    			if (!current || dirty & /*load*/ 8 && div_class_value !== (div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-1v4fdn5")) {
+    				attr_dev(div, "class", div_class_value);
     			}
     		},
     		i: function intro(local) {
