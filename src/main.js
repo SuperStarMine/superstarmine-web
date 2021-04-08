@@ -211,7 +211,10 @@ const app = new App({
           bottomButtonsLayout: 'left',
           bottomButtons: [
             {
-              title: 'お問い合わせ・連絡',
+              title: [
+                'お問い合わせ・',
+                '連絡'
+              ],
               target: 'https://google.com'
             },
             {

@@ -26,7 +26,10 @@ a, button
   border-radius: 0.5ch
   padding: 0.5ch
   font-size: 1em
-  text-align: center
+  display flex
+  justify-content center
+  align-items center
+  flex-wrap wrap
   color: #fff
   background-color: var(--themeColor)
 </style>

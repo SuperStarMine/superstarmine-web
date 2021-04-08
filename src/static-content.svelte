@@ -27,7 +27,15 @@
     </section>
     <section class="buttons">
       {#each buttons as button}
-        <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">{button.title}</Button>
+        <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">
+          {#if Array.isArray(button.title)}
+            {#each button.title as title}
+              <span class="break-scope">{title}</span>
+            {/each}
+          {:else}
+            {button.title}
+          {/if}
+        </Button>
       {/each}
     </section>
   </section>
