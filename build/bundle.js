@@ -12498,7 +12498,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$6, 56, 14, 2018);
+    			add_location(p, file$6, 56, 14, 2019);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -12633,7 +12633,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$6, 67, 18, 2368);
+    			add_location(span, file$6, 67, 18, 2369);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -12809,9 +12809,9 @@ var app = (function () {
     			}
 
     			t1 = space();
-    			add_location(article, file$6, 53, 8, 1898);
+    			add_location(article, file$6, 53, 8, 1899);
     			attr_dev(div, "class", "buttons svelte-1bqdkx8");
-    			add_location(div, file$6, 62, 8, 2144);
+    			add_location(div, file$6, 62, 8, 2145);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, article, anchor);
@@ -13161,7 +13161,7 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$6, 32, 2, 1191);
+    			add_location(link, file$6, 32, 2, 1192);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -13247,7 +13247,7 @@ var app = (function () {
     				set_store_value(sync, $sync.controlledSwiper = controlledSwiper, $sync);
     				dispatchEvent(new CustomEvent("controllee_load", { detail: pairId }));
     			},
-    			50
+    			100
     		);
     	};
 

@@ -25,7 +25,7 @@
         controlledSwiper = swiper;
         $sync.controlledSwiper = controlledSwiper;
         dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}))
-      }, 50);
+      }, 100);
   };
 </script>
 
