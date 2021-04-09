@@ -1,6 +1,7 @@
 <script>
   export let contents, globalSettings;
-  import Picture from "./picture.svelte"
+  import Picture from "./picture.svelte";
+  import { onMount } from 'svelte';
   const socialConsts = {
           urls: {
             'twitter':'twitter.com',
@@ -10,6 +11,10 @@
             'qiita':'qiita.com'
           }
         }
+
+  let ch2px;
+  let ch;
+  onMount(() => ch = ch2px.getBoundingClientRect().width);
 </script>
 
 <div class="card_container">
@@ -19,7 +24,7 @@
         <div class="upper">
           {#if card.imageId}
             <div class="left">
-              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId}/>
+              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId} sizes="(min-aspect-ratio: 16/9) {globalSettings.standardWidth / 3 / 3}vw, {globalSettings.standardWidth / 2 / 3}vw, (max-aspect-ratio: 1/1) {globalSettings.standardWidth * 0.8 / 3}vw, (max-aspect-ratio: 3/4) {globalSettings.standardWidth / 3}vw"/>
             </div>
           {/if}
           <div class="right {card.imageId ? '' : 'noImage'}">
@@ -30,7 +35,8 @@
               {/each}
             </div>
             <div class="logo">
-              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId}/>
+              <div bind:this={ch2px} style="opacity:0;width:1ch"></div>
+              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} sizes="{3 * ch}px"/>
             </div>
           </div>
         </div>

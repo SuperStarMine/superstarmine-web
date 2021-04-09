@@ -14697,23 +14697,23 @@ var app = (function () {
 
     function get_each_context$6(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[6] = list[i];
+    	child_ctx[9] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[9] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
-    // (20:10) {#if card.imageId}
+    // (25:10) {#if card.imageId}
     function create_if_block$8(ctx) {
     	let div;
     	let picture;
@@ -14724,7 +14724,8 @@ var app = (function () {
     				imgClass: "card_left-img card_img",
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
-    				imageId: /*card*/ ctx[3].imageId
+    				imageId: /*card*/ ctx[6].imageId,
+    				sizes: "(min-aspect-ratio: 16/9) " + /*globalSettings*/ ctx[1].standardWidth / 3 / 3 + "vw, " + /*globalSettings*/ ctx[1].standardWidth / 2 / 3 + "vw, (max-aspect-ratio: 1/1) " + /*globalSettings*/ ctx[1].standardWidth * 0.8 / 3 + "vw, (max-aspect-ratio: 3/4) " + /*globalSettings*/ ctx[1].standardWidth / 3 + "vw"
     			},
     			$$inline: true
     		});
@@ -14734,7 +14735,7 @@ var app = (function () {
     			div = element("div");
     			create_component(picture.$$.fragment);
     			attr_dev(div, "class", "left svelte-c55mqt");
-    			add_location(div, file$9, 20, 12, 526);
+    			add_location(div, file$9, 25, 12, 646);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14745,7 +14746,8 @@ var app = (function () {
     			const picture_changes = {};
     			if (dirty & /*contents*/ 1) picture_changes.contents = /*contents*/ ctx[0];
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
-    			if (dirty & /*contents*/ 1) picture_changes.imageId = /*card*/ ctx[3].imageId;
+    			if (dirty & /*contents*/ 1) picture_changes.imageId = /*card*/ ctx[6].imageId;
+    			if (dirty & /*globalSettings*/ 2) picture_changes.sizes = "(min-aspect-ratio: 16/9) " + /*globalSettings*/ ctx[1].standardWidth / 3 / 3 + "vw, " + /*globalSettings*/ ctx[1].standardWidth / 2 / 3 + "vw, (max-aspect-ratio: 1/1) " + /*globalSettings*/ ctx[1].standardWidth * 0.8 / 3 + "vw, (max-aspect-ratio: 3/4) " + /*globalSettings*/ ctx[1].standardWidth / 3 + "vw";
     			picture.$set(picture_changes);
     		},
     		i: function intro(local) {
@@ -14767,17 +14769,17 @@ var app = (function () {
     		block,
     		id: create_if_block$8.name,
     		type: "if",
-    		source: "(20:10) {#if card.imageId}",
+    		source: "(25:10) {#if card.imageId}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (28:14) {#each card.post as post}
+    // (33:14) {#each card.post as post}
     function create_each_block_2$2(ctx) {
     	let span;
-    	let t_value = /*post*/ ctx[9] + "";
+    	let t_value = /*post*/ ctx[12] + "";
     	let t;
 
     	const block = {
@@ -14785,14 +14787,14 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "svelte-c55mqt");
-    			add_location(span, file$9, 28, 16, 887);
+    			add_location(span, file$9, 33, 16, 1253);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
     			append_dev(span, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*post*/ ctx[9] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*contents*/ 1 && t_value !== (t_value = /*post*/ ctx[12] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(span);
@@ -14803,14 +14805,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2$2.name,
     		type: "each",
-    		source: "(28:14) {#each card.post as post}",
+    		source: "(33:14) {#each card.post as post}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:10) {#each card.accounts as account}
+    // (44:10) {#each card.accounts as account}
     function create_each_block_1$3(ctx) {
     	let a;
     	let img;
@@ -14818,7 +14820,7 @@ var app = (function () {
     	let img_alt_value;
     	let t0;
     	let span;
-    	let t1_value = /*account*/ ctx[6].id + "";
+    	let t1_value = /*account*/ ctx[9].id + "";
     	let t1;
     	let t2;
     	let a_class_value;
@@ -14832,15 +14834,15 @@ var app = (function () {
     			span = element("span");
     			t1 = text(t1_value);
     			t2 = space();
-    			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[6].name + ".svg"))) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[6].name + "のアイコン"));
+    			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"));
     			attr_dev(img, "class", "svelte-c55mqt");
-    			add_location(img, file$9, 40, 14, 1438);
+    			add_location(img, file$9, 46, 14, 1895);
     			attr_dev(span, "class", "id svelte-c55mqt");
-    			add_location(span, file$9, 41, 14, 1541);
-    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[6].name + " " + (/*card*/ ctx[3].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt");
-    			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[2].urls[/*account*/ ctx[6].name] + "/" + /*account*/ ctx[6].id);
-    			add_location(a, file$9, 38, 12, 1264);
+    			add_location(span, file$9, 47, 14, 1998);
+    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt");
+    			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id);
+    			add_location(a, file$9, 44, 12, 1721);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -14851,21 +14853,21 @@ var app = (function () {
     			append_dev(a, t2);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*globalSettings, contents*/ 3 && img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[6].name + ".svg"))) {
+    			if (dirty & /*globalSettings, contents*/ 3 && img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*contents*/ 1 && img_alt_value !== (img_alt_value = "" + (/*account*/ ctx[6].name + "のアイコン"))) {
+    			if (dirty & /*contents*/ 1 && img_alt_value !== (img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"))) {
     				attr_dev(img, "alt", img_alt_value);
     			}
 
-    			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[6].id + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[9].id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[6].name + " " + (/*card*/ ctx[3].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt")) {
+    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt")) {
     				attr_dev(a, "class", a_class_value);
     			}
 
-    			if (dirty & /*contents*/ 1 && a_href_value !== (a_href_value = "https://" + /*socialConsts*/ ctx[2].urls[/*account*/ ctx[6].name] + "/" + /*account*/ ctx[6].id)) {
+    			if (dirty & /*contents*/ 1 && a_href_value !== (a_href_value = "https://" + /*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id)) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
@@ -14878,35 +14880,37 @@ var app = (function () {
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(38:10) {#each card.accounts as account}",
+    		source: "(44:10) {#each card.accounts as account}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (16:2) {#each contents.cards as card}
+    // (21:2) {#each contents.cards as card}
     function create_each_block$6(ctx) {
+    	let div8;
     	let div7;
-    	let div6;
-    	let div4;
+    	let div5;
     	let t0;
-    	let div3;
+    	let div4;
     	let div0;
-    	let t1_value = /*card*/ ctx[3].name + "";
+    	let t1_value = /*card*/ ctx[6].name + "";
     	let t1;
     	let t2;
     	let div1;
     	let t3;
+    	let div3;
     	let div2;
-    	let picture;
-    	let div3_class_value;
     	let t4;
-    	let div5;
+    	let picture;
+    	let div4_class_value;
     	let t5;
+    	let div6;
+    	let t6;
     	let current;
-    	let if_block = /*card*/ ctx[3].imageId && create_if_block$8(ctx);
-    	let each_value_2 = /*card*/ ctx[3].post;
+    	let if_block = /*card*/ ctx[6].imageId && create_if_block$8(ctx);
+    	let each_value_2 = /*card*/ ctx[6].post;
     	validate_each_argument(each_value_2);
     	let each_blocks_1 = [];
 
@@ -14920,12 +14924,13 @@ var app = (function () {
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
     				imageDirectory: /*globalSettings*/ ctx[1].imageDirectory,
-    				imageId: /*contents*/ ctx[0].logoImageId
+    				imageId: /*contents*/ ctx[0].logoImageId,
+    				sizes: "" + (3 * /*ch*/ ctx[3] + "px")
     			},
     			$$inline: true
     		});
 
-    	let each_value_1 = /*card*/ ctx[3].accounts;
+    	let each_value_1 = /*card*/ ctx[6].accounts;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -14935,12 +14940,12 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div8 = element("div");
     			div7 = element("div");
-    			div6 = element("div");
-    			div4 = element("div");
+    			div5 = element("div");
     			if (if_block) if_block.c();
     			t0 = space();
-    			div3 = element("div");
+    			div4 = element("div");
     			div0 = element("div");
     			t1 = text(t1_value);
     			t2 = space();
@@ -14951,64 +14956,72 @@ var app = (function () {
     			}
 
     			t3 = space();
+    			div3 = element("div");
     			div2 = element("div");
-    			create_component(picture.$$.fragment);
     			t4 = space();
-    			div5 = element("div");
+    			create_component(picture.$$.fragment);
+    			t5 = space();
+    			div6 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t5 = space();
+    			t6 = space();
     			attr_dev(div0, "class", "name svelte-c55mqt");
-    			add_location(div0, file$9, 25, 12, 764);
+    			add_location(div0, file$9, 30, 12, 1130);
     			attr_dev(div1, "class", "post svelte-c55mqt");
-    			add_location(div1, file$9, 26, 12, 812);
-    			attr_dev(div2, "class", "logo svelte-c55mqt");
-    			add_location(div2, file$9, 31, 12, 960);
-    			attr_dev(div3, "class", div3_class_value = "right " + (/*card*/ ctx[3].imageId ? "" : "noImage") + " svelte-c55mqt");
-    			add_location(div3, file$9, 24, 10, 700);
-    			attr_dev(div4, "class", "upper svelte-c55mqt");
-    			add_location(div4, file$9, 18, 8, 465);
-    			attr_dev(div5, "class", "lower svelte-c55mqt");
-    			add_location(div5, file$9, 36, 8, 1189);
-    			attr_dev(div6, "class", "card svelte-c55mqt");
-    			add_location(div6, file$9, 17, 6, 438);
-    			attr_dev(div7, "class", "card_wrapper svelte-c55mqt");
-    			add_location(div7, file$9, 16, 4, 405);
+    			add_location(div1, file$9, 31, 12, 1178);
+    			set_style(div2, "opacity", "0");
+    			set_style(div2, "width", "1ch");
+    			add_location(div2, file$9, 37, 14, 1359);
+    			attr_dev(div3, "class", "logo svelte-c55mqt");
+    			add_location(div3, file$9, 36, 12, 1326);
+    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-c55mqt");
+    			add_location(div4, file$9, 29, 10, 1066);
+    			attr_dev(div5, "class", "upper svelte-c55mqt");
+    			add_location(div5, file$9, 23, 8, 585);
+    			attr_dev(div6, "class", "lower svelte-c55mqt");
+    			add_location(div6, file$9, 42, 8, 1646);
+    			attr_dev(div7, "class", "card svelte-c55mqt");
+    			add_location(div7, file$9, 22, 6, 558);
+    			attr_dev(div8, "class", "card_wrapper svelte-c55mqt");
+    			add_location(div8, file$9, 21, 4, 525);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div6);
-    			append_dev(div6, div4);
-    			if (if_block) if_block.m(div4, null);
-    			append_dev(div4, t0);
-    			append_dev(div4, div3);
-    			append_dev(div3, div0);
+    			insert_dev(target, div8, anchor);
+    			append_dev(div8, div7);
+    			append_dev(div7, div5);
+    			if (if_block) if_block.m(div5, null);
+    			append_dev(div5, t0);
+    			append_dev(div5, div4);
+    			append_dev(div4, div0);
     			append_dev(div0, t1);
-    			append_dev(div3, t2);
-    			append_dev(div3, div1);
+    			append_dev(div4, t2);
+    			append_dev(div4, div1);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].m(div1, null);
     			}
 
-    			append_dev(div3, t3);
+    			append_dev(div4, t3);
+    			append_dev(div4, div3);
     			append_dev(div3, div2);
-    			mount_component(picture, div2, null);
-    			append_dev(div6, t4);
-    			append_dev(div6, div5);
+    			/*div2_binding*/ ctx[5](div2);
+    			append_dev(div3, t4);
+    			mount_component(picture, div3, null);
+    			append_dev(div7, t5);
+    			append_dev(div7, div6);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div5, null);
+    				each_blocks[i].m(div6, null);
     			}
 
-    			append_dev(div7, t5);
+    			append_dev(div8, t6);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (/*card*/ ctx[3].imageId) {
+    			if (/*card*/ ctx[6].imageId) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
 
@@ -15019,7 +15032,7 @@ var app = (function () {
     					if_block = create_if_block$8(ctx);
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(div4, t0);
+    					if_block.m(div5, t0);
     				}
     			} else if (if_block) {
     				group_outros();
@@ -15031,10 +15044,10 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if ((!current || dirty & /*contents*/ 1) && t1_value !== (t1_value = /*card*/ ctx[3].name + "")) set_data_dev(t1, t1_value);
+    			if ((!current || dirty & /*contents*/ 1) && t1_value !== (t1_value = /*card*/ ctx[6].name + "")) set_data_dev(t1, t1_value);
 
     			if (dirty & /*contents*/ 1) {
-    				each_value_2 = /*card*/ ctx[3].post;
+    				each_value_2 = /*card*/ ctx[6].post;
     				validate_each_argument(each_value_2);
     				let i;
 
@@ -15062,14 +15075,15 @@ var app = (function () {
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
     			if (dirty & /*globalSettings*/ 2) picture_changes.imageDirectory = /*globalSettings*/ ctx[1].imageDirectory;
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*contents*/ ctx[0].logoImageId;
+    			if (dirty & /*ch*/ 8) picture_changes.sizes = "" + (3 * /*ch*/ ctx[3] + "px");
     			picture.$set(picture_changes);
 
-    			if (!current || dirty & /*contents*/ 1 && div3_class_value !== (div3_class_value = "right " + (/*card*/ ctx[3].imageId ? "" : "noImage") + " svelte-c55mqt")) {
-    				attr_dev(div3, "class", div3_class_value);
+    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-c55mqt")) {
+    				attr_dev(div4, "class", div4_class_value);
     			}
 
-    			if (dirty & /*contents, socialConsts, globalSettings*/ 7) {
-    				each_value_1 = /*card*/ ctx[3].accounts;
+    			if (dirty & /*contents, socialConsts, globalSettings*/ 19) {
+    				each_value_1 = /*card*/ ctx[6].accounts;
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -15081,7 +15095,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block_1$3(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div5, null);
+    						each_blocks[i].m(div6, null);
     					}
     				}
 
@@ -15104,9 +15118,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div8);
     			if (if_block) if_block.d();
     			destroy_each(each_blocks_1, detaching);
+    			/*div2_binding*/ ctx[5](null);
     			destroy_component(picture);
     			destroy_each(each_blocks, detaching);
     		}
@@ -15116,7 +15131,7 @@ var app = (function () {
     		block,
     		id: create_each_block$6.name,
     		type: "each",
-    		source: "(16:2) {#each contents.cards as card}",
+    		source: "(21:2) {#each contents.cards as card}",
     		ctx
     	});
 
@@ -15147,7 +15162,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "card_container svelte-c55mqt");
-    			add_location(div, file$9, 14, 0, 339);
+    			add_location(div, file$9, 19, 0, 459);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15162,7 +15177,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*contents, socialConsts, globalSettings*/ 7) {
+    			if (dirty & /*contents, socialConsts, globalSettings, ch, ch2px*/ 31) {
     				each_value = /*contents*/ ctx[0].cards;
     				validate_each_argument(each_value);
     				let i;
@@ -15240,11 +15255,21 @@ var app = (function () {
     		}
     	};
 
+    	let ch2px;
+    	let ch;
+    	onMount(() => $$invalidate(3, ch = ch2px.getBoundingClientRect().width));
     	const writable_props = ["contents", "globalSettings"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Cards> was created with unknown prop '${key}'`);
     	});
+
+    	function div2_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			ch2px = $$value;
+    			$$invalidate(2, ch2px);
+    		});
+    	}
 
     	$$self.$$set = $$props => {
     		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
@@ -15255,19 +15280,24 @@ var app = (function () {
     		contents,
     		globalSettings,
     		Picture,
-    		socialConsts
+    		onMount,
+    		socialConsts,
+    		ch2px,
+    		ch
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     		if ("globalSettings" in $$props) $$invalidate(1, globalSettings = $$props.globalSettings);
+    		if ("ch2px" in $$props) $$invalidate(2, ch2px = $$props.ch2px);
+    		if ("ch" in $$props) $$invalidate(3, ch = $$props.ch);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [contents, globalSettings, socialConsts];
+    	return [contents, globalSettings, ch2px, ch, socialConsts, div2_binding];
     }
 
     class Cards extends SvelteComponentDev {
