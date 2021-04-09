@@ -12682,7 +12682,7 @@ var app = (function () {
     			attr_dev(iframe, "allow", "accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture");
     			iframe.allowFullscreen = "";
     			attr_dev(iframe, "loading", "lazy");
-    			attr_dev(iframe, "class", "svelte-y296v7");
+    			attr_dev(iframe, "class", "svelte-xkfing");
     			add_location(iframe, file$7, 10, 4, 374);
     		},
     		m: function mount(target, anchor) {
@@ -12712,10 +12712,10 @@ var app = (function () {
 
     function create_fragment$9(ctx) {
     	let div;
+    	let picture;
+    	let t0;
     	let img;
     	let img_src_value;
-    	let t0;
-    	let picture;
     	let t1;
     	let div_class_value;
     	let current;
@@ -12737,16 +12737,16 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element("div");
-    			img = element("img");
-    			t0 = space();
     			create_component(picture.$$.fragment);
+    			t0 = space();
+    			img = element("img");
     			t1 = space();
     			if (if_block) if_block.c();
-    			attr_dev(img, "class", "play-icon svelte-y296v7");
+    			attr_dev(img, "class", "play-icon svelte-xkfing");
     			if (img.src !== (img_src_value = "/img/youtube.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "YouTubeの再生ボタン");
-    			add_location(img, file$7, 7, 2, 207);
-    			attr_dev(div, "class", div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-y296v7");
+    			add_location(img, file$7, 8, 2, 290);
+    			attr_dev(div, "class", div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-xkfing");
     			add_location(div, file$7, 6, 0, 124);
     		},
     		l: function claim(nodes) {
@@ -12754,9 +12754,9 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, img);
-    			append_dev(div, t0);
     			mount_component(picture, div, null);
+    			append_dev(div, t0);
+    			append_dev(div, img);
     			append_dev(div, t1);
     			if (if_block) if_block.m(div, null);
     			current = true;
@@ -12786,7 +12786,7 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (!current || dirty & /*load*/ 8 && div_class_value !== (div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-y296v7")) {
+    			if (!current || dirty & /*load*/ 8 && div_class_value !== (div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-xkfing")) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
