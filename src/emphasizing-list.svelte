@@ -1,26 +1,15 @@
 <script>
   import Button from "./button.svelte";
+  import Picture from "./picture.svelte";
   export let contents, globalSettings;
-  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
-  const imageSizes = contents.imageSizes || globalSettings.imageSizes;
-  let transitionDuration = globalSettings.transitionDuration;
-  let articles = contents.articles;
+  const transitionDuration = globalSettings.transitionDuration,
+        articles = contents.articles;
   let selectedArticleIndex = 0;
   let selectedArticleIndexLast;
   let articleElement;
   let articleHeight;
   let hiding = false;
   let articleSwitched = true;
-
-  function setImageSrcset(index) {
-    imageSrcset = imageExtensionsShort.map(ext => {
-      return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${articles[index].imageId}@${size}w.${ext} ${size}w`);
-    });
-  }
-  let imageSrcset;
-  setImageSrcset(selectedArticleIndex);
-
 
   function setSelectedArticle(value) {
     selectedArticleIndexLast = selectedArticleIndex;
@@ -37,7 +26,6 @@
         articleSwitched = true;
       }, transitionDuration / 2);
       setTimeout(() => {
-        setImageSrcset(selectedArticleIndex);
         articleHeight = articleElement.clientHeight;
         hiding = false;
       }, transitionDuration / 2);
@@ -51,98 +39,11 @@
   document.addEventListener('toggleExpand', () => alert('done!'));
 </script>
 
-<style lang="stylus">
-.container
-  display: flex
-  flex-direction: column
-  align-items: center
-
-.columns
-  width: 100%
-  display: flex
-  align-items: center
-  justify-content: space-between
-  &:not(:last-child)
-    margin-bottom: 1em
-
-picture
-  background-color #fff
-  box-shadow: 0 0 10px #ccc
-  flex: 0 0 35%
-  height: calc(var(--standardWidth) * 0.35 / 4 * 3)
-  margin-right: 5%
-  img
-    object-fit: contain
-    width: 100%
-    height: 100%
-    transition: opacity calc(var(--transitionDuration) / 2) ease-in-out 0s
-    &.hidden
-      opacity: 0
-    &.shown
-      opacity: 1
-
-.right-column
-  flex: 0 0 60%
-  ul
-    margin: .5em 1ch
-    line-height: 100%
-    list-style: none
-    padding: 0
-    li
-      width: calc(var(--standardWidth) * 0.6 - 1ch)
-      overflow: hidden
-      white-space: nowrap
-      text-overflow: ellipsis
-      position: relative
-      virtical-align: middle
-      &.isSelected:before
-        content: ''
-        margin: 0 .5ch
-        display: inline-block
-        width: 1ch
-        height: 1ch
-        border-radius: 50%
-        background-color: var(--themeColor)
-        filter: blur(1px)
-        opacity: 1
-      &:not(.isSelected):before
-        content: ''
-        margin: 0 .5ch
-        display: inline-block
-        width: 1ch
-        height: 1ch
-        border-radius: 50%
-        background-color: var(--themeColor)
-        filter: blur(1px)
-        opacity: 0
-        transition: opacity calc(var(--transitionDuration) / 2) ease-in-out 0s
-  h3
-    margin: 0
-    transition: clip-path calc(var(--transitionDuration) / 2) ease-in-out 0s
-    &.shown
-      clip-path: inset(0 0% 0 0)
-    &.hidden
-      clip-path: inset(0 100% 0 0)
-  .articleWrapper
-    height: var(--height)
-    transition: height calc(var(--transitionDuration) / 2) cubic-bezier(0.87, 0, 0.13, 1) 0s
-    overflow-y: hidden
-    &.shown
-      height: var(--height)
-    &.hidden
-      height: 0px
-    p
-      margin: 0
-</style>
-
 <div class="container" style="--transitionDuration: {transitionDuration}ms">
   <div class="columns">
-    <picture>
-      {#each imageExtensionsShort as ext, i}
-        <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
-      {/each}
-      <img class="{hiding ? 'hidden' : 'shown'}" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
-    </picture>
+    <div class="img-wrapper">
+      <Picture imgClass="el-img {hiding ? 'hidden' : 'shown'}" sizes="30vw" {contents} {globalSettings} imageId={articles[selectedArticleIndex].imageId}/>
+    </div>
     <section class="right-column">
       <h3 class="{hiding ? 'hidden' : 'shown'}">
         {articles[hiding ? selectedArticleIndexLast : selectedArticleIndex].title}
@@ -163,3 +64,88 @@ picture
   </div>
   <Button target="toggleExpand" disabled="{true}" marginLeft="{false}" marginRight="{false}">もっと見る</Button>
 </div>
+
+
+<style lang="stylus">
+  .container
+    display: flex
+    flex-direction: column
+    align-items: center
+
+  .columns
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    &:not(:last-child)
+      margin-bottom: 1em
+
+  .img-wrapper
+    background-color #fff
+    box-shadow: 0 0 10px #ccc
+    flex: 0 0 35%
+    height: calc(var(--standardWidth) * 0.35 / 4 * 3)
+    margin-right: 5%
+    :global(.el-img)
+      object-fit: contain
+      width: 100%
+      height: 100%
+      transition: opacity calc(var(--transitionDuration) / 2) ease-in-out 0s
+      &.hidden
+        opacity: 0
+      &.shown
+        opacity: 1
+
+  .right-column
+    flex: 0 0 60%
+    ul
+      margin: .5em 1ch
+      line-height: 100%
+      list-style: none
+      padding: 0
+      li
+        width: calc(var(--standardWidth) * 0.6 - 1ch)
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        position: relative
+        virtical-align: middle
+        &.isSelected:before
+          content: ''
+          margin: 0 .5ch
+          display: inline-block
+          width: 1ch
+          height: 1ch
+          border-radius: 50%
+          background-color: var(--themeColor)
+          filter: blur(1px)
+          opacity: 1
+        &:not(.isSelected):before
+          content: ''
+          margin: 0 .5ch
+          display: inline-block
+          width: 1ch
+          height: 1ch
+          border-radius: 50%
+          background-color: var(--themeColor)
+          filter: blur(1px)
+          opacity: 0
+          transition: opacity calc(var(--transitionDuration) / 2) ease-in-out 0s
+    h3
+      margin: 0
+      transition: clip-path calc(var(--transitionDuration) / 2) ease-in-out 0s
+      &.shown
+        clip-path: inset(0 0% 0 0)
+      &.hidden
+        clip-path: inset(0 100% 0 0)
+    .articleWrapper
+      height: var(--height)
+      transition: height calc(var(--transitionDuration) / 2) cubic-bezier(0.87, 0, 0.13, 1) 0s
+      overflow-y: hidden
+      &.shown
+        height: var(--height)
+      &.hidden
+        height: 0px
+      p
+        margin: 0
+</style>

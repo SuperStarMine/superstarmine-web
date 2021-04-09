@@ -1,10 +1,7 @@
 <script>
   export let contents, globalSettings;
-  import {resolveSrcsets, getSafeImageExtensionIndex} from './pictureUtil.js';
-  const imageDirectory = contents.imageDirectory || globalSettings.imageDirectory,
-        imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
-        imageSizes = contents.imageSizes || globalSettings.imageSizes,
-        socialConsts = {
+  import Picture from "./picture.svelte"
+  const socialConsts = {
           urls: {
             'twitter':'twitter.com',
             'facebook':'facebook.com',
@@ -22,12 +19,7 @@
         <div class="upper">
           {#if card.imageId}
             <div class="left">
-              <picture>
-                {#each imageExtensionsShort as ext, i}
-                  <source type="image/{ext}" sizes="100vw" srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, card.imageId)[i]}">
-                {/each}
-                <img sizes="100vw" srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, card.imageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" alt="画像">
-              </picture>
+              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId}/>
             </div>
           {/if}
           <div class="right {card.imageId ? '' : 'noImage'}">
@@ -38,12 +30,7 @@
               {/each}
             </div>
             <div class="logo">
-              <picture>
-                {#each imageExtensionsShort as ext, i}
-                  <source type="image/{ext}" sizes="100vw" srcset="{resolveSrcsets(globalSettings.imageDirectory, imageExtensionsShort, imageSizes, contents.logoImageId)[i]}">
-                {/each}
-                <img sizes="100vw" srcset="{resolveSrcsets(globalSettings.imageDirectory, imageExtensionsShort, imageSizes, contents.logoImageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" alt="画像">
-              </picture>
+              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId}/>
             </div>
           </div>
         </div>
@@ -125,8 +112,8 @@
     flex calc(100% / 3 - 2ch) 0 0
     margin-left 2ch
     width calc(100% / 3 - 2ch)
-    img
-      border-radius 20px 20px 40px 20px
+  :global(.card_left-img)
+    border-radius 20px 20px 40px 20px
   .right
     width 100%
     margin-left 2ch
@@ -152,7 +139,7 @@
       display: none
   .iconOnly img
     height 1.3em
-  img
+  :global(.card_img)
     width 100%
     object-fit cover
 </style>

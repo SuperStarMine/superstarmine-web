@@ -5,6 +5,9 @@
     imageId,
     sizes = "100vw",
     alt = `${imageId}の画像`,
+    imgClass,
+    click,
+    title,
     imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
     imageSizes = contents.imageSizes || globalSettings.imageSizes,
     imageDirectory = contents.imageDirectory || globalSettings.imageDirectory;
@@ -20,14 +23,14 @@
   }
 </script>
 
-<picture>
+<picture on:click={click} {title}>
   {#each imageExtensionsShort as ext, i}
     <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[i]}">
   {/each}
-  <img {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt}>
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt}>
 </picture>
 
 <style lang="stylus">
-  picture, img
-    width 100%
+  // picture, img
+  //   width 100%
 </style>

@@ -1,24 +1,16 @@
 <script>
   import Button from "./button.svelte";
-  export let contents, globalSettings;
-  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
-  const imageSizes = contents.imageSizes || globalSettings.imageSizes;
-  let imageSrcset = imageExtensionsShort.map(ext => {
-    return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${contents.imageId}@${size}w.${ext} ${size}w`);
-  });
-  let article = contents.article;
-  let buttonsLayout = contents.bottomButtonsLayout;
-  let buttons = contents.bottomButtons;
+  import Picture from "./picture.svelte";
+  export let
+    contents,
+    globalSettings,
+    article = contents.article,
+    buttonsLayout = contents.bottomButtonsLayout,
+    buttons = contents.bottomButtons;
 </script>
 
 <div class="container">
-  <picture>
-    {#each imageExtensionsShort as ext, i}
-      <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
-    {/each}
-    <img class="header_logo" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
-  </picture>
+  <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId}/>
   <section class="right-column">
     <section class="text">
       {#each article as article}
@@ -47,13 +39,12 @@
   align-items: center
   justify-content: space-between
 
-picture
+:global(.static-img)
   background-color #fff
   box-shadow: 0 0 10px #ccc
   flex: 0 0 35%
   margin-right: 5%
-  img
-    width: 100%
+  width: 100%
 
 .right-column
   flex: 0 0 60%

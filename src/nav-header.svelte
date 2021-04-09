@@ -1,12 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  import Picture from "./picture.svelte";
   export let contents, globalSettings;
-  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
-  const imageSizes = contents.imageSizes || globalSettings.imageSizes;
-  let imageSrcset = imageExtensionsShort.map(ext => {
-    return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${contents.imageId}@${size}w.${ext} ${size}w`);
-  });
 
   function easeInOutCubic(x) {
     return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
@@ -58,12 +53,7 @@
 </script>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
-  <picture on:click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります">
-    {#each imageExtensionsShort as ext, i}
-      <source type="image/{ext}" sizes="30vw" srcset="{imageSrcset[i]}">
-    {/each}
-    <img class="header_logo" sizes="30vw" srcset="{imageSrcset[safeImageExtensionIndex]}" alt="画像">
-  </picture>
+  <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" imgClass="header_logo" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId}/>
   <input type="checkbox" class="ui_button header_button_checkbox" checked name="header_button_checkbox" id="header_button_checkbox" bind:this={checkbox}>
   <label for="header_button_checkbox" class="header_button" title="クリックするとナビゲーションを開閉できます">
     <svg class="header_button_svg" viewbox="0 0 24 24">
@@ -144,7 +134,7 @@ header
   vendor(backdrop-filter, blur(10px))
   z-index 1000
 
-picture img
+:global(.header_logo)
   height calc(var(--base-size) + env(safe-area-inset-top) - (var(--base-size) / 3))
   background-color #fff0
 

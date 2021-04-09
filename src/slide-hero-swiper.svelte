@@ -2,17 +2,9 @@
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade, Autoplay } from 'swiper';
   import { sync } from './sync-store.js';
+  import Picture from "./picture.svelte";
   import { onMount } from 'svelte';
   export let contents, pairId, isParent, globalSettings;
-  let imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort;
-  let safeImageExtensionIndex = imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
-  let imageSizes = contents.imageSizes || globalSettings.imageSizes;
-  let imageSrcsets = [];
-  for(let i = 0; i < contents.articles.length; i++) {
-    imageSrcsets[i] = imageExtensionsShort.map(ext => {
-      return imageSizes.map(size => `${contents.imageDirectory || globalSettings.imageDirectory}${contents.articles[i].imageId}@${size}w.${ext} ${size}w`);
-    });
-  }
 
   let target;
   onMount(() => {
@@ -63,20 +55,15 @@
   controller={{ control: controlledSwiper }}
   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}
 >
-  {#each imageSrcsets as src}
+  {#each contents.articles as article}
     <SwiperSlide>
-      <picture>
-        {#each imageExtensionsShort as ext, i}
-          <source type="image/{ext}" sizes="{100 / slidesPerView}vw" srcset="{src[i]}">
-        {/each}
-        <img sizes="100vw" srcset="{src[safeImageExtensionIndex]}" alt="画像">
-      </picture>
+      <Picture imgClass="slide-img" sizes="{100 / slidesPerView}vw" {contents} {globalSettings} imageId={article.imageId}/>
     </SwiperSlide>
   {/each}
 </Swiper>
 
 <style lang="stylus" style="--slidesPerView: {slidesPerView}">
-  picture, img
+  :global(.slide-img)
     width 100%
     vertical-align top
   :global(.swiper-container)
