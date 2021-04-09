@@ -14837,12 +14837,12 @@ var app = (function () {
     			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"));
     			attr_dev(img, "class", "svelte-c55mqt");
-    			add_location(img, file$9, 46, 14, 1895);
+    			add_location(img, file$9, 46, 14, 1932);
     			attr_dev(span, "class", "id svelte-c55mqt");
-    			add_location(span, file$9, 47, 14, 1998);
+    			add_location(span, file$9, 47, 14, 2035);
     			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt");
     			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id);
-    			add_location(a, file$9, 44, 12, 1721);
+    			add_location(a, file$9, 44, 12, 1758);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -14925,6 +14925,7 @@ var app = (function () {
     				globalSettings: /*globalSettings*/ ctx[1],
     				imageDirectory: /*globalSettings*/ ctx[1].imageDirectory,
     				imageId: /*contents*/ ctx[0].logoImageId,
+    				imageSizes: /*contents*/ ctx[0].logoImageSizes,
     				sizes: "" + (3 * /*ch*/ ctx[3] + "px")
     			},
     			$$inline: true
@@ -14982,7 +14983,7 @@ var app = (function () {
     			attr_dev(div5, "class", "upper svelte-c55mqt");
     			add_location(div5, file$9, 23, 8, 585);
     			attr_dev(div6, "class", "lower svelte-c55mqt");
-    			add_location(div6, file$9, 42, 8, 1646);
+    			add_location(div6, file$9, 42, 8, 1683);
     			attr_dev(div7, "class", "card svelte-c55mqt");
     			add_location(div7, file$9, 22, 6, 558);
     			attr_dev(div8, "class", "card_wrapper svelte-c55mqt");
@@ -15075,6 +15076,7 @@ var app = (function () {
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
     			if (dirty & /*globalSettings*/ 2) picture_changes.imageDirectory = /*globalSettings*/ ctx[1].imageDirectory;
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*contents*/ ctx[0].logoImageId;
+    			if (dirty & /*contents*/ 1) picture_changes.imageSizes = /*contents*/ ctx[0].logoImageSizes;
     			if (dirty & /*ch*/ 8) picture_changes.sizes = "" + (3 * /*ch*/ ctx[3] + "px");
     			picture.$set(picture_changes);
 
@@ -16541,6 +16543,7 @@ var app = (function () {
             themeColor: '#f7931d',
             contents: {
               logoImageId: 'ssm-logo',
+              logoImageSizes: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250],
               imageDirectory: './img/members/',
               cards: [
                 {

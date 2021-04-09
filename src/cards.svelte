@@ -36,7 +36,7 @@
             </div>
             <div class="logo">
               <div bind:this={ch2px} style="opacity:0;width:1ch"></div>
-              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} sizes="{3 * ch}px"/>
+              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} imageSizes={contents.logoImageSizes} sizes="{3 * ch}px"/>
             </div>
           </div>
         </div>
