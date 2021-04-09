@@ -7,27 +7,29 @@
 
 <style lang="stylus">
   section
-    background-color: var(--backgroundColor)
-    width: 100%
-    margin: 0
-    border-bottom: solid 1px white
-    transition: background-color var(--transitionDuration) ease-in-out 0s
+    background-color var(--backgroundColor)
+    width 100%
+    margin 0
+    border-bottom solid 1px white
+    transition background-color var(--transitionDuration) ease-in-out 0s
     h2, h3
-      margin: 0
-      margin-right: 1ch
-      height: 100%
-      line-height: 100%
-      color: var(--textColor)
+      margin 0
+      height 100%
+      line-height 100%
+      color var(--textColor)
+    h3
+      margin-left 1ch
     .title-bar
-      background: linear-gradient(var(--themeColor) 75%, var(--backgroundColor))
-      display: flex
-      align-items: center
-      width: 100%
-      height: 100%
-      box-sizing: border-box
-      padding: 0 5vw 0
+      background linear-gradient(var(--themeColor) 75%, var(--backgroundColor))
+      display flex
+      flex-wrap wrap
+      align-items center
+      width 100%
+      height 100%
+      box-sizing border-box
+      padding 0 5vw 0
     .padding
-      padding: 3vw calc((100vw - var(--standardWidth)) / 2)
+      padding 3vw calc((100vw - var(--standardWidth)) / 2)
 </style>
 
 <section id={id} style="--themeColor: {themeColor}; --backgroundColor: {backgroundColor}; --textColor: {textColor}">
