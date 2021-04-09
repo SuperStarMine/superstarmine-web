@@ -101,7 +101,7 @@ const app = new App({
               buttons: [
                 {
                   title: '記事を読む',
-                  target: 'https://superstarmine.booth.pm/items/2618292'
+                  target: 'https://game.creators-guild.com/g4c/%e3%82%b2%e3%83%bc%e3%83%a0%e6%a5%ad%e7%95%8c%e4%ba%a4%e6%b5%81%e4%bc%9a%e3%81%ab%e6%bd%9c%e5%85%a5%ef%bc%81/'
                 }
               ],
               specs: {
