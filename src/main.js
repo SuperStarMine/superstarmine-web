@@ -33,7 +33,6 @@ const app = new App({
         sectionType: 'slideDesc',
         pairId: 'hero',
         isParent: true,
-        //Aspect ratio of slides must be 16:9
         contents: {
           articles: [
             {
@@ -233,7 +232,7 @@ const app = new App({
               title: '爆買いマーケット',
               subtitle: '爆買いアクションランゲーム',
               themeColor: '#c65017',
-              imageId: 'fall_in_parfait-ss1',
+              imageId: 'bakugai-img',
               alt: '',
               description: [
                 'フォーリンパフェに続く、Unity1Week二作目。',

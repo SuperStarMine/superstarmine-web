@@ -12193,7 +12193,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (59:4) <SwiperSlide>
+    // (62:6) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t;
@@ -12246,14 +12246,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(59:4) <SwiperSlide>",
+    		source: "(62:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (58:2) {#each contents.articles as article}
+    // (61:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12301,14 +12301,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(58:2) {#each contents.articles as article}",
+    		source: "(61:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (45:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   autoplay={{delay: 5000}}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >
+    // (47:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     autoplay={{delay: 5000}}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style="--slidesPerView: {slidesPerView}"   >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12397,7 +12397,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(45:0) <Swiper   centeredSlides={true}   spaceBetween={0}   slidesPerView={slidesPerView}   grabCursor={true}   speed={transitionDuration}   slideToClickedSlide={true}   loop={true}   loopAdditionalSlides={2}   autoplay={{delay: 5000}}   controller={{ control: controlledSwiper }}   on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))} >",
+    		source: "(47:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     autoplay={{delay: 5000}}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style=\\\"--slidesPerView: {slidesPerView}\\\"   >",
     		ctx
     	});
 
@@ -12407,21 +12407,23 @@ var app = (function () {
     function create_fragment$8(ctx) {
     	let link;
     	let t;
+    	let div;
     	let swiper;
     	let current;
 
     	swiper = new Swiper$1({
     			props: {
     				centeredSlides: true,
-    				spaceBetween: 0,
-    				slidesPerView,
+    				spaceBetween: 4,
+    				slidesPerView: "auto",
     				grabCursor: true,
     				speed: /*transitionDuration*/ ctx[3],
     				slideToClickedSlide: true,
     				loop: true,
-    				loopAdditionalSlides: 2,
+    				loopedSlides: /*contents*/ ctx[0].articles.length,
     				autoplay: { delay: 5000 },
     				controller: { control: /*controlledSwiper*/ ctx[2] },
+    				style: "--slidesPerView: " + slidesPerView,
     				$$slots: { default: [create_default_slot$2] },
     				$$scope: { ctx }
     			},
@@ -12434,11 +12436,14 @@ var app = (function () {
     		c: function create() {
     			link = element("link");
     			t = space();
+    			div = element("div");
     			create_component(swiper.$$.fragment);
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$6, 41, 2, 1236);
+    			add_location(link, file$6, 42, 2, 1236);
+    			attr_dev(div, "class", "slide-hero");
+    			add_location(div, file$6, 45, 0, 1322);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12446,11 +12451,13 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			append_dev(document_1.head, link);
     			insert_dev(target, t, anchor);
-    			mount_component(swiper, target, anchor);
+    			insert_dev(target, div, anchor);
+    			mount_component(swiper, div, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			const swiper_changes = {};
+    			if (dirty & /*contents*/ 1) swiper_changes.loopedSlides = /*contents*/ ctx[0].articles.length;
     			if (dirty & /*controlledSwiper*/ 4) swiper_changes.controller = { control: /*controlledSwiper*/ ctx[2] };
 
     			if (dirty & /*$$scope, contents, globalSettings*/ 4099) {
@@ -12471,7 +12478,8 @@ var app = (function () {
     		d: function destroy(detaching) {
     			detach_dev(link);
     			if (detaching) detach_dev(t);
-    			destroy_component(swiper, detaching);
+    			if (detaching) detach_dev(div);
+    			destroy_component(swiper);
     		}
     	};
 
@@ -13304,7 +13312,7 @@ var app = (function () {
     			t = space();
     			if (if_block1) if_block1.c();
     			attr_dev(div, "class", "specs");
-    			add_location(div, file$8, 72, 14, 2447);
+    			add_location(div, file$8, 72, 14, 2474);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13379,7 +13387,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "times svelte-1vgfees");
-    			add_location(div, file$8, 74, 18, 2527);
+    			add_location(div, file$8, 74, 18, 2554);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13461,7 +13469,7 @@ var app = (function () {
     			: ""));
 
     			attr_dev(time, "class", "svelte-1vgfees");
-    			add_location(time, file$8, 78, 22, 2721);
+    			add_location(time, file$8, 78, 22, 2748);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, time, anchor);
@@ -13524,7 +13532,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "platforms svelte-1vgfees");
-    			add_location(div, file$8, 85, 18, 3218);
+    			add_location(div, file$8, 85, 18, 3245);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13597,7 +13605,7 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = space();
     			attr_dev(div, "class", "svelte-1vgfees");
-    			add_location(div, file$8, 88, 22, 3360);
+    			add_location(div, file$8, 88, 22, 3387);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13737,7 +13745,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$8, 101, 18, 3795);
+    			add_location(p, file$8, 101, 18, 3822);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -13872,7 +13880,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$8, 112, 22, 4189);
+    			add_location(span, file$8, 112, 22, 4216);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -14063,14 +14071,14 @@ var app = (function () {
 
     			t3 = space();
     			attr_dev(div0, "class", "left");
-    			add_location(div0, file$8, 52, 10, 1754);
-    			add_location(article, file$8, 98, 12, 3663);
+    			add_location(div0, file$8, 52, 10, 1781);
+    			add_location(article, file$8, 98, 12, 3690);
     			attr_dev(div1, "class", "buttons svelte-1vgfees");
-    			add_location(div1, file$8, 107, 12, 3945);
+    			add_location(div1, file$8, 107, 12, 3972);
     			attr_dev(div2, "class", "right");
-    			add_location(div2, file$8, 97, 10, 3631);
+    			add_location(div2, file$8, 97, 10, 3658);
     			attr_dev(div3, "class", "wrapper");
-    			add_location(div3, file$8, 51, 8, 1722);
+    			add_location(div3, file$8, 51, 8, 1749);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -14265,7 +14273,7 @@ var app = (function () {
     	return block;
     }
 
-    // (35:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
+    // (35:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
     function create_default_slot_1$1(ctx) {
     	let each_1_anchor;
     	let current;
@@ -14354,7 +14362,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(35:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={3}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
+    		source: "(35:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
     		ctx
     	});
 
@@ -14376,7 +14384,7 @@ var app = (function () {
     				slidesPerView: 1,
     				speed: /*transitionDuration*/ ctx[4],
     				loop: true,
-    				loopAdditionalSlides: 3,
+    				loopAdditionalSlides: /*contents*/ ctx[1].articles.length - 1,
     				effect: "fade",
     				fadeEffect: { crossFade: true },
     				controller: {
@@ -14402,6 +14410,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const swiper_changes = {};
+    			if (dirty & /*contents*/ 2) swiper_changes.loopAdditionalSlides = /*contents*/ ctx[1].articles.length - 1;
 
     			if (dirty & /*controlledSwiper*/ 8) swiper_changes.controller = {
     				control: /*controlledSwiper*/ ctx[3]
@@ -14482,7 +14491,7 @@ var app = (function () {
     			if (dirty & /*contents, realIndex*/ 6) cframe_changes.subtitle = /*contents*/ ctx[1].articles[/*realIndex*/ ctx[2]].subtitle;
     			if (dirty & /*contents, realIndex*/ 6) cframe_changes.themeColor = /*contents*/ ctx[1].articles[/*realIndex*/ ctx[2]].themeColor;
 
-    			if (dirty & /*$$scope, controlledSwiper, contents, globalSettings*/ 1073741835) {
+    			if (dirty & /*$$scope, contents, controlledSwiper, globalSettings*/ 1073741835) {
     				cframe_changes.$$scope = { dirty, ctx };
     			}
 
@@ -16171,7 +16180,6 @@ var app = (function () {
             sectionType: 'slideDesc',
             pairId: 'hero',
             isParent: true,
-            //Aspect ratio of slides must be 16:9
             contents: {
               articles: [
                 {
@@ -16371,7 +16379,7 @@ var app = (function () {
                   title: '爆買いマーケット',
                   subtitle: '爆買いアクションランゲーム',
                   themeColor: '#c65017',
-                  imageId: 'fall_in_parfait-ss1',
+                  imageId: 'bakugai-img',
                   alt: '',
                   description: [
                     'フォーリンパフェに続く、Unity1Week二作目。',

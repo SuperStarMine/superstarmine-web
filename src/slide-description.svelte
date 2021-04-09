@@ -41,7 +41,7 @@
     slidesPerView={1}
     speed={transitionDuration}
     loop={true}
-    loopAdditionalSlides={3}
+    loopAdditionalSlides={contents.articles.length - 1}
     effect='fade'
     fadeEffect={{crossFade: true}}
     on:swiper={setControlledSwiper}
