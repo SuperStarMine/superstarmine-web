@@ -16190,8 +16190,8 @@ var app = (function () {
                   buttons: [
                     {
                       title: [
-                        '体験版を',
-                        'ダウンロード'
+                        'Boothで',
+                        '体験版を見る'
                       ],
                       target: 'https://superstarmine.booth.pm/items/2618292'
                     }
