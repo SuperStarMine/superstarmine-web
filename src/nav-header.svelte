@@ -44,7 +44,6 @@
 
   onMount(() => setTimeout(() => document.getElementById('header_button_checkbox').checked = false, 2000));
 
-  let isLandscape = matchMedia('screen and (orientation: landscape)').matches;
   if(screen.orientation){
     screen.orientation.addEventListener('change', () => isLandscape = matchMedia('screen and (orientation: landscape)').matches);
   }else{
@@ -63,14 +62,13 @@
   </label>
   <nav class="header_navigation">
     <label for="header_button_checkbox" class="header_navigation_close_button">
-      {#if isLandscape}
-        <span class="break-scope">ナビゲーション</span>を<span class="break-scope">閉じる</span>
-      {:else}
+        <span class="header_navigation_close_button_text">
+          <span class="break-scope">ナビゲーション</span>を<span class="break-scope">閉じる</span>
+        </span>
         <svg class="header_navigation_close_button_svg" viewbox="0 0 24 24">
           <path d="M0 0h24v24H0z" fill="none"/>
           <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
         </svg>
-      {/if}
     </label>
     {#each contents.items as item}
       <div class="header_navigation_list_items" on:click={() => triggerSmoothScroll(item.id)}>{item.label}</div>
@@ -284,11 +282,19 @@ header
     padding-left 1.5ch
     border-bottom solid 1px
 
+.header_navigation_close_button_text
+  display flex
+  align-items center
+  @media screen and (orientation: portrait)
+    display none
+
 .header_navigation_close_button_svg
   height 60%
   z-index 8000
   fill white
   transition fill 150ms ease-in-out 0s
+  @media screen and (orientation: landscape)
+    display none
 
 #header_button_checkbox:checked ~ .header_navigation
   animation-name expand_navigation
