@@ -16392,8 +16392,8 @@ var app = (function () {
                   name: 'Amu',
                   imageId: 'amu',
                   post: [
-                    'UI/ロゴデザイン',
-                    'エフェクト'
+                    'UI/ロゴデザイナー',
+                    'エフェクトクリエーター'
                   ],
                   accounts: [
                     {
@@ -16429,7 +16429,7 @@ var app = (function () {
                   imageId: '',
                   post: [
                     'プログラマー',
-                    'レベルデザイナ'
+                    'レベルデザイナー'
                   ],
                   accounts: [
                     {
@@ -16459,7 +16459,7 @@ var app = (function () {
                   name: 'えちょ',
                   imageId: 'echo',
                   post: [
-                    'レベルデザイン'
+                    'レベルデザイナー'
                   ],
                   accounts: [
                     {
@@ -16485,7 +16485,7 @@ var app = (function () {
                   name: 'かずえもん',
                   imageId: 'kazuemon',
                   post: [
-                    'Webデザイン'
+                    'Webデザイナー'
                   ],
                   accounts: [
                     {

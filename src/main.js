@@ -411,8 +411,8 @@ const app = new App({
               name: 'Amu',
               imageId: 'amu',
               post: [
-                'UI/ロゴデザイン',
-                'エフェクト'
+                'UI/ロゴデザイナー',
+                'エフェクトクリエーター'
               ],
               accounts: [
                 {
@@ -448,7 +448,7 @@ const app = new App({
               imageId: '',
               post: [
                 'プログラマー',
-                'レベルデザイナ'
+                'レベルデザイナー'
               ],
               accounts: [
                 {
@@ -478,7 +478,7 @@ const app = new App({
               name: 'えちょ',
               imageId: 'echo',
               post: [
-                'レベルデザイン'
+                'レベルデザイナー'
               ],
               accounts: [
                 {
@@ -504,7 +504,7 @@ const app = new App({
               name: 'かずえもん',
               imageId: 'kazuemon',
               post: [
-                'Webデザイン'
+                'Webデザイナー'
               ],
               accounts: [
                 {
