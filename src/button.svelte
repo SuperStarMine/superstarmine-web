@@ -1,5 +1,5 @@
 <script>
-  export let target, disabled = false, marginLeft, marginRight;
+  export let target, disabled = false, marginLeft, marginRight, width = "45%", bg;
   let isAnchor = RegExp("^https?:\/\/").test(target);
   let style = "";
   if(!isAnchor){
@@ -16,14 +16,16 @@
     style = "margin-left: 0;"
   }
   if(disabled){
-    style = style + "--themeColor: #aaa";
+    style = style + "--themeColor: #aaa;";
+  }else if(bg){
+    style = style + `--themeColor: ${bg};`;
   }
+  style = style + `width:${width};`
 </script>
 
 <style lang="stylus">
 a, button
   margin: 0 10% 0
-  width: 45%
   box-sizing: border-box
   border: none
   border-radius: 0.5ch

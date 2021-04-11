@@ -5,8 +5,10 @@
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
+  import Color from 'color';
   export let pairId, isParent, globalSettings, contents;
   const transitionDuration = globalSettings.transitionDuration;
+  $: backgroundColor = Color(contents.articles[realIndex].themeColor).lightness(95).desaturate(0.3);
 
   let realIndex = 0;
   addEventListener('slide', e => {realIndex = e.detail.realIndex});
@@ -25,6 +27,16 @@
         dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}))
       }, 100);
   }
+
+  //Adobe font loading
+  (function(d) {
+    var config = {
+      kitId: 'egn6fhp',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
 </script>
 
 <svelte:head>
@@ -32,7 +44,8 @@
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
-<Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
+<!-- <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}> -->
+<div class="wrapper" style="--backgroundColor: {backgroundColor};--themeColor: {contents.articles[realIndex].themeColor}">
   <Swiper
     allowSlideNext={false}
     allowSlidePrev={false}
@@ -50,9 +63,31 @@
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <div class="wrapper">
-          <div class="left">
-            {#if article.slides}
+        <div class="title-container">
+          <div class="headline">
+            <div class="subtitle">{contents.articles[realIndex].subtitle}</div>
+            <div class="title">{contents.articles[realIndex].title}</div>
+          </div>
+          <div class="buttons">
+            {#each article.buttons as button}
+              {#if button.popup}
+                <div class="popup">{button.popup}</div>
+              {/if}
+              <Button target={button.target} bg="#3183fd" width="auto">
+                {#if Array.isArray(button.title)}
+                  {#each button.title as title}
+                    <span class="break-scope">{title}</span>
+                  {/each}
+                {:else}
+                  {button.title}
+                {/if}
+              </Button>
+            {/each}
+          </div>
+        </div>
+        <div class="description-container">
+          {#if article.slides}
+            <div class="slide">
               <Swiper
                 centeredSlides={true}
                 autoHeight={true}
@@ -69,12 +104,23 @@
                   </SwiperSlide>
                 {/each}
               </Swiper>
+            </div>
+          {/if}
+          <div class="description">
+            <article>
+              {#if Array.isArray(article.description)}
+                {#each article.description as p, i}
+                  <p class={i == 0 ? 'first-line' : ''}>{p}</p>
+                {/each}
+              {:else}
+                {article.description}
               {/if}
+            </article>
             {#if article.specs}
               <div class="specs">
                 {#if article.specs.times}
                   <div class="times">
-                    制作時期：
+                    <span class="tag">制作時期</span>
                     {#each article.specs.times as time}
                       <!-- svelte-ignore component-name-lowercase -->
                       <time datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
@@ -85,55 +131,120 @@
                 {/if}
                 {#if article.specs.platforms}
                   <div class="platforms">
-                    対応プラットフォーム：
+                    <span class="tag">対応プラットフォーム</span>
                     {#each article.specs.platforms as platform}
-                      <div>
+                      <span>
                         {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}
-                      </div>
+                      </span>
                     {/each}
                   </div>
                 {/if}
               </div>
             {/if}
           </div>
-          <div class="right">
-            <article>
-              {#if Array.isArray(article.description)}
-                {#each article.description as p}
-                  <p>{p}</p>
-                {/each}
-              {:else}
-                {article.description}
-              {/if}
-            </article>
-            <div class="buttons">
-              {#each article.buttons as button}
-                <Button target="{button.target}">
-                  {#if Array.isArray(button.title)}
-                    {#each button.title as title}
-                      <span class="break-scope">{title}</span>
-                    {/each}
-                  {:else}
-                    {button.title}
-                  {/if}
-                </Button>
-              {/each}
-            </div>
-          </div>
         </div>
       </SwiperSlide>
     {/each}
   </Swiper>
-</Cframe>
+</div>
 
 <style lang="stylus">
-  .buttons
+  .wrapper
+    padding 0 0 5vw
+    box-sizing: border-box
+    background-color var(--backgroundColor)
+    border-top solid .25em var(--themeColor)
+  .title-container
     display flex
-    justify-content center
+    justify-content space-between
     align-items center
-  .times time
-    display block
-    margin-left 2ch
-  .platforms div
-    margin-left 2ch
+    background-color white
+    border-radius 2vw
+    margin 5vw 5vw 0
+    filter drop-shadow(2px 2px 3px #ccc)
+    padding 2vw
+    font-family vdl-v7marugothic, sans-serif
+    font-style normal
+    font-weight 700
+    .title
+      font-size 2em
+      line-height 1em
+    .subtitle
+      font-size 1.5em
+      line-height 1em
+      position relative
+      &:before
+        content ''
+        display block
+        position absolute
+        bottom 0
+        left 0
+        width 100%
+        height calc(100% / 3)
+        background-color var(--themeColor)
+        opacity 0.5
+        mix-blend-mode multiply
+    .buttons
+      display flex
+      flex-direction column
+      justify-content center
+      align-items center
+      .popup
+        font-size 0.75em
+        font-weight 300
+        position relative
+        color #3183fd
+        &:before, &:after
+          content ''
+          display block
+          width 1px
+          height 50%
+          position absolute
+          top 0
+          bottom 0
+          margin auto
+          background-color #3183fd
+          border-radius 0.5px
+        &:before
+          left -1ch
+          transform rotate(-30deg)
+        &:after
+          right -1ch
+          transform rotate(30deg)
+  .description-container
+    display flex
+    justify-content space-between
+    align-items flex-start
+    margin 2vw 7vw
+    .slide
+      box-sizing border-box
+      flex 0 0 calc(50% - (2vw / 2))
+      margin-right 2vw
+    .specs
+      font-family vdl-v7marugothic, sans-serif
+      font-style normal
+      font-size calc(1em * 14 / 16)
+      font-weight 500
+      &>*
+        margin 0.75em 0
+      .tag
+        box-sizing border-box
+        border solid 1px #d0d0d0
+        border-radius .7vw
+        padding .25em 1.5ch
+        line-height 1em
+        background-color white
+        display inline-block
+        font-weight 700
+    .description
+      flex-basis 100%
+      p
+        margin 0
+        line-height 1.5em
+        &.first-line
+          line-height 3em
+          font-size calc(1em * (18 / 14))
+          font-family vdl-v7marugothic, sans-serif
+          font-style normal
+          font-weight 700
 </style>

@@ -50,10 +50,8 @@ const app = new App({
               ],
               buttons: [
                 {
-                  title: [
-                    'Boothで',
-                    '体験版を見る'
-                  ],
+                  popup: 'Boothにて販売中',
+                  title: '体験版を見てみる',
                   target: 'https://superstarmine.booth.pm/items/2618292'
                 }
               ],
