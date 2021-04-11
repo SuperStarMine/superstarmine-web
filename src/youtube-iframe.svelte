@@ -22,7 +22,7 @@
       padding-top calc(var(--standardWidth) / 16 * 9)
   iframe, :global(.youtube-thumbnail)
     width 100%
-    height 100%
+    height calc(var(--standardWidth) / 16 * 9)
     position absolute
     top 0
     left 0
