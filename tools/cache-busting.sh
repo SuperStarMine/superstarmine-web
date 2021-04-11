@@ -2,7 +2,10 @@
 #This script works on BSD systems.
 
 d=$(pwd)
+cd $(cd $(dirname $BASH_SOURCE); pwd)
 cd $(git rev-parse --show-toplevel)
+
+pwd
 
 for i in $(cat src/cache-busting_targets.txt)
 do
