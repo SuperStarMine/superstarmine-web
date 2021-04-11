@@ -500,6 +500,30 @@ const app = new App({
                 }
               ]
             },
+            {
+              name: 'かずえもん',
+              imageId: 'kazuemon',
+              post: [
+                'Webデザイン'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'kazuemon_0602',
+                  customUrl: '//k6n.jp/tw'
+                },
+                {
+                  name: 'youtube',
+                  id: 'kazuemon',
+                  customUrl: '//k6n.jp/yt'
+                },
+                {
+                  name: 'github',
+                  id: 'kazuemon',
+                  customUrl: '//k6n.jp/gh'
+                },
+              ]
+            }
           ]
         }
       }

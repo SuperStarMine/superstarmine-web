@@ -8,7 +8,8 @@
             'facebook':'facebook.com',
             'note':'note.com',
             'github':'github.com',
-            'qiita':'qiita.com'
+            'qiita':'qiita.com',
+            'youtube':'youtube.com'
           }
         }
 
@@ -44,7 +45,7 @@
           {#each card.accounts as account}
             <a class="social-button {account.name} {card.accounts.length > 2 ? 'iconOnly' : ''}"
             href="https://{socialConsts.urls[account.name]}/{account.id}">
-              <img src="{globalSettings.imageDirectory}/{account.name}.svg" alt="{account.name}のアイコン">
+              <img src="{globalSettings.imageDirectory}/{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン">
               <span class="id">
                 {account.id}
               </span>
@@ -148,4 +149,16 @@
   :global(.card_img)
     width 100%
     object-fit cover
+  .twitter
+    background-color #1da1f3
+  .facebook
+    background-color #1877f2
+  .note
+    background-color #41c8b5
+  .github
+    background-color #171516
+  .qiita
+    background-color #55C500
+  .youtube
+    background-color #f00
 </style>

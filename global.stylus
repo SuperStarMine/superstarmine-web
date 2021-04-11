@@ -36,18 +36,3 @@ a
 .mobile-hide
   @media screen and (max-width 600px)
     display none
-
-.twitter
-  background-color #1da1f3
-
-.facebook
-  background-color #1877f2
-
-.note
-  background-color #41c8b5
-
-.github
-  background-color #171516
-
-.qiita
-  background-color #55C500

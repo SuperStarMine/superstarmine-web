@@ -14713,7 +14713,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (25:10) {#if card.imageId}
+    // (26:10) {#if card.imageId}
     function create_if_block$8(ctx) {
     	let div;
     	let picture;
@@ -14734,8 +14734,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(picture.$$.fragment);
-    			attr_dev(div, "class", "left svelte-c55mqt");
-    			add_location(div, file$9, 25, 12, 646);
+    			attr_dev(div, "class", "left svelte-1shg7tx");
+    			add_location(div, file$9, 26, 12, 683);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14769,14 +14769,14 @@ var app = (function () {
     		block,
     		id: create_if_block$8.name,
     		type: "if",
-    		source: "(25:10) {#if card.imageId}",
+    		source: "(26:10) {#if card.imageId}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (33:14) {#each card.post as post}
+    // (34:14) {#each card.post as post}
     function create_each_block_2$2(ctx) {
     	let span;
     	let t_value = /*post*/ ctx[12] + "";
@@ -14786,8 +14786,8 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-c55mqt");
-    			add_location(span, file$9, 33, 16, 1253);
+    			attr_dev(span, "class", "svelte-1shg7tx");
+    			add_location(span, file$9, 34, 16, 1290);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -14805,14 +14805,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2$2.name,
     		type: "each",
-    		source: "(33:14) {#each card.post as post}",
+    		source: "(34:14) {#each card.post as post}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (44:10) {#each card.accounts as account}
+    // (45:10) {#each card.accounts as account}
     function create_each_block_1$3(ctx) {
     	let a;
     	let img;
@@ -14834,15 +14834,19 @@ var app = (function () {
     			span = element("span");
     			t1 = text(t1_value);
     			t2 = space();
-    			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) attr_dev(img, "src", img_src_value);
+
+    			if (img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + (/*account*/ ctx[9].name == "youtube"
+    			? "youtube-white"
+    			: /*account*/ ctx[9].name) + ".svg"))) attr_dev(img, "src", img_src_value);
+
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"));
-    			attr_dev(img, "class", "svelte-c55mqt");
-    			add_location(img, file$9, 46, 14, 1932);
-    			attr_dev(span, "class", "id svelte-c55mqt");
-    			add_location(span, file$9, 47, 14, 2035);
-    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt");
+    			attr_dev(img, "class", "svelte-1shg7tx");
+    			add_location(img, file$9, 47, 14, 1969);
+    			attr_dev(span, "class", "id svelte-1shg7tx");
+    			add_location(span, file$9, 48, 14, 2118);
+    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1shg7tx");
     			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id);
-    			add_location(a, file$9, 44, 12, 1758);
+    			add_location(a, file$9, 45, 12, 1795);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -14853,7 +14857,9 @@ var app = (function () {
     			append_dev(a, t2);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*globalSettings, contents*/ 3 && img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + /*account*/ ctx[9].name + ".svg"))) {
+    			if (dirty & /*globalSettings, contents*/ 3 && img.src !== (img_src_value = "" + (/*globalSettings*/ ctx[1].imageDirectory + "/" + (/*account*/ ctx[9].name == "youtube"
+    			? "youtube-white"
+    			: /*account*/ ctx[9].name) + ".svg"))) {
     				attr_dev(img, "src", img_src_value);
     			}
 
@@ -14863,7 +14869,7 @@ var app = (function () {
 
     			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[9].id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-c55mqt")) {
+    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1shg7tx")) {
     				attr_dev(a, "class", a_class_value);
     			}
 
@@ -14880,14 +14886,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(44:10) {#each card.accounts as account}",
+    		source: "(45:10) {#each card.accounts as account}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (21:2) {#each contents.cards as card}
+    // (22:2) {#each contents.cards as card}
     function create_each_block$6(ctx) {
     	let div8;
     	let div7;
@@ -14969,25 +14975,25 @@ var app = (function () {
     			}
 
     			t6 = space();
-    			attr_dev(div0, "class", "name svelte-c55mqt");
-    			add_location(div0, file$9, 30, 12, 1130);
-    			attr_dev(div1, "class", "post svelte-c55mqt");
-    			add_location(div1, file$9, 31, 12, 1178);
+    			attr_dev(div0, "class", "name svelte-1shg7tx");
+    			add_location(div0, file$9, 31, 12, 1167);
+    			attr_dev(div1, "class", "post svelte-1shg7tx");
+    			add_location(div1, file$9, 32, 12, 1215);
     			set_style(div2, "opacity", "0");
     			set_style(div2, "width", "1ch");
-    			add_location(div2, file$9, 37, 14, 1359);
-    			attr_dev(div3, "class", "logo svelte-c55mqt");
-    			add_location(div3, file$9, 36, 12, 1326);
-    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-c55mqt");
-    			add_location(div4, file$9, 29, 10, 1066);
-    			attr_dev(div5, "class", "upper svelte-c55mqt");
-    			add_location(div5, file$9, 23, 8, 585);
-    			attr_dev(div6, "class", "lower svelte-c55mqt");
-    			add_location(div6, file$9, 42, 8, 1683);
-    			attr_dev(div7, "class", "card svelte-c55mqt");
-    			add_location(div7, file$9, 22, 6, 558);
-    			attr_dev(div8, "class", "card_wrapper svelte-c55mqt");
-    			add_location(div8, file$9, 21, 4, 525);
+    			add_location(div2, file$9, 38, 14, 1396);
+    			attr_dev(div3, "class", "logo svelte-1shg7tx");
+    			add_location(div3, file$9, 37, 12, 1363);
+    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1shg7tx");
+    			add_location(div4, file$9, 30, 10, 1103);
+    			attr_dev(div5, "class", "upper svelte-1shg7tx");
+    			add_location(div5, file$9, 24, 8, 622);
+    			attr_dev(div6, "class", "lower svelte-1shg7tx");
+    			add_location(div6, file$9, 43, 8, 1720);
+    			attr_dev(div7, "class", "card svelte-1shg7tx");
+    			add_location(div7, file$9, 23, 6, 595);
+    			attr_dev(div8, "class", "card_wrapper svelte-1shg7tx");
+    			add_location(div8, file$9, 22, 4, 562);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div8, anchor);
@@ -15080,7 +15086,7 @@ var app = (function () {
     			if (dirty & /*ch*/ 8) picture_changes.sizes = "" + (3 * /*ch*/ ctx[3] + "px");
     			picture.$set(picture_changes);
 
-    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-c55mqt")) {
+    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1shg7tx")) {
     				attr_dev(div4, "class", div4_class_value);
     			}
 
@@ -15133,7 +15139,7 @@ var app = (function () {
     		block,
     		id: create_each_block$6.name,
     		type: "each",
-    		source: "(21:2) {#each contents.cards as card}",
+    		source: "(22:2) {#each contents.cards as card}",
     		ctx
     	});
 
@@ -15163,8 +15169,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "card_container svelte-c55mqt");
-    			add_location(div, file$9, 19, 0, 459);
+    			attr_dev(div, "class", "card_container svelte-1shg7tx");
+    			add_location(div, file$9, 20, 0, 496);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15253,7 +15259,8 @@ var app = (function () {
     			"facebook": "facebook.com",
     			"note": "note.com",
     			"github": "github.com",
-    			"qiita": "qiita.com"
+    			"qiita": "qiita.com",
+    			"youtube": "youtube.com"
     		}
     	};
 
@@ -16679,6 +16686,30 @@ var app = (function () {
                     }
                   ]
                 },
+                {
+                  name: 'かずえもん',
+                  imageId: 'kazuemon',
+                  post: [
+                    'Webデザイン'
+                  ],
+                  accounts: [
+                    {
+                      name: 'twitter',
+                      id: 'kazuemon_0602',
+                      customUrl: '//k6n.jp/tw'
+                    },
+                    {
+                      name: 'youtube',
+                      id: 'kazuemon',
+                      customUrl: '//k6n.jp/yt'
+                    },
+                    {
+                      name: 'github',
+                      id: 'kazuemon',
+                      customUrl: '//k6n.jp/gh'
+                    },
+                  ]
+                }
               ]
             }
           }
