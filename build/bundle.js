@@ -14524,7 +14524,7 @@ var app = (function () {
     			div = element("div");
     			create_component(picture.$$.fragment);
     			attr_dev(div, "class", "left svelte-1shg7tx");
-    			add_location(div, file$9, 26, 12, 683);
+    			add_location(div, file$9, 26, 12, 689);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14576,7 +14576,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "svelte-1shg7tx");
-    			add_location(span, file$9, 34, 16, 1290);
+    			add_location(span, file$9, 34, 16, 1296);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -14630,12 +14630,16 @@ var app = (function () {
 
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[9].name + "のアイコン"));
     			attr_dev(img, "class", "svelte-1shg7tx");
-    			add_location(img, file$9, 47, 14, 1969);
+    			add_location(img, file$9, 47, 14, 2021);
     			attr_dev(span, "class", "id svelte-1shg7tx");
-    			add_location(span, file$9, 48, 14, 2118);
+    			add_location(span, file$9, 48, 14, 2170);
     			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[9].name + " " + (/*card*/ ctx[6].accounts.length > 2 ? "iconOnly" : "") + " svelte-1shg7tx");
-    			attr_dev(a, "href", a_href_value = "https://" + /*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id);
-    			add_location(a, file$9, 45, 12, 1795);
+
+    			attr_dev(a, "href", a_href_value = /*account*/ ctx[9].customUrl
+    			? /*account*/ ctx[9].customUrl
+    			: `https://${/*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name]}/${/*account*/ ctx[9].id}`);
+
+    			add_location(a, file$9, 45, 12, 1801);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -14662,7 +14666,9 @@ var app = (function () {
     				attr_dev(a, "class", a_class_value);
     			}
 
-    			if (dirty & /*contents*/ 1 && a_href_value !== (a_href_value = "https://" + /*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name] + "/" + /*account*/ ctx[9].id)) {
+    			if (dirty & /*contents*/ 1 && a_href_value !== (a_href_value = /*account*/ ctx[9].customUrl
+    			? /*account*/ ctx[9].customUrl
+    			: `https://${/*socialConsts*/ ctx[4].urls[/*account*/ ctx[9].name]}/${/*account*/ ctx[9].id}`)) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
@@ -14765,24 +14771,24 @@ var app = (function () {
 
     			t6 = space();
     			attr_dev(div0, "class", "name svelte-1shg7tx");
-    			add_location(div0, file$9, 31, 12, 1167);
+    			add_location(div0, file$9, 31, 12, 1173);
     			attr_dev(div1, "class", "post svelte-1shg7tx");
-    			add_location(div1, file$9, 32, 12, 1215);
+    			add_location(div1, file$9, 32, 12, 1221);
     			set_style(div2, "opacity", "0");
     			set_style(div2, "width", "1ch");
-    			add_location(div2, file$9, 38, 14, 1396);
+    			add_location(div2, file$9, 38, 14, 1402);
     			attr_dev(div3, "class", "logo svelte-1shg7tx");
-    			add_location(div3, file$9, 37, 12, 1363);
+    			add_location(div3, file$9, 37, 12, 1369);
     			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[6].imageId ? "" : "noImage") + " svelte-1shg7tx");
-    			add_location(div4, file$9, 30, 10, 1103);
+    			add_location(div4, file$9, 30, 10, 1109);
     			attr_dev(div5, "class", "upper svelte-1shg7tx");
-    			add_location(div5, file$9, 24, 8, 622);
+    			add_location(div5, file$9, 24, 8, 628);
     			attr_dev(div6, "class", "lower svelte-1shg7tx");
-    			add_location(div6, file$9, 43, 8, 1720);
+    			add_location(div6, file$9, 43, 8, 1726);
     			attr_dev(div7, "class", "card svelte-1shg7tx");
-    			add_location(div7, file$9, 23, 6, 595);
+    			add_location(div7, file$9, 23, 6, 601);
     			attr_dev(div8, "class", "card_wrapper svelte-1shg7tx");
-    			add_location(div8, file$9, 22, 4, 562);
+    			add_location(div8, file$9, 22, 4, 568);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div8, anchor);
@@ -14959,7 +14965,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "card_container svelte-1shg7tx");
-    			add_location(div, file$9, 20, 0, 496);
+    			add_location(div, file$9, 20, 0, 502);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15049,7 +15055,7 @@ var app = (function () {
     			"note": "note.com",
     			"github": "github.com",
     			"qiita": "qiita.com",
-    			"youtube": "youtube.com"
+    			"youtube": "www.youtube.com/c"
     		}
     	};
 

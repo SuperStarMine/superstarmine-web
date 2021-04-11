@@ -9,7 +9,7 @@
             'note':'note.com',
             'github':'github.com',
             'qiita':'qiita.com',
-            'youtube':'youtube.com'
+            'youtube':'www.youtube.com/c'
           }
         }
 
@@ -44,7 +44,7 @@
         <div class="lower">
           {#each card.accounts as account}
             <a class="social-button {account.name} {card.accounts.length > 2 ? 'iconOnly' : ''}"
-            href="https://{socialConsts.urls[account.name]}/{account.id}">
+            href="{account.customUrl ? account.customUrl : `https://${socialConsts.urls[account.name]}/${account.id}`}">
               <img src="{globalSettings.imageDirectory}/{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン">
               <span class="id">
                 {account.id}
