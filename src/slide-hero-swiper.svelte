@@ -1,36 +1,15 @@
 <script>
   import { Swiper, SwiperSlide } from 'swiper/svelte';
-  import SwiperCore, { Controller, EffectFade, Autoplay } from 'swiper';
+  import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   import Picture from "./picture.svelte";
   import { onMount } from 'svelte';
   export let contents, pairId, isParent, globalSettings;
 
-  let target;
-  onMount(() => {
-    target = document.querySelector('.swiper-container');
-    addEventListener('DOMContentLoaded', () => {
-      console.log(target.getBoundingClientRect().y);
-      if(target.getBoundingClientRect().y < 0) target.swiper.autoplay.stop();
-    });
-    new IntersectionObserver((entries, object) => entries.forEach((entry, i) => {
-      if(!entry.isIntersecting){
-        if(scrollY < 100){
-          target.swiper.autoplay.start();
-        }else{
-          target.swiper.autoplay.stop();
-        }
-      }
-    }),
-    {
-      rootMargin: '0px 0px -100%'
-    }).observe(target);
-  });
-
   const transitionDuration = globalSettings.transitionDuration;
   const slidesPerView = 1.25
 
-  SwiperCore.use([Controller, EffectFade, Autoplay]);
+  SwiperCore.use([Controller, EffectFade]);
 
   let controlledSwiper = null;
   addEventListener('controllee_load', () => {
@@ -53,7 +32,6 @@
     slideToClickedSlide={true}
     loop={true}
     loopedSlides={contents.articles.length}
-    autoplay={{delay: 5000}}
     controller={{ control: controlledSwiper }}
     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}
     style="--slidesPerView: {slidesPerView}"

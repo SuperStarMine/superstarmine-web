@@ -321,12 +321,6 @@ var app = (function () {
         }
     }
 
-    const globals = (typeof window !== 'undefined'
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : global);
-
     function get_spread_update(levels, updates) {
         const update = {};
         const to_null_out = {};
@@ -10775,183 +10769,6 @@ var app = (function () {
     };
 
     function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
-    var Autoplay = {
-      run: function run() {
-        var swiper = this;
-        var $activeSlideEl = swiper.slides.eq(swiper.activeIndex);
-        var delay = swiper.params.autoplay.delay;
-
-        if ($activeSlideEl.attr('data-swiper-autoplay')) {
-          delay = $activeSlideEl.attr('data-swiper-autoplay') || swiper.params.autoplay.delay;
-        }
-
-        clearTimeout(swiper.autoplay.timeout);
-        swiper.autoplay.timeout = nextTick(function () {
-          var autoplayResult;
-
-          if (swiper.params.autoplay.reverseDirection) {
-            if (swiper.params.loop) {
-              swiper.loopFix();
-              autoplayResult = swiper.slidePrev(swiper.params.speed, true, true);
-              swiper.emit('autoplay');
-            } else if (!swiper.isBeginning) {
-              autoplayResult = swiper.slidePrev(swiper.params.speed, true, true);
-              swiper.emit('autoplay');
-            } else if (!swiper.params.autoplay.stopOnLastSlide) {
-              autoplayResult = swiper.slideTo(swiper.slides.length - 1, swiper.params.speed, true, true);
-              swiper.emit('autoplay');
-            } else {
-              swiper.autoplay.stop();
-            }
-          } else if (swiper.params.loop) {
-            swiper.loopFix();
-            autoplayResult = swiper.slideNext(swiper.params.speed, true, true);
-            swiper.emit('autoplay');
-          } else if (!swiper.isEnd) {
-            autoplayResult = swiper.slideNext(swiper.params.speed, true, true);
-            swiper.emit('autoplay');
-          } else if (!swiper.params.autoplay.stopOnLastSlide) {
-            autoplayResult = swiper.slideTo(0, swiper.params.speed, true, true);
-            swiper.emit('autoplay');
-          } else {
-            swiper.autoplay.stop();
-          }
-
-          if (swiper.params.cssMode && swiper.autoplay.running) swiper.autoplay.run();else if (autoplayResult === false) {
-            swiper.autoplay.run();
-          }
-        }, delay);
-      },
-      start: function start() {
-        var swiper = this;
-        if (typeof swiper.autoplay.timeout !== 'undefined') return false;
-        if (swiper.autoplay.running) return false;
-        swiper.autoplay.running = true;
-        swiper.emit('autoplayStart');
-        swiper.autoplay.run();
-        return true;
-      },
-      stop: function stop() {
-        var swiper = this;
-        if (!swiper.autoplay.running) return false;
-        if (typeof swiper.autoplay.timeout === 'undefined') return false;
-
-        if (swiper.autoplay.timeout) {
-          clearTimeout(swiper.autoplay.timeout);
-          swiper.autoplay.timeout = undefined;
-        }
-
-        swiper.autoplay.running = false;
-        swiper.emit('autoplayStop');
-        return true;
-      },
-      pause: function pause(speed) {
-        var swiper = this;
-        if (!swiper.autoplay.running) return;
-        if (swiper.autoplay.paused) return;
-        if (swiper.autoplay.timeout) clearTimeout(swiper.autoplay.timeout);
-        swiper.autoplay.paused = true;
-
-        if (speed === 0 || !swiper.params.autoplay.waitForTransition) {
-          swiper.autoplay.paused = false;
-          swiper.autoplay.run();
-        } else {
-          swiper.$wrapperEl[0].addEventListener('transitionend', swiper.autoplay.onTransitionEnd);
-          swiper.$wrapperEl[0].addEventListener('webkitTransitionEnd', swiper.autoplay.onTransitionEnd);
-        }
-      },
-      onVisibilityChange: function onVisibilityChange() {
-        var swiper = this;
-        var document = getDocument();
-
-        if (document.visibilityState === 'hidden' && swiper.autoplay.running) {
-          swiper.autoplay.pause();
-        }
-
-        if (document.visibilityState === 'visible' && swiper.autoplay.paused) {
-          swiper.autoplay.run();
-          swiper.autoplay.paused = false;
-        }
-      },
-      onTransitionEnd: function onTransitionEnd(e) {
-        var swiper = this;
-        if (!swiper || swiper.destroyed || !swiper.$wrapperEl) return;
-        if (e.target !== swiper.$wrapperEl[0]) return;
-        swiper.$wrapperEl[0].removeEventListener('transitionend', swiper.autoplay.onTransitionEnd);
-        swiper.$wrapperEl[0].removeEventListener('webkitTransitionEnd', swiper.autoplay.onTransitionEnd);
-        swiper.autoplay.paused = false;
-
-        if (!swiper.autoplay.running) {
-          swiper.autoplay.stop();
-        } else {
-          swiper.autoplay.run();
-        }
-      }
-    };
-    var Autoplay$1 = {
-      name: 'autoplay',
-      params: {
-        autoplay: {
-          enabled: false,
-          delay: 3000,
-          waitForTransition: true,
-          disableOnInteraction: true,
-          stopOnLastSlide: false,
-          reverseDirection: false
-        }
-      },
-      create: function create() {
-        var swiper = this;
-        bindModuleMethods(swiper, {
-          autoplay: _extends$2({}, Autoplay, {
-            running: false,
-            paused: false
-          })
-        });
-      },
-      on: {
-        init: function init(swiper) {
-          if (swiper.params.autoplay.enabled) {
-            swiper.autoplay.start();
-            var document = getDocument();
-            document.addEventListener('visibilitychange', swiper.autoplay.onVisibilityChange);
-          }
-        },
-        beforeTransitionStart: function beforeTransitionStart(swiper, speed, internal) {
-          if (swiper.autoplay.running) {
-            if (internal || !swiper.params.autoplay.disableOnInteraction) {
-              swiper.autoplay.pause(speed);
-            } else {
-              swiper.autoplay.stop();
-            }
-          }
-        },
-        sliderFirstMove: function sliderFirstMove(swiper) {
-          if (swiper.autoplay.running) {
-            if (swiper.params.autoplay.disableOnInteraction) {
-              swiper.autoplay.stop();
-            } else {
-              swiper.autoplay.pause();
-            }
-          }
-        },
-        touchEnd: function touchEnd(swiper) {
-          if (swiper.params.cssMode && swiper.autoplay.paused && !swiper.params.autoplay.disableOnInteraction) {
-            swiper.autoplay.run();
-          }
-        },
-        destroy: function destroy(swiper) {
-          if (swiper.autoplay.running) {
-            swiper.autoplay.stop();
-          }
-
-          var document = getDocument();
-          document.removeEventListener('visibilitychange', swiper.autoplay.onVisibilityChange);
-        }
-      }
-    };
-
-    function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
     var Fade = {
       setTranslate: function setTranslate() {
         var swiper = this;
@@ -11007,7 +10824,7 @@ var app = (function () {
       create: function create() {
         var swiper = this;
         bindModuleMethods(swiper, {
-          fadeEffect: _extends$3({}, Fade)
+          fadeEffect: _extends$2({}, Fade)
         });
       },
       on: {
@@ -12183,17 +12000,15 @@ var app = (function () {
     const sync = writable({});
 
     /* src/slide-hero-swiper.svelte generated by Svelte v3.32.1 */
-
-    const { console: console_1, document: document_1 } = globals;
     const file$6 = "src/slide-hero-swiper.svelte";
 
     function get_each_context$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[9] = list[i];
+    	child_ctx[8] = list[i];
     	return child_ctx;
     }
 
-    // (62:6) <SwiperSlide>
+    // (40:6) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t;
@@ -12205,7 +12020,7 @@ var app = (function () {
     				sizes: "" + (100 / slidesPerView + "vw"),
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
-    				imageId: /*article*/ ctx[9].imageId
+    				imageId: /*article*/ ctx[8].imageId
     			},
     			$$inline: true
     		});
@@ -12224,7 +12039,7 @@ var app = (function () {
     			const picture_changes = {};
     			if (dirty & /*contents*/ 1) picture_changes.contents = /*contents*/ ctx[0];
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
-    			if (dirty & /*contents*/ 1) picture_changes.imageId = /*article*/ ctx[9].imageId;
+    			if (dirty & /*contents*/ 1) picture_changes.imageId = /*article*/ ctx[8].imageId;
     			picture.$set(picture_changes);
     		},
     		i: function intro(local) {
@@ -12246,14 +12061,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(62:6) <SwiperSlide>",
+    		source: "(40:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (61:4) {#each contents.articles as article}
+    // (39:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12277,7 +12092,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const swiperslide_changes = {};
 
-    			if (dirty & /*$$scope, contents, globalSettings*/ 4099) {
+    			if (dirty & /*$$scope, contents, globalSettings*/ 2051) {
     				swiperslide_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12301,14 +12116,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(61:4) {#each contents.articles as article}",
+    		source: "(39:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     autoplay={{delay: 5000}}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style="--slidesPerView: {slidesPerView}"   >
+    // (26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style="--slidesPerView: {slidesPerView}"   >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12397,7 +12212,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(47:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     autoplay={{delay: 5000}}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style=\\\"--slidesPerView: {slidesPerView}\\\"   >",
+    		source: "(26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style=\\\"--slidesPerView: {slidesPerView}\\\"   >",
     		ctx
     	});
 
@@ -12421,7 +12236,6 @@ var app = (function () {
     				slideToClickedSlide: true,
     				loop: true,
     				loopedSlides: /*contents*/ ctx[0].articles.length,
-    				autoplay: { delay: 5000 },
     				controller: { control: /*controlledSwiper*/ ctx[2] },
     				style: "--slidesPerView: " + slidesPerView,
     				$$slots: { default: [create_default_slot$2] },
@@ -12441,15 +12255,15 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "type", "text/css");
     			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$6, 42, 2, 1236);
+    			add_location(link, file$6, 21, 2, 601);
     			attr_dev(div, "class", "slide-hero");
-    			add_location(div, file$6, 45, 0, 1322);
+    			add_location(div, file$6, 24, 0, 687);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document_1.head, link);
+    			append_dev(document.head, link);
     			insert_dev(target, t, anchor);
     			insert_dev(target, div, anchor);
     			mount_component(swiper, div, null);
@@ -12460,7 +12274,7 @@ var app = (function () {
     			if (dirty & /*contents*/ 1) swiper_changes.loopedSlides = /*contents*/ ctx[0].articles.length;
     			if (dirty & /*controlledSwiper*/ 4) swiper_changes.controller = { control: /*controlledSwiper*/ ctx[2] };
 
-    			if (dirty & /*$$scope, contents, globalSettings*/ 4099) {
+    			if (dirty & /*$$scope, contents, globalSettings*/ 2051) {
     				swiper_changes.$$scope = { dirty, ctx };
     			}
 
@@ -12499,7 +12313,7 @@ var app = (function () {
     function instance$8($$self, $$props, $$invalidate) {
     	let $sync;
     	validate_store(sync, "sync");
-    	component_subscribe($$self, sync, $$value => $$invalidate(8, $sync = $$value));
+    	component_subscribe($$self, sync, $$value => $$invalidate(7, $sync = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Slide_hero_swiper", slots, []);
 
@@ -12508,30 +12322,8 @@ var app = (function () {
     		{ isParent } = $$props,
     		{ globalSettings } = $$props;
 
-    	let target;
-
-    	onMount(() => {
-    		target = document.querySelector(".swiper-container");
-
-    		addEventListener("DOMContentLoaded", () => {
-    			console.log(target.getBoundingClientRect().y);
-    			if (target.getBoundingClientRect().y < 0) target.swiper.autoplay.stop();
-    		});
-
-    		new IntersectionObserver((entries, object) => entries.forEach((entry, i) => {
-    				if (!entry.isIntersecting) {
-    					if (scrollY < 100) {
-    						target.swiper.autoplay.start();
-    					} else {
-    						target.swiper.autoplay.stop();
-    					}
-    				}
-    			}),
-    		{ rootMargin: "0px 0px -100%" }).observe(target);
-    	});
-
     	const transitionDuration = globalSettings.transitionDuration;
-    	Swiper.use([Controller$1, EffectFade, Autoplay$1]);
+    	Swiper.use([Controller$1, EffectFade]);
     	let controlledSwiper = null;
 
     	addEventListener("controllee_load", () => {
@@ -12541,7 +12333,7 @@ var app = (function () {
     	const writable_props = ["contents", "pairId", "isParent", "globalSettings"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Slide_hero_swiper> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Slide_hero_swiper> was created with unknown prop '${key}'`);
     	});
 
     	const slideChangeTransitionStart_handler = e => window.dispatchEvent(new window.CustomEvent("slide", { detail: e.detail[0][0] }));
@@ -12559,7 +12351,6 @@ var app = (function () {
     		SwiperCore: Swiper,
     		Controller: Controller$1,
     		EffectFade,
-    		Autoplay: Autoplay$1,
     		sync,
     		Picture,
     		onMount,
@@ -12567,7 +12358,6 @@ var app = (function () {
     		pairId,
     		isParent,
     		globalSettings,
-    		target,
     		transitionDuration,
     		slidesPerView,
     		controlledSwiper,
@@ -12579,7 +12369,6 @@ var app = (function () {
     		if ("pairId" in $$props) $$invalidate(4, pairId = $$props.pairId);
     		if ("isParent" in $$props) $$invalidate(5, isParent = $$props.isParent);
     		if ("globalSettings" in $$props) $$invalidate(1, globalSettings = $$props.globalSettings);
-    		if ("target" in $$props) target = $$props.target;
     		if ("controlledSwiper" in $$props) $$invalidate(2, controlledSwiper = $$props.controlledSwiper);
     	};
 
@@ -12620,19 +12409,19 @@ var app = (function () {
     		const props = options.props || {};
 
     		if (/*contents*/ ctx[0] === undefined && !("contents" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'contents'");
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'contents'");
     		}
 
     		if (/*pairId*/ ctx[4] === undefined && !("pairId" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'pairId'");
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'pairId'");
     		}
 
     		if (/*isParent*/ ctx[5] === undefined && !("isParent" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'isParent'");
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'isParent'");
     		}
 
     		if (/*globalSettings*/ ctx[1] === undefined && !("globalSettings" in props)) {
-    			console_1.warn("<Slide_hero_swiper> was created without expected prop 'globalSettings'");
+    			console.warn("<Slide_hero_swiper> was created without expected prop 'globalSettings'");
     		}
     	}
 
