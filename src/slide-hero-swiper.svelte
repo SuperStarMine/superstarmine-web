@@ -19,6 +19,7 @@
 </script>
 
 <svelte:head>
+  <link rel="preload" href="/swiper-bundle.min.css" as="style">
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 

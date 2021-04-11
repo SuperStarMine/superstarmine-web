@@ -12008,7 +12008,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (40:6) <SwiperSlide>
+    // (41:6) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t;
@@ -12061,14 +12061,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(40:6) <SwiperSlide>",
+    		source: "(41:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (39:4) {#each contents.articles as article}
+    // (40:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12116,14 +12116,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(39:4) {#each contents.articles as article}",
+    		source: "(40:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style="--slidesPerView: {slidesPerView}"   >
+    // (27:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style="--slidesPerView: {slidesPerView}"   >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12212,7 +12212,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style=\\\"--slidesPerView: {slidesPerView}\\\"   >",
+    		source: "(27:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}     style=\\\"--slidesPerView: {slidesPerView}\\\"   >",
     		ctx
     	});
 
@@ -12220,7 +12220,8 @@ var app = (function () {
     }
 
     function create_fragment$8(ctx) {
-    	let link;
+    	let link0;
+    	let link1;
     	let t;
     	let div;
     	let swiper;
@@ -12248,22 +12249,28 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			link = element("link");
+    			link0 = element("link");
+    			link1 = element("link");
     			t = space();
     			div = element("div");
     			create_component(swiper.$$.fragment);
-    			attr_dev(link, "rel", "stylesheet");
-    			attr_dev(link, "type", "text/css");
-    			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$6, 21, 2, 601);
+    			attr_dev(link0, "rel", "preload");
+    			attr_dev(link0, "href", "/swiper-bundle.min.css");
+    			attr_dev(link0, "as", "style");
+    			add_location(link0, file$6, 21, 2, 601);
+    			attr_dev(link1, "rel", "stylesheet");
+    			attr_dev(link1, "type", "text/css");
+    			attr_dev(link1, "href", "/swiper-bundle.min.css");
+    			add_location(link1, file$6, 22, 2, 665);
     			attr_dev(div, "class", "slide-hero");
-    			add_location(div, file$6, 24, 0, 687);
+    			add_location(div, file$6, 25, 0, 751);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document.head, link);
+    			append_dev(document.head, link0);
+    			append_dev(document.head, link1);
     			insert_dev(target, t, anchor);
     			insert_dev(target, div, anchor);
     			mount_component(swiper, div, null);
@@ -12290,7 +12297,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			detach_dev(link);
+    			detach_dev(link0);
+    			detach_dev(link1);
     			if (detaching) detach_dev(t);
     			if (detaching) detach_dev(div);
     			destroy_component(swiper);
@@ -12755,7 +12763,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (54:12) {#if article.slides}
+    // (55:12) {#if article.slides}
     function create_if_block_5(ctx) {
     	let swiper;
     	let current;
@@ -12809,14 +12817,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(54:12) {#if article.slides}",
+    		source: "(55:12) {#if article.slides}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (65:20) {#if slide.type == "youtube"}
+    // (66:20) {#if slide.type == "youtube"}
     function create_if_block_6(ctx) {
     	let yframe;
     	let current;
@@ -12863,14 +12871,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(65:20) {#if slide.type == \\\"youtube\\\"}",
+    		source: "(66:20) {#if slide.type == \\\"youtube\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (64:18) <SwiperSlide>
+    // (65:18) <SwiperSlide>
     function create_default_slot_5(ctx) {
     	let t;
     	let current;
@@ -12929,14 +12937,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(64:18) <SwiperSlide>",
+    		source: "(65:18) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:16) {#each article.slides as slide}
+    // (64:16) {#each article.slides as slide}
     function create_each_block_6(ctx) {
     	let swiperslide;
     	let current;
@@ -12984,14 +12992,14 @@ var app = (function () {
     		block,
     		id: create_each_block_6.name,
     		type: "each",
-    		source: "(63:16) {#each article.slides as slide}",
+    		source: "(64:16) {#each article.slides as slide}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (55:14) <Swiper                 centeredSlides={true}                 autoHeight={true}                 spaceBetween={0}                 slidesPerView={1}                 speed={transitionDuration}                 updateOnImagesReady={true}               >
+    // (56:14) <Swiper                 centeredSlides={true}                 autoHeight={true}                 spaceBetween={0}                 slidesPerView={1}                 speed={transitionDuration}                 updateOnImagesReady={true}               >
     function create_default_slot_4(ctx) {
     	let each_1_anchor;
     	let current;
@@ -13080,14 +13088,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(55:14) <Swiper                 centeredSlides={true}                 autoHeight={true}                 spaceBetween={0}                 slidesPerView={1}                 speed={transitionDuration}                 updateOnImagesReady={true}               >",
+    		source: "(56:14) <Swiper                 centeredSlides={true}                 autoHeight={true}                 spaceBetween={0}                 slidesPerView={1}                 speed={transitionDuration}                 updateOnImagesReady={true}               >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (72:12) {#if article.specs}
+    // (73:12) {#if article.specs}
     function create_if_block_2$1(ctx) {
     	let div;
     	let t;
@@ -13101,7 +13109,7 @@ var app = (function () {
     			t = space();
     			if (if_block1) if_block1.c();
     			attr_dev(div, "class", "specs");
-    			add_location(div, file$8, 72, 14, 2474);
+    			add_location(div, file$8, 73, 14, 2538);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13147,14 +13155,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(72:12) {#if article.specs}",
+    		source: "(73:12) {#if article.specs}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (74:16) {#if article.specs.times}
+    // (75:16) {#if article.specs.times}
     function create_if_block_4(ctx) {
     	let div;
     	let t;
@@ -13176,7 +13184,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "times svelte-1vgfees");
-    			add_location(div, file$8, 74, 18, 2554);
+    			add_location(div, file$8, 75, 18, 2618);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13221,14 +13229,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(74:16) {#if article.specs.times}",
+    		source: "(75:16) {#if article.specs.times}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (77:20) {#each article.specs.times as time}
+    // (78:20) {#each article.specs.times as time}
     function create_each_block_5(ctx) {
     	let time;
 
@@ -13258,7 +13266,7 @@ var app = (function () {
     			: ""));
 
     			attr_dev(time, "class", "svelte-1vgfees");
-    			add_location(time, file$8, 78, 22, 2748);
+    			add_location(time, file$8, 79, 22, 2812);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, time, anchor);
@@ -13292,14 +13300,14 @@ var app = (function () {
     		block,
     		id: create_each_block_5.name,
     		type: "each",
-    		source: "(77:20) {#each article.specs.times as time}",
+    		source: "(78:20) {#each article.specs.times as time}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (85:16) {#if article.specs.platforms}
+    // (86:16) {#if article.specs.platforms}
     function create_if_block_3(ctx) {
     	let div;
     	let t;
@@ -13321,7 +13329,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "platforms svelte-1vgfees");
-    			add_location(div, file$8, 85, 18, 3245);
+    			add_location(div, file$8, 86, 18, 3309);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13366,14 +13374,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(85:16) {#if article.specs.platforms}",
+    		source: "(86:16) {#if article.specs.platforms}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (88:20) {#each article.specs.platforms as platform}
+    // (89:20) {#each article.specs.platforms as platform}
     function create_each_block_4(ctx) {
     	let div;
     	let t0_value = /*platform*/ ctx[21].name + "";
@@ -13394,7 +13402,7 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = space();
     			attr_dev(div, "class", "svelte-1vgfees");
-    			add_location(div, file$8, 88, 22, 3387);
+    			add_location(div, file$8, 89, 22, 3451);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13418,14 +13426,14 @@ var app = (function () {
     		block,
     		id: create_each_block_4.name,
     		type: "each",
-    		source: "(88:20) {#each article.specs.platforms as platform}",
+    		source: "(89:20) {#each article.specs.platforms as platform}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (104:14) {:else}
+    // (105:14) {:else}
     function create_else_block_1(ctx) {
     	let t_value = /*article*/ ctx[9].description + "";
     	let t;
@@ -13449,14 +13457,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(104:14) {:else}",
+    		source: "(105:14) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (100:14) {#if Array.isArray(article.description)}
+    // (101:14) {#if Array.isArray(article.description)}
     function create_if_block_1$2(ctx) {
     	let each_1_anchor;
     	let each_value_3 = /*article*/ ctx[9].description;
@@ -13517,14 +13525,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(100:14) {#if Array.isArray(article.description)}",
+    		source: "(101:14) {#if Array.isArray(article.description)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (101:16) {#each article.description as p}
+    // (102:16) {#each article.description as p}
     function create_each_block_3(ctx) {
     	let p;
     	let t_value = /*p*/ ctx[18] + "";
@@ -13534,7 +13542,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$8, 101, 18, 3822);
+    			add_location(p, file$8, 102, 18, 3886);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -13552,14 +13560,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(101:16) {#each article.description as p}",
+    		source: "(102:16) {#each article.description as p}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (115:18) {:else}
+    // (116:18) {:else}
     function create_else_block$4(ctx) {
     	let t_value = /*button*/ ctx[12].title + "";
     	let t;
@@ -13583,14 +13591,14 @@ var app = (function () {
     		block,
     		id: create_else_block$4.name,
     		type: "else",
-    		source: "(115:18) {:else}",
+    		source: "(116:18) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (111:18) {#if Array.isArray(button.title)}
+    // (112:18) {#if Array.isArray(button.title)}
     function create_if_block$7(ctx) {
     	let each_1_anchor;
     	let each_value_2 = /*button*/ ctx[12].title;
@@ -13651,14 +13659,14 @@ var app = (function () {
     		block,
     		id: create_if_block$7.name,
     		type: "if",
-    		source: "(111:18) {#if Array.isArray(button.title)}",
+    		source: "(112:18) {#if Array.isArray(button.title)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (112:20) {#each button.title as title}
+    // (113:20) {#each button.title as title}
     function create_each_block_2$1(ctx) {
     	let span;
     	let t_value = /*title*/ ctx[15] + "";
@@ -13669,7 +13677,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$8, 112, 22, 4216);
+    			add_location(span, file$8, 113, 22, 4280);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -13687,14 +13695,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2$1.name,
     		type: "each",
-    		source: "(112:20) {#each button.title as title}",
+    		source: "(113:20) {#each button.title as title}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (110:16) <Button target="{button.target}">
+    // (111:16) <Button target="{button.target}">
     function create_default_slot_3(ctx) {
     	let show_if;
     	let t;
@@ -13740,14 +13748,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(110:16) <Button target=\\\"{button.target}\\\">",
+    		source: "(111:16) <Button target=\\\"{button.target}\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (109:14) {#each article.buttons as button}
+    // (110:14) {#each article.buttons as button}
     function create_each_block_1$2(ctx) {
     	let button;
     	let current;
@@ -13797,14 +13805,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$2.name,
     		type: "each",
-    		source: "(109:14) {#each article.buttons as button}",
+    		source: "(110:14) {#each article.buttons as button}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (51:6) <SwiperSlide>
+    // (52:6) <SwiperSlide>
     function create_default_slot_2(ctx) {
     	let div3;
     	let div0;
@@ -13860,14 +13868,14 @@ var app = (function () {
 
     			t3 = space();
     			attr_dev(div0, "class", "left");
-    			add_location(div0, file$8, 52, 10, 1781);
-    			add_location(article, file$8, 98, 12, 3690);
+    			add_location(div0, file$8, 53, 10, 1845);
+    			add_location(article, file$8, 99, 12, 3754);
     			attr_dev(div1, "class", "buttons svelte-1vgfees");
-    			add_location(div1, file$8, 107, 12, 3972);
+    			add_location(div1, file$8, 108, 12, 4036);
     			attr_dev(div2, "class", "right");
-    			add_location(div2, file$8, 97, 10, 3658);
+    			add_location(div2, file$8, 98, 10, 3722);
     			attr_dev(div3, "class", "wrapper");
-    			add_location(div3, file$8, 51, 8, 1749);
+    			add_location(div3, file$8, 52, 8, 1813);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -14000,14 +14008,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(51:6) <SwiperSlide>",
+    		source: "(52:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (50:4) {#each contents.articles as article}
+    // (51:4) {#each contents.articles as article}
     function create_each_block$5(ctx) {
     	let swiperslide;
     	let current;
@@ -14055,14 +14063,14 @@ var app = (function () {
     		block,
     		id: create_each_block$5.name,
     		type: "each",
-    		source: "(50:4) {#each contents.articles as article}",
+    		source: "(51:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (35:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
+    // (36:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
     function create_default_slot_1$1(ctx) {
     	let each_1_anchor;
     	let current;
@@ -14151,14 +14159,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(35:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
+    		source: "(36:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
+    // (35:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>
     function create_default_slot$3(ctx) {
     	let swiper;
     	let current;
@@ -14231,7 +14239,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(34:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
+    		source: "(35:0) <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}>",
     		ctx
     	});
 
@@ -14239,7 +14247,8 @@ var app = (function () {
     }
 
     function create_fragment$a(ctx) {
-    	let link;
+    	let link0;
+    	let link1;
     	let t;
     	let cframe;
     	let current;
@@ -14257,19 +14266,25 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			link = element("link");
+    			link0 = element("link");
+    			link1 = element("link");
     			t = space();
     			create_component(cframe.$$.fragment);
-    			attr_dev(link, "rel", "stylesheet");
-    			attr_dev(link, "type", "text/css");
-    			attr_dev(link, "href", "/swiper-bundle.min.css");
-    			add_location(link, file$8, 30, 2, 1015);
+    			attr_dev(link0, "rel", "preload");
+    			attr_dev(link0, "href", "/swiper-bundle.min.css");
+    			attr_dev(link0, "as", "style");
+    			add_location(link0, file$8, 30, 2, 1015);
+    			attr_dev(link1, "rel", "stylesheet");
+    			attr_dev(link1, "type", "text/css");
+    			attr_dev(link1, "href", "/swiper-bundle.min.css");
+    			add_location(link1, file$8, 31, 2, 1079);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document.head, link);
+    			append_dev(document.head, link0);
+    			append_dev(document.head, link1);
     			insert_dev(target, t, anchor);
     			mount_component(cframe, target, anchor);
     			current = true;
@@ -14296,7 +14311,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			detach_dev(link);
+    			detach_dev(link0);
+    			detach_dev(link1);
     			if (detaching) detach_dev(t);
     			destroy_component(cframe, detaching);
     		}
