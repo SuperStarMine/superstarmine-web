@@ -121,20 +121,29 @@
                 {#if article.specs.times}
                   <div class="times">
                     <span class="tag">制作時期</span>
-                    {#each article.specs.times as time}
+                    {#each article.specs.times as time, i}
                       <!-- svelte-ignore component-name-lowercase -->
-                      <time datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
-                        {(time.year ? time.year + "年" : "") + (time.month ? time.month + "月" : "") + (time.day ? time.day + "日" : "")}{time.annotation}
+                      <time class="break-scope" datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
+                        {#if time.year}
+                          {time.year}年{!(time.month || time.day) ? time.annotation : ''}
+                        {/if}
+                        {#if time.month}
+                          {time.month}月{!time.day ? time.annotation : ''}
+                        {/if}
+                        {#if time.day}
+                          {time.day}日{time.annotation}
+                        {/if}
                       </time>
+                      {i+1 != article.specs.times.length ? ', ' : ''}
                     {/each}
                   </div>
                 {/if}
                 {#if article.specs.platforms}
                   <div class="platforms">
                     <span class="tag">対応プラットフォーム</span>
-                    {#each article.specs.platforms as platform}
-                      <span>
-                        {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}
+                    {#each article.specs.platforms as platform, i}
+                      <span class="break-scope">
+                        {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}{i+1 != article.specs.platforms.length ? ',' : ''}
                       </span>
                     {/each}
                   </div>
@@ -242,7 +251,8 @@
         margin 0
         line-height 1.5em
         &.first-line
-          line-height 3em
+          line-height normal
+          margin 0.8em 0
           font-size calc(1em * (18 / 14))
           font-family vdl-v7marugothic, sans-serif
           font-style normal
