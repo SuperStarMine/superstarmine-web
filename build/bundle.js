@@ -12762,8 +12762,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(t_value);
-    			attr_dev(div, "class", "popup svelte-emw9p9");
-    			add_location(div, file$8, 73, 16, 3096);
+    			attr_dev(div, "class", "popup svelte-10t5m3s");
+    			add_location(div, file$8, 73, 16, 3087);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -12897,8 +12897,8 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$8, 78, 20, 3346);
+    			attr_dev(span, "class", "break-scope svelte-10t5m3s");
+    			add_location(span, file$8, 78, 20, 3337);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -13080,8 +13080,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(swiper.$$.fragment);
-    			attr_dev(div, "class", "slide svelte-emw9p9");
-    			add_location(div, file$8, 89, 12, 3655);
+    			attr_dev(div, "class", "slide svelte-10t5m3s");
+    			add_location(div, file$8, 89, 12, 3646);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13503,8 +13503,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "" + (null_to_empty(/*i*/ ctx[15] == 0 ? "first-line" : "") + " svelte-emw9p9"));
-    			add_location(p, file$8, 112, 18, 4468);
+    			attr_dev(p, "class", "" + (null_to_empty(/*i*/ ctx[15] == 0 ? "first-line" : "") + " svelte-10t5m3s"));
+    			add_location(p, file$8, 112, 18, 4459);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -13542,8 +13542,8 @@ var app = (function () {
     			if (if_block0) if_block0.c();
     			t = space();
     			if (if_block1) if_block1.c();
-    			attr_dev(div, "class", "specs svelte-emw9p9");
-    			add_location(div, file$8, 119, 14, 4687);
+    			attr_dev(div, "class", "specs svelte-10t5m3s");
+    			add_location(div, file$8, 119, 14, 4678);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13620,10 +13620,10 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(span, "class", "tag svelte-emw9p9");
-    			add_location(span, file$8, 122, 20, 4807);
-    			attr_dev(div, "class", "times svelte-emw9p9");
-    			add_location(div, file$8, 121, 18, 4767);
+    			attr_dev(span, "class", "tag svelte-10t5m3s");
+    			add_location(span, file$8, 122, 20, 4798);
+    			attr_dev(div, "class", "times svelte-10t5m3s");
+    			add_location(div, file$8, 121, 18, 4758);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -13833,7 +13833,7 @@ var app = (function () {
     			if (if_block2) if_block2.c();
     			t2 = space();
     			t3 = text(t3_value);
-    			attr_dev(time, "class", "break-scope");
+    			attr_dev(time, "class", "break-scope svelte-10t5m3s");
 
     			attr_dev(time, "datetime", time_datetime_value = (/*time*/ ctx[16].year
     			? ("0000" + /*time*/ ctx[16].year).slice(-4)
@@ -13843,7 +13843,7 @@ var app = (function () {
     			? "-" + ("00" + /*time*/ ctx[16].day).slice(-2)
     			: ""));
 
-    			add_location(time, file$8, 125, 22, 4988);
+    			add_location(time, file$8, 125, 22, 4979);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, time, anchor);
@@ -13954,10 +13954,10 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(span, "class", "tag svelte-emw9p9");
-    			add_location(span, file$8, 142, 20, 5895);
-    			attr_dev(div, "class", "platforms svelte-emw9p9");
-    			add_location(div, file$8, 141, 18, 5851);
+    			attr_dev(span, "class", "tag svelte-10t5m3s");
+    			add_location(span, file$8, 142, 20, 5886);
+    			attr_dev(div, "class", "platforms svelte-10t5m3s");
+    			add_location(div, file$8, 141, 18, 5842);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -14037,8 +14037,8 @@ var app = (function () {
     			t3 = text(t3_value);
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$8, 144, 22, 6020);
+    			attr_dev(span, "class", "break-scope svelte-10t5m3s");
+    			add_location(span, file$8, 144, 22, 6011);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -14074,9 +14074,9 @@ var app = (function () {
     	return block;
     }
 
-    // (65:6) <SwiperSlide>
+    // (64:6) <SwiperSlide>
     function create_default_slot_1$1(ctx) {
-    	let div4;
+    	let div5;
     	let div2;
     	let div0;
     	let t0_value = /*contents*/ ctx[1].articles[/*realIndex*/ ctx[2]].subtitle + "";
@@ -14088,13 +14088,15 @@ var app = (function () {
     	let t3;
     	let div3;
     	let t4;
-    	let div6;
+    	let div4;
     	let t5;
-    	let div5;
+    	let div7;
+    	let t6;
+    	let div6;
     	let article;
     	let show_if;
-    	let t6;
     	let t7;
+    	let t8;
     	let current;
     	let each_value_5 = /*article*/ ctx[10].buttons;
     	validate_each_argument(each_value_5);
@@ -14122,7 +14124,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div4 = element("div");
+    			div5 = element("div");
     			div2 = element("div");
     			div0 = element("div");
     			t0 = text(t0_value);
@@ -14131,62 +14133,69 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			div3 = element("div");
+    			t4 = space();
+    			div4 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t4 = space();
-    			div6 = element("div");
-    			if (if_block0) if_block0.c();
     			t5 = space();
-    			div5 = element("div");
+    			div7 = element("div");
+    			if (if_block0) if_block0.c();
+    			t6 = space();
+    			div6 = element("div");
     			article = element("article");
     			if_block1.c();
-    			t6 = space();
-    			if (if_block2) if_block2.c();
     			t7 = space();
-    			attr_dev(div0, "class", "subtitle svelte-emw9p9");
-    			add_location(div0, file$8, 67, 12, 2810);
-    			attr_dev(div1, "class", "title svelte-emw9p9");
-    			add_location(div1, file$8, 68, 12, 2890);
-    			attr_dev(div2, "class", "headline");
-    			add_location(div2, file$8, 66, 10, 2775);
-    			attr_dev(div3, "class", "buttons svelte-emw9p9");
-    			add_location(div3, file$8, 70, 10, 2979);
-    			attr_dev(div4, "class", "title-container svelte-emw9p9");
-    			add_location(div4, file$8, 65, 8, 2735);
-    			add_location(article, file$8, 109, 12, 4333);
-    			attr_dev(div5, "class", "description svelte-emw9p9");
-    			add_location(div5, file$8, 108, 10, 4295);
-    			attr_dev(div6, "class", "description-container svelte-emw9p9");
-    			add_location(div6, file$8, 87, 8, 3576);
+    			if (if_block2) if_block2.c();
+    			t8 = space();
+    			attr_dev(div0, "class", "subtitle svelte-10t5m3s");
+    			add_location(div0, file$8, 66, 12, 2764);
+    			attr_dev(div1, "class", "title svelte-10t5m3s");
+    			add_location(div1, file$8, 67, 12, 2844);
+    			attr_dev(div2, "class", "headline svelte-10t5m3s");
+    			add_location(div2, file$8, 65, 10, 2729);
+    			attr_dev(div3, "class", "spacer svelte-10t5m3s");
+    			add_location(div3, file$8, 69, 10, 2933);
+    			attr_dev(div4, "class", "buttons svelte-10t5m3s");
+    			add_location(div4, file$8, 70, 10, 2970);
+    			attr_dev(div5, "class", "title-container svelte-10t5m3s");
+    			add_location(div5, file$8, 64, 8, 2689);
+    			attr_dev(article, "class", "svelte-10t5m3s");
+    			add_location(article, file$8, 109, 12, 4324);
+    			attr_dev(div6, "class", "description svelte-10t5m3s");
+    			add_location(div6, file$8, 108, 10, 4286);
+    			attr_dev(div7, "class", "description-container svelte-10t5m3s");
+    			add_location(div7, file$8, 87, 8, 3567);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, div2);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div2);
     			append_dev(div2, div0);
     			append_dev(div0, t0);
     			append_dev(div2, t1);
     			append_dev(div2, div1);
     			append_dev(div1, t2);
-    			append_dev(div4, t3);
-    			append_dev(div4, div3);
+    			append_dev(div5, t3);
+    			append_dev(div5, div3);
+    			append_dev(div5, t4);
+    			append_dev(div5, div4);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div3, null);
+    				each_blocks[i].m(div4, null);
     			}
 
-    			insert_dev(target, t4, anchor);
-    			insert_dev(target, div6, anchor);
-    			if (if_block0) if_block0.m(div6, null);
-    			append_dev(div6, t5);
-    			append_dev(div6, div5);
-    			append_dev(div5, article);
+    			insert_dev(target, t5, anchor);
+    			insert_dev(target, div7, anchor);
+    			if (if_block0) if_block0.m(div7, null);
+    			append_dev(div7, t6);
+    			append_dev(div7, div6);
+    			append_dev(div6, article);
     			if_block1.m(article, null);
-    			append_dev(div5, t6);
-    			if (if_block2) if_block2.m(div5, null);
-    			insert_dev(target, t7, anchor);
+    			append_dev(div6, t7);
+    			if (if_block2) if_block2.m(div6, null);
+    			insert_dev(target, t8, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -14208,7 +14217,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block_5(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div3, null);
+    						each_blocks[i].m(div4, null);
     					}
     				}
 
@@ -14232,7 +14241,7 @@ var app = (function () {
     					if_block0 = create_if_block_7(ctx);
     					if_block0.c();
     					transition_in(if_block0, 1);
-    					if_block0.m(div6, t5);
+    					if_block0.m(div7, t6);
     				}
     			} else if (if_block0) {
     				group_outros();
@@ -14262,7 +14271,7 @@ var app = (function () {
     				} else {
     					if_block2 = create_if_block$6(ctx);
     					if_block2.c();
-    					if_block2.m(div5, null);
+    					if_block2.m(div6, null);
     				}
     			} else if (if_block2) {
     				if_block2.d(1);
@@ -14290,14 +14299,14 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div4);
+    			if (detaching) detach_dev(div5);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t4);
-    			if (detaching) detach_dev(div6);
+    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(div7);
     			if (if_block0) if_block0.d();
     			if_block1.d();
     			if (if_block2) if_block2.d();
-    			if (detaching) detach_dev(t7);
+    			if (detaching) detach_dev(t8);
     		}
     	};
 
@@ -14305,14 +14314,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(65:6) <SwiperSlide>",
+    		source: "(64:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (64:4) {#each contents.articles as article}
+    // (63:4) {#each contents.articles as article}
     function create_each_block$5(ctx) {
     	let swiperslide;
     	let current;
@@ -14360,14 +14369,14 @@ var app = (function () {
     		block,
     		id: create_each_block$5.name,
     		type: "each",
-    		source: "(64:4) {#each contents.articles as article}",
+    		source: "(63:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
+    // (48:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >
     function create_default_slot$3(ctx) {
     	let each_1_anchor;
     	let current;
@@ -14456,7 +14465,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(49:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
+    		source: "(48:2) <Swiper     allowSlideNext={false}     allowSlidePrev={false}     allowTouchMove={false}     autoHeight={true}     spaceBetween={0}     slidesPerView={1}     speed={transitionDuration}     loop={true}     loopAdditionalSlides={contents.articles.length - 1}     effect='fade'     fadeEffect={{crossFade: true}}     on:swiper={setControlledSwiper}     controller={{ control: controlledSwiper ? controlledSwiper : null }}   >",
     		ctx
     	});
 
@@ -14507,15 +14516,17 @@ var app = (function () {
     			attr_dev(link0, "rel", "preload");
     			attr_dev(link0, "href", "/swiper-bundle.min.css");
     			attr_dev(link0, "as", "style");
-    			add_location(link0, file$8, 42, 2, 1805);
+    			attr_dev(link0, "class", "svelte-10t5m3s");
+    			add_location(link0, file$8, 41, 2, 1759);
     			attr_dev(link1, "rel", "stylesheet");
     			attr_dev(link1, "type", "text/css");
     			attr_dev(link1, "href", "/swiper-bundle.min.css");
-    			add_location(link1, file$8, 43, 2, 1869);
-    			attr_dev(div, "class", "wrapper svelte-emw9p9");
+    			attr_dev(link1, "class", "svelte-10t5m3s");
+    			add_location(link1, file$8, 42, 2, 1823);
+    			attr_dev(div, "class", "wrapper svelte-10t5m3s");
     			set_style(div, "--backgroundColor", /*backgroundColor*/ ctx[4]);
     			set_style(div, "--themeColor", /*contents*/ ctx[1].articles[/*realIndex*/ ctx[2]].themeColor);
-    			add_location(div, file$8, 47, 0, 2118);
+    			add_location(div, file$8, 46, 0, 2072);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -14673,7 +14684,6 @@ var app = (function () {
     	};
 
     	$$self.$capture_state = () => ({
-    		Cframe: Common_frame,
     		Button,
     		Yframe: Youtube_iframe,
     		Swiper: Swiper$1,

@@ -1,5 +1,4 @@
 <script>
-  import Cframe from "./common-frame.svelte";
   import Button from "./button.svelte";
   import Yframe from "./youtube-iframe.svelte";
   import { Swiper, SwiperSlide } from 'swiper/svelte';
@@ -68,6 +67,7 @@
             <div class="subtitle">{contents.articles[realIndex].subtitle}</div>
             <div class="title">{contents.articles[realIndex].title}</div>
           </div>
+          <div class="spacer"></div>
           <div class="buttons">
             {#each article.buttons as button}
               {#if button.popup}
@@ -225,15 +225,21 @@
         &:after
           right -1ch
           transform rotate(30deg)
+  :glovbal(.description-container .swiper-wrapper)
+    height auto !important
+  :global(.description-container .swiper-slide)
+    width 100% !important
   .description-container
     display flex
     justify-content space-between
     align-items flex-start
     margin 2vw 7vw
     .slide
+      flex-basis 100%
       box-sizing border-box
-      flex 0 0 calc(50% - (2vw / 2))
       margin-right 2vw
+    .spacer
+      flex 0 0 1vw
     .specs
       font-family vdl-v7marugothic, sans-serif
       font-style normal
