@@ -175,6 +175,9 @@
     font-family vdl-v7marugothic, sans-serif
     font-style normal
     font-weight 700
+    .headline
+      .title, .subtitle
+        display inline-block
     .title
       font-size 2em
       line-height 1em
@@ -195,12 +198,14 @@
         mix-blend-mode multiply
     .buttons
       display flex
+      white-space nowrap
       flex-direction column
       justify-content center
       align-items center
       .popup
         font-size 0.75em
         font-weight 300
+        white-space nowrap
         position relative
         color #3183fd
         &:before, &:after

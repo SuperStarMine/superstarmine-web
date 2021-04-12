@@ -12762,7 +12762,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(t_value);
-    			attr_dev(div, "class", "popup svelte-fqd0db");
+    			attr_dev(div, "class", "popup svelte-emw9p9");
     			add_location(div, file$8, 73, 16, 3096);
     		},
     		m: function mount(target, anchor) {
@@ -13080,7 +13080,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(swiper.$$.fragment);
-    			attr_dev(div, "class", "slide svelte-fqd0db");
+    			attr_dev(div, "class", "slide svelte-emw9p9");
     			add_location(div, file$8, 89, 12, 3655);
     		},
     		m: function mount(target, anchor) {
@@ -13503,7 +13503,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "" + (null_to_empty(/*i*/ ctx[15] == 0 ? "first-line" : "") + " svelte-fqd0db"));
+    			attr_dev(p, "class", "" + (null_to_empty(/*i*/ ctx[15] == 0 ? "first-line" : "") + " svelte-emw9p9"));
     			add_location(p, file$8, 112, 18, 4468);
     		},
     		m: function mount(target, anchor) {
@@ -13542,7 +13542,7 @@ var app = (function () {
     			if (if_block0) if_block0.c();
     			t = space();
     			if (if_block1) if_block1.c();
-    			attr_dev(div, "class", "specs svelte-fqd0db");
+    			attr_dev(div, "class", "specs svelte-emw9p9");
     			add_location(div, file$8, 119, 14, 4687);
     		},
     		m: function mount(target, anchor) {
@@ -13620,9 +13620,9 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(span, "class", "tag svelte-fqd0db");
+    			attr_dev(span, "class", "tag svelte-emw9p9");
     			add_location(span, file$8, 122, 20, 4807);
-    			attr_dev(div, "class", "times svelte-fqd0db");
+    			attr_dev(div, "class", "times svelte-emw9p9");
     			add_location(div, file$8, 121, 18, 4767);
     		},
     		m: function mount(target, anchor) {
@@ -13954,9 +13954,9 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(span, "class", "tag svelte-fqd0db");
+    			attr_dev(span, "class", "tag svelte-emw9p9");
     			add_location(span, file$8, 142, 20, 5895);
-    			attr_dev(div, "class", "platforms svelte-fqd0db");
+    			attr_dev(div, "class", "platforms svelte-emw9p9");
     			add_location(div, file$8, 141, 18, 5851);
     		},
     		m: function mount(target, anchor) {
@@ -14146,20 +14146,20 @@ var app = (function () {
     			t6 = space();
     			if (if_block2) if_block2.c();
     			t7 = space();
-    			attr_dev(div0, "class", "subtitle svelte-fqd0db");
+    			attr_dev(div0, "class", "subtitle svelte-emw9p9");
     			add_location(div0, file$8, 67, 12, 2810);
-    			attr_dev(div1, "class", "title svelte-fqd0db");
+    			attr_dev(div1, "class", "title svelte-emw9p9");
     			add_location(div1, file$8, 68, 12, 2890);
     			attr_dev(div2, "class", "headline");
     			add_location(div2, file$8, 66, 10, 2775);
-    			attr_dev(div3, "class", "buttons svelte-fqd0db");
+    			attr_dev(div3, "class", "buttons svelte-emw9p9");
     			add_location(div3, file$8, 70, 10, 2979);
-    			attr_dev(div4, "class", "title-container svelte-fqd0db");
+    			attr_dev(div4, "class", "title-container svelte-emw9p9");
     			add_location(div4, file$8, 65, 8, 2735);
     			add_location(article, file$8, 109, 12, 4333);
-    			attr_dev(div5, "class", "description svelte-fqd0db");
+    			attr_dev(div5, "class", "description svelte-emw9p9");
     			add_location(div5, file$8, 108, 10, 4295);
-    			attr_dev(div6, "class", "description-container svelte-fqd0db");
+    			attr_dev(div6, "class", "description-container svelte-emw9p9");
     			add_location(div6, file$8, 87, 8, 3576);
     		},
     		m: function mount(target, anchor) {
@@ -14512,7 +14512,7 @@ var app = (function () {
     			attr_dev(link1, "type", "text/css");
     			attr_dev(link1, "href", "/swiper-bundle.min.css");
     			add_location(link1, file$8, 43, 2, 1869);
-    			attr_dev(div, "class", "wrapper svelte-fqd0db");
+    			attr_dev(div, "class", "wrapper svelte-emw9p9");
     			set_style(div, "--backgroundColor", /*backgroundColor*/ ctx[4]);
     			set_style(div, "--themeColor", /*contents*/ ctx[1].articles[/*realIndex*/ ctx[2]].themeColor);
     			add_location(div, file$8, 47, 0, 2118);
