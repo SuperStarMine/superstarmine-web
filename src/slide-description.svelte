@@ -6,11 +6,9 @@
   import { sync } from './sync-store.js';
   import Color from 'color';
   export let pairId, isParent, globalSettings, contents;
-  const transitionDuration = globalSettings.transitionDuration;
-  $: backgroundColor = Color(contents.articles[realIndex].themeColor).lightness(95).desaturate(0.3);
-
-  let realIndex = 0;
-  addEventListener('slide', e => {realIndex = e.detail.realIndex});
+  const transitionDuration = globalSettings.transitionDuration,
+        backgroundColor = contents.articles.map(v => Color(v.themeColor).lightness(95).desaturate(0.3).hex());
+  console.log(backgroundColor);
 
   SwiperCore.use([Controller, EffectFade]);
 
@@ -43,32 +41,47 @@
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
-<!-- <Cframe title={contents.articles[realIndex].title} subtitle={contents.articles[realIndex].subtitle} themeColor={contents.articles[realIndex].themeColor}> -->
-<div class="wrapper" style="--backgroundColor: {backgroundColor};--themeColor: {contents.articles[realIndex].themeColor}">
-  <Swiper
-    allowSlideNext={false}
-    allowSlidePrev={false}
-    allowTouchMove={false}
-    autoHeight={true}
-    spaceBetween={0}
-    slidesPerView={1}
-    speed={transitionDuration}
-    loop={true}
-    loopAdditionalSlides={contents.articles.length - 1}
-    effect='fade'
-    fadeEffect={{crossFade: true}}
-    on:swiper={setControlledSwiper}
-    controller={{ control: controlledSwiper ? controlledSwiper : null }}
-  >
-    {#each contents.articles as article}
-      <SwiperSlide>
+<Swiper
+  allowSlideNext={false}
+  allowSlidePrev={false}
+  allowTouchMove={false}
+  autoHeight={true}
+  spaceBetween={0}
+  slidesPerView={1}
+  speed={transitionDuration}
+  loop={true}
+  loopAdditionalSlides={contents.articles.length - 1}
+  effect='fade'
+  fadeEffect={{crossFade: true}}
+  on:swiper={setControlledSwiper}
+  controller={{ control: controlledSwiper ? controlledSwiper : null }}
+>
+  {#each contents.articles as article, i}
+    <SwiperSlide>
+      <div class="slide-container" style="--backgroundColor: {backgroundColor[i]};--themeColor: {contents.articles[i].themeColor}">
         <div class="title-container">
           <div class="headline">
-            <div class="subtitle">{contents.articles[realIndex].subtitle}</div>
-            <div class="title">{contents.articles[realIndex].title}</div>
+            <span class="subtitle">
+              {#if Array.isArray(article.subtitle)}
+                {#each article.subtitle as subtitle}
+                  {subtitle}
+                {/each}
+              {:else}
+                {article.subtitle}
+            {/if}
+            </span>
+            <span class="title">
+              {#if Array.isArray(article.title)}
+                {#each article.title as title}
+                  {title}
+                {/each}
+              {:else}
+                {article.title}
+              {/if}
+            </span>
           </div>
           <div class="spacer"></div>
-          <div class="buttons">
+          <div class="buttons pc">
             {#each article.buttons as button}
               {#if button.popup}
                 <div class="popup">{button.popup}</div>
@@ -152,17 +165,32 @@
             {/if}
           </div>
         </div>
-      </SwiperSlide>
-    {/each}
-  </Swiper>
-</div>
+        <div class="buttons mobile">
+          {#each article.buttons as button}
+            {#if button.popup}
+              <div class="popup">{button.popup}</div>
+            {/if}
+            <Button target={button.target} bg="#3183fd" width="calc(var(--standardWidth) * 0.45)">
+              {#if Array.isArray(button.title)}
+                {#each button.title as title}
+                  <span class="break-scope">{title}</span>
+                {/each}
+              {:else}
+                {button.title}
+              {/if}
+            </Button>
+          {/each}
+        </div>
+      </div>
+    </SwiperSlide>
+  {/each}
+</Swiper>
 
 <style lang="stylus">
-  .wrapper
-    padding 0 0 5vw
-    box-sizing: border-box
+  .slide-container
     background-color var(--backgroundColor)
     border-top solid .25em var(--themeColor)
+    padding 0 0 5vw
   .title-container
     display flex
     justify-content space-between
@@ -175,15 +203,25 @@
     font-family vdl-v7marugothic, sans-serif
     font-style normal
     font-weight 700
+    @media (min-aspect-ratio: 16/9)
+      font-size calc(2.5vw / 3)
+    font-size calc(2.5vw * 0.5)
+    @media (max-aspect-ratio: 1/1)
+      font-size calc(2.5vw * 0.8)
+    @media (max-aspect-ratio: 3/4)
+      font-size: 2.5vw
     .headline
-      .title, .subtitle
-        display inline-block
+      display flex
+      flex-direction column
+      align-items flex-start
     .title
       font-size 2em
       line-height 1em
+      margin 0.25em 0
     .subtitle
       font-size 1.5em
       line-height 1em
+      margin 0.25em 0
       position relative
       &:before
         content ''
@@ -198,6 +236,8 @@
         mix-blend-mode multiply
     .buttons
       display flex
+      @media screen and (orientation: portrait)
+        display none
       white-space nowrap
       flex-direction column
       justify-content center
@@ -206,7 +246,6 @@
         font-size 0.75em
         font-weight 300
         white-space nowrap
-        position relative
         color #3183fd
         &:before, &:after
           content ''
@@ -231,6 +270,8 @@
     width 100% !important
   .description-container
     display flex
+    @media screen and (orientation: portrait)
+      display block
     justify-content space-between
     align-items flex-start
     margin 2vw 7vw
@@ -240,6 +281,8 @@
       margin-right 2vw
     .spacer
       flex 0 0 1vw
+      @media screen and (orientation: portrait)
+        display none
     .specs
       font-family vdl-v7marugothic, sans-serif
       font-style normal
@@ -268,4 +311,35 @@
           font-family vdl-v7marugothic, sans-serif
           font-style normal
           font-weight 700
+  .buttons
+    display flex
+    @media screen and (orientation: landscape)
+      display none
+    white-space nowrap
+    flex-direction column
+    justify-content center
+    align-items center
+    .popup
+      font-size 0.75em
+      font-weight 300
+      white-space nowrap
+      position relative
+      color #3183fd
+      &:before, &:after
+        content ''
+        display block
+        width 1px
+        height 50%
+        position absolute
+        top 0
+        bottom 0
+        margin auto
+        background-color #3183fd
+        border-radius 0.5px
+      &:before
+        left -1ch
+        transform rotate(-30deg)
+      &:after
+        right -1ch
+        transform rotate(30deg)
 </style>
