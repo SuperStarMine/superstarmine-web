@@ -3321,7 +3321,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (73:4) {#each contents.items as item}
+    // (67:4) {#each contents.items as item}
     function create_each_block$1(ctx) {
     	let div;
     	let t_value = /*item*/ ctx[11].label + "";
@@ -3338,7 +3338,7 @@ var app = (function () {
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "class", "header_navigation_list_items svelte-1nt0jps");
-    			add_location(div, file$2, 73, 6, 3296);
+    			add_location(div, file$2, 67, 6, 3015);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3364,7 +3364,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(73:4) {#each contents.items as item}",
+    		source: "(67:4) {#each contents.items as item}",
     		ctx
     	});
 
@@ -3457,48 +3457,48 @@ var app = (function () {
     			input.checked = true;
     			attr_dev(input, "name", "header_button_checkbox");
     			attr_dev(input, "id", "header_button_checkbox");
-    			add_location(input, file$2, 55, 2, 2197);
+    			add_location(input, file$2, 49, 2, 1916);
     			attr_dev(path0, "d", "M0 0h24v24H0z");
     			attr_dev(path0, "fill", "none");
     			attr_dev(path0, "class", "svelte-1nt0jps");
-    			add_location(path0, file$2, 58, 6, 2502);
+    			add_location(path0, file$2, 52, 6, 2221);
     			attr_dev(path1, "d", "M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z");
     			attr_dev(path1, "class", "svelte-1nt0jps");
-    			add_location(path1, file$2, 59, 6, 2547);
+    			add_location(path1, file$2, 53, 6, 2266);
     			attr_dev(svg0, "class", "header_button_svg svelte-1nt0jps");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
-    			add_location(svg0, file$2, 57, 4, 2444);
+    			add_location(svg0, file$2, 51, 4, 2163);
     			attr_dev(label0, "for", "header_button_checkbox");
     			attr_dev(label0, "class", "header_button svelte-1nt0jps");
     			attr_dev(label0, "title", "クリックするとナビゲーションを開閉できます");
-    			add_location(label0, file$2, 56, 2, 2351);
+    			add_location(label0, file$2, 50, 2, 2070);
     			attr_dev(span0, "class", "break-scope svelte-1nt0jps");
-    			add_location(span0, file$2, 65, 10, 2810);
+    			add_location(span0, file$2, 59, 10, 2529);
     			attr_dev(span1, "class", "break-scope svelte-1nt0jps");
-    			add_location(span1, file$2, 65, 51, 2851);
+    			add_location(span1, file$2, 59, 51, 2570);
     			attr_dev(span2, "class", "header_navigation_close_button_text svelte-1nt0jps");
-    			add_location(span2, file$2, 64, 8, 2749);
+    			add_location(span2, file$2, 58, 8, 2468);
     			attr_dev(path2, "d", "M0 0h24v24H0z");
     			attr_dev(path2, "fill", "none");
     			attr_dev(path2, "class", "svelte-1nt0jps");
-    			add_location(path2, file$2, 68, 10, 2991);
+    			add_location(path2, file$2, 62, 10, 2710);
     			attr_dev(path3, "d", "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z");
     			attr_dev(path3, "class", "svelte-1nt0jps");
-    			add_location(path3, file$2, 69, 10, 3039);
+    			add_location(path3, file$2, 63, 10, 2758);
     			attr_dev(svg1, "class", "header_navigation_close_button_svg svelte-1nt0jps");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
-    			add_location(svg1, file$2, 67, 8, 2912);
+    			add_location(svg1, file$2, 61, 8, 2631);
     			attr_dev(label1, "for", "header_button_checkbox");
     			attr_dev(label1, "class", "header_navigation_close_button svelte-1nt0jps");
-    			add_location(label1, file$2, 63, 4, 2665);
+    			add_location(label1, file$2, 57, 4, 2384);
     			attr_dev(svg2, "class", "header_button_svg svelte-1nt0jps");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "fill", "white");
-    			add_location(svg2, file$2, 76, 6, 3459);
+    			add_location(svg2, file$2, 70, 6, 3178);
     			attr_dev(div, "class", "header_button_dummy svelte-1nt0jps");
-    			add_location(div, file$2, 75, 4, 3419);
+    			add_location(div, file$2, 69, 4, 3138);
     			attr_dev(nav, "class", "header_navigation svelte-1nt0jps");
-    			add_location(nav, file$2, 62, 2, 2629);
+    			add_location(nav, file$2, 56, 2, 2348);
 
     			attr_dev(header_1, "title", window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`)
     			? ""
@@ -3506,7 +3506,7 @@ var app = (function () {
 
     			set_style(header_1, "--itemsCount", /*contents*/ ctx[0].items.length);
     			attr_dev(header_1, "class", "svelte-1nt0jps");
-    			add_location(header_1, file$2, 53, 0, 1724);
+    			add_location(header_1, file$2, 47, 0, 1443);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3655,13 +3655,6 @@ var app = (function () {
     	}
 
     	onMount(() => setTimeout(() => document.getElementById("header_button_checkbox").checked = false, 2000));
-
-    	if (screen.orientation) {
-    		screen.orientation.addEventListener("change", () => isLandscape = matchMedia("screen and (orientation: landscape)").matches);
-    	} else {
-    		addEventListener("resize", () => isLandscape = matchMedia("screen and (orientation: landscape)").matches);
-    	}
-
     	const writable_props = ["contents", "globalSettings"];
 
     	Object.keys($$props).forEach(key => {

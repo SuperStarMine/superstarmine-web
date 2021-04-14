@@ -43,12 +43,6 @@
   }
 
   onMount(() => setTimeout(() => document.getElementById('header_button_checkbox').checked = false, 2000));
-
-  if(screen.orientation){
-    screen.orientation.addEventListener('change', () => isLandscape = matchMedia('screen and (orientation: landscape)').matches);
-  }else{
-    addEventListener('resize', () => isLandscape = matchMedia('screen and (orientation: landscape)').matches);
-  }
 </script>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
