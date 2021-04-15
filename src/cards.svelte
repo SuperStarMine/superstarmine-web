@@ -129,7 +129,7 @@
     margin-left 2ch
     width calc(100% / 3 - 2ch)
   :global(.card_left-img)
-    border-radius 20px 20px 40px 20px
+    border-radius 20% 20% 40% 20%
   .right
     width 100%
     margin-left 2ch
