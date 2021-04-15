@@ -18234,7 +18234,7 @@ var app = (function () {
               imageId: 'ssm-logo-landscape',
               aspectRatio: {width: 7, height: 3},
               items: [
-                {id: 'works', label: '作品'},
+                {id: 'top', label: '作品'},
                 {id: 'news', label: 'ニュース'},
                 {id: 'about', label: 'チームについて'},
                 {id: 'members', label: 'メンバー'}
@@ -18244,7 +18244,6 @@ var app = (function () {
           {
             sectionType: 'slideHero',
             pairId: 'hero',
-            id: 'info'
           },
           {
             sectionType: 'slideDesc',
@@ -18559,6 +18558,7 @@ var app = (function () {
             sectionType: 'static',
             title: 'ABOUT',
             themeColor: '#f15a23',
+            id: 'about',
             contents: {
               imageId: 'ssm-logo-landscape',
               aspectRatio: {width: 7, height: 3},
@@ -18585,6 +18585,7 @@ var app = (function () {
             sectionType: 'cards',
             title: 'MEMBERS',
             themeColor: '#f7931d',
+            id: 'members',
             contents: {
               logoImageId: 'ssm-logo',
               logoImageSizes: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250],
