@@ -18570,10 +18570,9 @@ var app = (function () {
               bottomButtons: [
                 {
                   title: [
-                    'お問い合わせ・',
-                    '連絡'
+                    '問い合わせ'
                   ],
-                  target: 'https://google.com'
+                  target: 'https://docs.google.com/forms/d/e/1FAIpQLSd6Z3feC7onaq9SJa1Blfdd7frPFCsm4zQUCfQr9XqPxM3gzA/viewform'
                 },
                 {
                   title: 'Twitter',
