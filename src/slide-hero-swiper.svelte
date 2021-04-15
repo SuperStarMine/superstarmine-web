@@ -22,6 +22,7 @@
 </svelte:head>
 
 <div class="slide-hero">
+  <img class="arrow left" src="/img/arrow.svg" alt="左のスライドへ" width='309.94' height='355.04'>
   <Swiper
     centeredSlides={true}
     spaceBetween={4}
@@ -40,6 +41,7 @@
       </SwiperSlide>
     {/each}
   </Swiper>
+  <img class="arrow right" src="/img/arrow.svg" alt="右のスライドへ" width='309.94' height='355.04'>
 </div>
 
 <style lang="stylus">
@@ -53,4 +55,57 @@
     text-align center
     width auto
     // height calc(100vw / var(--slidesPerView) / 16 * 9)
+  .slide-hero
+    position relative
+    &:before, &:after
+      content ''
+      display block
+      width calc((100vw - var(--standardWidth)) / 6)
+      height 100%
+      position absolute
+      top 0
+      z-index 1000
+      pointer-events none
+    &:before
+      left 0
+      background linear-gradient(to right, #2228, transparent)
+    &:after
+      right 0
+      background linear-gradient(to left, #2228, transparent)
+
+    .arrow
+      @media screen and (orientation: portrait)
+        display none
+      position absolute
+      top 0
+      bottom 0
+      margin auto calc((100vw - var(--standardWidth)) / 6)
+      z-index 1100
+      width calc((100vw - var(--standardWidth)) / 6)
+      height auto
+      pointer-events none
+      animation-duration 1s
+      animation-timing-function ease
+      animation-fill-mode both
+      animation-direction alternate
+      animation-iteration-count infinite
+      &.left
+        left 0
+        animation-name swing-left
+      &.right
+        right 0
+        animation-name: swing-right
+
+    @keyframes swing-left
+      0%
+        transform translateX(0)
+      100%
+        transform translateX(calc(((100vw - var(--standardWidth)) / 48) * -1))
+
+    @keyframes swing-right
+      0%
+        transform rotate(180deg) translateX(0)
+      100%
+        transform rotate(180deg) translateX(calc(((100vw - var(--standardWidth)) / 48) * -1))
+
 </style>

@@ -12105,7 +12105,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (38:6) <SwiperSlide>
+    // (39:6) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t;
@@ -12163,14 +12163,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(38:6) <SwiperSlide>",
+    		source: "(39:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (37:4) {#each contents.articles as article}
+    // (38:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12218,14 +12218,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(37:4) {#each contents.articles as article}",
+    		source: "(38:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (25:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >
+    // (26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12314,7 +12314,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(25:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >",
+    		source: "(26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >",
     		ctx
     	});
 
@@ -12324,9 +12324,15 @@ var app = (function () {
     function create_fragment$8(ctx) {
     	let link0;
     	let link1;
-    	let t;
+    	let t0;
     	let div;
+    	let img0;
+    	let img0_src_value;
+    	let t1;
     	let swiper;
+    	let t2;
+    	let img1;
+    	let img1_src_value;
     	let current;
 
     	swiper = new Swiper$1({
@@ -12352,9 +12358,13 @@ var app = (function () {
     		c: function create() {
     			link0 = element("link");
     			link1 = element("link");
-    			t = space();
+    			t0 = space();
     			div = element("div");
+    			img0 = element("img");
+    			t1 = space();
     			create_component(swiper.$$.fragment);
+    			t2 = space();
+    			img1 = element("img");
     			attr_dev(link0, "rel", "preload");
     			attr_dev(link0, "href", "/swiper-bundle.min.css");
     			attr_dev(link0, "as", "style");
@@ -12363,7 +12373,19 @@ var app = (function () {
     			attr_dev(link1, "type", "text/css");
     			attr_dev(link1, "href", "/swiper-bundle.min.css");
     			add_location(link1, file$6, 20, 2, 650);
-    			attr_dev(div, "class", "slide-hero");
+    			attr_dev(img0, "class", "arrow left svelte-lm9ubg");
+    			if (img0.src !== (img0_src_value = "/img/arrow.svg")) attr_dev(img0, "src", img0_src_value);
+    			attr_dev(img0, "alt", "左のスライドへ");
+    			attr_dev(img0, "width", "309.94");
+    			attr_dev(img0, "height", "355.04");
+    			add_location(img0, file$6, 24, 2, 763);
+    			attr_dev(img1, "class", "arrow right svelte-lm9ubg");
+    			if (img1.src !== (img1_src_value = "/img/arrow.svg")) attr_dev(img1, "src", img1_src_value);
+    			attr_dev(img1, "alt", "右のスライドへ");
+    			attr_dev(img1, "width", "309.94");
+    			attr_dev(img1, "height", "355.04");
+    			add_location(img1, file$6, 43, 2, 1618);
+    			attr_dev(div, "class", "slide-hero svelte-lm9ubg");
     			add_location(div, file$6, 23, 0, 736);
     		},
     		l: function claim(nodes) {
@@ -12372,9 +12394,13 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			append_dev(document.head, link0);
     			append_dev(document.head, link1);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, t0, anchor);
     			insert_dev(target, div, anchor);
+    			append_dev(div, img0);
+    			append_dev(div, t1);
     			mount_component(swiper, div, null);
+    			append_dev(div, t2);
+    			append_dev(div, img1);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -12400,7 +12426,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			detach_dev(link0);
     			detach_dev(link1);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div);
     			destroy_component(swiper);
     		}
