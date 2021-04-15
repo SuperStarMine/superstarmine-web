@@ -4239,7 +4239,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (16:6) {#each article as article}
+    // (17:6) {#each article as article}
     function create_each_block_2(ctx) {
     	let p;
     	let t_value = /*article*/ ctx[4] + "";
@@ -4249,8 +4249,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "svelte-pyzb5g");
-    			add_location(p, file$4, 16, 8, 569);
+    			attr_dev(p, "class", "svelte-1cc7ntq");
+    			add_location(p, file$4, 17, 8, 598);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -4268,14 +4268,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(16:6) {#each article as article}",
+    		source: "(17:6) {#each article as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (27:10) {:else}
+    // (28:10) {:else}
     function create_else_block$1(ctx) {
     	let t_value = /*button*/ ctx[5].title + "";
     	let t;
@@ -4299,14 +4299,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(27:10) {:else}",
+    		source: "(28:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (23:10) {#if Array.isArray(button.title)}
+    // (24:10) {#if Array.isArray(button.title)}
     function create_if_block$2(ctx) {
     	let each_1_anchor;
     	let each_value_1 = /*button*/ ctx[5].title;
@@ -4367,14 +4367,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(23:10) {#if Array.isArray(button.title)}",
+    		source: "(24:10) {#if Array.isArray(button.title)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (24:12) {#each button.title as title}
+    // (25:12) {#each button.title as title}
     function create_each_block_1(ctx) {
     	let span;
     	let t_value = /*title*/ ctx[8] + "";
@@ -4385,7 +4385,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$4, 24, 14, 895);
+    			add_location(span, file$4, 25, 14, 924);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -4403,14 +4403,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(24:12) {#each button.title as title}",
+    		source: "(25:12) {#each button.title as title}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (22:8) <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">
+    // (23:8) <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">
     function create_default_slot(ctx) {
     	let show_if;
     	let t;
@@ -4456,14 +4456,14 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(22:8) <Button target=\\\"{button.target}\\\" marginLeft=\\\"{buttonsLayout=='right'}\\\" marginRight=\\\"{buttonsLayout=='left'}\\\">",
+    		source: "(23:8) <Button target=\\\"{button.target}\\\" marginLeft=\\\"{buttonsLayout=='right'}\\\" marginRight=\\\"{buttonsLayout=='left'}\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (21:6) {#each buttons as button}
+    // (22:6) {#each buttons as button}
     function create_each_block$2(ctx) {
     	let button;
     	let current;
@@ -4517,7 +4517,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(21:6) {#each buttons as button}",
+    		source: "(22:6) {#each buttons as button}",
     		ctx
     	});
 
@@ -4525,12 +4525,14 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div;
+    	let div1;
     	let picture;
     	let t0;
+    	let div0;
+    	let t1;
     	let section2;
     	let section0;
-    	let t1;
+    	let t2;
     	let section1;
     	let current;
 
@@ -4569,9 +4571,11 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
     			create_component(picture.$$.fragment);
     			t0 = space();
+    			div0 = element("div");
+    			t1 = space();
     			section2 = element("section");
     			section0 = element("section");
 
@@ -4579,37 +4583,41 @@ var app = (function () {
     				each_blocks_1[i].c();
     			}
 
-    			t1 = space();
+    			t2 = space();
     			section1 = element("section");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(section0, "class", "text svelte-pyzb5g");
-    			add_location(section0, file$4, 14, 4, 505);
-    			attr_dev(section1, "class", "buttons svelte-pyzb5g");
-    			add_location(section1, file$4, 19, 4, 619);
-    			attr_dev(section2, "class", "right-column svelte-pyzb5g");
-    			add_location(section2, file$4, 13, 2, 470);
-    			attr_dev(div, "class", "container svelte-pyzb5g");
-    			add_location(div, file$4, 11, 0, 269);
+    			attr_dev(div0, "class", "spacer svelte-1cc7ntq");
+    			add_location(div0, file$4, 13, 2, 470);
+    			attr_dev(section0, "class", "text svelte-1cc7ntq");
+    			add_location(section0, file$4, 15, 4, 534);
+    			attr_dev(section1, "class", "buttons svelte-1cc7ntq");
+    			add_location(section1, file$4, 20, 4, 648);
+    			attr_dev(section2, "class", "right-column svelte-1cc7ntq");
+    			add_location(section2, file$4, 14, 2, 499);
+    			attr_dev(div1, "class", "container svelte-1cc7ntq");
+    			add_location(div1, file$4, 11, 0, 269);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			mount_component(picture, div, null);
-    			append_dev(div, t0);
-    			append_dev(div, section2);
+    			insert_dev(target, div1, anchor);
+    			mount_component(picture, div1, null);
+    			append_dev(div1, t0);
+    			append_dev(div1, div0);
+    			append_dev(div1, t1);
+    			append_dev(div1, section2);
     			append_dev(section2, section0);
 
     			for (let i = 0; i < each_blocks_1.length; i += 1) {
     				each_blocks_1[i].m(section0, null);
     			}
 
-    			append_dev(section2, t1);
+    			append_dev(section2, t2);
     			append_dev(section2, section1);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -4700,7 +4708,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div1);
     			destroy_component(picture);
     			destroy_each(each_blocks_1, detaching);
     			destroy_each(each_blocks, detaching);

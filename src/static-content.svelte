@@ -11,6 +11,7 @@
 
 <div class="container">
   <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
+  <div class="spacer"></div>
   <section class="right-column">
     <section class="text">
       {#each article as article}
@@ -43,9 +44,11 @@
   background-color #fff
   box-shadow: 0 0 10px #ccc
   flex: 0 0 35%
-  margin-right: 5%
   width: 100%
   height auto
+
+.spacer
+  flex 0 0 5%
 
 .right-column
   flex: 0 0 60%
