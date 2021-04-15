@@ -8,6 +8,15 @@
   import Cards from "./cards.svelte";
   export let settings;
   export let globalSettings;
+  let standardWidth;
+  const setStandardWidth = (media, v) => standardWidth = media.matches ? v.value : globalSettings.standardWidths[globalSettings.standardWidths.findIndex(w => w.mediaQuery == 'default')].value;
+  globalSettings.standardWidths.forEach(v => {
+    if(v.mediaQuery && v.mediaQuery != 'default') {
+      let media = matchMedia(`(${v.mediaQuery})`);
+      if(!standardWidth)setStandardWidth(media, v);
+      media.addEventListener('change', () => setStandardWidth(media, v));
+    }
+  });
 </script>
 
 <style lang="stylus">
@@ -16,10 +25,10 @@
 {#if settings.find(v => v.sectionType == 'navHeader')}
   <Nheader contents={settings.find(v => v.sectionType == 'navHeader').contents} {globalSettings}/>
 {/if}
-<main style="--standardWidth: {globalSettings.standardWidth}vw; --transitionDuration: {globalSettings.transitionDuration}ms">
+<main style="--transitionDuration: {globalSettings.transitionDuration}ms;--standardWidth: {standardWidth}vw">
   {#each settings as {title, subtitle, themeColor, sectionType, contents, id, pairId, isParent}, i}
     {#if sectionType == "slideHero"}
-      <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent}/>
+      <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "slideDesc"}
       <Desc {contents} {globalSettings} {pairId} {isParent}/>
     {:else if sectionType != "navHeader"}
@@ -29,7 +38,7 @@
         {:else if sectionType == "emphasizingList"}
           <Elist {contents} {globalSettings}/>
         {:else if sectionType == "cards"}
-          <Cards {contents} {globalSettings}/>
+          <Cards {contents} {globalSettings} {standardWidth}/>
         {/if}
       </Cframe>
     {/if}

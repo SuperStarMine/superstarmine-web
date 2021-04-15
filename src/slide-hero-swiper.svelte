@@ -4,10 +4,9 @@
   import { sync } from './sync-store.js';
   import Picture from "./picture.svelte";
   import { onMount } from 'svelte';
-  export let contents, pairId, isParent, globalSettings;
+  export let contents, pairId, isParent, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;
-  const slidesPerView = 1.25
 
   SwiperCore.use([Controller, EffectFade]);
 
@@ -15,7 +14,6 @@
   addEventListener('controllee_load', () => {
     controlledSwiper = $sync.controlledSwiper
   });
-
 </script>
 
 <svelte:head>
@@ -24,6 +22,7 @@
 </svelte:head>
 
 <div class="slide-hero">
+  <div>{standardWidth}</div>
   <Swiper
     centeredSlides={true}
     spaceBetween={4}
@@ -35,11 +34,10 @@
     loopedSlides={contents.articles.length}
     controller={{ control: controlledSwiper }}
     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}
-    style="--slidesPerView: {slidesPerView}"
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <Picture imgClass="slide-img" sizes="{100 / slidesPerView}vw" {contents} {globalSettings} imageId={article.imageId}/>
+        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId}/>
       </SwiperSlide>
     {/each}
   </Swiper>
@@ -48,7 +46,7 @@
 <style lang="stylus">
   :global(.slide-hero .slide-img)
     width auto
-    height calc((100vw / var(--slidesPerView)) / 16 * 9)
+    height calc(var(--standardWidth) / 16 * 9)
     vertical-align top
   :global(.slide-hero .swiper-wrapper)
     width 50%

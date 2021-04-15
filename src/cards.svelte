@@ -1,5 +1,5 @@
 <script>
-  export let contents, globalSettings;
+  export let contents, globalSettings, standardWidth;
   import Picture from "./picture.svelte";
   import { onMount } from 'svelte';
   const socialConsts = {
@@ -11,7 +11,7 @@
             'qiita':'qiita.com',
             'youtube':'www.youtube.com/c'
           }
-        }
+        };
 
   let ch2px;
   let ch;
@@ -25,7 +25,7 @@
         <div class="upper">
           {#if card.imageId}
             <div class="left">
-              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId} sizes="(min-aspect-ratio: 16/9) {globalSettings.standardWidth / 3 / 3}vw, {globalSettings.standardWidth / 2 / 3}vw, (max-aspect-ratio: 1/1) {globalSettings.standardWidth * 0.8 / 3}vw, (max-aspect-ratio: 3/4) {globalSettings.standardWidth / 3}vw"/>
+              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId} sizes="(min-aspect-ratio: 16/9) {standardWidth / 3 / 3}vw, {standardWidth / 2 / 3}vw, (max-aspect-ratio: 1/1) {standardWidth * 0.8 / 3}vw, (max-aspect-ratio: 3/4) {standardWidth / 3}vw"/>
             </div>
           {/if}
           <div class="right {card.imageId ? '' : 'noImage'}">

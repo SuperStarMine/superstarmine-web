@@ -4,7 +4,20 @@ const app = new App({
   target: document.body,
   props: {
     globalSettings: {
-      standardWidth: '80', // vw
+      standardWidths: [
+        {
+          mediaQuery: 'min-aspect-ratio: 16/9',
+          value: 70
+        },
+        {
+          mediaQuery: 'default',
+          value: 80
+        },
+        {
+          mediaQuery: 'max-aspect-ratio: 3/4',
+          value: 90
+        },
+      ],
       imageDirectory: './img/',
       imageExtensionsShort: ['webp', 'png'],
       imageSizes: [250, 500, 750, 1000, 1250, 1500, 1750, 2000],
@@ -41,6 +54,7 @@ const app = new App({
               themeColor: '#fdaa2b',
               imageId: 'necromance_ss',
               alt: 'れーぞく！ネクロマンスちゃんのプレイ画面',
+              aspectRatio: {width: 16, height: 9},
               description: [
                 'スーパースターマイン第一作目のSTG。',
                 '敵弾をスレスレでかわすことで強大な必殺技をブッ放せる、という『れーぞくシステム』を搭載。リスクとリターンの取捨選択に手に汗握る、白熱したバトルを楽しめる。',
@@ -89,6 +103,7 @@ const app = new App({
               themeColor: '#000',
               imageId: 'spinner_ss',
               alt: 'SPINNERのプレイ画面',
+              aspectRatio: {width: 16, height: 9},
               description: [
                 'ハンドルコントローラーを用いて戦う1vs1のホッケーゲーム。',
                 'ゴールがなく、パックが端のラインを超えると対となるラインにワープするという仕様が特徴。',
@@ -129,6 +144,7 @@ const app = new App({
               themeColor: '#1f83d8',
               imageId: 'cup-run_ss',
               alt: 'CUPRUNMENのプレイ画面',
+              aspectRatio: {width: 16, height: 9},
               description: [
                 '初となるフルリモート体制で制作したランゲーム。',
                 '技術的にユニークな点として、「プレイヤーの向きと',
@@ -173,6 +189,7 @@ const app = new App({
               themeColor: '#4ae0ef',
               imageId: 'fall_in_parfait-ss1',
               alt: 'フォーリンパフェのプレイ画面',
+              aspectRatio: {width: 16, height: 9},
               description: [
                 '2020年8月に開催されたUnity1Weekで制作したゲーム。',
                 '『上から落ちてくる材料を器でキャッチしてパフェを作る』というシンプルな操作性ながら、パフェを大きくなるにつれて爆弾に当たりやすくなる、オンラインランキングの実装といった工夫により、上級者にとってもやり込みがいのあるゲームとなった。',
@@ -233,6 +250,7 @@ const app = new App({
               subtitle: '爆買いアクションランゲーム',
               themeColor: '#c65017',
               imageId: 'bakugai-img',
+              aspectRatio: {width: 1, height: 1},
               alt: '',
               description: [
                 'フォーリンパフェに続く、Unity1Week二作目。',
