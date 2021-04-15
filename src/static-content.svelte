@@ -10,7 +10,7 @@
 </script>
 
 <div class="container">
-  <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
+  <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height} style="width:100%"/>
   <div class="spacer"></div>
   <section class="right-column">
     <section class="text">
@@ -43,7 +43,6 @@
 :global(.static-img)
   background-color #fff
   box-shadow: 0 0 10px #ccc
-  flex: 0 0 35%
   width: 100%
   height auto
 

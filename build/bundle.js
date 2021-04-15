@@ -2883,12 +2883,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[13] = list[i];
-    	child_ctx[15] = i;
+    	child_ctx[14] = list[i];
+    	child_ctx[16] = i;
     	return child_ctx;
     }
 
-    // (29:2) {#each imageExtensionsShort as ext, i}
+    // (30:2) {#each imageExtensionsShort as ext, i}
     function create_each_block(ctx) {
     	let source;
     	let source_type_value;
@@ -2897,16 +2897,16 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			source = element("source");
-    			attr_dev(source, "type", source_type_value = "image/" + /*ext*/ ctx[13]);
+    			attr_dev(source, "type", source_type_value = "image/" + /*ext*/ ctx[14]);
     			attr_dev(source, "sizes", /*sizes*/ ctx[1]);
-    			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[/*i*/ ctx[15]]);
-    			add_location(source, file$1, 29, 4, 894);
+    			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[/*i*/ ctx[16]]);
+    			add_location(source, file$1, 30, 4, 913);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageExtensionsShort*/ 256 && source_type_value !== (source_type_value = "image/" + /*ext*/ ctx[13])) {
+    			if (dirty & /*imageExtensionsShort*/ 512 && source_type_value !== (source_type_value = "image/" + /*ext*/ ctx[14])) {
     				attr_dev(source, "type", source_type_value);
     			}
 
@@ -2914,7 +2914,7 @@ var app = (function () {
     				attr_dev(source, "sizes", /*sizes*/ ctx[1]);
     			}
 
-    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 1793 && source_srcset_value !== (source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[/*i*/ ctx[15]])) {
+    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 3585 && source_srcset_value !== (source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[/*i*/ ctx[16]])) {
     				attr_dev(source, "srcset", source_srcset_value);
     			}
     		},
@@ -2927,7 +2927,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(29:2) {#each imageExtensionsShort as ext, i}",
+    		source: "(30:2) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
@@ -2941,7 +2941,7 @@ var app = (function () {
     	let img_srcset_value;
     	let mounted;
     	let dispose;
-    	let each_value = /*imageExtensionsShort*/ ctx[8];
+    	let each_value = /*imageExtensionsShort*/ ctx[9];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2961,13 +2961,14 @@ var app = (function () {
     			img = element("img");
     			attr_dev(img, "class", /*imgClass*/ ctx[5]);
     			attr_dev(img, "sizes", /*sizes*/ ctx[1]);
-    			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[8])]);
+    			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[9])]);
     			attr_dev(img, "alt", /*alt*/ ctx[2]);
     			attr_dev(img, "width", /*width*/ ctx[3]);
     			attr_dev(img, "height", /*height*/ ctx[4]);
-    			add_location(img, file$1, 31, 2, 1030);
+    			add_location(img, file$1, 32, 2, 1049);
     			attr_dev(picture, "title", /*title*/ ctx[7]);
-    			add_location(picture, file$1, 27, 0, 814);
+    			attr_dev(picture, "style", /*style*/ ctx[8]);
+    			add_location(picture, file$1, 28, 0, 825);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3000,8 +3001,8 @@ var app = (function () {
     		p: function update(new_ctx, [dirty]) {
     			ctx = new_ctx;
 
-    			if (dirty & /*imageExtensionsShort, sizes, resolveSrcsets, imageDirectory, imageSizes, imageId*/ 1795) {
-    				each_value = /*imageExtensionsShort*/ ctx[8];
+    			if (dirty & /*imageExtensionsShort, sizes, resolveSrcsets, imageDirectory, imageSizes, imageId*/ 3587) {
+    				each_value = /*imageExtensionsShort*/ ctx[9];
     				validate_each_argument(each_value);
     				let i;
 
@@ -3032,7 +3033,7 @@ var app = (function () {
     				attr_dev(img, "sizes", /*sizes*/ ctx[1]);
     			}
 
-    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 1793 && img_srcset_value !== (img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[8])])) {
+    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 3585 && img_srcset_value !== (img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[9])])) {
     				attr_dev(img, "srcset", img_srcset_value);
     			}
 
@@ -3050,6 +3051,10 @@ var app = (function () {
 
     			if (dirty & /*title*/ 128) {
     				attr_dev(picture, "title", /*title*/ ctx[7]);
+    			}
+
+    			if (dirty & /*style*/ 256) {
+    				attr_dev(picture, "style", /*style*/ ctx[8]);
     			}
     		},
     		i: noop,
@@ -3097,6 +3102,7 @@ var app = (function () {
     		{ imgClass } = $$props,
     		{ click } = $$props,
     		{ title } = $$props,
+    		{ style } = $$props,
     		{ imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort } = $$props,
     		{ imageSizes = contents.imageSizes || globalSettings.imageSizes } = $$props,
     		{ imageDirectory = contents.imageDirectory || globalSettings.imageDirectory } = $$props;
@@ -3112,6 +3118,7 @@ var app = (function () {
     		"imgClass",
     		"click",
     		"title",
+    		"style",
     		"imageExtensionsShort",
     		"imageSizes",
     		"imageDirectory"
@@ -3122,8 +3129,8 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(11, contents = $$props.contents);
-    		if ("globalSettings" in $$props) $$invalidate(12, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(12, contents = $$props.contents);
+    		if ("globalSettings" in $$props) $$invalidate(13, globalSettings = $$props.globalSettings);
     		if ("imageId" in $$props) $$invalidate(0, imageId = $$props.imageId);
     		if ("sizes" in $$props) $$invalidate(1, sizes = $$props.sizes);
     		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
@@ -3132,9 +3139,10 @@ var app = (function () {
     		if ("imgClass" in $$props) $$invalidate(5, imgClass = $$props.imgClass);
     		if ("click" in $$props) $$invalidate(6, click = $$props.click);
     		if ("title" in $$props) $$invalidate(7, title = $$props.title);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(8, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSizes" in $$props) $$invalidate(9, imageSizes = $$props.imageSizes);
-    		if ("imageDirectory" in $$props) $$invalidate(10, imageDirectory = $$props.imageDirectory);
+    		if ("style" in $$props) $$invalidate(8, style = $$props.style);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(9, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSizes" in $$props) $$invalidate(10, imageSizes = $$props.imageSizes);
+    		if ("imageDirectory" in $$props) $$invalidate(11, imageDirectory = $$props.imageDirectory);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3148,6 +3156,7 @@ var app = (function () {
     		imgClass,
     		click,
     		title,
+    		style,
     		imageExtensionsShort,
     		imageSizes,
     		imageDirectory,
@@ -3156,8 +3165,8 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(11, contents = $$props.contents);
-    		if ("globalSettings" in $$props) $$invalidate(12, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(12, contents = $$props.contents);
+    		if ("globalSettings" in $$props) $$invalidate(13, globalSettings = $$props.globalSettings);
     		if ("imageId" in $$props) $$invalidate(0, imageId = $$props.imageId);
     		if ("sizes" in $$props) $$invalidate(1, sizes = $$props.sizes);
     		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
@@ -3166,9 +3175,10 @@ var app = (function () {
     		if ("imgClass" in $$props) $$invalidate(5, imgClass = $$props.imgClass);
     		if ("click" in $$props) $$invalidate(6, click = $$props.click);
     		if ("title" in $$props) $$invalidate(7, title = $$props.title);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(8, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSizes" in $$props) $$invalidate(9, imageSizes = $$props.imageSizes);
-    		if ("imageDirectory" in $$props) $$invalidate(10, imageDirectory = $$props.imageDirectory);
+    		if ("style" in $$props) $$invalidate(8, style = $$props.style);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(9, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSizes" in $$props) $$invalidate(10, imageSizes = $$props.imageSizes);
+    		if ("imageDirectory" in $$props) $$invalidate(11, imageDirectory = $$props.imageDirectory);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3184,6 +3194,7 @@ var app = (function () {
     		imgClass,
     		click,
     		title,
+    		style,
     		imageExtensionsShort,
     		imageSizes,
     		imageDirectory,
@@ -3197,8 +3208,8 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			contents: 11,
-    			globalSettings: 12,
+    			contents: 12,
+    			globalSettings: 13,
     			imageId: 0,
     			sizes: 1,
     			alt: 2,
@@ -3207,9 +3218,10 @@ var app = (function () {
     			imgClass: 5,
     			click: 6,
     			title: 7,
-    			imageExtensionsShort: 8,
-    			imageSizes: 9,
-    			imageDirectory: 10
+    			style: 8,
+    			imageExtensionsShort: 9,
+    			imageSizes: 10,
+    			imageDirectory: 11
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -3222,11 +3234,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[11] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[12] === undefined && !("contents" in props)) {
     			console.warn("<Picture> was created without expected prop 'contents'");
     		}
 
-    		if (/*globalSettings*/ ctx[12] === undefined && !("globalSettings" in props)) {
+    		if (/*globalSettings*/ ctx[13] === undefined && !("globalSettings" in props)) {
     			console.warn("<Picture> was created without expected prop 'globalSettings'");
     		}
 
@@ -3252,6 +3264,10 @@ var app = (function () {
 
     		if (/*title*/ ctx[7] === undefined && !("title" in props)) {
     			console.warn("<Picture> was created without expected prop 'title'");
+    		}
+
+    		if (/*style*/ ctx[8] === undefined && !("style" in props)) {
+    			console.warn("<Picture> was created without expected prop 'style'");
     		}
     	}
 
@@ -3332,6 +3348,14 @@ var app = (function () {
     	}
 
     	set title(value) {
+    		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get style() {
+    		throw new Error("<Picture>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set style(value) {
     		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -4249,8 +4273,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "svelte-1cc7ntq");
-    			add_location(p, file$4, 17, 8, 598);
+    			attr_dev(p, "class", "svelte-1rnf499");
+    			add_location(p, file$4, 17, 8, 617);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -4385,7 +4409,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$4, 25, 14, 924);
+    			add_location(span, file$4, 25, 14, 943);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -4544,7 +4568,8 @@ var app = (function () {
     				globalSettings: /*globalSettings*/ ctx[1],
     				imageId: /*contents*/ ctx[0].imageId,
     				width: /*contents*/ ctx[0].aspectRatio.width,
-    				height: /*contents*/ ctx[0].aspectRatio.height
+    				height: /*contents*/ ctx[0].aspectRatio.height,
+    				style: "width:100%"
     			},
     			$$inline: true
     		});
@@ -4590,15 +4615,15 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "spacer svelte-1cc7ntq");
-    			add_location(div0, file$4, 13, 2, 470);
-    			attr_dev(section0, "class", "text svelte-1cc7ntq");
-    			add_location(section0, file$4, 15, 4, 534);
-    			attr_dev(section1, "class", "buttons svelte-1cc7ntq");
-    			add_location(section1, file$4, 20, 4, 648);
-    			attr_dev(section2, "class", "right-column svelte-1cc7ntq");
-    			add_location(section2, file$4, 14, 2, 499);
-    			attr_dev(div1, "class", "container svelte-1cc7ntq");
+    			attr_dev(div0, "class", "spacer svelte-1rnf499");
+    			add_location(div0, file$4, 13, 2, 489);
+    			attr_dev(section0, "class", "text svelte-1rnf499");
+    			add_location(section0, file$4, 15, 4, 553);
+    			attr_dev(section1, "class", "buttons svelte-1rnf499");
+    			add_location(section1, file$4, 20, 4, 667);
+    			attr_dev(section2, "class", "right-column svelte-1rnf499");
+    			add_location(section2, file$4, 14, 2, 518);
+    			attr_dev(div1, "class", "container svelte-1rnf499");
     			add_location(div1, file$4, 11, 0, 269);
     		},
     		l: function claim(nodes) {

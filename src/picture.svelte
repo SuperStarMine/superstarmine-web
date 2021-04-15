@@ -10,6 +10,7 @@
     imgClass,
     click,
     title,
+    style,
     imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
     imageSizes = contents.imageSizes || globalSettings.imageSizes,
     imageDirectory = contents.imageDirectory || globalSettings.imageDirectory;
@@ -25,7 +26,7 @@
   }
 </script>
 
-<picture on:click={click} {title}>
+<picture on:click={click} {title} {style}>
   {#each imageExtensionsShort as ext, i}
     <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[i]}">
   {/each}
