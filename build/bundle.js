@@ -2883,12 +2883,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[11] = list[i];
-    	child_ctx[13] = i;
+    	child_ctx[13] = list[i];
+    	child_ctx[15] = i;
     	return child_ctx;
     }
 
-    // (27:2) {#each imageExtensionsShort as ext, i}
+    // (29:2) {#each imageExtensionsShort as ext, i}
     function create_each_block(ctx) {
     	let source;
     	let source_type_value;
@@ -2897,16 +2897,16 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			source = element("source");
-    			attr_dev(source, "type", source_type_value = "image/" + /*ext*/ ctx[11]);
+    			attr_dev(source, "type", source_type_value = "image/" + /*ext*/ ctx[13]);
     			attr_dev(source, "sizes", /*sizes*/ ctx[1]);
-    			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[8], /*imageExtensionsShort*/ ctx[6], /*imageSizes*/ ctx[7], /*imageId*/ ctx[0])[/*i*/ ctx[13]]);
-    			add_location(source, file$1, 27, 4, 871);
+    			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[/*i*/ ctx[15]]);
+    			add_location(source, file$1, 29, 4, 894);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageExtensionsShort*/ 64 && source_type_value !== (source_type_value = "image/" + /*ext*/ ctx[11])) {
+    			if (dirty & /*imageExtensionsShort*/ 256 && source_type_value !== (source_type_value = "image/" + /*ext*/ ctx[13])) {
     				attr_dev(source, "type", source_type_value);
     			}
 
@@ -2914,7 +2914,7 @@ var app = (function () {
     				attr_dev(source, "sizes", /*sizes*/ ctx[1]);
     			}
 
-    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 449 && source_srcset_value !== (source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[8], /*imageExtensionsShort*/ ctx[6], /*imageSizes*/ ctx[7], /*imageId*/ ctx[0])[/*i*/ ctx[13]])) {
+    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 1793 && source_srcset_value !== (source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[/*i*/ ctx[15]])) {
     				attr_dev(source, "srcset", source_srcset_value);
     			}
     		},
@@ -2927,7 +2927,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(27:2) {#each imageExtensionsShort as ext, i}",
+    		source: "(29:2) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
@@ -2941,7 +2941,7 @@ var app = (function () {
     	let img_srcset_value;
     	let mounted;
     	let dispose;
-    	let each_value = /*imageExtensionsShort*/ ctx[6];
+    	let each_value = /*imageExtensionsShort*/ ctx[8];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2959,13 +2959,15 @@ var app = (function () {
 
     			t = space();
     			img = element("img");
-    			attr_dev(img, "class", /*imgClass*/ ctx[3]);
+    			attr_dev(img, "class", /*imgClass*/ ctx[5]);
     			attr_dev(img, "sizes", /*sizes*/ ctx[1]);
-    			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[8], /*imageExtensionsShort*/ ctx[6], /*imageSizes*/ ctx[7], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[6])]);
+    			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[8])]);
     			attr_dev(img, "alt", /*alt*/ ctx[2]);
-    			add_location(img, file$1, 29, 2, 1007);
-    			attr_dev(picture, "title", /*title*/ ctx[5]);
-    			add_location(picture, file$1, 25, 0, 791);
+    			attr_dev(img, "width", /*width*/ ctx[3]);
+    			attr_dev(img, "height", /*height*/ ctx[4]);
+    			add_location(img, file$1, 31, 2, 1030);
+    			attr_dev(picture, "title", /*title*/ ctx[7]);
+    			add_location(picture, file$1, 27, 0, 814);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2985,7 +2987,7 @@ var app = (function () {
     					picture,
     					"click",
     					function () {
-    						if (is_function(/*click*/ ctx[4])) /*click*/ ctx[4].apply(this, arguments);
+    						if (is_function(/*click*/ ctx[6])) /*click*/ ctx[6].apply(this, arguments);
     					},
     					false,
     					false,
@@ -2998,8 +3000,8 @@ var app = (function () {
     		p: function update(new_ctx, [dirty]) {
     			ctx = new_ctx;
 
-    			if (dirty & /*imageExtensionsShort, sizes, resolveSrcsets, imageDirectory, imageSizes, imageId*/ 451) {
-    				each_value = /*imageExtensionsShort*/ ctx[6];
+    			if (dirty & /*imageExtensionsShort, sizes, resolveSrcsets, imageDirectory, imageSizes, imageId*/ 1795) {
+    				each_value = /*imageExtensionsShort*/ ctx[8];
     				validate_each_argument(each_value);
     				let i;
 
@@ -3022,15 +3024,15 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*imgClass*/ 8) {
-    				attr_dev(img, "class", /*imgClass*/ ctx[3]);
+    			if (dirty & /*imgClass*/ 32) {
+    				attr_dev(img, "class", /*imgClass*/ ctx[5]);
     			}
 
     			if (dirty & /*sizes*/ 2) {
     				attr_dev(img, "sizes", /*sizes*/ ctx[1]);
     			}
 
-    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 449 && img_srcset_value !== (img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[8], /*imageExtensionsShort*/ ctx[6], /*imageSizes*/ ctx[7], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[6])])) {
+    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 1793 && img_srcset_value !== (img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[10], /*imageExtensionsShort*/ ctx[8], /*imageSizes*/ ctx[9], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[8])])) {
     				attr_dev(img, "srcset", img_srcset_value);
     			}
 
@@ -3038,8 +3040,16 @@ var app = (function () {
     				attr_dev(img, "alt", /*alt*/ ctx[2]);
     			}
 
-    			if (dirty & /*title*/ 32) {
-    				attr_dev(picture, "title", /*title*/ ctx[5]);
+    			if (dirty & /*width*/ 8) {
+    				attr_dev(img, "width", /*width*/ ctx[3]);
+    			}
+
+    			if (dirty & /*height*/ 16) {
+    				attr_dev(img, "height", /*height*/ ctx[4]);
+    			}
+
+    			if (dirty & /*title*/ 128) {
+    				attr_dev(picture, "title", /*title*/ ctx[7]);
     			}
     		},
     		i: noop,
@@ -3082,6 +3092,8 @@ var app = (function () {
     		{ imageId } = $$props,
     		{ sizes = "100vw" } = $$props,
     		{ alt = `${imageId}の画像` } = $$props,
+    		{ width } = $$props,
+    		{ height } = $$props,
     		{ imgClass } = $$props,
     		{ click } = $$props,
     		{ title } = $$props,
@@ -3095,6 +3107,8 @@ var app = (function () {
     		"imageId",
     		"sizes",
     		"alt",
+    		"width",
+    		"height",
     		"imgClass",
     		"click",
     		"title",
@@ -3108,17 +3122,19 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(9, contents = $$props.contents);
-    		if ("globalSettings" in $$props) $$invalidate(10, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(11, contents = $$props.contents);
+    		if ("globalSettings" in $$props) $$invalidate(12, globalSettings = $$props.globalSettings);
     		if ("imageId" in $$props) $$invalidate(0, imageId = $$props.imageId);
     		if ("sizes" in $$props) $$invalidate(1, sizes = $$props.sizes);
     		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
-    		if ("imgClass" in $$props) $$invalidate(3, imgClass = $$props.imgClass);
-    		if ("click" in $$props) $$invalidate(4, click = $$props.click);
-    		if ("title" in $$props) $$invalidate(5, title = $$props.title);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(6, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSizes" in $$props) $$invalidate(7, imageSizes = $$props.imageSizes);
-    		if ("imageDirectory" in $$props) $$invalidate(8, imageDirectory = $$props.imageDirectory);
+    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
+    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
+    		if ("imgClass" in $$props) $$invalidate(5, imgClass = $$props.imgClass);
+    		if ("click" in $$props) $$invalidate(6, click = $$props.click);
+    		if ("title" in $$props) $$invalidate(7, title = $$props.title);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(8, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSizes" in $$props) $$invalidate(9, imageSizes = $$props.imageSizes);
+    		if ("imageDirectory" in $$props) $$invalidate(10, imageDirectory = $$props.imageDirectory);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3127,6 +3143,8 @@ var app = (function () {
     		imageId,
     		sizes,
     		alt,
+    		width,
+    		height,
     		imgClass,
     		click,
     		title,
@@ -3138,17 +3156,19 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(9, contents = $$props.contents);
-    		if ("globalSettings" in $$props) $$invalidate(10, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(11, contents = $$props.contents);
+    		if ("globalSettings" in $$props) $$invalidate(12, globalSettings = $$props.globalSettings);
     		if ("imageId" in $$props) $$invalidate(0, imageId = $$props.imageId);
     		if ("sizes" in $$props) $$invalidate(1, sizes = $$props.sizes);
     		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
-    		if ("imgClass" in $$props) $$invalidate(3, imgClass = $$props.imgClass);
-    		if ("click" in $$props) $$invalidate(4, click = $$props.click);
-    		if ("title" in $$props) $$invalidate(5, title = $$props.title);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(6, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSizes" in $$props) $$invalidate(7, imageSizes = $$props.imageSizes);
-    		if ("imageDirectory" in $$props) $$invalidate(8, imageDirectory = $$props.imageDirectory);
+    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
+    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
+    		if ("imgClass" in $$props) $$invalidate(5, imgClass = $$props.imgClass);
+    		if ("click" in $$props) $$invalidate(6, click = $$props.click);
+    		if ("title" in $$props) $$invalidate(7, title = $$props.title);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(8, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSizes" in $$props) $$invalidate(9, imageSizes = $$props.imageSizes);
+    		if ("imageDirectory" in $$props) $$invalidate(10, imageDirectory = $$props.imageDirectory);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3159,6 +3179,8 @@ var app = (function () {
     		imageId,
     		sizes,
     		alt,
+    		width,
+    		height,
     		imgClass,
     		click,
     		title,
@@ -3175,17 +3197,19 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			contents: 9,
-    			globalSettings: 10,
+    			contents: 11,
+    			globalSettings: 12,
     			imageId: 0,
     			sizes: 1,
     			alt: 2,
-    			imgClass: 3,
-    			click: 4,
-    			title: 5,
-    			imageExtensionsShort: 6,
-    			imageSizes: 7,
-    			imageDirectory: 8
+    			width: 3,
+    			height: 4,
+    			imgClass: 5,
+    			click: 6,
+    			title: 7,
+    			imageExtensionsShort: 8,
+    			imageSizes: 9,
+    			imageDirectory: 10
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -3198,11 +3222,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[9] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[11] === undefined && !("contents" in props)) {
     			console.warn("<Picture> was created without expected prop 'contents'");
     		}
 
-    		if (/*globalSettings*/ ctx[10] === undefined && !("globalSettings" in props)) {
+    		if (/*globalSettings*/ ctx[12] === undefined && !("globalSettings" in props)) {
     			console.warn("<Picture> was created without expected prop 'globalSettings'");
     		}
 
@@ -3210,15 +3234,23 @@ var app = (function () {
     			console.warn("<Picture> was created without expected prop 'imageId'");
     		}
 
-    		if (/*imgClass*/ ctx[3] === undefined && !("imgClass" in props)) {
+    		if (/*width*/ ctx[3] === undefined && !("width" in props)) {
+    			console.warn("<Picture> was created without expected prop 'width'");
+    		}
+
+    		if (/*height*/ ctx[4] === undefined && !("height" in props)) {
+    			console.warn("<Picture> was created without expected prop 'height'");
+    		}
+
+    		if (/*imgClass*/ ctx[5] === undefined && !("imgClass" in props)) {
     			console.warn("<Picture> was created without expected prop 'imgClass'");
     		}
 
-    		if (/*click*/ ctx[4] === undefined && !("click" in props)) {
+    		if (/*click*/ ctx[6] === undefined && !("click" in props)) {
     			console.warn("<Picture> was created without expected prop 'click'");
     		}
 
-    		if (/*title*/ ctx[5] === undefined && !("title" in props)) {
+    		if (/*title*/ ctx[7] === undefined && !("title" in props)) {
     			console.warn("<Picture> was created without expected prop 'title'");
     		}
     	}
@@ -3260,6 +3292,22 @@ var app = (function () {
     	}
 
     	set alt(value) {
+    		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get width() {
+    		throw new Error("<Picture>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set width(value) {
+    		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get height() {
+    		throw new Error("<Picture>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set height(value) {
     		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -3337,8 +3385,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(t_value);
-    			attr_dev(div, "class", "header_navigation_list_items svelte-1nt0jps");
-    			add_location(div, file$2, 67, 6, 3015);
+    			attr_dev(div, "class", "header_navigation_list_items svelte-24qdv2");
+    			add_location(div, file$2, 67, 6, 3087);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3406,7 +3454,9 @@ var app = (function () {
     				sizes: "30vw",
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
-    				imageId: /*contents*/ ctx[0].imageId
+    				imageId: /*contents*/ ctx[0].imageId,
+    				width: /*contents*/ ctx[0].aspectRatio.width,
+    				height: /*contents*/ ctx[0].aspectRatio.height
     			},
     			$$inline: true
     		});
@@ -3453,59 +3503,59 @@ var app = (function () {
     			div = element("div");
     			svg2 = svg_element("svg");
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "ui_button header_button_checkbox svelte-1nt0jps");
+    			attr_dev(input, "class", "ui_button header_button_checkbox svelte-24qdv2");
     			input.checked = true;
     			attr_dev(input, "name", "header_button_checkbox");
     			attr_dev(input, "id", "header_button_checkbox");
-    			add_location(input, file$2, 49, 2, 1916);
+    			add_location(input, file$2, 49, 2, 1988);
     			attr_dev(path0, "d", "M0 0h24v24H0z");
     			attr_dev(path0, "fill", "none");
-    			attr_dev(path0, "class", "svelte-1nt0jps");
-    			add_location(path0, file$2, 52, 6, 2221);
+    			attr_dev(path0, "class", "svelte-24qdv2");
+    			add_location(path0, file$2, 52, 6, 2293);
     			attr_dev(path1, "d", "M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z");
-    			attr_dev(path1, "class", "svelte-1nt0jps");
-    			add_location(path1, file$2, 53, 6, 2266);
-    			attr_dev(svg0, "class", "header_button_svg svelte-1nt0jps");
+    			attr_dev(path1, "class", "svelte-24qdv2");
+    			add_location(path1, file$2, 53, 6, 2338);
+    			attr_dev(svg0, "class", "header_button_svg svelte-24qdv2");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
-    			add_location(svg0, file$2, 51, 4, 2163);
+    			add_location(svg0, file$2, 51, 4, 2235);
     			attr_dev(label0, "for", "header_button_checkbox");
-    			attr_dev(label0, "class", "header_button svelte-1nt0jps");
+    			attr_dev(label0, "class", "header_button svelte-24qdv2");
     			attr_dev(label0, "title", "クリックするとナビゲーションを開閉できます");
-    			add_location(label0, file$2, 50, 2, 2070);
-    			attr_dev(span0, "class", "break-scope svelte-1nt0jps");
-    			add_location(span0, file$2, 59, 10, 2529);
-    			attr_dev(span1, "class", "break-scope svelte-1nt0jps");
-    			add_location(span1, file$2, 59, 51, 2570);
-    			attr_dev(span2, "class", "header_navigation_close_button_text svelte-1nt0jps");
-    			add_location(span2, file$2, 58, 8, 2468);
+    			add_location(label0, file$2, 50, 2, 2142);
+    			attr_dev(span0, "class", "break-scope svelte-24qdv2");
+    			add_location(span0, file$2, 59, 10, 2601);
+    			attr_dev(span1, "class", "break-scope svelte-24qdv2");
+    			add_location(span1, file$2, 59, 51, 2642);
+    			attr_dev(span2, "class", "header_navigation_close_button_text svelte-24qdv2");
+    			add_location(span2, file$2, 58, 8, 2540);
     			attr_dev(path2, "d", "M0 0h24v24H0z");
     			attr_dev(path2, "fill", "none");
-    			attr_dev(path2, "class", "svelte-1nt0jps");
-    			add_location(path2, file$2, 62, 10, 2710);
+    			attr_dev(path2, "class", "svelte-24qdv2");
+    			add_location(path2, file$2, 62, 10, 2782);
     			attr_dev(path3, "d", "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z");
-    			attr_dev(path3, "class", "svelte-1nt0jps");
-    			add_location(path3, file$2, 63, 10, 2758);
-    			attr_dev(svg1, "class", "header_navigation_close_button_svg svelte-1nt0jps");
+    			attr_dev(path3, "class", "svelte-24qdv2");
+    			add_location(path3, file$2, 63, 10, 2830);
+    			attr_dev(svg1, "class", "header_navigation_close_button_svg svelte-24qdv2");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
-    			add_location(svg1, file$2, 61, 8, 2631);
+    			add_location(svg1, file$2, 61, 8, 2703);
     			attr_dev(label1, "for", "header_button_checkbox");
-    			attr_dev(label1, "class", "header_navigation_close_button svelte-1nt0jps");
-    			add_location(label1, file$2, 57, 4, 2384);
-    			attr_dev(svg2, "class", "header_button_svg svelte-1nt0jps");
+    			attr_dev(label1, "class", "header_navigation_close_button svelte-24qdv2");
+    			add_location(label1, file$2, 57, 4, 2456);
+    			attr_dev(svg2, "class", "header_button_svg svelte-24qdv2");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "fill", "white");
-    			add_location(svg2, file$2, 70, 6, 3178);
-    			attr_dev(div, "class", "header_button_dummy svelte-1nt0jps");
-    			add_location(div, file$2, 69, 4, 3138);
-    			attr_dev(nav, "class", "header_navigation svelte-1nt0jps");
-    			add_location(nav, file$2, 56, 2, 2348);
+    			add_location(svg2, file$2, 70, 6, 3250);
+    			attr_dev(div, "class", "header_button_dummy svelte-24qdv2");
+    			add_location(div, file$2, 69, 4, 3210);
+    			attr_dev(nav, "class", "header_navigation svelte-24qdv2");
+    			add_location(nav, file$2, 56, 2, 2420);
 
     			attr_dev(header_1, "title", window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`)
     			? ""
     			: "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。");
 
     			set_style(header_1, "--itemsCount", /*contents*/ ctx[0].items.length);
-    			attr_dev(header_1, "class", "svelte-1nt0jps");
+    			attr_dev(header_1, "class", "svelte-24qdv2");
     			add_location(header_1, file$2, 47, 0, 1443);
     		},
     		l: function claim(nodes) {
@@ -3550,6 +3600,8 @@ var app = (function () {
     			if (dirty & /*contents*/ 1) picture_changes.contents = /*contents*/ ctx[0];
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*contents*/ ctx[0].imageId;
+    			if (dirty & /*contents*/ 1) picture_changes.width = /*contents*/ ctx[0].aspectRatio.width;
+    			if (dirty & /*contents*/ 1) picture_changes.height = /*contents*/ ctx[0].aspectRatio.height;
     			picture.$set(picture_changes);
 
     			if (dirty & /*triggerSmoothScroll, contents*/ 17) {
@@ -4197,8 +4249,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "svelte-1wg5ozp");
-    			add_location(p, file$4, 16, 8, 497);
+    			attr_dev(p, "class", "svelte-pyzb5g");
+    			add_location(p, file$4, 16, 8, 569);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -4333,7 +4385,7 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$4, 24, 14, 823);
+    			add_location(span, file$4, 24, 14, 895);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -4488,7 +4540,9 @@ var app = (function () {
     				sizes: "30vw",
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
-    				imageId: /*contents*/ ctx[0].imageId
+    				imageId: /*contents*/ ctx[0].imageId,
+    				width: /*contents*/ ctx[0].aspectRatio.width,
+    				height: /*contents*/ ctx[0].aspectRatio.height
     			},
     			$$inline: true
     		});
@@ -4532,13 +4586,13 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(section0, "class", "text svelte-1wg5ozp");
-    			add_location(section0, file$4, 14, 4, 433);
-    			attr_dev(section1, "class", "buttons svelte-1wg5ozp");
-    			add_location(section1, file$4, 19, 4, 547);
-    			attr_dev(section2, "class", "right-column svelte-1wg5ozp");
-    			add_location(section2, file$4, 13, 2, 398);
-    			attr_dev(div, "class", "container svelte-1wg5ozp");
+    			attr_dev(section0, "class", "text svelte-pyzb5g");
+    			add_location(section0, file$4, 14, 4, 505);
+    			attr_dev(section1, "class", "buttons svelte-pyzb5g");
+    			add_location(section1, file$4, 19, 4, 619);
+    			attr_dev(section2, "class", "right-column svelte-pyzb5g");
+    			add_location(section2, file$4, 13, 2, 470);
+    			attr_dev(div, "class", "container svelte-pyzb5g");
     			add_location(div, file$4, 11, 0, 269);
     		},
     		l: function claim(nodes) {
@@ -4569,6 +4623,8 @@ var app = (function () {
     			if (dirty & /*contents*/ 1) picture_changes.contents = /*contents*/ ctx[0];
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*contents*/ ctx[0].imageId;
+    			if (dirty & /*contents*/ 1) picture_changes.width = /*contents*/ ctx[0].aspectRatio.width;
+    			if (dirty & /*contents*/ 1) picture_changes.height = /*contents*/ ctx[0].aspectRatio.height;
     			picture.$set(picture_changes);
 
     			if (dirty & /*article*/ 16) {
@@ -11985,7 +12041,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (39:6) <SwiperSlide>
+    // (38:6) <SwiperSlide>
     function create_default_slot_1(ctx) {
     	let picture;
     	let t;
@@ -11997,7 +12053,9 @@ var app = (function () {
     				sizes: "" + (/*standardWidth*/ ctx[2] / 16 * 9 / /*article*/ ctx[9].aspectRatio.height * /*article*/ ctx[9].aspectRatio.width + "vw"),
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
-    				imageId: /*article*/ ctx[9].imageId
+    				imageId: /*article*/ ctx[9].imageId,
+    				width: /*article*/ ctx[9].aspectRatio.width,
+    				height: /*article*/ ctx[9].aspectRatio.height
     			},
     			$$inline: true
     		});
@@ -12018,6 +12076,8 @@ var app = (function () {
     			if (dirty & /*contents*/ 1) picture_changes.contents = /*contents*/ ctx[0];
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*article*/ ctx[9].imageId;
+    			if (dirty & /*contents*/ 1) picture_changes.width = /*article*/ ctx[9].aspectRatio.width;
+    			if (dirty & /*contents*/ 1) picture_changes.height = /*article*/ ctx[9].aspectRatio.height;
     			picture.$set(picture_changes);
     		},
     		i: function intro(local) {
@@ -12039,14 +12099,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(39:6) <SwiperSlide>",
+    		source: "(38:6) <SwiperSlide>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:4) {#each contents.articles as article}
+    // (37:4) {#each contents.articles as article}
     function create_each_block$4(ctx) {
     	let swiperslide;
     	let current;
@@ -12094,14 +12154,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(38:4) {#each contents.articles as article}",
+    		source: "(37:4) {#each contents.articles as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >
+    // (25:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >
     function create_default_slot$2(ctx) {
     	let each_1_anchor;
     	let current;
@@ -12190,7 +12250,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(26:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >",
+    		source: "(25:2) <Swiper     centeredSlides={true}     spaceBetween={4}     slidesPerView={'auto'}     grabCursor={true}     speed={transitionDuration}     slideToClickedSlide={true}     loop={true}     loopedSlides={contents.articles.length}     controller={{ control: controlledSwiper }}     on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}   >",
     		ctx
     	});
 
@@ -12200,11 +12260,8 @@ var app = (function () {
     function create_fragment$8(ctx) {
     	let link0;
     	let link1;
-    	let t0;
-    	let div1;
-    	let div0;
-    	let t1;
-    	let t2;
+    	let t;
+    	let div;
     	let swiper;
     	let current;
 
@@ -12231,11 +12288,8 @@ var app = (function () {
     		c: function create() {
     			link0 = element("link");
     			link1 = element("link");
-    			t0 = space();
-    			div1 = element("div");
-    			div0 = element("div");
-    			t1 = text(/*standardWidth*/ ctx[2]);
-    			t2 = space();
+    			t = space();
+    			div = element("div");
     			create_component(swiper.$$.fragment);
     			attr_dev(link0, "rel", "preload");
     			attr_dev(link0, "href", "/swiper-bundle.min.css");
@@ -12245,9 +12299,8 @@ var app = (function () {
     			attr_dev(link1, "type", "text/css");
     			attr_dev(link1, "href", "/swiper-bundle.min.css");
     			add_location(link1, file$6, 20, 2, 650);
-    			add_location(div0, file$6, 24, 2, 763);
-    			attr_dev(div1, "class", "slide-hero");
-    			add_location(div1, file$6, 23, 0, 736);
+    			attr_dev(div, "class", "slide-hero");
+    			add_location(div, file$6, 23, 0, 736);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12255,16 +12308,12 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			append_dev(document.head, link0);
     			append_dev(document.head, link1);
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div0, t1);
-    			append_dev(div1, t2);
-    			mount_component(swiper, div1, null);
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, div, anchor);
+    			mount_component(swiper, div, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*standardWidth*/ 4) set_data_dev(t1, /*standardWidth*/ ctx[2]);
     			const swiper_changes = {};
     			if (dirty & /*contents*/ 1) swiper_changes.loopedSlides = /*contents*/ ctx[0].articles.length;
     			if (dirty & /*controlledSwiper*/ 8) swiper_changes.controller = { control: /*controlledSwiper*/ ctx[3] };
@@ -12287,8 +12336,8 @@ var app = (function () {
     		d: function destroy(detaching) {
     			detach_dev(link0);
     			detach_dev(link1);
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(div);
     			destroy_component(swiper);
     		}
     	};
@@ -12491,7 +12540,7 @@ var app = (function () {
     			iframe.allowFullscreen = "true";
     			attr_dev(iframe, "loading", "lazy");
     			attr_dev(iframe, "class", "svelte-tjsith");
-    			add_location(iframe, file$7, 10, 4, 374);
+    			add_location(iframe, file$7, 10, 4, 419);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, iframe, anchor);
@@ -12535,7 +12584,9 @@ var app = (function () {
     				imgClass: "youtube-thumbnail",
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
-    				imageId: /*id*/ ctx[2]
+    				imageId: /*id*/ ctx[2],
+    				width: "16",
+    				height: "9"
     			},
     			$$inline: true
     		});
@@ -12553,7 +12604,9 @@ var app = (function () {
     			attr_dev(img, "class", "play-icon svelte-tjsith");
     			if (img.src !== (img_src_value = "/img/youtube.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "YouTubeの再生ボタン");
-    			add_location(img, file$7, 8, 2, 290);
+    			attr_dev(img, "width", "44");
+    			attr_dev(img, "height", "31");
+    			add_location(img, file$7, 8, 2, 312);
     			attr_dev(div, "class", div_class_value = "youtube-wrapper " + (/*load*/ ctx[3] ? "load" : "") + " svelte-tjsith");
     			add_location(div, file$7, 6, 0, 124);
     		},
@@ -15533,7 +15586,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (26:10) {#if card.imageId}
+    // (34:10) {#if card.imageId}
     function create_if_block$7(ctx) {
     	let div;
     	let picture;
@@ -15545,7 +15598,9 @@ var app = (function () {
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
     				imageId: /*card*/ ctx[7].imageId,
-    				sizes: "(min-aspect-ratio: 16/9) " + /*standardWidth*/ ctx[2] / 3 / 3 + "vw, " + /*standardWidth*/ ctx[2] / 2 / 3 + "vw, (max-aspect-ratio: 1/1) " + /*standardWidth*/ ctx[2] * 0.8 / 3 + "vw, (max-aspect-ratio: 3/4) " + /*standardWidth*/ ctx[2] / 3 + "vw"
+    				sizes: "(min-aspect-ratio: 16/9) " + /*standardWidth*/ ctx[2] / 3 / 3 + "vw, " + /*standardWidth*/ ctx[2] / 2 / 3 + "vw, (max-aspect-ratio: 1/1) " + /*standardWidth*/ ctx[2] * 0.8 / 3 + "vw, (max-aspect-ratio: 3/4) " + /*standardWidth*/ ctx[2] / 3 + "vw",
+    				width: "1",
+    				height: "1"
     			},
     			$$inline: true
     		});
@@ -15554,8 +15609,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(picture.$$.fragment);
-    			attr_dev(div, "class", "left svelte-1shg7tx");
-    			add_location(div, file$9, 26, 12, 705);
+    			attr_dev(div, "class", "left svelte-cbyefw");
+    			add_location(div, file$9, 34, 12, 1028);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -15589,14 +15644,14 @@ var app = (function () {
     		block,
     		id: create_if_block$7.name,
     		type: "if",
-    		source: "(26:10) {#if card.imageId}",
+    		source: "(34:10) {#if card.imageId}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:14) {#each card.post as post}
+    // (42:14) {#each card.post as post}
     function create_each_block_2$2(ctx) {
     	let span;
     	let t_value = /*post*/ ctx[13] + "";
@@ -15606,8 +15661,8 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-1shg7tx");
-    			add_location(span, file$9, 34, 16, 1252);
+    			attr_dev(span, "class", "svelte-cbyefw");
+    			add_location(span, file$9, 42, 16, 1596);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -15625,19 +15680,21 @@ var app = (function () {
     		block,
     		id: create_each_block_2$2.name,
     		type: "each",
-    		source: "(34:14) {#each card.post as post}",
+    		source: "(42:14) {#each card.post as post}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (45:10) {#each card.accounts as account}
+    // (53:10) {#each card.accounts as account}
     function create_each_block_1$3(ctx) {
     	let a;
     	let img;
     	let img_src_value;
     	let img_alt_value;
+    	let img_width_value;
+    	let img_height_value;
     	let t0;
     	let span;
     	let t1_value = /*account*/ ctx[10].id + "";
@@ -15660,17 +15717,19 @@ var app = (function () {
     			: /*account*/ ctx[10].name) + ".svg"))) attr_dev(img, "src", img_src_value);
 
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[10].name + "のアイコン"));
-    			attr_dev(img, "class", "svelte-1shg7tx");
-    			add_location(img, file$9, 47, 14, 1977);
-    			attr_dev(span, "class", "id svelte-1shg7tx");
-    			add_location(span, file$9, 48, 14, 2126);
-    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-1shg7tx");
+    			attr_dev(img, "width", img_width_value = /*socialConsts*/ ctx[5].aspectRatios[/*account*/ ctx[10].name].width);
+    			attr_dev(img, "height", img_height_value = /*socialConsts*/ ctx[5].aspectRatios[/*account*/ ctx[10].name].height);
+    			attr_dev(img, "class", "svelte-cbyefw");
+    			add_location(img, file$9, 55, 14, 2405);
+    			attr_dev(span, "class", "id svelte-cbyefw");
+    			add_location(span, file$9, 56, 14, 2664);
+    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-cbyefw");
 
     			attr_dev(a, "href", a_href_value = /*account*/ ctx[10].customUrl
     			? /*account*/ ctx[10].customUrl
     			: `https://${/*socialConsts*/ ctx[5].urls[/*account*/ ctx[10].name]}/${/*account*/ ctx[10].id}`);
 
-    			add_location(a, file$9, 45, 12, 1757);
+    			add_location(a, file$9, 53, 12, 2185);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -15691,9 +15750,17 @@ var app = (function () {
     				attr_dev(img, "alt", img_alt_value);
     			}
 
+    			if (dirty & /*contents*/ 1 && img_width_value !== (img_width_value = /*socialConsts*/ ctx[5].aspectRatios[/*account*/ ctx[10].name].width)) {
+    				attr_dev(img, "width", img_width_value);
+    			}
+
+    			if (dirty & /*contents*/ 1 && img_height_value !== (img_height_value = /*socialConsts*/ ctx[5].aspectRatios[/*account*/ ctx[10].name].height)) {
+    				attr_dev(img, "height", img_height_value);
+    			}
+
     			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[10].id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-1shg7tx")) {
+    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-cbyefw")) {
     				attr_dev(a, "class", a_class_value);
     			}
 
@@ -15712,14 +15779,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$3.name,
     		type: "each",
-    		source: "(45:10) {#each card.accounts as account}",
+    		source: "(53:10) {#each card.accounts as account}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (22:2) {#each contents.cards as card}
+    // (30:2) {#each contents.cards as card}
     function create_each_block$6(ctx) {
     	let div8;
     	let div7;
@@ -15758,7 +15825,9 @@ var app = (function () {
     				imageDirectory: /*globalSettings*/ ctx[1].imageDirectory,
     				imageId: /*contents*/ ctx[0].logoImageId,
     				imageSizes: /*contents*/ ctx[0].logoImageSizes,
-    				sizes: "" + (3 * /*ch*/ ctx[4] + "px")
+    				sizes: "" + (3 * /*ch*/ ctx[4] + "px"),
+    				width: /*contents*/ ctx[0].logoAspectRatio.width,
+    				height: /*contents*/ ctx[0].logoAspectRatio.height
     			},
     			$$inline: true
     		});
@@ -15801,25 +15870,25 @@ var app = (function () {
     			}
 
     			t6 = space();
-    			attr_dev(div0, "class", "name svelte-1shg7tx");
-    			add_location(div0, file$9, 31, 12, 1129);
-    			attr_dev(div1, "class", "post svelte-1shg7tx");
-    			add_location(div1, file$9, 32, 12, 1177);
+    			attr_dev(div0, "class", "name svelte-cbyefw");
+    			add_location(div0, file$9, 39, 12, 1473);
+    			attr_dev(div1, "class", "post svelte-cbyefw");
+    			add_location(div1, file$9, 40, 12, 1521);
     			set_style(div2, "opacity", "0");
     			set_style(div2, "width", "1ch");
-    			add_location(div2, file$9, 38, 14, 1358);
-    			attr_dev(div3, "class", "logo svelte-1shg7tx");
-    			add_location(div3, file$9, 37, 12, 1325);
-    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-1shg7tx");
-    			add_location(div4, file$9, 30, 10, 1065);
-    			attr_dev(div5, "class", "upper svelte-1shg7tx");
-    			add_location(div5, file$9, 24, 8, 644);
-    			attr_dev(div6, "class", "lower svelte-1shg7tx");
-    			add_location(div6, file$9, 43, 8, 1682);
-    			attr_dev(div7, "class", "card svelte-1shg7tx");
-    			add_location(div7, file$9, 23, 6, 617);
-    			attr_dev(div8, "class", "card_wrapper svelte-1shg7tx");
-    			add_location(div8, file$9, 22, 4, 584);
+    			add_location(div2, file$9, 46, 14, 1702);
+    			attr_dev(div3, "class", "logo svelte-cbyefw");
+    			add_location(div3, file$9, 45, 12, 1669);
+    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-cbyefw");
+    			add_location(div4, file$9, 38, 10, 1409);
+    			attr_dev(div5, "class", "upper svelte-cbyefw");
+    			add_location(div5, file$9, 32, 8, 967);
+    			attr_dev(div6, "class", "lower svelte-cbyefw");
+    			add_location(div6, file$9, 51, 8, 2110);
+    			attr_dev(div7, "class", "card svelte-cbyefw");
+    			add_location(div7, file$9, 31, 6, 940);
+    			attr_dev(div8, "class", "card_wrapper svelte-cbyefw");
+    			add_location(div8, file$9, 30, 4, 907);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div8, anchor);
@@ -15910,9 +15979,11 @@ var app = (function () {
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*contents*/ ctx[0].logoImageId;
     			if (dirty & /*contents*/ 1) picture_changes.imageSizes = /*contents*/ ctx[0].logoImageSizes;
     			if (dirty & /*ch*/ 16) picture_changes.sizes = "" + (3 * /*ch*/ ctx[4] + "px");
+    			if (dirty & /*contents*/ 1) picture_changes.width = /*contents*/ ctx[0].logoAspectRatio.width;
+    			if (dirty & /*contents*/ 1) picture_changes.height = /*contents*/ ctx[0].logoAspectRatio.height;
     			picture.$set(picture_changes);
 
-    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-1shg7tx")) {
+    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-cbyefw")) {
     				attr_dev(div4, "class", div4_class_value);
     			}
 
@@ -15965,7 +16036,7 @@ var app = (function () {
     		block,
     		id: create_each_block$6.name,
     		type: "each",
-    		source: "(22:2) {#each contents.cards as card}",
+    		source: "(30:2) {#each contents.cards as card}",
     		ctx
     	});
 
@@ -15995,8 +16066,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "card_container svelte-1shg7tx");
-    			add_location(div, file$9, 20, 0, 518);
+    			attr_dev(div, "class", "card_container svelte-cbyefw");
+    			add_location(div, file$9, 28, 0, 841);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -16090,6 +16161,14 @@ var app = (function () {
     			"github": "github.com",
     			"qiita": "qiita.com",
     			"youtube": "www.youtube.com/c"
+    		},
+    		aspectRatios: {
+    			"twitter": { width: 2499, height: 2032 },
+    			"facebook": { width: 971, height: 965 },
+    			"note": { width: 167, height: 188 },
+    			"github": { width: 362, height: 354 },
+    			"qiita": { width: 1, height: 1 },
+    			"youtube": { width: 44, height: 31 }
     		}
     	};
 
@@ -17085,6 +17164,7 @@ var app = (function () {
             themeColor: '#fff',
             contents: {
               imageId: 'ssm-logo-landscape',
+              aspectRatio: {width: 7, height: 3},
               items: [
                 {id: 'works', label: '作品'},
                 {id: 'news', label: 'ニュース'},
@@ -17413,6 +17493,7 @@ var app = (function () {
             themeColor: '#f15a23',
             contents: {
               imageId: 'ssm-logo-landscape',
+              aspectRatio: {width: 7, height: 3},
               article: [
                 "スーパースターマインは大学サークル発、新進気鋭のゲーム制作チーム。",
                 "面白いものが大好きです。"
@@ -17440,6 +17521,7 @@ var app = (function () {
             contents: {
               logoImageId: 'ssm-logo',
               logoImageSizes: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250],
+              logoAspectRatio: {width: 3841 , height: 8167},
               imageDirectory: './img/members/',
               cards: [
                 {

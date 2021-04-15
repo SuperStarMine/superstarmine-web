@@ -5,6 +5,8 @@
     imageId,
     sizes = "100vw",
     alt = `${imageId}の画像`,
+    width,
+    height,
     imgClass,
     click,
     title,
@@ -27,7 +29,7 @@
   {#each imageExtensionsShort as ext, i}
     <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[i]}">
   {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt}>
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height}>
 </picture>
 
 <style lang="stylus">

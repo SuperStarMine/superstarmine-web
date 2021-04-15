@@ -5,8 +5,8 @@
 </script>
 
 <div class="youtube-wrapper {load ? 'load' : ''}"  on:click={() => load = true}>
-  <Picture imgClass="youtube-thumbnail" {contents} {globalSettings} imageId={id}/>
-  <img class="play-icon" src="/img/youtube.svg" alt="YouTubeの再生ボタン">
+  <Picture imgClass="youtube-thumbnail" {contents} {globalSettings} imageId={id} width='16' height='9'/>
+  <img class="play-icon" src="/img/youtube.svg" alt="YouTubeの再生ボタン" width='44' height='31'>
   {#if load}
     <iframe width="16" height="9" src="https://www.youtube-nocookie.com/embed/{id}?autoplay=1&playsinline=1" title="YouTube動画の埋め込み" frameborder="0" allow="fullscreen;accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" loading="lazy">YouTube動画の埋め込み</iframe>
   {/if}

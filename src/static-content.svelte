@@ -10,7 +10,7 @@
 </script>
 
 <div class="container">
-  <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId}/>
+  <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
   <section class="right-column">
     <section class="text">
       {#each article as article}
@@ -45,6 +45,7 @@
   flex: 0 0 35%
   margin-right: 5%
   width: 100%
+  height auto
 
 .right-column
   flex: 0 0 60%

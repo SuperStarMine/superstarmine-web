@@ -36,7 +36,7 @@
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId}/>
+        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height}/>
       </SwiperSlide>
     {/each}
   </Swiper>

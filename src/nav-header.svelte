@@ -46,7 +46,7 @@
 </script>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
-  <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" imgClass="header_logo" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId}/>
+  <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" imgClass="header_logo" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
   <input type="checkbox" class="ui_button header_button_checkbox" checked name="header_button_checkbox" id="header_button_checkbox" bind:this={checkbox}>
   <label for="header_button_checkbox" class="header_button" title="クリックするとナビゲーションを開閉できます">
     <svg class="header_button_svg" viewbox="0 0 24 24">
@@ -127,6 +127,7 @@ header
   z-index 1000
 
 :global(.header_logo)
+  width auto
   height calc(var(--base-size) + env(safe-area-inset-top) - (var(--base-size) / 3))
   background-color #fff0
 

@@ -10,6 +10,14 @@
             'github':'github.com',
             'qiita':'qiita.com',
             'youtube':'www.youtube.com/c'
+          },
+          aspectRatios: {
+            'twitter':{width: 2499, height: 2032},
+            'facebook':{width: 971, height: 965},
+            'note':{width: 167, height: 188},
+            'github':{width: 362, height: 354},
+            'qiita':{width: 1, height: 1},
+            'youtube':{width: 44, height: 31}
           }
         };
 
@@ -25,7 +33,7 @@
         <div class="upper">
           {#if card.imageId}
             <div class="left">
-              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId} sizes="(min-aspect-ratio: 16/9) {standardWidth / 3 / 3}vw, {standardWidth / 2 / 3}vw, (max-aspect-ratio: 1/1) {standardWidth * 0.8 / 3}vw, (max-aspect-ratio: 3/4) {standardWidth / 3}vw"/>
+              <Picture imgClass="card_left-img card_img" {contents} {globalSettings} imageId={card.imageId} sizes="(min-aspect-ratio: 16/9) {standardWidth / 3 / 3}vw, {standardWidth / 2 / 3}vw, (max-aspect-ratio: 1/1) {standardWidth * 0.8 / 3}vw, (max-aspect-ratio: 3/4) {standardWidth / 3}vw" width='1' height='1'/>
             </div>
           {/if}
           <div class="right {card.imageId ? '' : 'noImage'}">
@@ -37,7 +45,7 @@
             </div>
             <div class="logo">
               <div bind:this={ch2px} style="opacity:0;width:1ch"></div>
-              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} imageSizes={contents.logoImageSizes} sizes="{3 * ch}px"/>
+              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} imageSizes={contents.logoImageSizes} sizes="{3 * ch}px" width='{contents.logoAspectRatio.width}' height='{contents.logoAspectRatio.height}'/>
             </div>
           </div>
         </div>
@@ -45,7 +53,7 @@
           {#each card.accounts as account}
             <a class="social-button {account.name} {card.accounts.length > 2 ? 'iconOnly' : ''}"
             href="{account.customUrl ? account.customUrl : `https://${socialConsts.urls[account.name]}/${account.id}`}">
-              <img src="{globalSettings.imageDirectory}/{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン">
+              <img src="{globalSettings.imageDirectory}/{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン" width={socialConsts.aspectRatios[account.name].width} height={socialConsts.aspectRatios[account.name].height}>
               <span class="id">
                 {account.id}
               </span>
@@ -148,6 +156,7 @@
     height 1.3em
   :global(.card_img)
     width 100%
+    height auto
     object-fit cover
   .twitter
     background-color #1da1f3
