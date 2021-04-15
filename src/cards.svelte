@@ -109,6 +109,7 @@
   .name
     font-size 2em
   .post
+    margin-right 5ch
     span
       display inline-block
       background-color #e3ecee

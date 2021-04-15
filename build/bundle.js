@@ -15617,7 +15617,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(picture.$$.fragment);
-    			attr_dev(div, "class", "left svelte-cbyefw");
+    			attr_dev(div, "class", "left svelte-pbvxlw");
     			add_location(div, file$9, 34, 12, 1028);
     		},
     		m: function mount(target, anchor) {
@@ -15669,7 +15669,7 @@ var app = (function () {
     		c: function create() {
     			span = element("span");
     			t = text(t_value);
-    			attr_dev(span, "class", "svelte-cbyefw");
+    			attr_dev(span, "class", "svelte-pbvxlw");
     			add_location(span, file$9, 42, 16, 1596);
     		},
     		m: function mount(target, anchor) {
@@ -15727,11 +15727,11 @@ var app = (function () {
     			attr_dev(img, "alt", img_alt_value = "" + (/*account*/ ctx[10].name + "のアイコン"));
     			attr_dev(img, "width", img_width_value = /*socialConsts*/ ctx[5].aspectRatios[/*account*/ ctx[10].name].width);
     			attr_dev(img, "height", img_height_value = /*socialConsts*/ ctx[5].aspectRatios[/*account*/ ctx[10].name].height);
-    			attr_dev(img, "class", "svelte-cbyefw");
+    			attr_dev(img, "class", "svelte-pbvxlw");
     			add_location(img, file$9, 55, 14, 2405);
-    			attr_dev(span, "class", "id svelte-cbyefw");
+    			attr_dev(span, "class", "id svelte-pbvxlw");
     			add_location(span, file$9, 56, 14, 2664);
-    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-cbyefw");
+    			attr_dev(a, "class", a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-pbvxlw");
 
     			attr_dev(a, "href", a_href_value = /*account*/ ctx[10].customUrl
     			? /*account*/ ctx[10].customUrl
@@ -15768,7 +15768,7 @@ var app = (function () {
 
     			if (dirty & /*contents*/ 1 && t1_value !== (t1_value = /*account*/ ctx[10].id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-cbyefw")) {
+    			if (dirty & /*contents*/ 1 && a_class_value !== (a_class_value = "social-button " + /*account*/ ctx[10].name + " " + (/*card*/ ctx[7].accounts.length > 2 ? "iconOnly" : "") + " svelte-pbvxlw")) {
     				attr_dev(a, "class", a_class_value);
     			}
 
@@ -15878,24 +15878,24 @@ var app = (function () {
     			}
 
     			t6 = space();
-    			attr_dev(div0, "class", "name svelte-cbyefw");
+    			attr_dev(div0, "class", "name svelte-pbvxlw");
     			add_location(div0, file$9, 39, 12, 1473);
-    			attr_dev(div1, "class", "post svelte-cbyefw");
+    			attr_dev(div1, "class", "post svelte-pbvxlw");
     			add_location(div1, file$9, 40, 12, 1521);
     			set_style(div2, "opacity", "0");
     			set_style(div2, "width", "1ch");
     			add_location(div2, file$9, 46, 14, 1702);
-    			attr_dev(div3, "class", "logo svelte-cbyefw");
+    			attr_dev(div3, "class", "logo svelte-pbvxlw");
     			add_location(div3, file$9, 45, 12, 1669);
-    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-cbyefw");
+    			attr_dev(div4, "class", div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-pbvxlw");
     			add_location(div4, file$9, 38, 10, 1409);
-    			attr_dev(div5, "class", "upper svelte-cbyefw");
+    			attr_dev(div5, "class", "upper svelte-pbvxlw");
     			add_location(div5, file$9, 32, 8, 967);
-    			attr_dev(div6, "class", "lower svelte-cbyefw");
+    			attr_dev(div6, "class", "lower svelte-pbvxlw");
     			add_location(div6, file$9, 51, 8, 2110);
-    			attr_dev(div7, "class", "card svelte-cbyefw");
+    			attr_dev(div7, "class", "card svelte-pbvxlw");
     			add_location(div7, file$9, 31, 6, 940);
-    			attr_dev(div8, "class", "card_wrapper svelte-cbyefw");
+    			attr_dev(div8, "class", "card_wrapper svelte-pbvxlw");
     			add_location(div8, file$9, 30, 4, 907);
     		},
     		m: function mount(target, anchor) {
@@ -15991,7 +15991,7 @@ var app = (function () {
     			if (dirty & /*contents*/ 1) picture_changes.height = /*contents*/ ctx[0].logoAspectRatio.height;
     			picture.$set(picture_changes);
 
-    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-cbyefw")) {
+    			if (!current || dirty & /*contents*/ 1 && div4_class_value !== (div4_class_value = "right " + (/*card*/ ctx[7].imageId ? "" : "noImage") + " svelte-pbvxlw")) {
     				attr_dev(div4, "class", div4_class_value);
     			}
 
@@ -16074,7 +16074,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "card_container svelte-cbyefw");
+    			attr_dev(div, "class", "card_container svelte-pbvxlw");
     			add_location(div, file$9, 28, 0, 841);
     		},
     		l: function claim(nodes) {
