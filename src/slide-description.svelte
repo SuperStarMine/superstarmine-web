@@ -190,14 +190,14 @@
   .slide-container
     background-color var(--backgroundColor)
     border-top solid .25em var(--themeColor)
-    padding 0 0 5vw
+    padding 0 calc(((100vw - var(--standardWidth)) / 2) - 2vw) 5vw
   .title-container
     display flex
     justify-content space-between
     align-items center
     background-color white
     border-radius 2vw
-    margin 5vw 5vw 0
+    margin 5vw 0 0
     filter drop-shadow(2px 2px 3px #ccc)
     padding 2vw
     font-family vdl-v7marugothic, sans-serif
@@ -274,7 +274,7 @@
       display block
     justify-content space-between
     align-items flex-start
-    margin 2vw 7vw
+    margin 2vw
     .slide
       flex-basis 100%
       box-sizing border-box
