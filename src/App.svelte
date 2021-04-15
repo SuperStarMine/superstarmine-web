@@ -5,6 +5,7 @@
   import Elist from "./emphasizing-list.svelte";
   import HeroS from "./slide-hero-swiper.svelte";
   import Desc from "./slide-description.svelte";
+  import Footer from "./footer.svelte";
   import Cards from "./cards.svelte";
   export let settings;
   export let globalSettings;
@@ -31,6 +32,8 @@
       <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "slideDesc"}
       <Desc {contents} {globalSettings} {pairId} {isParent}/>
+    {:else if sectionType == "footer"}
+      <Footer {contents} {globalSettings}/>
     {:else if sectionType != "navHeader"}
       <Cframe {id} {title} {subtitle} {themeColor} {globalSettings}>
         {#if sectionType == "static"}

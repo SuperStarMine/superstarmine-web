@@ -548,6 +548,21 @@ const app = new App({
             }
           ]
         }
+      },
+      {
+        sectionType: 'footer',
+        themeColor: '#fff',
+        contents: {
+          copyright: ['&copy; 2021', 'HIBIKI CUBE', 'スーパースターマイン'],
+          codeLicense: {
+            license: 'mpl-2.0',
+            linkLabel: 'GitHub',
+            url: 'https://github.com/HIBIKI-CUBE/superstarmine-web',
+          },
+          assetsLicense: {
+            ccType: 'by-nd'
+          }
+        }
       }
     ]
   }

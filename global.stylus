@@ -29,6 +29,7 @@ a
 
 .break-scope
   white-space nowrap
+  display inline-block
 
 .pc-hide
   @media screen and (min-width 600px)
