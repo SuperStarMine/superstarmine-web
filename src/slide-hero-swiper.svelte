@@ -22,7 +22,6 @@
 </svelte:head>
 
 <div class="slide-hero">
-  <div>{standardWidth}</div>
   <Swiper
     centeredSlides={true}
     spaceBetween={4}
