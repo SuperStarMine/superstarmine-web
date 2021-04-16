@@ -1,0 +1,40 @@
+// :root
+
+// @media screen and (max-width 680px)
+
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  {prop} args
+
+vendorarg(prop, arg)
+  {prop} -webkit-+arg
+  {prop} -moz-+arg
+  {prop} arg
+// ########################################
+html,body
+  margin 0
+  width 100%
+  vendor(text-size-adjust, 100%)
+  font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+
+a
+  text-decoration: none
+
+.heavy
+  font-weight 900
+
+.regular
+  font-weight 400
+
+.break-scope
+  white-space nowrap
+  display inline-block
+
+.pc-hide
+  @media screen and (min-width 600px)
+    display none
+
+.mobile-hide
+  @media screen and (max-width 600px)
+    display none
