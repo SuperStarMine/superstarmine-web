@@ -79,11 +79,9 @@
     flex 0 0 calc(50% - 2em)
     font-size calc(2.5vw * 0.5)
     @media (max-aspect-ratio: 1/1)
-      width 80%
-      flex 0 0 80%
+      flex 0 0 100%
       font-size calc(2.5vw * 0.8)
     @media (max-aspect-ratio: 3/4)
-      width 100%
       flex 0 0 100%
       font-size: 2.5vw
     margin 0 auto 2em
