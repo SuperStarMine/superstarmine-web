@@ -15726,7 +15726,7 @@ var app = (function () {
     			div = element("div");
     			if (if_block) if_block.c();
     			add_location(div, file$9, 43, 6, 1925);
-    			attr_dev(section, "class", "copyright svelte-qacx4h");
+    			attr_dev(section, "class", "copyright svelte-1wdp62n");
     			add_location(section, file$9, 42, 4, 1891);
     		},
     		m: function mount(target, anchor) {
@@ -15933,10 +15933,10 @@ var app = (function () {
     			t9 = space();
     			if (if_block1) if_block1.c();
     			add_location(div0, file$9, 54, 6, 2274);
-    			attr_dev(section0, "class", "license svelte-qacx4h");
+    			attr_dev(section0, "class", "license svelte-1wdp62n");
     			add_location(section0, file$9, 53, 4, 2242);
     			add_location(div1, file$9, 62, 6, 2705);
-    			attr_dev(section1, "class", "license svelte-qacx4h");
+    			attr_dev(section1, "class", "license svelte-1wdp62n");
     			add_location(section1, file$9, 61, 4, 2673);
     		},
     		m: function mount(target, anchor) {
@@ -16266,7 +16266,7 @@ var app = (function () {
     			attr_dev(a1, "href", a1_href_value = "http://creativecommons.org/licenses/" + /*contents*/ ctx[0].assetsLicense.ccType + "/4.0/");
     			add_location(a1, file$9, 73, 393, 3566);
     			add_location(div0, file$9, 72, 6, 3167);
-    			attr_dev(section0, "class", "creative-commons svelte-qacx4h");
+    			attr_dev(section0, "class", "creative-commons svelte-1wdp62n");
     			add_location(section0, file$9, 71, 4, 3126);
     			attr_dev(img1, "alt", "クリエイティブ・コモンズ・ライセンス");
     			set_style(img1, "border-width", "0");
@@ -16282,7 +16282,7 @@ var app = (function () {
     			attr_dev(a3, "href", "https://creativecommons.org/licenses/by-nd/4.0/deed.ja");
     			add_location(a3, file$9, 78, 344, 4599);
     			add_location(div1, file$9, 77, 6, 4249);
-    			attr_dev(section1, "class", "creative-commons svelte-qacx4h");
+    			attr_dev(section1, "class", "creative-commons svelte-1wdp62n");
     			add_location(section1, file$9, 76, 4, 4208);
     		},
     		m: function mount(target, anchor) {
@@ -16432,7 +16432,7 @@ var app = (function () {
     			t1 = space();
     			if (if_block2) if_block2.c();
     			set_style(footer, "--itemsCount", /*func*/ ctx[3]());
-    			attr_dev(footer, "class", "svelte-qacx4h");
+    			attr_dev(footer, "class", "svelte-1wdp62n");
     			add_location(footer, file$9, 40, 0, 1718);
     		},
     		l: function claim(nodes) {

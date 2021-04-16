@@ -139,7 +139,7 @@
           position absolute
           left 0
           bottom 0
-          background linear-gradient(to right, #ff0200, #ff5a23, #f7931d)
+          background linear-gradient(to bottom left, #ff0200, #ff5a23, #f7931d)
 
   .copyright
     @media screen and (orientation: portrait)
