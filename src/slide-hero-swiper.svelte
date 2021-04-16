@@ -64,7 +64,7 @@
       height 100%
       position absolute
       top 0
-      z-index 1000
+      z-index 2
       pointer-events none
     &:before
       left 0
@@ -80,7 +80,7 @@
       top 0
       bottom 0
       margin auto calc((100vw - var(--standardWidth)) / 6)
-      z-index 1100
+      z-index 3
       width calc((100vw - var(--standardWidth)) / 6)
       height auto
       pointer-events none
