@@ -12373,19 +12373,19 @@ var app = (function () {
     			attr_dev(link1, "type", "text/css");
     			attr_dev(link1, "href", "/swiper-bundle.min.css");
     			add_location(link1, file$6, 20, 2, 650);
-    			attr_dev(img0, "class", "arrow left svelte-lm9ubg");
+    			attr_dev(img0, "class", "arrow left svelte-u4q2vx");
     			if (img0.src !== (img0_src_value = "/img/arrow.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "左のスライドへ");
     			attr_dev(img0, "width", "309.94");
     			attr_dev(img0, "height", "355.04");
     			add_location(img0, file$6, 24, 2, 763);
-    			attr_dev(img1, "class", "arrow right svelte-lm9ubg");
+    			attr_dev(img1, "class", "arrow right svelte-u4q2vx");
     			if (img1.src !== (img1_src_value = "/img/arrow.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "右のスライドへ");
     			attr_dev(img1, "width", "309.94");
     			attr_dev(img1, "height", "355.04");
     			add_location(img1, file$6, 43, 2, 1618);
-    			attr_dev(div, "class", "slide-hero svelte-lm9ubg");
+    			attr_dev(div, "class", "slide-hero svelte-u4q2vx");
     			add_location(div, file$6, 23, 0, 736);
     		},
     		l: function claim(nodes) {

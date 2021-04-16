@@ -85,7 +85,7 @@
       height auto
       pointer-events none
       animation-duration 1s
-      animation-timing-function ease
+      animation-timing-function ease-in-out
       animation-fill-mode both
       animation-direction alternate
       animation-iteration-count infinite
@@ -98,14 +98,14 @@
 
     @keyframes swing-left
       0%
-        transform translateX(0)
+        transform translateX(calc((100vw - var(--standardWidth)) / 48))
       100%
         transform translateX(calc(((100vw - var(--standardWidth)) / 48) * -1))
 
     @keyframes swing-right
       0%
-        transform rotate(180deg) translateX(0)
+        transform scaleX(-1) translateX(calc((100vw - var(--standardWidth)) / 48))
       100%
-        transform rotate(180deg) translateX(calc(((100vw - var(--standardWidth)) / 48) * -1))
+        transform scaleX(-1) translateX(calc(((100vw - var(--standardWidth)) / 48) * -1))
 
 </style>
