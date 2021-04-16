@@ -292,60 +292,106 @@ const app = new App({
         }
       },
       {
-        sectionType: 'emphasizingList',
+        sectionType: 'imageList',
         cycleType: 'compact',
         title: 'NEWS',
         subtitle: 'チームからのお知らせ',
         themeColor: '#ff0200',
         id: 'news',
         contents: {
-          listItemsCount: 5,
-          autoCyclePeriodInMs: 5000,
-          stopAutoCycleWhenClicked: true,
+          shownItemsCount: 3,
+          fallbackImageId: 'ssm-logo-landscape',
+          aspectRatio: {width: 4, height: 3},
           articles: [
             {
-              imageId: 'ssm-logo-landscape',
-              title: '【速報】まちこー、無事に東京に帰還',
-              article: [
-                "スーパースターマインのリーダーのまちこーが東京に帰ってきました。",
-                "民が無事を祈る中、まちこーは成田空港に降り立ちました。",
-                "現場では5000人のファンが出迎えたそうです。"
-              ]
+              imageId: '',
+              title: 'フォーリンパフェ』がデベロッパーズゲームコンテスト2020にて企業賞（f4samurai賞）を受賞！',
+              date: {
+                year: '2021',
+                month: '1',
+                day: '29'
+              },
+              url: 'https://twitter.com/MachiCollider/status/1355123713226625027'
             },
             {
-              imageId: 'ssm-logo',
-              title: '【奇跡】まちこーのアパート、無傷',
-              article: [
-                "先日の地震による被害が心配されていたまちこー宅ですが、",
-                "奇跡的に被害が出ていなかったということです。",
-                "現場では5000人のファンが歓声を上げたそうです。"
-              ]
+              imageId: '',
+              title: 'スーパースターマインが「活躍する電大人」に掲載！',
+              date: {
+                year: '2021',
+                month: '1',
+                day: '28'
+              },
+              url: 'https://www.dendai.ac.jp/dendai-people/20210128-01.html'
             },
             {
-              imageId: 'ssm-logo-landscape',
-              title: '【速報】ワイドモニター、歩夢宅に導入',
-              article: [
-                "つい先ほど、我らがデザイナーの歩夢の家にワイドモニターが導入されました",
-                "早速設置を進めているとのことです。"
-              ]
+              imageId: '',
+              title: '『れーぞく！ネクロマンスちゃん』がゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞（鈴木英仁賞）、話題賞を受賞！',
+              date: {
+                year: '2020',
+                month: '12',
+                day: '19'
+              },
+              url: 'https://www.4gamer.net/games/999/G999905/20201228102/'
             },
             {
-              imageId: 'ssm-logo',
-              title: '【悲報】モニターアームのネジ、落ちる',
-              article: [
-                "我らがデザイナーの歩夢がモニターの設置をしていたところ、モニターアームのねじが穴に落下してしまったそうです。",
-                "Twitterでも助けを求めており、懸命な作業が続けられています。"
-              ]
+              imageId: '',
+              title: '『れーぞく！ネクロマンスちゃん』をデジゲー博2020に出展！',
+              date: {
+                year: '2020',
+                month: '11',
+                day: '29'
+              },
+              url: 'http://digigame-expo.org/'
             },
             {
-              imageId: 'ssm-logo-landscape',
-              title: '【速報】モニターアームのネジ、見つかる',
-              article: [
-                "我らがデザイナーの歩夢が懸命な救出活動を行なっていたモニターアームのネジですが、つい先ほど無事に救出されたそうです。",
-                "救出の際には磁石を搭載した専用の高価なドライバーが用いられたそうです。",
-                "無事に救出されたことを受け、本人は次のようにコメントしています。",
-                "「非常に過酷なミッションでしたが、なんとかやり遂げることができました。これも全て応援してくださったみなさんのおかげです」"
-              ]
+              imageId: '',
+              title: '『フォーリンパフェ』がUnity 1Weekゲームジャムにて総合ランキング、絵作りランキングに入賞！',
+              date: {
+                year: '2020',
+                month: '8',
+                day: '30'
+              },
+              url: 'https://unityroom.com/unity1weeks/17'
+            },
+            {
+              imageId: '',
+              title: '『SPINNER』をゲーム業界交流会に出展！',
+              date: {
+                year: '2020',
+                month: '2',
+                day: '6'
+              },
+              url: 'https://game.creators-guild.com/g4c/%E3%82%B2%E3%83%BC%E3%83%A0%E6%A5%AD%E7%95%8C%E4%BA%A4%E6%B5%81%E4%BC%9A%E3%81%AB%E6%BD%9C%E5%85%A5%EF%BC%81/'
+            },
+            {
+              imageId: '',
+              title: 'ゲームクリエイターズギルド様からインタビューをしていただきました！',
+              date: {
+                year: '2019',
+                month: '12',
+                day: '27'
+              },
+              url: 'https://game.creators-guild.com/g4c/interview-studentgamescreator-20190114/'
+            },
+            {
+              imageId: '',
+              title: '『SPINNER』がGCG EXPO 2019で最優秀賞を受賞！',
+              date: {
+                year: '2019',
+                month: '11',
+                day: '30'
+              },
+              url: 'https://game.creators-guild.com/g4c/event-realevent-20191205/'
+            },
+            {
+              imageId: '',
+              title: '『れーぞく！ネクロマンスちゃん』をゲーム制作者交流会 GAME^3に出展！',
+              date: {
+                year: '2019',
+                month: '9',
+                day: '8'
+              },
+              url: 'https://game3.trap.jp/10th/'
             }
           ]
         }
