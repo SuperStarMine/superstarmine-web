@@ -35,10 +35,10 @@ function asyncload() {
           const img = document.createElement('img');
           img.classList.add('image-card_image');
           img.setAttribute('sizes', '(min-width: 600px) 32vw, 56vw');
-          img.setAttribute('src', `/img/NEWS/NEWS_${content.id}-1000w.${content.img_filename_extension}`);
+          img.setAttribute('src', `./img/NEWS/NEWS_${content.id}-1000w.${content.img_filename_extension}`);
           const srcset = [];
           for (let j = 2000; j >= 250; j -= 250) {
-            srcset.push(`/img/NEWS/NEWS_${content.id}-${j}w.${content.img_filename_extension} ${j}w`);
+            srcset.push(`./img/NEWS/NEWS_${content.id}-${j}w.${content.img_filename_extension} ${j}w`);
           }
           img.setAttribute('srcset', `${srcset.join(',')}`);
           img.setAttribute('alt', `${content.title.join('')}の画像`);
@@ -46,9 +46,9 @@ function asyncload() {
           if (content.link) {
             const icon = document.createElement('img');
             icon.classList.add('image-card_link-icon');
-            icon.setAttribute('src', '/img/icon/launch-icon-96w.png');
+            icon.setAttribute('src', './img/icon/launch-icon-96w.png');
             icon.setAttribute('sizes', '(min-width: 600px) 4vw, 7vw');
-            icon.setAttribute('srcset', '/img/icon/launch-icon-48w.png 48w, /img/icon/launch-icon-96w.png 96w');
+            icon.setAttribute('srcset', './img/icon/launch-icon-48w.png 48w, ./img/icon/launch-icon-96w.png 96w');
             icon.setAttribute('alt', 'リンクを示すアイコン');
             card.insertAdjacentElement('beforeend', icon);
           }
