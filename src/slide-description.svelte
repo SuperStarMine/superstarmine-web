@@ -204,8 +204,8 @@
     font-style normal
     font-weight 700
     @media (min-aspect-ratio: 16/9)
-      font-size calc(2.5vw / 3)
-    font-size calc(2.5vw * 0.5)
+      font-size calc(2.5vw / 2.5)
+    font-size calc(2.5vw / 2)
     @media (max-aspect-ratio: 1/1)
       font-size calc(2.5vw * 0.8)
     @media (max-aspect-ratio: 3/4)
@@ -236,6 +236,7 @@
         mix-blend-mode multiply
     .buttons
       display flex
+      font-size 1.2em
       @media screen and (orientation: portrait)
         display none
       white-space nowrap
@@ -313,6 +314,7 @@
           font-weight 700
   .buttons
     display flex
+    font-size 1.2em
     @media screen and (orientation: landscape)
       display none
     white-space nowrap
