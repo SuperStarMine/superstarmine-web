@@ -51,7 +51,7 @@ const app = new App({
             {
               title: 'れーぞく！ネクロマンスちゃん',
               subtitle: 'れーぞく全方位シューティングゲーム',
-              themeColor: '#fdaa2b',
+              themeColor: '#ed773e',
               imageId: 'necromance_ss',
               alt: 'れーぞく！ネクロマンスちゃんのプレイ画面',
               aspectRatio: {width: 16, height: 9},
@@ -100,7 +100,7 @@ const app = new App({
             {
               title: 'SPINNER',
               subtitle: '新感覚ホッケーアクションゲーム',
-              themeColor: '#000',
+              themeColor: '#464646',
               imageId: 'spinner_ss',
               alt: 'SPINNERのプレイ画面',
               aspectRatio: {width: 16, height: 9},
@@ -141,7 +141,7 @@ const app = new App({
             {
               title: 'CUPRUNMEN',
               subtitle: 'VRMタイムアタックランゲーム',
-              themeColor: '#1f83d8',
+              themeColor: '#b56c4e',
               imageId: 'cup-run_ss',
               alt: 'CUPRUNMENのプレイ画面',
               aspectRatio: {width: 16, height: 9},
@@ -247,7 +247,7 @@ const app = new App({
             {
               title: '爆買いマーケット',
               subtitle: '爆買いアクションランゲーム',
-              themeColor: '#c65017',
+              themeColor: '#da3c26',
               imageId: 'bakugai-img',
               aspectRatio: {width: 1, height: 1},
               alt: '',
