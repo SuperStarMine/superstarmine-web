@@ -366,7 +366,7 @@ const app = new App({
           bottomButtons: [
             {
               title: [
-                '問い合わせ'
+                'お問い合わせ'
               ],
               target: 'https://docs.google.com/forms/d/e/1FAIpQLSd6Z3feC7onaq9SJa1Blfdd7frPFCsm4zQUCfQr9XqPxM3gzA/viewform'
             },

@@ -7,6 +7,7 @@
     alt = `${imageId}の画像`,
     width,
     height,
+    pictureClass,
     imgClass,
     click,
     title,
@@ -26,7 +27,7 @@
   }
 </script>
 
-<picture on:click={click} {title} {style}>
+<picture class={pictureClass} on:click={click} {title} {style}>
   {#each imageExtensionsShort as ext, i}
     <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[i]}">
   {/each}

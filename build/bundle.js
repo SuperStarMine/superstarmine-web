@@ -2914,12 +2914,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
-    	child_ctx[16] = i;
+    	child_ctx[15] = list[i];
+    	child_ctx[17] = i;
     	return child_ctx;
     }
 
-    // (30:2) {#each imageExtensionsShort as ext, i}
+    // (31:2) {#each imageExtensionsShort as ext, i}
     function create_each_block(ctx) {
     	let source;
     	let source_type_value;
@@ -2928,16 +2928,16 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			source = element("source");
-    			attr_dev(source, "type", source_type_value = "image/" + /*ext*/ ctx[14]);
+    			attr_dev(source, "type", source_type_value = "image/" + /*ext*/ ctx[15]);
     			attr_dev(source, "sizes", /*sizes*/ ctx[1]);
-    			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[/*i*/ ctx[16]]);
-    			add_location(source, file$1, 30, 4, 913);
+    			attr_dev(source, "srcset", source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[12], /*imageExtensionsShort*/ ctx[10], /*imageSizes*/ ctx[11], /*imageId*/ ctx[0])[/*i*/ ctx[17]]);
+    			add_location(source, file$1, 31, 4, 952);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, source, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*imageExtensionsShort*/ 512 && source_type_value !== (source_type_value = "image/" + /*ext*/ ctx[14])) {
+    			if (dirty & /*imageExtensionsShort*/ 1024 && source_type_value !== (source_type_value = "image/" + /*ext*/ ctx[15])) {
     				attr_dev(source, "type", source_type_value);
     			}
 
@@ -2945,7 +2945,7 @@ var app = (function () {
     				attr_dev(source, "sizes", /*sizes*/ ctx[1]);
     			}
 
-    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 3585 && source_srcset_value !== (source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[/*i*/ ctx[16]])) {
+    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 7169 && source_srcset_value !== (source_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[12], /*imageExtensionsShort*/ ctx[10], /*imageSizes*/ ctx[11], /*imageId*/ ctx[0])[/*i*/ ctx[17]])) {
     				attr_dev(source, "srcset", source_srcset_value);
     			}
     		},
@@ -2958,7 +2958,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(30:2) {#each imageExtensionsShort as ext, i}",
+    		source: "(31:2) {#each imageExtensionsShort as ext, i}",
     		ctx
     	});
 
@@ -2972,7 +2972,7 @@ var app = (function () {
     	let img_srcset_value;
     	let mounted;
     	let dispose;
-    	let each_value = /*imageExtensionsShort*/ ctx[9];
+    	let each_value = /*imageExtensionsShort*/ ctx[10];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -2990,16 +2990,17 @@ var app = (function () {
 
     			t = space();
     			img = element("img");
-    			attr_dev(img, "class", /*imgClass*/ ctx[5]);
+    			attr_dev(img, "class", /*imgClass*/ ctx[6]);
     			attr_dev(img, "sizes", /*sizes*/ ctx[1]);
-    			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[9])]);
+    			attr_dev(img, "srcset", img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[12], /*imageExtensionsShort*/ ctx[10], /*imageSizes*/ ctx[11], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[10])]);
     			attr_dev(img, "alt", /*alt*/ ctx[2]);
     			attr_dev(img, "width", /*width*/ ctx[3]);
     			attr_dev(img, "height", /*height*/ ctx[4]);
-    			add_location(img, file$1, 32, 2, 1049);
-    			attr_dev(picture, "title", /*title*/ ctx[7]);
-    			attr_dev(picture, "style", /*style*/ ctx[8]);
-    			add_location(picture, file$1, 28, 0, 825);
+    			add_location(img, file$1, 33, 2, 1088);
+    			attr_dev(picture, "class", /*pictureClass*/ ctx[5]);
+    			attr_dev(picture, "title", /*title*/ ctx[8]);
+    			attr_dev(picture, "style", /*style*/ ctx[9]);
+    			add_location(picture, file$1, 29, 0, 843);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3019,7 +3020,7 @@ var app = (function () {
     					picture,
     					"click",
     					function () {
-    						if (is_function(/*click*/ ctx[6])) /*click*/ ctx[6].apply(this, arguments);
+    						if (is_function(/*click*/ ctx[7])) /*click*/ ctx[7].apply(this, arguments);
     					},
     					false,
     					false,
@@ -3032,8 +3033,8 @@ var app = (function () {
     		p: function update(new_ctx, [dirty]) {
     			ctx = new_ctx;
 
-    			if (dirty & /*imageExtensionsShort, sizes, resolveSrcsets, imageDirectory, imageSizes, imageId*/ 3587) {
-    				each_value = /*imageExtensionsShort*/ ctx[9];
+    			if (dirty & /*imageExtensionsShort, sizes, resolveSrcsets, imageDirectory, imageSizes, imageId*/ 7171) {
+    				each_value = /*imageExtensionsShort*/ ctx[10];
     				validate_each_argument(each_value);
     				let i;
 
@@ -3056,15 +3057,15 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*imgClass*/ 32) {
-    				attr_dev(img, "class", /*imgClass*/ ctx[5]);
+    			if (dirty & /*imgClass*/ 64) {
+    				attr_dev(img, "class", /*imgClass*/ ctx[6]);
     			}
 
     			if (dirty & /*sizes*/ 2) {
     				attr_dev(img, "sizes", /*sizes*/ ctx[1]);
     			}
 
-    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 3585 && img_srcset_value !== (img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[11], /*imageExtensionsShort*/ ctx[9], /*imageSizes*/ ctx[10], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[9])])) {
+    			if (dirty & /*imageDirectory, imageExtensionsShort, imageSizes, imageId*/ 7169 && img_srcset_value !== (img_srcset_value = resolveSrcsets(/*imageDirectory*/ ctx[12], /*imageExtensionsShort*/ ctx[10], /*imageSizes*/ ctx[11], /*imageId*/ ctx[0])[getSafeImageExtensionIndex(/*imageExtensionsShort*/ ctx[10])])) {
     				attr_dev(img, "srcset", img_srcset_value);
     			}
 
@@ -3080,12 +3081,16 @@ var app = (function () {
     				attr_dev(img, "height", /*height*/ ctx[4]);
     			}
 
-    			if (dirty & /*title*/ 128) {
-    				attr_dev(picture, "title", /*title*/ ctx[7]);
+    			if (dirty & /*pictureClass*/ 32) {
+    				attr_dev(picture, "class", /*pictureClass*/ ctx[5]);
     			}
 
-    			if (dirty & /*style*/ 256) {
-    				attr_dev(picture, "style", /*style*/ ctx[8]);
+    			if (dirty & /*title*/ 256) {
+    				attr_dev(picture, "title", /*title*/ ctx[8]);
+    			}
+
+    			if (dirty & /*style*/ 512) {
+    				attr_dev(picture, "style", /*style*/ ctx[9]);
     			}
     		},
     		i: noop,
@@ -3130,6 +3135,7 @@ var app = (function () {
     		{ alt = `${imageId}の画像` } = $$props,
     		{ width } = $$props,
     		{ height } = $$props,
+    		{ pictureClass } = $$props,
     		{ imgClass } = $$props,
     		{ click } = $$props,
     		{ title } = $$props,
@@ -3146,6 +3152,7 @@ var app = (function () {
     		"alt",
     		"width",
     		"height",
+    		"pictureClass",
     		"imgClass",
     		"click",
     		"title",
@@ -3160,20 +3167,21 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("contents" in $$props) $$invalidate(12, contents = $$props.contents);
-    		if ("globalSettings" in $$props) $$invalidate(13, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(13, contents = $$props.contents);
+    		if ("globalSettings" in $$props) $$invalidate(14, globalSettings = $$props.globalSettings);
     		if ("imageId" in $$props) $$invalidate(0, imageId = $$props.imageId);
     		if ("sizes" in $$props) $$invalidate(1, sizes = $$props.sizes);
     		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
     		if ("width" in $$props) $$invalidate(3, width = $$props.width);
     		if ("height" in $$props) $$invalidate(4, height = $$props.height);
-    		if ("imgClass" in $$props) $$invalidate(5, imgClass = $$props.imgClass);
-    		if ("click" in $$props) $$invalidate(6, click = $$props.click);
-    		if ("title" in $$props) $$invalidate(7, title = $$props.title);
-    		if ("style" in $$props) $$invalidate(8, style = $$props.style);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(9, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSizes" in $$props) $$invalidate(10, imageSizes = $$props.imageSizes);
-    		if ("imageDirectory" in $$props) $$invalidate(11, imageDirectory = $$props.imageDirectory);
+    		if ("pictureClass" in $$props) $$invalidate(5, pictureClass = $$props.pictureClass);
+    		if ("imgClass" in $$props) $$invalidate(6, imgClass = $$props.imgClass);
+    		if ("click" in $$props) $$invalidate(7, click = $$props.click);
+    		if ("title" in $$props) $$invalidate(8, title = $$props.title);
+    		if ("style" in $$props) $$invalidate(9, style = $$props.style);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(10, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSizes" in $$props) $$invalidate(11, imageSizes = $$props.imageSizes);
+    		if ("imageDirectory" in $$props) $$invalidate(12, imageDirectory = $$props.imageDirectory);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3184,6 +3192,7 @@ var app = (function () {
     		alt,
     		width,
     		height,
+    		pictureClass,
     		imgClass,
     		click,
     		title,
@@ -3196,20 +3205,21 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("contents" in $$props) $$invalidate(12, contents = $$props.contents);
-    		if ("globalSettings" in $$props) $$invalidate(13, globalSettings = $$props.globalSettings);
+    		if ("contents" in $$props) $$invalidate(13, contents = $$props.contents);
+    		if ("globalSettings" in $$props) $$invalidate(14, globalSettings = $$props.globalSettings);
     		if ("imageId" in $$props) $$invalidate(0, imageId = $$props.imageId);
     		if ("sizes" in $$props) $$invalidate(1, sizes = $$props.sizes);
     		if ("alt" in $$props) $$invalidate(2, alt = $$props.alt);
     		if ("width" in $$props) $$invalidate(3, width = $$props.width);
     		if ("height" in $$props) $$invalidate(4, height = $$props.height);
-    		if ("imgClass" in $$props) $$invalidate(5, imgClass = $$props.imgClass);
-    		if ("click" in $$props) $$invalidate(6, click = $$props.click);
-    		if ("title" in $$props) $$invalidate(7, title = $$props.title);
-    		if ("style" in $$props) $$invalidate(8, style = $$props.style);
-    		if ("imageExtensionsShort" in $$props) $$invalidate(9, imageExtensionsShort = $$props.imageExtensionsShort);
-    		if ("imageSizes" in $$props) $$invalidate(10, imageSizes = $$props.imageSizes);
-    		if ("imageDirectory" in $$props) $$invalidate(11, imageDirectory = $$props.imageDirectory);
+    		if ("pictureClass" in $$props) $$invalidate(5, pictureClass = $$props.pictureClass);
+    		if ("imgClass" in $$props) $$invalidate(6, imgClass = $$props.imgClass);
+    		if ("click" in $$props) $$invalidate(7, click = $$props.click);
+    		if ("title" in $$props) $$invalidate(8, title = $$props.title);
+    		if ("style" in $$props) $$invalidate(9, style = $$props.style);
+    		if ("imageExtensionsShort" in $$props) $$invalidate(10, imageExtensionsShort = $$props.imageExtensionsShort);
+    		if ("imageSizes" in $$props) $$invalidate(11, imageSizes = $$props.imageSizes);
+    		if ("imageDirectory" in $$props) $$invalidate(12, imageDirectory = $$props.imageDirectory);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -3222,6 +3232,7 @@ var app = (function () {
     		alt,
     		width,
     		height,
+    		pictureClass,
     		imgClass,
     		click,
     		title,
@@ -3239,20 +3250,21 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
-    			contents: 12,
-    			globalSettings: 13,
+    			contents: 13,
+    			globalSettings: 14,
     			imageId: 0,
     			sizes: 1,
     			alt: 2,
     			width: 3,
     			height: 4,
-    			imgClass: 5,
-    			click: 6,
-    			title: 7,
-    			style: 8,
-    			imageExtensionsShort: 9,
-    			imageSizes: 10,
-    			imageDirectory: 11
+    			pictureClass: 5,
+    			imgClass: 6,
+    			click: 7,
+    			title: 8,
+    			style: 9,
+    			imageExtensionsShort: 10,
+    			imageSizes: 11,
+    			imageDirectory: 12
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -3265,11 +3277,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*contents*/ ctx[12] === undefined && !("contents" in props)) {
+    		if (/*contents*/ ctx[13] === undefined && !("contents" in props)) {
     			console.warn("<Picture> was created without expected prop 'contents'");
     		}
 
-    		if (/*globalSettings*/ ctx[13] === undefined && !("globalSettings" in props)) {
+    		if (/*globalSettings*/ ctx[14] === undefined && !("globalSettings" in props)) {
     			console.warn("<Picture> was created without expected prop 'globalSettings'");
     		}
 
@@ -3285,19 +3297,23 @@ var app = (function () {
     			console.warn("<Picture> was created without expected prop 'height'");
     		}
 
-    		if (/*imgClass*/ ctx[5] === undefined && !("imgClass" in props)) {
+    		if (/*pictureClass*/ ctx[5] === undefined && !("pictureClass" in props)) {
+    			console.warn("<Picture> was created without expected prop 'pictureClass'");
+    		}
+
+    		if (/*imgClass*/ ctx[6] === undefined && !("imgClass" in props)) {
     			console.warn("<Picture> was created without expected prop 'imgClass'");
     		}
 
-    		if (/*click*/ ctx[6] === undefined && !("click" in props)) {
+    		if (/*click*/ ctx[7] === undefined && !("click" in props)) {
     			console.warn("<Picture> was created without expected prop 'click'");
     		}
 
-    		if (/*title*/ ctx[7] === undefined && !("title" in props)) {
+    		if (/*title*/ ctx[8] === undefined && !("title" in props)) {
     			console.warn("<Picture> was created without expected prop 'title'");
     		}
 
-    		if (/*style*/ ctx[8] === undefined && !("style" in props)) {
+    		if (/*style*/ ctx[9] === undefined && !("style" in props)) {
     			console.warn("<Picture> was created without expected prop 'style'");
     		}
     	}
@@ -3355,6 +3371,14 @@ var app = (function () {
     	}
 
     	set height(value) {
+    		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get pictureClass() {
+    		throw new Error("<Picture>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set pictureClass(value) {
     		throw new Error("<Picture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -4278,13 +4302,13 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[5] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[9] = list[i];
     	return child_ctx;
     }
 
@@ -4294,7 +4318,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (17:6) {#each article as article}
+    // (18:6) {#each article as article}
     function create_each_block_2(ctx) {
     	let p;
     	let t_value = /*article*/ ctx[4] + "";
@@ -4304,8 +4328,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			attr_dev(p, "class", "svelte-1rnf499");
-    			add_location(p, file$4, 17, 8, 617);
+    			attr_dev(p, "class", "svelte-14m4gfi");
+    			add_location(p, file$4, 18, 8, 747);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -4323,16 +4347,16 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(17:6) {#each article as article}",
+    		source: "(18:6) {#each article as article}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (28:10) {:else}
+    // (29:10) {:else}
     function create_else_block$1(ctx) {
-    	let t_value = /*button*/ ctx[5].title + "";
+    	let t_value = /*button*/ ctx[6].title + "";
     	let t;
 
     	const block = {
@@ -4343,7 +4367,7 @@ var app = (function () {
     			insert_dev(target, t, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*buttons*/ 8 && t_value !== (t_value = /*button*/ ctx[5].title + "")) set_data_dev(t, t_value);
+    			if (dirty & /*buttons*/ 8 && t_value !== (t_value = /*button*/ ctx[6].title + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t);
@@ -4354,17 +4378,17 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(28:10) {:else}",
+    		source: "(29:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (24:10) {#if Array.isArray(button.title)}
+    // (25:10) {#if Array.isArray(button.title)}
     function create_if_block$2(ctx) {
     	let each_1_anchor;
-    	let each_value_1 = /*button*/ ctx[5].title;
+    	let each_value_1 = /*button*/ ctx[6].title;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -4389,7 +4413,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*buttons*/ 8) {
-    				each_value_1 = /*button*/ ctx[5].title;
+    				each_value_1 = /*button*/ ctx[6].title;
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -4422,17 +4446,17 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(24:10) {#if Array.isArray(button.title)}",
+    		source: "(25:10) {#if Array.isArray(button.title)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (25:12) {#each button.title as title}
+    // (26:12) {#each button.title as title}
     function create_each_block_1(ctx) {
     	let span;
-    	let t_value = /*title*/ ctx[8] + "";
+    	let t_value = /*title*/ ctx[9] + "";
     	let t;
 
     	const block = {
@@ -4440,14 +4464,14 @@ var app = (function () {
     			span = element("span");
     			t = text(t_value);
     			attr_dev(span, "class", "break-scope");
-    			add_location(span, file$4, 25, 14, 943);
+    			add_location(span, file$4, 26, 14, 997);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
     			append_dev(span, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*buttons*/ 8 && t_value !== (t_value = /*title*/ ctx[8] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*buttons*/ 8 && t_value !== (t_value = /*title*/ ctx[9] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(span);
@@ -4458,20 +4482,20 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(25:12) {#each button.title as title}",
+    		source: "(26:12) {#each button.title as title}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (23:8) <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">
+    // (24:8) <Button target="{button.target}">
     function create_default_slot(ctx) {
     	let show_if;
     	let t;
 
     	function select_block_type(ctx, dirty) {
-    		if (show_if == null || dirty & /*buttons*/ 8) show_if = !!Array.isArray(/*button*/ ctx[5].title);
+    		if (show_if == null || dirty & /*buttons*/ 8) show_if = !!Array.isArray(/*button*/ ctx[6].title);
     		if (show_if) return create_if_block$2;
     		return create_else_block$1;
     	}
@@ -4511,23 +4535,21 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(23:8) <Button target=\\\"{button.target}\\\" marginLeft=\\\"{buttonsLayout=='right'}\\\" marginRight=\\\"{buttonsLayout=='left'}\\\">",
+    		source: "(24:8) <Button target=\\\"{button.target}\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (22:6) {#each buttons as button}
+    // (23:6) {#each buttons as button}
     function create_each_block$2(ctx) {
     	let button;
     	let current;
 
     	button = new Button({
     			props: {
-    				target: /*button*/ ctx[5].target,
-    				marginLeft: /*buttonsLayout*/ ctx[2] == "right",
-    				marginRight: /*buttonsLayout*/ ctx[2] == "left",
+    				target: /*button*/ ctx[6].target,
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -4544,11 +4566,9 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const button_changes = {};
-    			if (dirty & /*buttons*/ 8) button_changes.target = /*button*/ ctx[5].target;
-    			if (dirty & /*buttonsLayout*/ 4) button_changes.marginLeft = /*buttonsLayout*/ ctx[2] == "right";
-    			if (dirty & /*buttonsLayout*/ 4) button_changes.marginRight = /*buttonsLayout*/ ctx[2] == "left";
+    			if (dirty & /*buttons*/ 8) button_changes.target = /*button*/ ctx[6].target;
 
-    			if (dirty & /*$$scope, buttons*/ 8200) {
+    			if (dirty & /*$$scope, buttons*/ 16392) {
     				button_changes.$$scope = { dirty, ctx };
     			}
 
@@ -4572,7 +4592,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(22:6) {#each buttons as button}",
+    		source: "(23:6) {#each buttons as button}",
     		ctx
     	});
 
@@ -4593,8 +4613,9 @@ var app = (function () {
 
     	picture = new Picture({
     			props: {
+    				pictureClass: "static-picture",
     				imgClass: "static-img",
-    				sizes: "30vw",
+    				sizes: "@media screen and (orientation: portrait) " + /*standardWidth*/ ctx[2] + "vw, " + /*standardWidth*/ ctx[2] * 0.35 + "vw",
     				contents: /*contents*/ ctx[0],
     				globalSettings: /*globalSettings*/ ctx[1],
     				imageId: /*contents*/ ctx[0].imageId,
@@ -4646,16 +4667,16 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "spacer svelte-1rnf499");
-    			add_location(div0, file$4, 13, 2, 489);
-    			attr_dev(section0, "class", "text svelte-1rnf499");
-    			add_location(section0, file$4, 15, 4, 553);
-    			attr_dev(section1, "class", "buttons svelte-1rnf499");
-    			add_location(section1, file$4, 20, 4, 667);
-    			attr_dev(section2, "class", "right-column svelte-1rnf499");
-    			add_location(section2, file$4, 14, 2, 518);
-    			attr_dev(div1, "class", "container svelte-1rnf499");
-    			add_location(div1, file$4, 11, 0, 269);
+    			attr_dev(div0, "class", "spacer svelte-14m4gfi");
+    			add_location(div0, file$4, 14, 2, 619);
+    			attr_dev(section0, "class", "text svelte-14m4gfi");
+    			add_location(section0, file$4, 16, 4, 683);
+    			attr_dev(section1, "class", "buttons svelte-14m4gfi");
+    			add_location(section1, file$4, 21, 4, 797);
+    			attr_dev(section2, "class", "right-column svelte-14m4gfi");
+    			add_location(section2, file$4, 15, 2, 648);
+    			attr_dev(div1, "class", "container svelte-14m4gfi");
+    			add_location(div1, file$4, 12, 0, 288);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4684,6 +4705,7 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			const picture_changes = {};
+    			if (dirty & /*standardWidth*/ 4) picture_changes.sizes = "@media screen and (orientation: portrait) " + /*standardWidth*/ ctx[2] + "vw, " + /*standardWidth*/ ctx[2] * 0.35 + "vw";
     			if (dirty & /*contents*/ 1) picture_changes.contents = /*contents*/ ctx[0];
     			if (dirty & /*globalSettings*/ 2) picture_changes.globalSettings = /*globalSettings*/ ctx[1];
     			if (dirty & /*contents*/ 1) picture_changes.imageId = /*contents*/ ctx[0].imageId;
@@ -4715,7 +4737,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_2.length;
     			}
 
-    			if (dirty & /*buttons, buttonsLayout, Array*/ 12) {
+    			if (dirty & /*buttons, Array*/ 8) {
     				each_value = /*buttons*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
@@ -4788,11 +4810,19 @@ var app = (function () {
 
     	let { contents } = $$props,
     		{ globalSettings } = $$props,
+    		{ standardWidth } = $$props,
     		{ article = contents.article } = $$props,
     		{ buttonsLayout = contents.bottomButtonsLayout } = $$props,
     		{ buttons = contents.bottomButtons } = $$props;
 
-    	const writable_props = ["contents", "globalSettings", "article", "buttonsLayout", "buttons"];
+    	const writable_props = [
+    		"contents",
+    		"globalSettings",
+    		"standardWidth",
+    		"article",
+    		"buttonsLayout",
+    		"buttons"
+    	];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Static_content> was created with unknown prop '${key}'`);
@@ -4801,8 +4831,9 @@ var app = (function () {
     	$$self.$$set = $$props => {
     		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     		if ("globalSettings" in $$props) $$invalidate(1, globalSettings = $$props.globalSettings);
+    		if ("standardWidth" in $$props) $$invalidate(2, standardWidth = $$props.standardWidth);
     		if ("article" in $$props) $$invalidate(4, article = $$props.article);
-    		if ("buttonsLayout" in $$props) $$invalidate(2, buttonsLayout = $$props.buttonsLayout);
+    		if ("buttonsLayout" in $$props) $$invalidate(5, buttonsLayout = $$props.buttonsLayout);
     		if ("buttons" in $$props) $$invalidate(3, buttons = $$props.buttons);
     	};
 
@@ -4811,6 +4842,7 @@ var app = (function () {
     		Picture,
     		contents,
     		globalSettings,
+    		standardWidth,
     		article,
     		buttonsLayout,
     		buttons
@@ -4819,8 +4851,9 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("contents" in $$props) $$invalidate(0, contents = $$props.contents);
     		if ("globalSettings" in $$props) $$invalidate(1, globalSettings = $$props.globalSettings);
+    		if ("standardWidth" in $$props) $$invalidate(2, standardWidth = $$props.standardWidth);
     		if ("article" in $$props) $$invalidate(4, article = $$props.article);
-    		if ("buttonsLayout" in $$props) $$invalidate(2, buttonsLayout = $$props.buttonsLayout);
+    		if ("buttonsLayout" in $$props) $$invalidate(5, buttonsLayout = $$props.buttonsLayout);
     		if ("buttons" in $$props) $$invalidate(3, buttons = $$props.buttons);
     	};
 
@@ -4828,7 +4861,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [contents, globalSettings, buttonsLayout, buttons, article];
+    	return [contents, globalSettings, standardWidth, buttons, article, buttonsLayout];
     }
 
     class Static_content extends SvelteComponentDev {
@@ -4838,8 +4871,9 @@ var app = (function () {
     		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
     			contents: 0,
     			globalSettings: 1,
+    			standardWidth: 2,
     			article: 4,
-    			buttonsLayout: 2,
+    			buttonsLayout: 5,
     			buttons: 3
     		});
 
@@ -4860,6 +4894,10 @@ var app = (function () {
     		if (/*globalSettings*/ ctx[1] === undefined && !("globalSettings" in props)) {
     			console.warn("<Static_content> was created without expected prop 'globalSettings'");
     		}
+
+    		if (/*standardWidth*/ ctx[2] === undefined && !("standardWidth" in props)) {
+    			console.warn("<Static_content> was created without expected prop 'standardWidth'");
+    		}
     	}
 
     	get contents() {
@@ -4875,6 +4913,14 @@ var app = (function () {
     	}
 
     	set globalSettings(value) {
+    		throw new Error("<Static_content>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get standardWidth() {
+    		throw new Error("<Static_content>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set standardWidth(value) {
     		throw new Error("<Static_content>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -17711,7 +17757,8 @@ var app = (function () {
     	static_1 = new Static_content({
     			props: {
     				contents: /*contents*/ ctx[9],
-    				globalSettings: /*globalSettings*/ ctx[1]
+    				globalSettings: /*globalSettings*/ ctx[1],
+    				standardWidth: /*standardWidth*/ ctx[2]
     			},
     			$$inline: true
     		});
@@ -17728,6 +17775,7 @@ var app = (function () {
     			const static_1_changes = {};
     			if (dirty & /*settings*/ 1) static_1_changes.contents = /*contents*/ ctx[9];
     			if (dirty & /*globalSettings*/ 2) static_1_changes.globalSettings = /*globalSettings*/ ctx[1];
+    			if (dirty & /*standardWidth*/ 4) static_1_changes.standardWidth = /*standardWidth*/ ctx[2];
     			static_1.$set(static_1_changes);
     		},
     		i: function intro(local) {
@@ -18569,7 +18617,7 @@ var app = (function () {
               bottomButtons: [
                 {
                   title: [
-                    '問い合わせ'
+                    'お問い合わせ'
                   ],
                   target: 'https://docs.google.com/forms/d/e/1FAIpQLSd6Z3feC7onaq9SJa1Blfdd7frPFCsm4zQUCfQr9XqPxM3gzA/viewform'
                 },

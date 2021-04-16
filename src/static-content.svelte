@@ -4,13 +4,14 @@
   export let
     contents,
     globalSettings,
+    standardWidth,
     article = contents.article,
     buttonsLayout = contents.bottomButtonsLayout,
     buttons = contents.bottomButtons;
 </script>
 
 <div class="container">
-  <Picture imgClass="static-img" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height} style="width:100%"/>
+  <Picture pictureClass="static-picture" imgClass="static-img" sizes="@media screen and (orientation: portrait) {standardWidth}vw, {standardWidth * 0.35}vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height} style="width:100%"/>
   <div class="spacer"></div>
   <section class="right-column">
     <section class="text">
@@ -20,7 +21,7 @@
     </section>
     <section class="buttons">
       {#each buttons as button}
-        <Button target="{button.target}" marginLeft="{buttonsLayout=='right'}" marginRight="{buttonsLayout=='left'}">
+        <Button target="{button.target}">
           {#if Array.isArray(button.title)}
             {#each button.title as title}
               <span class="break-scope">{title}</span>
@@ -39,25 +40,51 @@
   display: flex
   align-items: center
   justify-content: space-between
+  @media screen and (orientation: portrait)
+    flex-flow column
 
 :global(.static-img)
   background-color #fff
-  box-shadow: 0 0 10px #ccc
   width: 100%
   height auto
+  position relative
+
+:global(.static-picture)
+  position relative
+  &:before
+    content ''
+    display block
+    width 100%
+    height 100%
+    position absolute
+    top 0
+    left 0
+    background linear-gradient(to bottom left, #ff0200, #ff5a23, #f7931d)
+    -webkit-filter blur(15px)
+    -moz-filter blur(15px)
+    filter blur(15px)
+    opacity 0.7
 
 .spacer
   flex 0 0 5%
+  @media screen and (orientation: portrait)
+    display none
 
 .right-column
-  flex: 0 0 60%
+  flex 0 0 60%
+  @media screen and (orientation: portrait)
+    flex 0 0 100%
+    width 90%
 
 .text
   margin-bottom: 1em
+  @media screen and (orientation: portrait)
+    margin 1em 0
   p
     margin: 0
 
 .buttons
   display: flex
   width: 100%
+  justify-content space-around
 </style>

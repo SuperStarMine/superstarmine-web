@@ -37,7 +37,7 @@
     {:else if sectionType != "navHeader"}
       <Cframe {id} {title} {subtitle} {themeColor} {globalSettings}>
         {#if sectionType == "static"}
-          <Static {contents} {globalSettings}/>
+          <Static {contents} {globalSettings} {standardWidth}/>
         {:else if sectionType == "emphasizingList"}
           <Elist {contents} {globalSettings}/>
         {:else if sectionType == "cards"}
