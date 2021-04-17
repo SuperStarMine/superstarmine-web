@@ -305,7 +305,7 @@ const app = new App({
           articles: [
             {
               imageId: '',
-              title: 'フォーリンパフェ』がデベロッパーズゲームコンテスト2020にて企業賞（f4samurai賞）を受賞！',
+              title: '『フォーリンパフェ』がデベロッパーズゲームコンテスト2020にて企業賞（f4samurai賞）を受賞！',
               date: {
                 year: '2021',
                 month: '1',
