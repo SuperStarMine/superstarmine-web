@@ -21,6 +21,8 @@ const app = new App({
       imageDirectory: './img/',
       imageExtensionsShort: ['webp', 'png'],
       imageSizes: [250, 500, 750, 1000, 1250, 1500, 1750, 2000],
+      tinyImageSize: 15,
+      tinyImageExtensionsShort: ['webp', 'jpg'],
       transitionDuration: 500, //ms
     },
     settings: [
