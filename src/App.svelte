@@ -31,7 +31,7 @@
     {#if sectionType == "slideHero"}
       <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "slideDesc"}
-      <Desc {contents} {globalSettings} {pairId} {isParent}/>
+      <Desc {contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "footer"}
       <Footer {contents} {globalSettings}/>
     {:else if sectionType != "navHeader"}
