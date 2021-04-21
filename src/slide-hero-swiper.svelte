@@ -4,7 +4,6 @@
   import { sync } from './sync-store.js';
   import Picture from "./picture.svelte";
   import { onMount } from 'svelte';
-import swiper from 'swiper/cjs/svelte/swiper';
   export let contents, pairId, isParent, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;
