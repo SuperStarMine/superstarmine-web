@@ -16308,13 +16308,15 @@ var app = (function () {
     			set_style(img0, "vertical-align", "middle");
     			set_style(img0, "margin-right", "1ch");
     			if (img0.src !== (img0_src_value = "https://i.creativecommons.org/l/" + /*contents*/ ctx[0].assetsLicense.ccType + "/4.0/80x15.png")) attr_dev(img0, "src", img0_src_value);
+    			attr_dev(img0, "width", "80");
+    			attr_dev(img0, "height", "15");
     			add_location(img0, file$9, 73, 105, 3278);
     			attr_dev(a0, "rel", "license");
     			attr_dev(a0, "href", a0_href_value = "http://creativecommons.org/licenses/" + /*contents*/ ctx[0].assetsLicense.ccType + "/4.0/");
     			add_location(a0, file$9, 73, 8, 3181);
     			attr_dev(a1, "rel", "license");
     			attr_dev(a1, "href", a1_href_value = "http://creativecommons.org/licenses/" + /*contents*/ ctx[0].assetsLicense.ccType + "/4.0/");
-    			add_location(a1, file$9, 73, 393, 3566);
+    			add_location(a1, file$9, 73, 415, 3588);
     			add_location(div0, file$9, 72, 6, 3167);
     			attr_dev(section0, "class", "creative-commons svelte-1wdp62n");
     			add_location(section0, file$9, 71, 4, 3126);
@@ -16324,16 +16326,18 @@ var app = (function () {
     			set_style(img1, "vertical-align", "middle");
     			set_style(img1, "margin-right", "1ch");
     			if (img1.src !== (img1_src_value = "https://i.creativecommons.org/l/" + /*contents*/ ctx[0].assetsLicense.ccType + "/4.0/80x15.png")) attr_dev(img1, "src", img1_src_value);
-    			add_location(img1, file$9, 78, 113, 4368);
+    			attr_dev(img1, "width", "80");
+    			attr_dev(img1, "height", "15");
+    			add_location(img1, file$9, 78, 113, 4390);
     			attr_dev(a2, "rel", "license");
     			attr_dev(a2, "href", a2_href_value = "https://creativecommons.org/licenses/" + /*contents*/ ctx[0].assetsLicense.ccType + "/4.0/deed.ja");
-    			add_location(a2, file$9, 78, 8, 4263);
+    			add_location(a2, file$9, 78, 8, 4285);
     			attr_dev(a3, "rel", "license");
     			attr_dev(a3, "href", "https://creativecommons.org/licenses/by-nd/4.0/deed.ja");
-    			add_location(a3, file$9, 78, 344, 4599);
-    			add_location(div1, file$9, 77, 6, 4249);
+    			add_location(a3, file$9, 78, 366, 4643);
+    			add_location(div1, file$9, 77, 6, 4271);
     			attr_dev(section1, "class", "creative-commons svelte-1wdp62n");
-    			add_location(section1, file$9, 76, 4, 4208);
+    			add_location(section1, file$9, 76, 4, 4230);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section0, anchor);
