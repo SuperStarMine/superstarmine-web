@@ -1,6 +1,6 @@
 <script>
   import Color from 'color';
-  export let title, subtitle, themeColor, id, globalSettings;
+  export let title, subtitle, themeColor, id;
   $: backgroundColor = Color(themeColor).lightness(96);
   $: textColor = Color(themeColor).luminosity() > 0.7 ? '#000' : '#fff';
 </script>

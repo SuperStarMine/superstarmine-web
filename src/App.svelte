@@ -7,8 +7,7 @@
   import Desc from "./slide-description.svelte";
   import Footer from "./footer.svelte";
   import Cards from "./cards.svelte";
-  export let settings;
-  export let globalSettings;
+  export let settings, globalSettings;
   let standardWidth;
   const setStandardWidth = (media, v) => standardWidth = media.matches ? v.value : globalSettings.standardWidths[globalSettings.standardWidths.findIndex(w => w.mediaQuery == 'default')].value;
   globalSettings.standardWidths.forEach(v => {
@@ -23,9 +22,6 @@
 <style lang="stylus">
 </style>
 
-<!-- 画像を載せたい場合 -->
-<meta property="og:image"       content="http://foo.com/bar.jpg">
-
 {#if settings.find(v => v.sectionType == 'navHeader')}
   <Nheader contents={settings.find(v => v.sectionType == 'navHeader').contents} {globalSettings}/>
 {/if}
@@ -36,13 +32,13 @@
     {:else if sectionType == "slideDesc"}
       <Desc {contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "footer"}
-      <Footer {contents} {globalSettings}/>
+      <Footer {contents}/>
     {:else if sectionType != "navHeader"}
-      <Cframe {id} {title} {subtitle} {themeColor} {globalSettings}>
+      <Cframe {id} {title} {subtitle} {themeColor}>
         {#if sectionType == "static"}
           <Static {contents} {globalSettings} {standardWidth}/>
         {:else if sectionType == "dateList"}
-          <Dlist {contents} {globalSettings}/>
+          <Dlist {contents}/>
         {:else if sectionType == "cards"}
           <Cards {contents} {globalSettings} {standardWidth}/>
         {/if}

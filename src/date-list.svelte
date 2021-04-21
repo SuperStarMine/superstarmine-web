@@ -1,6 +1,6 @@
 <script>
   import Button from "./button.svelte";
-  export let contents, globalSettings;
+  export let contents;
 
 //  document.addEventListener('toggleExpand', () => alert('done!'));
 </script>
