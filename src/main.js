@@ -4,6 +4,18 @@ const app = new App({
   target: document.body,
   props: {
     globalSettings: {
+      ogpSettings: {
+        title: 'SUPER STAR MINE - スーパースターマイン',
+        description: 'ゲーム開発を主軸にテクノロジーとエンタメの融合を目指す学生団体、スーパースターマイン',
+        type: 'website',
+        url: 'https://superstarmine.ga/',
+        image: 'https://superstarmine.ga/img/ssm-logo-landscape@ogp.jpg',
+        twitter: {
+          card: 'summary',
+          site: '@necromance_chan',
+          creator: '@necromance_chan'
+        }
+      },
       standardWidths: [
         {
           mediaQuery: 'min-aspect-ratio: 16/9',
