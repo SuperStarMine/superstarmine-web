@@ -14,6 +14,14 @@
   addEventListener('controllee_load', () => {
     controlledSwiper = $sync.controlledSwiper
   });
+
+  addEventListener('tinyImageUnloaded', () => {
+    alert('hello');
+  });
+
+
+  // let slide;
+  // addEventListener('DOMContentLoaded', () => console.log(slide[0].swiper));
 </script>
 
 <svelte:head>
@@ -31,13 +39,19 @@
     speed={transitionDuration}
     slideToClickedSlide={true}
     loop={true}
+    on:swiper={e => {
+      const [swiper] = e.detail;
+      window.addEventListener('load', () => setTimeout(() => {
+        swiper.loopDestroy();
+        swiper.loopCreate();
+        swiper.update();
+      }))}}
     loopedSlides={contents.articles.length}
     controller={{ control: controlledSwiper }}
-    on:slideChangeTransitionStart={e => window.dispatchEvent(new window.CustomEvent('slide', {detail: e.detail[0][0]}))}
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height}/>
+        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height} useTiny={true}/>
       </SwiperSlide>
     {/each}
   </Swiper>

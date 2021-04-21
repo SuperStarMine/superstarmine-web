@@ -5,10 +5,9 @@
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   import Color from 'color';
-  export let pairId, isParent, globalSettings, contents;
+  export let pairId, isParent, globalSettings, contents, standardWidth;
   const transitionDuration = globalSettings.transitionDuration,
         backgroundColor = contents.articles.map(v => Color(v.themeColor).lightness(95).desaturate(0.3).hex());
-  console.log(backgroundColor);
 
   SwiperCore.use([Controller, EffectFade]);
 
@@ -80,7 +79,6 @@
               {/if}
             </span>
           </div>
-          <div class="spacer"></div>
           <div class="buttons pc">
             {#each article.buttons as button}
               {#if button.popup}
@@ -112,7 +110,7 @@
                 {#each article.slides as slide}
                   <SwiperSlide>
                     {#if slide.type == "youtube"}
-                      <Yframe {contents} {globalSettings} id={slide.id} />
+                      <Yframe {contents} {globalSettings} id={slide.id} sizes='@media (orientation: portrait) {standardWidth}vw, {(standardWidth * 0.975) / 2}vw'/>
                     {/if}
                   </SwiperSlide>
                 {/each}
@@ -279,11 +277,9 @@
     .slide
       flex-basis 100%
       box-sizing border-box
-      margin-right 2vw
-    .spacer
-      flex 0 0 1vw
+      margin-right calc(var(--standardWidth) * 0.025)
       @media screen and (orientation: portrait)
-        display none
+        margin 0
     .specs
       font-family vdl-v7marugothic, sans-serif
       font-style normal

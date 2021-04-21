@@ -23,6 +23,24 @@
 <style lang="stylus">
 </style>
 
+<svelte:head>
+  {#each Object.keys(globalSettings.ogpSettings) as key}
+    {#if key == 'description'}
+      <meta name="description" content="{globalSettings.ogpSettings[key]}">
+    {/if}
+    {#if key == 'twitter'}
+      {#each Object.keys(globalSettings.ogpSettings[key]) as twitterKey}
+        <meta name="twitter:{twitterKey}" content="{globalSettings.ogpSettings[key][twitterKey]}">
+      {/each}
+    {:else}
+      <meta property="og:{key}" content="{globalSettings.ogpSettings[key]}">
+    {/if}
+  {/each}
+</svelte:head>
+
+<!-- 画像を載せたい場合 -->
+<meta property="og:image"       content="http://foo.com/bar.jpg">
+
 {#if settings.find(v => v.sectionType == 'navHeader')}
   <Nheader contents={settings.find(v => v.sectionType == 'navHeader').contents} {globalSettings}/>
 {/if}
@@ -31,7 +49,7 @@
     {#if sectionType == "slideHero"}
       <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "slideDesc"}
-      <Desc {contents} {globalSettings} {pairId} {isParent}/>
+      <Desc {contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
     {:else if sectionType == "footer"}
       <Footer {contents} {globalSettings}/>
     {:else if sectionType != "navHeader"}

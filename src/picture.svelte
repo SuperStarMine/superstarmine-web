@@ -1,4 +1,5 @@
 <script>
+  import { onMount, createEventDispatcher } from 'svelte';
   export let
     contents,
     globalSettings,
@@ -12,13 +13,23 @@
     click,
     title,
     style,
+    useTiny,
+    imageDirectory = contents.imageDirectory || globalSettings.imageDirectory,
     imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
     imageSizes = contents.imageSizes || globalSettings.imageSizes,
-    imageDirectory = contents.imageDirectory || globalSettings.imageDirectory;
+    tinyImageExtensionsShort = contents.tinyImageExtensionsShort || globalSettings.tinyImageExtensionsShort,
+    tinyImageSize = contents.tinyImageSize || globalSettings.tinyImageSize;
+  let loading = true;
+  const dispatch = createEventDispatcher();
+  addEventListener('load', () => loading = false);
 
-  function resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId) {
-    return imageExtensionsShort.map(ext => {
-      return imageSizes.map(size => `${imageDirectory}${imageId}@${size}w.${ext} ${size}w`);
+  function resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize) {
+    return (loading && useTiny ? tinyImageExtensionsShort : imageExtensionsShort).map(ext => {
+      if(loading && useTiny){
+        return `${imageDirectory}${imageId}@${tinyImageSize}w.${ext} ${tinyImageSize}w`
+      }else{
+        return imageSizes.map(size => `${imageDirectory}${imageId}@${size}w.${ext} ${size}w`);
+      }
     });
   }
 
@@ -29,9 +40,9 @@
 
 <picture class={pictureClass} on:click={click} {title} {style}>
   {#each imageExtensionsShort as ext, i}
-    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[i]}">
+    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
   {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height}>
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height}>
 </picture>
 
 <style lang="stylus">
