@@ -8,7 +8,6 @@
   export let pairId, isParent, globalSettings, contents, standardWidth;
   const transitionDuration = globalSettings.transitionDuration,
         backgroundColor = contents.articles.map(v => Color(v.themeColor).lightness(95).desaturate(0.3).hex());
-  console.log(backgroundColor);
 
   SwiperCore.use([Controller, EffectFade]);
 
