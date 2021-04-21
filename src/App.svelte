@@ -23,21 +23,6 @@
 <style lang="stylus">
 </style>
 
-<svelte:head>
-  {#each Object.keys(globalSettings.ogpSettings) as key}
-    {#if key == 'description'}
-      <meta name="description" content="{globalSettings.ogpSettings[key]}">
-    {/if}
-    {#if key == 'twitter'}
-      {#each Object.keys(globalSettings.ogpSettings[key]) as twitterKey}
-        <meta name="twitter:{twitterKey}" content="{globalSettings.ogpSettings[key][twitterKey]}">
-      {/each}
-    {:else}
-      <meta property="og:{key}" content="{globalSettings.ogpSettings[key]}">
-    {/if}
-  {/each}
-</svelte:head>
-
 <!-- 画像を載せたい場合 -->
 <meta property="og:image"       content="http://foo.com/bar.jpg">
 

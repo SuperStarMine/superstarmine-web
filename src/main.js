@@ -4,7 +4,7 @@ const app = new App({
   target: document.body,
   props: {
     globalSettings: {
-      ogpSettings: {
+      ogpSettings: { //This settings do not have any effect!!!
         title: 'SUPER STAR MINE - スーパースターマイン',
         description: 'ゲーム開発を主軸にテクノロジーとエンタメの融合を目指す学生団体、スーパースターマイン',
         type: 'website',
