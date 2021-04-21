@@ -306,19 +306,15 @@ const app = new App({
         }
       },
       {
-        sectionType: 'imageList',
-        cycleType: 'compact',
+        sectionType: 'dateList',
         title: 'NEWS',
         subtitle: 'チームからのお知らせ',
         themeColor: '#ff0200',
         id: 'news',
         contents: {
           shownItemsCount: 3,
-          fallbackImageId: 'ssm-logo-landscape',
-          aspectRatio: {width: 4, height: 3},
           articles: [
             {
-              imageId: '',
               title: '『フォーリンパフェ』がデベロッパーズゲームコンテスト2020にて企業賞（f4samurai賞）を受賞！',
               date: {
                 year: '2021',
@@ -328,7 +324,6 @@ const app = new App({
               url: 'https://twitter.com/MachiCollider/status/1355123713226625027'
             },
             {
-              imageId: '',
               title: 'スーパースターマインが「活躍する電大人」に掲載！',
               date: {
                 year: '2021',
@@ -338,7 +333,6 @@ const app = new App({
               url: 'https://www.dendai.ac.jp/dendai-people/20210128-01.html'
             },
             {
-              imageId: '',
               title: '『れーぞく！ネクロマンスちゃん』がゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞（鈴木英仁賞）、話題賞を受賞！',
               date: {
                 year: '2020',
@@ -348,7 +342,6 @@ const app = new App({
               url: 'https://www.4gamer.net/games/999/G999905/20201228102/'
             },
             {
-              imageId: '',
               title: '『れーぞく！ネクロマンスちゃん』をデジゲー博2020に出展！',
               date: {
                 year: '2020',
@@ -358,7 +351,6 @@ const app = new App({
               url: 'http://digigame-expo.org/'
             },
             {
-              imageId: '',
               title: '『フォーリンパフェ』がUnity 1Weekゲームジャムにて総合ランキング、絵作りランキングに入賞！',
               date: {
                 year: '2020',
@@ -368,7 +360,6 @@ const app = new App({
               url: 'https://unityroom.com/unity1weeks/17'
             },
             {
-              imageId: '',
               title: '『SPINNER』をゲーム業界交流会に出展！',
               date: {
                 year: '2020',
@@ -378,7 +369,6 @@ const app = new App({
               url: 'https://game.creators-guild.com/g4c/%E3%82%B2%E3%83%BC%E3%83%A0%E6%A5%AD%E7%95%8C%E4%BA%A4%E6%B5%81%E4%BC%9A%E3%81%AB%E6%BD%9C%E5%85%A5%EF%BC%81/'
             },
             {
-              imageId: '',
               title: 'ゲームクリエイターズギルド様からインタビューをしていただきました！',
               date: {
                 year: '2019',
@@ -388,7 +378,6 @@ const app = new App({
               url: 'https://game.creators-guild.com/g4c/interview-studentgamescreator-20190114/'
             },
             {
-              imageId: '',
               title: '『SPINNER』がGCG EXPO 2019で最優秀賞を受賞！',
               date: {
                 year: '2019',
@@ -398,7 +387,6 @@ const app = new App({
               url: 'https://game.creators-guild.com/g4c/event-realevent-20191205/'
             },
             {
-              imageId: '',
               title: '『れーぞく！ネクロマンスちゃん』をゲーム制作者交流会 GAME^3に出展！',
               date: {
                 year: '2019',
