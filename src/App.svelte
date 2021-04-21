@@ -2,7 +2,7 @@
   import Cframe from "./common-frame.svelte";
   import Nheader from "./nav-header.svelte";
   import Static from "./static-content.svelte";
-  import Ilist from "./image-list.svelte";
+  import Dlist from "./date-list.svelte";
   import HeroS from "./slide-hero-swiper.svelte";
   import Desc from "./slide-description.svelte";
   import Footer from "./footer.svelte";
@@ -41,8 +41,8 @@
       <Cframe {id} {title} {subtitle} {themeColor} {globalSettings}>
         {#if sectionType == "static"}
           <Static {contents} {globalSettings} {standardWidth}/>
-        {:else if sectionType == "imageList"}
-          <Ilist {contents} {globalSettings} {standardWidth}/>
+        {:else if sectionType == "dateList"}
+          <Dlist {contents} {globalSettings}/>
         {:else if sectionType == "cards"}
           <Cards {contents} {globalSettings} {standardWidth}/>
         {/if}
