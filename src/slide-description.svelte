@@ -53,6 +53,7 @@
   effect='fade'
   fadeEffect={{crossFade: true}}
   on:swiper={setControlledSwiper}
+  on:snapIndexChange={() => window.dispatchEvent(new CustomEvent('slide'))}
   controller={{ control: controlledSwiper ? controlledSwiper : null }}
 >
   {#each contents.articles as article, i}
@@ -106,6 +107,7 @@
                 slidesPerView={1}
                 speed={transitionDuration}
                 updateOnImagesReady={true}
+                on:snapIndexChange={() => window.dispatchEvent(new CustomEvent('slide'))}
               >
                 {#each article.slides as slide}
                   <SwiperSlide>

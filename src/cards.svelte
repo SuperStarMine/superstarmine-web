@@ -20,7 +20,6 @@
             'youtube':{width: 44, height: 31}
           }
         };
-
   let ch2px;
   let ch;
   onMount(() => ch = ch2px.getBoundingClientRect().width);

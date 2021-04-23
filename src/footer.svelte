@@ -1,5 +1,5 @@
 <script>
-  export let contents, globalSettings;
+  export let contents;
   const licenses = {
     'afl-3.0': 'Academic Free License v3.0',
     'apache-2.0': 'Apache license 2.0',
