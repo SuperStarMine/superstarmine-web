@@ -14,6 +14,7 @@
     title,
     style,
     useTiny,
+    loadLazy = true,
     imageDirectory = contents.imageDirectory || globalSettings.imageDirectory,
     imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
     imageSizes = contents.imageSizes || globalSettings.imageSizes,
@@ -42,7 +43,7 @@
   {#each imageExtensionsShort as ext, i}
     <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
   {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height}>
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}>
 </picture>
 
 <style lang="stylus">

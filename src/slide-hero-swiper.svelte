@@ -3,7 +3,6 @@
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   import Picture from "./picture.svelte";
-  import { onMount } from 'svelte';
   export let contents, pairId, isParent, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;
@@ -18,10 +17,6 @@
   addEventListener('tinyImageUnloaded', () => {
     alert('hello');
   });
-
-
-  // let slide;
-  // addEventListener('DOMContentLoaded', () => console.log(slide[0].swiper));
 </script>
 
 <svelte:head>
@@ -51,7 +46,7 @@
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height} useTiny={true}/>
+        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height} useTiny={true} loadLazy={false}/>
       </SwiperSlide>
     {/each}
   </Swiper>
@@ -68,7 +63,6 @@
   :global(.slide-hero .swiper-slide)
     text-align center
     width auto
-    // height calc(100vw / var(--slidesPerView) / 16 * 9)
   .slide-hero
     position relative
     &:before, &:after
