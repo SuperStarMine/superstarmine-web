@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
-    "supports-webp": "^2.0.1"
+    "supports-webp": "^2.0.1",
+    "svelte-youtube": "^0.0.2"
   }
 }

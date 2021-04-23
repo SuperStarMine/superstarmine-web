@@ -1,14 +1,29 @@
 <script>
+  import YouTube from 'svelte-youtube';
   import Picture from "./picture.svelte";
   export let contents, globalSettings, id, sizes;
   let load = false
 </script>
 
 <div class="youtube-wrapper {load ? 'load' : ''}"  on:click={() => load = true}>
-  <Picture imgClass="youtube-thumbnail" {contents} {globalSettings} {sizes} imageId={id} width='16' height='9'/>
+  <Picture imgClass="description-youtube-thumbnail" {contents} {globalSettings} {sizes} imageId={id} width='16' height='9'/>
   <img class="play-icon" src="/img/youtube.svg" alt="YouTubeの再生ボタン" width='44' height='31'>
   {#if load}
-    <iframe width="16" height="9" src="https://www.youtube-nocookie.com/embed/{id}?autoplay=1&playsinline=1" title="YouTube動画の埋め込み" frameborder="0" allow="fullscreen;accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" loading="lazy">YouTube動画の埋め込み</iframe>
+    <YouTube
+      videoId={id}
+      class='description-youtube-iframe'
+      options={{
+        width: '640',
+        height: '360',
+        playerVars: {
+          autoplay: 1,
+          playsinline: 1
+        }
+      }}
+      on:ready={e => {
+        window.addEventListener('slide', () => {e.detail.target.pauseVideo()})
+      }}
+    />
   {/if}
 </div>
 
@@ -20,7 +35,7 @@
       content ""
       display block
       padding-top calc(100% * 9 / 16)
-  iframe, :global(.youtube-thumbnail)
+  :global(.description-youtube-thumbnail, .description-youtube-iframe, .description-youtube-iframe iframe)
     position absolute
     width 100%
     height 100%
