@@ -46,7 +46,7 @@
 </script>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
-  <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" imgClass="header_logo" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
+  <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" pictureClass="header_picture" imgClass="header_logo" sizes="30vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
   <input type="checkbox" class="ui_button header_button_checkbox" checked name="header_button_checkbox" id="header_button_checkbox" bind:this={checkbox}>
   <label for="header_button_checkbox" class="header_button" title="クリックするとナビゲーションを開閉できます">
     <svg class="header_button_svg" viewbox="0 0 24 24">
@@ -64,6 +64,7 @@
           <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
         </svg>
     </label>
+    <div class="header_close_area" on:click={() => checkbox.checked = false} on:touchstart={() => checkbox.checked = false}></div>
     {#each contents.items as item}
       <div class="header_navigation_list_items" on:click={() => triggerSmoothScroll(item.id)}>{item.label}</div>
     {/each}
@@ -131,6 +132,9 @@ header
   height calc(var(--base-size) + env(safe-area-inset-top) - (var(--base-size) / 3))
   background-color #fff0
 
+:global(.header_picture)
+  z-index 7000
+
 .header_button
   margin 0
   position fixed
@@ -186,6 +190,20 @@ header
   animation-timing-function ease-out
   animation-delay 200ms
   animation-fill-mode both
+
+.header_close_area
+  display none
+  position absolute
+  background-color transparent
+  height 100%
+  width 100vw
+  left -100vw
+  top 0
+  @media screen and (orientation: portrait)
+    height 100vh
+    width 100vw
+    left -100vw
+    top 0
 
 .header_button_checkbox
   display none
@@ -297,6 +315,8 @@ header
   animation-timing-function ease-out
   animation-delay 150ms
   animation-fill-mode both
+  & .header_close_area
+    display block
 
 #header_button_checkbox:checked ~ .header_button > svg
   animation-name rotate_svg
