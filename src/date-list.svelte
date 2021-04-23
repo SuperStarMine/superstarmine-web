@@ -1,8 +1,5 @@
 <script>
-  import Button from "./button.svelte";
   export let contents;
-
-//  document.addEventListener('toggleExpand', () => alert('done!'));
 </script>
 
 <ul>
@@ -26,7 +23,6 @@
     </li>
   {/each}
 </ul>
-<!-- <Button target="toggleExpand" disabled="{true}" marginLeft="{'auto'}" marginRight="{'auto'}">もっと見る</Button> -->
 
 
 <style lang="stylus">
