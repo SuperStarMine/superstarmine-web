@@ -4,7 +4,20 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
-import sveltePreprocess from 'svelte-preprocess'
+import sveltePreprocess from 'svelte-preprocess';
+const fs = require('fs');
+const sha256 = require('sha256');
+const d = new Date();
+let hash;
+try {
+  fs.readdirSync('src').forEach(v => {
+    hash += sha256(fs.readFileSync(`src/${v}`));
+  });
+  hash += sha256(fs.readFileSync('global.stylus'));
+  hash = sha256(hash).slice(0, 6);
+} catch (err) {
+  console.log(err)
+}
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -41,6 +54,7 @@ export default {
     svelte({
       preprocess: sveltePreprocess({
         sourceMap: !production,
+        replace: [['buildReplacee.version', `Hash: ${hash}`], ['buildReplacee.buildDate', `Build: ${String(d.getFullYear()).slice(-2)}/${d.getMonth()+1}/${d.getDate()}-${d.getHours()}:${d.getMinutes()}`]],
         defaults: {
           markup: 'html',
           style: 'stylus'
