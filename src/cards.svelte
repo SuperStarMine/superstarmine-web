@@ -51,7 +51,7 @@
         <div class="lower">
           {#each card.accounts as account}
             <a class="social-button {account.name} {card.accounts.length > 2 ? 'iconOnly' : ''}"
-            href="{account.customUrl ? account.customUrl : `https://${socialConsts.urls[account.name]}/${account.id}`}">
+            href="{account.customUrl ? account.customUrl : `https://${socialConsts.urls[account.name]}/${account.id}`}" style="--popupContent: '{(account.name == 'twitter' ? '@' : '') + account.id}'">
               <img src="{globalSettings.imageDirectory}/{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン" width={socialConsts.aspectRatios[account.name].width} height={socialConsts.aspectRatios[account.name].height}>
               <span class="id">
                 {account.id}
@@ -142,10 +142,43 @@
     color: white
     width 100%
     height 100%
+    position relative
+    background-color var(--brand-color)
     img
       height 1em
       width auto
       object-fit fill
+    &.iconOnly
+      &:before
+        content var(--popupContent)
+        display block
+        position absolute
+        top -2.75em
+        padding 0.5em
+        border-radius 0.5em
+        color black
+        border solid 1px var(--brand-color)
+        animation hidePopup 200ms ease-in-out 0ms both
+      &:hover:before
+        animation spawnPopup 200ms ease-in-out 0ms both
+  @keyframes spawnPopup
+    0%
+      transform translateY(2.75em)
+      opacity 0
+    50%
+      opacity 0
+    100%
+      opacity 1
+      transform translateY(0px)
+  @keyframes hidePopup
+    0%
+      opacity 1
+      transform translateY(0px)
+    50%
+      opacity 0
+    100%
+      opacity 0
+      transform translateY(2.75em)
   .id
     margin-left 1ch
     .iconOnly &
@@ -157,15 +190,27 @@
     height auto
     object-fit cover
   .twitter
-    background-color #1da1f3
+    --brand-color #1da1f3
+    &.iconOnly:before
+      background-color #d8e8f2
   .facebook
-    background-color #1877f2
+    --brand-color #1877f2
+    &.iconOnly:before
+      background-color #dae5f2
   .note
-    background-color #41c8b5
+    --brand-color #41c8b5
+    &.iconOnly:before
+      background-color #b4e0bd
   .github
-    background-color #171516
+    --brand-color #171516
+    &.iconOnly:before
+      background-color #e8e1e5
   .qiita
-    background-color #55C500
+    --brand-color #55C500
+    &.iconOnly:before
+      background-color #eaf7df
   .youtube
-    background-color #f00
+    --brand-color #f00
+    &.iconOnly:before
+      background-color #fff2f2
 </style>
