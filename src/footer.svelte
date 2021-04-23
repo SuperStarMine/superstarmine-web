@@ -46,7 +46,11 @@
           {#each contents.copyright as copyright, i}
             <span class="break-scope">{@html copyright}{i+1 != contents.copyright.length ? ', ' : ''}</span>
           {/each}
+        {:else}
+          <span class="break-scope">{@html contents.copyright}</span>
         {/if}
+        <span class="break-scope">buildReplacee.version</span>
+        <span class="break-scope">buildReplacee.buildDate</span>
       </div>
     </section>
   {/if}
