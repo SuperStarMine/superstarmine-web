@@ -1,5 +1,6 @@
 # スーパースターマイン 公式Webサイト
 <hr>
+
 ## クイックスタートガイド for Editors
 
 ### 概要
@@ -27,7 +28,11 @@
   - [2-2-A. Forkして編集をする](#2-2-a-forkして編集をする)
   - [2-2-B. Cloneして編集をする](#2-2-b-cloneして編集をする)
 - [情報: main.jsの構文](#情報-mainjsの構文)
+  - [ニュースを追加する](#ニュースを追加する)
+  - [メンバーカードを追加する](#メンバーカードを追加する)
+- [情報: 画像を追加する](#情報-画像を追加する)
 <hr>
+
 ### ステップ 1. 環境構築
 このWebサイトの内容を編集するには以下のソフトウェアが必要です。
 - シェルコマンドを実行できるソフトウェア（例: iTerm、ターミナル.app、xterm、WSL）
@@ -80,6 +85,7 @@ brew search hub
 のようにコマンドを実行すると任意のキーワードでソフトウェアを検索できます。この例ではhubコマンドを検索しています。hubコマンドはgitコマンドの上位互換性をもつソフトウェアで、issueの閲覧やPull Requestの作成など、GitHubの機能をコマンドラインから利用することができます。
 </details>
 <hr>
+
 ### ステップ 2. Gitのリポジトリを準備する
 このWebサイトはGitで管理されています。このステップではGitHub上にあるリポジトリの内容を編集できるようにします。Gitについて不明な場合は各自で調べて確認してください。
 
@@ -135,6 +141,7 @@ main.jsはその拡張子からも分かる通り、JavaScriptのコードを記
 
 Webサイトのコンテンツはmain.js内で宣言されているapp定数オブジェクト内のpropsメンバーによって定義されています。
 <hr>
+
 #### ニュースを追加する
 1. main.js内の以下の場所を参照してください。
 ```JavaScript
@@ -169,7 +176,7 @@ app.props.settings.find(setting => setting.title == 'NEWS').contents.articles;
 
 <hr>
 
-#### メンバーを追加する
+#### メンバーカードを追加する
 1. main.js内の以下の場所を参照してください。
 ```JavaScript
 app.props.settings.find(setting => setting.title == 'MEMBERS').contents.cards;
@@ -221,20 +228,6 @@ app.props.settings.find(setting => setting.title == 'MEMBERS').contents.cards;
   }
 },
 ```
-4. 新しいメンバーカードにプロフィール画像を設定する場合は以下の手順に従って下さい。
-  ⚠️注意
-  画像は全てwebp形式とpng形式に変換されて使用されます。
-   1. 十分高画質な画像を用意します。
-   2. 用意した画像ファイルをsuperstarmine-webというフォルダの中の/img/membersフォルダ内に移動させ、わかりやすい名前をつけます。この時のファイル名の拡張子よりも前の部分が``imageId``となります。
-   3. 上記のディレクトリ（フォルダ）にコマンドライン上で移動した上で、以下のコマンドを実行します。
-   ```Shell
-   ../../tools/processimage.sh {追加したファイル}
-   ```
-   例えば、foo.pngという画像ファイルを追加した場合は以下のコマンドを実行します。
-   ```Shell
-   ../../tools/processimage.sh foo.png
-   ```
-   4. 新しいメンバーカードのデータの``imageId``に先ほど決めた``imageId``を設定してください。
 
 <hr>
 
