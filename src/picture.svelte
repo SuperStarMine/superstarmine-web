@@ -25,7 +25,7 @@
   let loading = true;
   addEventListener('load', () => loading = false);
 
-  function resolveSrcsets(loading) {
+  function resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize) {
     return (loading && useTiny ? tinyImageExtensionsShort : imageExtensionsShort).map(ext => {
       if(loading && useTiny){
         return `${imageDirectory}${imageId}@${tinyImageSize}w.${ext} ${tinyImageSize}w`
@@ -35,16 +35,16 @@
     });
   }
 
-  function getSafeImageExtensionIndex() {
+  function getSafeImageExtensionIndex(imageExtensionsShort) {
     return imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
   }
 </script>
 
 <picture class={pictureClass} on:click={click} {title} {style}>
   {#each imageExtensionsShort as ext, i}
-    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(loading)[i]}">
+    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
   {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets(loading)[getSafeImageExtensionIndex()]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}
   on:load={
     () => {
       if(groupId){
