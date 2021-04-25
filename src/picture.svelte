@@ -1,5 +1,6 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte';
+  import { sync } from './sync-store.js';
   export let
     contents,
     globalSettings,
@@ -15,6 +16,8 @@
     style,
     useTiny,
     loadLazy = true,
+    groupId,
+    groupImagesCount,
     imageDirectory = contents.imageDirectory || globalSettings.imageDirectory,
     imageExtensionsShort = contents.imageExtensionsShort || globalSettings.imageExtensionsShort,
     imageSizes = contents.imageSizes || globalSettings.imageSizes,
@@ -43,7 +46,21 @@
   {#each imageExtensionsShort as ext, i}
     <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
   {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}>
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}
+  on:load={
+    () => {
+      if(groupId){
+        $sync.loadImagesCount = $sync.loadImagesCount || {};
+        $sync.loadImagesCount[groupId] = $sync.loadImagesCount[groupId] > 0 ? $sync.loadImagesCount[groupId] + 1 : 1;
+        console.log(imageId);
+        if($sync.loadImagesCount[groupId] >= groupImagesCount && !$sync.loadEventDispatched){
+          window.dispatchEvent(new CustomEvent('pictureGroup_load', {detail: groupId}));
+          $sync.loadEventDispatched = true;
+          console.log(imageId);
+        }
+      }
+    }
+  }>
 </picture>
 
 <style lang="stylus">
