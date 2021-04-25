@@ -5,38 +5,41 @@
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   import Color from 'color';
-  export let pairId, isParent, globalSettings, contents, standardWidth;
+  export let pairId, globalSettings, contents, standardWidth;
   const transitionDuration = globalSettings.transitionDuration,
         backgroundColor = contents.articles.map(v => Color(v.themeColor).lightness(95).desaturate(0.3).hex());
 
   SwiperCore.use([Controller, EffectFade]);
 
-  let controlledSwiper = null;
   const setControlledSwiper = e => {
       const [swiper] = e.detail;
       $sync.controlledSwiper = null
+      console.log(swiper);
       // set Controller swiper instance
-      setTimeout(() => {
-        controlledSwiper = swiper;
-        controlledSwiper.updateAutoHeight();
-        $sync.controlledSwiper = controlledSwiper;
-        dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}))
-      }, 100);
+      window.addEventListener('pictureGroup_load', e => {
+        if(e.detail == 'slideHero'){
+          swiper.update();
+          $sync.controlledSwiper = swiper;
+          dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}));
+        }
+      });
   }
 
   //Adobe font loading
-  (function(d) {
-    var config = {
-      kitId: 'egn6fhp',
-      scriptTimeout: 3000,
-      async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-  })(document);
+  addEventListener('load',
+    (d => {
+      var config = {
+        kitId: 'egn6fhp',
+        scriptTimeout: 3000,
+        async: !0
+      },
+      h=d.documentElement,t=setTimeout(()=>{h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=!1,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=!0;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=!0;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document)
+  )
 </script>
 
 <svelte:head>
-  <link rel="preload" href="/swiper-bundle.min.css" as="style">
+  <link rel="preconnect" href="https://use.typekit.net/">
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
@@ -54,7 +57,6 @@
   fadeEffect={{crossFade: true}}
   on:swiper={setControlledSwiper}
   on:snapIndexChange={() => window.dispatchEvent(new CustomEvent('slide'))}
-  controller={{ control: controlledSwiper ? controlledSwiper : null }}
 >
   {#each contents.articles as article, i}
     <SwiperSlide>

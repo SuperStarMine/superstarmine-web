@@ -3,19 +3,18 @@
   import SwiperCore, { Controller, EffectFade } from 'swiper';
   import { sync } from './sync-store.js';
   import Picture from "./picture.svelte";
-  export let contents, pairId, isParent, globalSettings, standardWidth;
+  export let contents, pairId, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;
 
   SwiperCore.use([Controller, EffectFade]);
 
   let controlledSwiper = null;
-  addEventListener('controllee_load', () => {
-    controlledSwiper = $sync.controlledSwiper
-  });
-
-  addEventListener('tinyImageUnloaded', () => {
-    alert('hello');
+  addEventListener('controllee_load', e => {
+    setTimeout(() => {
+      controlledSwiper = e.detail == pairId ? $sync.controlledSwiper : undefined;
+      console.log('ee_load');
+    });
   });
 
   const preloadWidth = globalSettings.imageSizes.find(v => v > (document.body.getBoundingClientRect().width * (standardWidth / 100) * (devicePixelRatio || 1))) || globalSettings.imageSizes.slice(-1)[0]
@@ -39,17 +38,23 @@
     loop={true}
     on:swiper={e => {
       const [swiper] = e.detail;
-      window.addEventListener('load', () => setTimeout(() => {
-        swiper.loopDestroy();
-        swiper.loopCreate();
-        swiper.update();
-      }))}}
+      window.addEventListener('pictureGroup_load', e => {
+        if(e.detail == 'slideHero'){
+          setTimeout(() => {
+            swiper.loopDestroy();
+            swiper.loopCreate();
+            swiper.update();
+            console.log('update');
+          });
+        }
+      });
+    }}
     loopedSlides={contents.articles.length}
     controller={{ control: controlledSwiper }}
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height} useTiny={true} loadLazy={false}/>
+        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height} useTiny={true} loadLazy={false} groupId="slideHero" groupImagesCount={contents.articles.length * 2}/>
       </SwiperSlide>
     {/each}
   </Swiper>

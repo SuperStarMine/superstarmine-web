@@ -28,9 +28,9 @@
 <main style="--transitionDuration: {globalSettings.transitionDuration}ms;--standardWidth: {standardWidth}vw">
   {#each settings as {title, subtitle, themeColor, sectionType, contents, id, pairId, isParent}, i}
     {#if sectionType == "slideHero"}
-      <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
+      <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {standardWidth}/>
     {:else if sectionType == "slideDesc"}
-      <Desc {contents} {globalSettings} {pairId} {isParent} {standardWidth}/>
+      <Desc {contents} {globalSettings} {pairId} {standardWidth}/>
     {:else if sectionType == "footer"}
       <Footer {contents}/>
     {:else if sectionType != "navHeader"}
