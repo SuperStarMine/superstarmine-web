@@ -2,7 +2,7 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "tools/cache-busting.sh;rollup -c",
+    "build": "rollup -c;tools/cache-busting.sh",
     "dev": "rollup -c -w",
     "svelte-check": "svelte-check",
     "start": "sirv ./ --host"

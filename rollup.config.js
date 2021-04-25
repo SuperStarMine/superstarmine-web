@@ -7,7 +7,7 @@ import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 const fs = require('fs');
 const sha256 = require('sha256');
-const d = new Date();
+const d = new Date(Date.now() + 3600 * 9);
 let hash;
 try {
   fs.readdirSync('src').forEach(v => {
