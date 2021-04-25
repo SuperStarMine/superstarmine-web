@@ -13,7 +13,6 @@
   addEventListener('controllee_load', e => {
     setTimeout(() => {
       controlledSwiper = e.detail == pairId ? $sync.controlledSwiper : undefined;
-      console.log('ee_load');
     });
   });
 
@@ -44,7 +43,6 @@
             swiper.loopDestroy();
             swiper.loopCreate();
             swiper.update();
-            console.log('update');
           });
         }
       });

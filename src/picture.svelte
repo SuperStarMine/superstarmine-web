@@ -50,11 +50,9 @@
       if(groupId){
         $sync.loadImagesCount = $sync.loadImagesCount || {};
         $sync.loadImagesCount[groupId] = $sync.loadImagesCount[groupId] > 0 ? $sync.loadImagesCount[groupId] + 1 : 1;
-        console.log(imageId);
         if($sync.loadImagesCount[groupId] >= groupImagesCount && !$sync.loadEventDispatched){
           window.dispatchEvent(new CustomEvent('pictureGroup_load', {detail: groupId}));
           $sync.loadEventDispatched = true;
-          console.log(imageId);
         }
       }
     }

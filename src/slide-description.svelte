@@ -14,7 +14,6 @@
   const setControlledSwiper = e => {
       const [swiper] = e.detail;
       $sync.controlledSwiper = null
-      console.log(swiper);
       // set Controller swiper instance
       window.addEventListener('pictureGroup_load', e => {
         if(e.detail == 'slideHero'){
