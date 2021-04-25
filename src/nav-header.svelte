@@ -131,6 +131,7 @@ header
   width auto
   height calc(var(--base-size) + env(safe-area-inset-top) - (var(--base-size) / 3))
   background-color #fff0
+  cursor pointer
 
 :global(.header_picture)
   z-index 7000
@@ -149,6 +150,7 @@ header
   align-items center
   justify-content center
   background-color #444
+  cursor pointer
   transition-property padding
   transition-duration 200ms
   transition-delay 0ms
@@ -162,6 +164,7 @@ header
   z-index 6000
   border none
   box-sizing border-box
+  cursor pointer
   height var(--base-size)
   display inline-flex
   align-items center
@@ -195,6 +198,7 @@ header
   display none
   position absolute
   background-color transparent
+  cursor pointer
   height 100%
   width 100vw
   left -100vw
@@ -233,6 +237,7 @@ header
   display block
   width 100%
   background-color transparent
+  cursor pointer
   height var(--base-size)
   line-height var(--base-size)
   margin 0
@@ -278,6 +283,7 @@ header
 .header_navigation_close_button
   display flex
   align-items center
+  cursor pointer
   margin 0
   line-height calc(var(--base-size) / 2)
   font-weight normal
