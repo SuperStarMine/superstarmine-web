@@ -86,7 +86,7 @@
               {#if button.popup}
                 <div class="popup">{button.popup}</div>
               {/if}
-              <Button target={button.target} bg="#3183fd" width="auto">
+              <Button target={button.target} bg="#0a6afa" width="auto">
                 {#if Array.isArray(button.title)}
                   {#each button.title as title}
                     <span class="break-scope">{title}</span>
@@ -171,7 +171,7 @@
             {#if button.popup}
               <div class="popup">{button.popup}</div>
             {/if}
-            <Button target={button.target} bg="#3183fd" width="calc(var(--standardWidth) * 0.45)">
+            <Button target={button.target} bg="#0a6afa" width="calc(var(--standardWidth) * 0.45)">
               {#if Array.isArray(button.title)}
                 {#each button.title as title}
                   <span class="break-scope">{title}</span>
@@ -248,7 +248,7 @@
         font-size 0.75em
         font-weight 300
         white-space nowrap
-        color #3183fd
+        color #0a6afa
         &:before, &:after
           content ''
           display block
@@ -258,7 +258,7 @@
           top 0
           bottom 0
           margin auto
-          background-color #3183fd
+          background-color #0a6afa
           border-radius 0.5px
         &:before
           left -1ch
@@ -325,7 +325,7 @@
       font-weight 300
       white-space nowrap
       position relative
-      color #3183fd
+      color #0a6afa
       &:before, &:after
         content ''
         display block
@@ -335,7 +335,7 @@
         top 0
         bottom 0
         margin auto
-        background-color #3183fd
+        background-color #0a6afa
         border-radius 0.5px
       &:before
         left -1ch
