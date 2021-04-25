@@ -38,7 +38,7 @@
 </script>
 
 <svelte:head>
-  <link rel="preconnect" href="https://use.typekit.net/">
+  <link rel="preconnect" href="https://p.typekit.net/">
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
