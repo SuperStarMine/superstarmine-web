@@ -25,7 +25,7 @@
   let loading = true;
   addEventListener('load', () => loading = false);
 
-  function resolveSrcsets() {
+  function resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize) {
     return (loading && useTiny ? tinyImageExtensionsShort : imageExtensionsShort).map(ext => {
       if(loading && useTiny){
         return `${imageDirectory}${imageId}@${tinyImageSize}w.${ext} ${tinyImageSize}w`
@@ -42,9 +42,9 @@
 
 <picture class={pictureClass} on:click={click} {title} {style}>
   {#each imageExtensionsShort as ext, i}
-    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets()[i]}">
+    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
   {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets()[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}
+  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}
   on:load={
     () => {
       if(groupId){
