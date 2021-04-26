@@ -25,21 +25,23 @@
   }
 
   //Adobe font loading
-  addEventListener('load',
-    (d => {
-      var config = {
-        kitId: 'egn6fhp',
-        scriptTimeout: 3000,
-        async: !0
-      },
-      h=d.documentElement,t=setTimeout(()=>{h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=!1,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=!0;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=!0;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document)
-  )
+  addEventListener('pictureGroup_load', e => {
+    if(e.detail == 'slideHero'){
+      (d => {
+        var config = {
+          kitId: 'egn6fhp',
+          scriptTimeout: 3000,
+          async: !0
+        },
+        h=d.documentElement,t=setTimeout(()=>{h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=!1,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=!0;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=!0;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document)
+    }
+  });
 </script>
 
 <svelte:head>
   <link rel="preconnect" href="https://p.typekit.net/">
-  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
+  <link rel="preload" href="/swiper-bundle.min.css" as="style">
 </svelte:head>
 
 <Swiper
