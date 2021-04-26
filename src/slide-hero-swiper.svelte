@@ -16,11 +16,15 @@
     });
   });
 
-  const preloadWidth = globalSettings.imageSizes.find(v => v > (document.body.getBoundingClientRect().width * (standardWidth / 100) * (devicePixelRatio || 1))) || globalSettings.imageSizes.slice(-1)[0]
+  const preloadWidth = contents.articles.map(u => {
+    return globalSettings.imageSizes.find(v => v > (document.body.getBoundingClientRect().width * (standardWidth / 100) * (devicePixelRatio || 1) / 16 * 9 / u.aspectRatio.height * u.aspectRatio.width)) || globalSettings.imageSizes.slice(-1)[0];
+  });
 </script>
 
 <svelte:head>
-  <link rel="preload" href="/img/{contents.articles[0].imageId}@{preloadWidth}w.webp" as="image">
+  {#each contents.articles as article, i}
+    <link rel="preload" href="/img/{article.imageId}@{preloadWidth[i]}w.webp" as="image">
+  {/each}
   <link rel="preload" href="/swiper-bundle.min.css" as="style">
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>

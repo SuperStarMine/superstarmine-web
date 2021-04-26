@@ -17,7 +17,24 @@
       media.addEventListener('change', () => setStandardWidth(media, v));
     }
   });
+
+  let loadAnalytics = false;
+  addEventListener('pictureGroup_load', e => setTimeout(() => loadAnalytics = e.detail == 'slideHero'));
 </script>
+
+<svelte:head>
+  {#if loadAnalytics}
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158103398-1"></script>
+    <script async>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158103398-1');
+    </script>
+  {/if}
+</svelte:head>
 
 <style lang="stylus">
 </style>

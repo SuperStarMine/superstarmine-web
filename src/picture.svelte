@@ -38,26 +38,30 @@
   function getSafeImageExtensionIndex(imageExtensionsShort) {
     return imageExtensionsShort.findIndex(i => i == "jpg" || i == "png") || 0;
   }
-</script>
 
-<picture class={pictureClass} on:click={click} {title} {style}>
-  {#each imageExtensionsShort as ext, i}
-    <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
-  {/each}
-  <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort)]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'}
-  on:load={
-    () => {
-      if(groupId){
-        $sync.loadImagesCount = $sync.loadImagesCount || {};
-        $sync.loadImagesCount[groupId] = $sync.loadImagesCount[groupId] > 0 ? $sync.loadImagesCount[groupId] + 1 : 1;
-        if($sync.loadImagesCount[groupId] >= groupImagesCount && !$sync.loadEventDispatched){
-          window.dispatchEvent(new CustomEvent('pictureGroup_load', {detail: groupId}));
-          $sync.loadEventDispatched = true;
-        }
+  function loadEventDispatcher(groupId, groupImagesCount) {
+    if(groupId){
+      $sync.loadImagesCount = $sync.loadImagesCount || {};
+      $sync.loadImagesCount[groupId] = $sync.loadImagesCount[groupId] > 0 ? $sync.loadImagesCount[groupId] + 1 : 1;
+      if($sync.loadImagesCount[groupId] >= groupImagesCount && !$sync.loadEventDispatched){
+        window.dispatchEvent(new CustomEvent('pictureGroup_load', {detail: groupId}));
+        $sync.loadEventDispatched = true;
       }
     }
-  }>
-</picture>
+  }
+</script>
+
+{#if imageExtensionsShort.includes('svg')}
+  <object class={imgClass} data="{imageDirectory}/{imageId}.svg" type="image/svg+xml"></object>
+  <!-- <img class={imgClass} src="{imageDirectory}/{imageId}.svg" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'} on:load={loadEventDispatcher(groupId, groupImagesCount)}> -->
+{:else}
+  <picture class={pictureClass} on:click={click} {title} {style}>
+    {#each imageExtensionsShort.filter(v => v != 'svg') as ext, i}
+      <source type="image/{ext}" {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[i]}">
+    {/each}
+    <img class={imgClass} {sizes} srcset="{resolveSrcsets(imageDirectory, imageExtensionsShort, imageSizes, imageId, loading, tinyImageExtensionsShort, tinyImageSize)[getSafeImageExtensionIndex(imageExtensionsShort.filter(v => v != 'svg'))]}" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'} on:load={loadEventDispatcher(groupId, groupImagesCount)}>
+  </picture>
+{/if}
 
 <style lang="stylus">
   // picture, img
