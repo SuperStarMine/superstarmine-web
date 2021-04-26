@@ -44,7 +44,7 @@
             </div>
             <div class="logo">
               <div bind:this={ch2px} style="opacity:0;width:1ch"></div>
-              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} imageSizes={contents.logoImageSizes} sizes="{3 * ch}px" width='{contents.logoAspectRatio.width}' height='{contents.logoAspectRatio.height}'/>
+              <Picture imgClass="card_img" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.logoImageId} imageExtensionsShort={contents.logoImageExtensionsShort} sizes="{3 * ch}px" width='{contents.logoAspectRatio.width}' height='{contents.logoAspectRatio.height}'/>
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@
       margin-top .25em
       font-size 1em
   .logo
-    width 3ch
+    width 3.5ch
     position: absolute
     bottom 1ch
     right 2ch
