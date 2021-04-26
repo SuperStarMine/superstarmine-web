@@ -26,6 +26,7 @@
     <link rel="preload" href="/img/{article.imageId}@{preloadWidth[i]}w.webp" as="image">
   {/each}
   <link rel="preload" href="/swiper-bundle.min.css" as="style">
+  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
 <div class="slide-hero">

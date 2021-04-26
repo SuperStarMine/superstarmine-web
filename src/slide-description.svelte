@@ -42,6 +42,7 @@
 <svelte:head>
   <link rel="preconnect" href="https://p.typekit.net/">
   <link rel="preload" href="/swiper-bundle.min.css" as="style">
+  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
 <Swiper
