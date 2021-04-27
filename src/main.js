@@ -31,7 +31,8 @@ const app = new App({
         themeColor: '#fff',
         contents: {
           imageId: 'ssm-logo-landscape',
-          aspectRatio: {width: 7, height: 3},
+          aspectRatio: { width: 157213, height: 60041 },
+          imageExtensionsShort: ['svg'],
           items: [
             {id: 'top', label: '作品'},
             {id: 'news', label: 'ニュース'},
@@ -393,7 +394,8 @@ const app = new App({
         id: 'about',
         contents: {
           imageId: 'ssm-logo-landscape',
-          aspectRatio: {width: 7, height: 3},
+          aspectRatio: { width: 157213, height: 60041 },
+          imageExtensionsShort: ['svg'],
           article: [
             "スーパースターマインは大学サークル発、新進気鋭のゲーム制作チーム。",
             "面白いものが大好きです。"
