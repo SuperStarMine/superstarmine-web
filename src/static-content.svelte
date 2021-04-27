@@ -6,7 +6,7 @@
     globalSettings,
     standardWidth,
     article = contents.article,
-    buttonsLayout = contents.bottomButtonsLayout,
+    // buttonsLayout = contents.bottomButtonsLayout,
     buttons = contents.bottomButtons;
 </script>
 
