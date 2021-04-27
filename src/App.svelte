@@ -43,7 +43,7 @@
   <Nheader contents={settings.find(v => v.sectionType == 'navHeader').contents} {globalSettings}/>
 {/if}
 <main style="--transitionDuration: {globalSettings.transitionDuration}ms;--standardWidth: {standardWidth}vw">
-  {#each settings as {title, subtitle, themeColor, sectionType, contents, id, pairId, isParent}, i}
+  {#each settings as {title, subtitle, themeColor, sectionType, contents, id, pairId}}
     {#if sectionType == "slideHero"}
       <HeroS contents={contents || settings.find(v => v.pairId == pairId && v.isParent).contents} {globalSettings} {pairId} {standardWidth}/>
     {:else if sectionType == "slideDesc"}

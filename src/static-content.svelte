@@ -6,12 +6,12 @@
     globalSettings,
     standardWidth,
     article = contents.article,
-    buttonsLayout = contents.bottomButtonsLayout,
+    // buttonsLayout = contents.bottomButtonsLayout,
     buttons = contents.bottomButtons;
 </script>
 
 <div class="container">
-  <Picture pictureClass="static-picture" imgClass="static-img" sizes="@media screen and (orientation: portrait) {standardWidth}vw, {standardWidth * 0.35}vw" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height} style="width:100%"/>
+  <Picture pictureClass="static-picture" imgClass="static-img" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height} style="width:100%"/>
   <div class="spacer"></div>
   <section class="right-column">
     <section class="text">
@@ -45,7 +45,9 @@
 
 :global(.static-img)
   background-color #fff
-  width: 100%
+  width 100%
+  padding 2em
+  box-sizing border-box
   height auto
   position relative
 
@@ -74,7 +76,6 @@
   flex 0 0 60%
   @media screen and (orientation: portrait)
     flex 0 0 100%
-    width 90%
 
 .text
   margin-bottom: 1em
