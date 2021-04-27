@@ -52,8 +52,7 @@
 </script>
 
 {#if imageExtensionsShort.includes('svg')}
-  <object class={imgClass} data="{imageDirectory}/{imageId}.svg" type="image/svg+xml"></object>
-  <!-- <img class={imgClass} src="{imageDirectory}/{imageId}.svg" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'} on:load={loadEventDispatcher(groupId, groupImagesCount)}> -->
+  <img class={imgClass} src="{imageDirectory}{imageId}.svg" {alt} {width} {height} loading={loadLazy ? 'lazy' : 'eager'} on:load={loadEventDispatcher(groupId, groupImagesCount)}>
 {:else}
   <picture class={pictureClass} on:click={click} {title} {style}>
     {#each imageExtensionsShort.filter(v => v != 'svg') as ext, i}

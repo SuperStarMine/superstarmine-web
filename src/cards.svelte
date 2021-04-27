@@ -52,7 +52,7 @@
           {#each card.accounts as account}
             <a class="social-button {account.name} {card.accounts.length > 2 ? 'iconOnly' : ''}"
             href="{account.customUrl ? account.customUrl : `https://${socialConsts.urls[account.name]}/${account.id}`}" style="--popupContent: '{(account.name == 'twitter' ? '@' : '') + account.id}'">
-              <img src="{globalSettings.imageDirectory}/{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン" width={socialConsts.aspectRatios[account.name].width} height={socialConsts.aspectRatios[account.name].height}>
+              <img src="{globalSettings.imageDirectory}{account.name == 'youtube' ? 'youtube-white' : account.name}.svg" alt="{account.name}のアイコン" width={socialConsts.aspectRatios[account.name].width} height={socialConsts.aspectRatios[account.name].height}>
               <span class="id">
                 {account.id}
               </span>
