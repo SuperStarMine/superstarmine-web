@@ -130,12 +130,13 @@
     transition transform 400ms ease, filter 400ms ease
   .backface
     background-color var(--backfaceColor)
+    &:hover
+      filter drop-shadow(0px 0px 3px #aaa)
     &:not(.isFliping)
       transform translateZ(0px) rotateX(0deg) rotateY(180deg)
       &.fliped
         transform translateZ(0px) rotateX(0deg) rotateY(0deg)
       &:hover
-        filter drop-shadow(0px 0px 3px #aaa)
         transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
         transition none
     &.isFliping
@@ -175,12 +176,13 @@
     display flex
     flex-direction column
     background-color white
+    &:hover
+      filter drop-shadow(0px 0px 3px #aaa)
     &:not(.isFliping)
       transform translateZ(0px) rotateX(0deg) rotateY(0deg)
       &.fliped
         transform translateZ(0px) rotateX(0deg) rotateY(180deg)
       &:hover
-        filter drop-shadow(0px 0px 3px #aaa)
         transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
         transition none
     &.isFliping
