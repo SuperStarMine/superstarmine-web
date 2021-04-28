@@ -26,9 +26,9 @@
   });
 </script>
 
-<div class="card_container">
+<div class="card_container" style="--rotateX: {rotateX}deg;--rotateY: {rotateY}deg;">
   {#each contents.cards as card}
-    <div class="card_wrapper" style="--rotateX: {rotateX}deg;--rotateY: {rotateY}deg;--backfaceColor:{card.backfaceColor};--backfaceLogoBrightness: {card.backfaceLogoBrightness};"
+    <div class="card_wrapper" style="--backfaceColor:{card.backfaceColor};--backfaceLogoBrightness: {card.backfaceLogoBrightness};"
       on:mousemove={
         e => {
           const cardClass = e.currentTarget.querySelector('.card').classList;
@@ -125,9 +125,9 @@
     bottom 0
     right 0
     left 0
+    -webkit-backface-visibility hidden
     backface-visibility hidden
     transition transform 400ms ease, filter 400ms ease
-    -webkit-backface-visibility hidden
   .backface
     background-color var(--backfaceColor)
     &:not(.isFliping)
@@ -136,7 +136,7 @@
         transform translateZ(0px) rotateX(0deg) rotateY(0deg)
       &:hover
         filter drop-shadow(0px 0px 3px #aaa)
-        transform perspective(600) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
         transition none
     &.isFliping
       animation flipBackface 600ms ease 0ms both
@@ -145,22 +145,22 @@
         animation unflipBackface 600ms ease 0ms both
     @keyframes flipBackface
       0%
-        transform perspective(600) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
       15%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
       85%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(360deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(360deg)
       100%
-        transform perspective(600) translateZ(20px) rotateX(0deg) rotateY(360deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(360deg)
     @keyframes unflipBackface
       0%
-        transform perspective(600) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))
       15%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
       85%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(-180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg)
       100%
-        transform perspective(600) translateZ(20px) rotateX(0deg) rotateY(-180deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg)
   :global(.backface_picture)
     width 30%
     height auto
@@ -181,7 +181,7 @@
         transform translateZ(0px) rotateX(0deg) rotateY(180deg)
       &:hover
         filter drop-shadow(0px 0px 3px #aaa)
-        transform perspective(600) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
         transition none
     &.isFliping
       animation flip 600ms ease 0ms both
@@ -190,22 +190,22 @@
         animation unflip 600ms ease 0ms both
     @keyframes flip
       0%
-        transform perspective(600) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
       15%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
       85%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
       100%
-        transform perspective(600) translateZ(20px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(180deg)
     @keyframes unflip
       0%
-        transform perspective(600) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
       15%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
       85%
-        transform perspective(600) translateZ(100px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
       100%
-        transform perspective(600) translateZ(20px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(0deg)
   .upper
     display: flex
     position: relative
