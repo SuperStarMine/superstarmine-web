@@ -424,6 +424,9 @@ const app = new App({
           logoImageId: 'ssm-logo',
           logoImageExtensionsShort: ['svg'],
           logoAspectRatio: {width: 47581, height: 90047},
+          backfaceLogoImageId: 'ssm-logo-landscape',
+          backfaceLogoImageExtensionsShort: ['svg'],
+          backfaceLogoAspectRatio: {width: 157213, height: 60041},
           imageDirectory: './img/members/',
           cards: [
             {
@@ -446,7 +449,9 @@ const app = new App({
                   name: 'note',
                   id: 'machikou_mk2'
                 }
-              ]
+              ],
+              backfaceColor: '#ffffff',
+              backfaceLogoBrightness: 0
             },
             {
               name: 'いーだ',
@@ -464,7 +469,9 @@ const app = new App({
                   name: 'note',
                   id: '203_'
                 }
-              ]
+              ],
+              backfaceColor: '#57e827',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'Amu',
@@ -478,7 +485,9 @@ const app = new App({
                   name: 'twitter',
                   id: 'Amu＿dsgn'
                 }
-              ]
+              ],
+              backfaceColor: '#e84327',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'HIBIKI CUBE',
@@ -500,7 +509,9 @@ const app = new App({
                   name: 'qiita',
                   id: 'HIBIKI-CUBE'
                 }
-              ]
+              ],
+              backfaceColor: '#27b1e8',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'Matsu',
@@ -518,7 +529,9 @@ const app = new App({
                   name: 'github',
                   id: 'AtaruMatsudaira'
                 }
-              ]
+              ],
+              backfaceColor: '#e82727',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'ナミー',
@@ -531,7 +544,9 @@ const app = new App({
                   name: 'twitter',
                   id: 'fi_matsu'
                 }
-              ]
+              ],
+              backfaceColor: '#6e27e8',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'えちょ',
@@ -544,7 +559,9 @@ const app = new App({
                   name: 'twitter',
                   id: 'ysXKPSlvMZqVtIW'
                 }
-              ]
+              ],
+              backfaceColor: '#000000',
+              backfaceLogoBrightness: 10
             },
             {
               name: '十二月ねこ',
@@ -557,7 +574,9 @@ const app = new App({
                   name: 'twitter',
                   id: 'Subamaru_7'
                 }
-              ]
+              ],
+              backfaceColor: '#e82781',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'かずえもん',
@@ -581,7 +600,9 @@ const app = new App({
                   id: 'kazuemon',
                   customUrl: '//k6n.jp/gh'
                 },
-              ]
+              ],
+              backfaceColor: '#e8a127',
+              backfaceLogoBrightness: 10
             }
           ]
         }
