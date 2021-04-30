@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="backface">
-        <Picture pictureClass="backface_picture" imgClass="backface_logo" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.backfaceLogoImageId} imageExtensionsShort={contents.backfaceLogoImageExtensionsShort} width={contents.backfaceLogoAspectRatio.width} height={contents.backfaceLogoAspectRatio.height}/>
+        <Picture pictureClass="backface_logo_picture" imgClass="backface_logo" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.backfaceLogoImageId} imageExtensionsShort={contents.backfaceLogoImageExtensionsShort} width={contents.backfaceLogoAspectRatio.width} height={contents.backfaceLogoAspectRatio.height}/>
       </div>
     </div>
   {/each}
@@ -128,10 +128,10 @@
     -webkit-backface-visibility hidden
     backface-visibility hidden
     transition transform 400ms ease, filter 400ms ease
-  .backface
-    background-color var(--backfaceColor)
     &:hover
       filter drop-shadow(0px 0px 3px #aaa)
+  .backface
+    background-color var(--backfaceColor)
     &:not(.isFliping)
       transform translateZ(0px) rotateX(0deg) rotateY(180deg)
       &.fliped
@@ -162,7 +162,7 @@
         transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg)
       100%
         transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg)
-  :global(.backface_picture)
+  :global(.backface_logo_picture)
     width 30%
     height auto
     position absolute
@@ -176,8 +176,6 @@
     display flex
     flex-direction column
     background-color white
-    &:hover
-      filter drop-shadow(0px 0px 3px #aaa)
     &:not(.isFliping)
       transform translateZ(0px) rotateX(0deg) rotateY(0deg)
       &.fliped
