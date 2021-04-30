@@ -298,7 +298,7 @@ const app = new App({
         sectionType: 'dateList',
         title: 'NEWS',
         subtitle: 'チームからのお知らせ',
-        themeColor: '#ff0200',
+        themeColor: '#f73f23',
         id: 'news',
         contents: {
           shownItemsCount: 3,
@@ -390,7 +390,7 @@ const app = new App({
       {
         sectionType: 'static',
         title: 'ABOUT',
-        themeColor: '#f15a23',
+        themeColor: '#f78323',
         id: 'about',
         contents: {
           imageId: 'ssm-logo-landscape',
@@ -418,7 +418,7 @@ const app = new App({
       {
         sectionType: 'cards',
         title: 'MEMBERS',
-        themeColor: '#f7931d',
+        themeColor: '#f7a723',
         id: 'members',
         contents: {
           logoImageId: 'ssm-logo',
