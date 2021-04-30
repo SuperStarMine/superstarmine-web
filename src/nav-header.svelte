@@ -115,6 +115,7 @@ header
   display flex
   align-items center
   justify-content space-between
+  transform translateZ(999999999px)
   width 100vw
   padding calc(var(--base-size) / 6) calc(var(--base-size) / 2 + env(safe-area-inset-right)) calc(var(--base-size) / 6) calc(var(--base-size) / 2 +  env(safe-area-inset-left))
   height var(--base-size)

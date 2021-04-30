@@ -20,14 +20,41 @@
             'youtube':{width: 44, height: 31}
           }
         };
-  let ch2px;
-  let ch;
-  onMount(() => ch = ch2px.getBoundingClientRect().width);
+  let ch2px, ch, rotateX, rotateY;
+  onMount(() => {
+    ch = ch2px.getBoundingClientRect().width;
+  });
 </script>
 
-<div class="card_container">
+<div class="card_container" style="--rotateX: {rotateX}deg;--rotateY: {rotateY}deg;">
   {#each contents.cards as card}
-    <div class="card_wrapper">
+    <div class="card_wrapper" style="--backfaceColor:{card.backfaceColor};--backfaceLogoBrightness: {card.backfaceLogoBrightness};"
+      on:mousemove={
+        e => {
+          const cardClass = e.currentTarget.querySelector('.card').classList;
+          if(!cardClass.contains('isFliping')){
+            rotateX = (((e.clientY - e.currentTarget.getBoundingClientRect().top)/(e.currentTarget.getBoundingClientRect().height / 2) - 1) * 10);
+            rotateY = (((e.clientX - e.currentTarget.getBoundingClientRect().left)/(e.currentTarget.getBoundingClientRect().width / 2) - 1) * -10) + (cardClass.contains('fliped') ? 180 : 0);
+          }
+        }
+      }
+      on:click={
+        e => {
+          const cardClass = e.currentTarget.querySelector('.card').classList;
+          const backfaceClass = e.currentTarget.querySelector('.backface').classList;
+          if(!cardClass.contains('isFliping')){
+            cardClass.add('isFliping');
+            backfaceClass.add('isFliping');
+            setTimeout(() => {
+              cardClass.remove('isFliping');
+              backfaceClass.remove('isFliping');
+              cardClass[!cardClass.contains('fliped') ? 'add' : 'remove']('fliped');
+              backfaceClass[!backfaceClass.contains('fliped') ? 'add' : 'remove']('fliped');
+              rotateY += 180;
+            }, 600);
+          }
+        }
+      }>
       <div class="card">
         <div class="upper">
           {#if card.imageId}
@@ -60,6 +87,9 @@
           {/each}
         </div>
       </div>
+      <div class="backface">
+        <Picture pictureClass="backface_logo_picture" imgClass="backface_logo" {contents} {globalSettings} imageDirectory={globalSettings.imageDirectory} imageId={contents.backfaceLogoImageId} imageExtensionsShort={contents.backfaceLogoImageExtensionsShort} width={contents.backfaceLogoAspectRatio.width} height={contents.backfaceLogoAspectRatio.height}/>
+      </div>
     </div>
   {/each}
 </div>
@@ -89,15 +119,93 @@
       content ""
       display block
       padding-top calc(108 / 179 * 100%)
-  .card
-    display flex
-    flex-direction column
+  .card, .backface
     position absolute
     top 0
     bottom 0
     right 0
     left 0
+    -webkit-backface-visibility hidden
+    backface-visibility hidden
+    transition transform 400ms ease, filter 400ms ease
+    &:hover
+      filter drop-shadow(0px 0px 3px #aaa)
+  .backface
+    background-color var(--backfaceColor)
+    &:not(.isFliping)
+      transform translateZ(0px) rotateX(0deg) rotateY(180deg)
+      &.fliped
+        transform translateZ(0px) rotateX(0deg) rotateY(0deg)
+      &:hover
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
+        transition none
+    &.isFliping
+      animation flipBackface 600ms ease 0ms both
+      transition none
+      &.fliped
+        animation unflipBackface 600ms ease 0ms both
+    @keyframes flipBackface
+      0%
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
+      15%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
+      85%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(360deg)
+      100%
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(360deg)
+    @keyframes unflipBackface
+      0%
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))
+      15%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
+      85%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg)
+      100%
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg)
+  :global(.backface_logo_picture)
+    width 30%
+    height auto
+    position absolute
+    left 1em
+    bottom 1em
+  :global(.backface_logo)
+    width 100%
+    height auto
+    filter brightness(var(--backfaceLogoBrightness))
+  .card
+    display flex
+    flex-direction column
     background-color white
+    &:not(.isFliping)
+      transform translateZ(0px) rotateX(0deg) rotateY(0deg)
+      &.fliped
+        transform translateZ(0px) rotateX(0deg) rotateY(180deg)
+      &:hover
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+        transition none
+    &.isFliping
+      animation flip 600ms ease 0ms both
+      transition none
+      &.fliped
+        animation unflip 600ms ease 0ms both
+    @keyframes flip
+      0%
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+      15%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
+      85%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
+      100%
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(180deg)
+    @keyframes unflip
+      0%
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+      15%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
+      85%
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
+      100%
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(0deg)
   .upper
     display: flex
     position: relative
