@@ -9,7 +9,8 @@
             'note':'note.com',
             'github':'github.com',
             'qiita':'qiita.com',
-            'youtube':'www.youtube.com/c'
+            'youtube':'www.youtube.com/c',
+            'lastfm':'www.last.fm/ja/user'
           },
           aspectRatios: {
             'twitter':{width: 2499, height: 2032},
@@ -17,7 +18,8 @@
             'note':{width: 167, height: 188},
             'github':{width: 362, height: 354},
             'qiita':{width: 1, height: 1},
-            'youtube':{width: 44, height: 31}
+            'youtube':{width: 44, height: 31},
+            'lastfm':{width: 70877, height: 17833}
           }
         };
   let ch2px, ch, rotateX, rotateY;
@@ -321,4 +323,8 @@
     --brand-color #f00
     &.iconOnly:before
       background-color #fff2f2
+  .lastfm
+    --brand-color #d51007
+    &.iconOnly:before
+      background-color #fac6c3
 </style>
