@@ -9,7 +9,8 @@
             'note':'note.com',
             'github':'github.com',
             'qiita':'qiita.com',
-            'youtube':'www.youtube.com/c'
+            'youtube':'www.youtube.com/c',
+            'lastfm':'www.last.fm/ja/user'
           },
           aspectRatios: {
             'twitter':{width: 2499, height: 2032},
@@ -17,7 +18,8 @@
             'note':{width: 167, height: 188},
             'github':{width: 362, height: 354},
             'qiita':{width: 1, height: 1},
-            'youtube':{width: 44, height: 31}
+            'youtube':{width: 44, height: 31},
+            'lastfm':{width: 70877, height: 17833}
           }
         };
   let ch2px, ch, rotateX, rotateY;
@@ -146,22 +148,22 @@
         animation unflipBackface 600ms ease 0ms both
     @keyframes flipBackface
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))  rotate(180deg)
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg) rotate(180deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(360deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(360deg) rotate(360deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(360deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(360deg) rotate(360deg)
     @keyframes unflipBackface
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))  rotate(360deg)
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotate(360deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg) rotate(180deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg) rotate(180deg)
   :global(.backface_logo_picture)
     width 30%
     height auto
@@ -190,22 +192,22 @@
         animation unflip 600ms ease 0ms both
     @keyframes flip
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY)) rotate(0deg)
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotate(0deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg) rotate(180deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(180deg) rotate(180deg)
     @keyframes unflip
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY)) rotate(180deg)
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg) rotate(180deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotate(0deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(0deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(0deg) rotate(0deg)
   .upper
     display: flex
     position: relative
@@ -321,4 +323,8 @@
     --brand-color #f00
     &.iconOnly:before
       background-color #fff2f2
+  .lastfm
+    --brand-color #d51007
+    &.iconOnly:before
+      background-color #fac6c3
 </style>

@@ -508,6 +508,10 @@ const app = new App({
                 {
                   name: 'qiita',
                   id: 'HIBIKI-CUBE'
+                },
+                {
+                  name: 'lastfm',
+                  id: 'HIBIKI_CUBE'
                 }
               ],
               backfaceColor: '#27b1e8',
