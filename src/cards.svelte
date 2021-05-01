@@ -261,6 +261,7 @@
     &.iconOnly
       &:before
         content var(--popupContent)
+        white-space nowrap
         display block
         position absolute
         top -2.75em
