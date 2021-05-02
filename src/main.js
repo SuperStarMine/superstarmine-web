@@ -483,7 +483,7 @@ const app = new App({
               accounts: [
                 {
                   name: 'twitter',
-                  id: 'Amu＿dsgn'
+                  id: 'Amu_dsgn'
                 }
               ],
               backfaceColor: '#e84327',
