@@ -34,7 +34,7 @@
     filter drop-shadow(2px 2px 3px #ccc)
     list-style none
     position relative
-    transition filter calc(var(--transitionDuration) / 2) ease-out 0ms
+    transition filter 200ms ease-out 0ms
     filter none
     &:not(:last-child)
       margin-bottom 0.5em
