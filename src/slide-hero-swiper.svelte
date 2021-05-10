@@ -1,13 +1,14 @@
 <script>
   import { Swiper, SwiperSlide } from 'swiper/svelte';
-  import SwiperCore, { Controller, EffectFade } from 'swiper';
+  import SwiperCore, { Controller, EffectFade, Pagination } from 'swiper';
   import { sync } from './sync-store.js';
   import Picture from "./picture.svelte";
   export let contents, pairId, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;
+  let themeColor;
 
-  SwiperCore.use([Controller, EffectFade]);
+  SwiperCore.use([Controller, EffectFade, Pagination]);
 
   let controlledSwiper = null;
   addEventListener('controllee_load', e => {
@@ -29,7 +30,7 @@
   <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
 </svelte:head>
 
-<div class="slide-hero">
+<div class="slide-hero" style="--themeColor:{themeColor}">
   <img class="arrow left" src="/img/arrow.svg" alt="左のスライドへ" width='309.94' height='355.04'>
   <Swiper
     centeredSlides={true}
@@ -39,6 +40,11 @@
     speed={transitionDuration}
     slideToClickedSlide={true}
     loop={true}
+    pagination={{
+      clickable: true,
+      bulletClass: 'swiper-pagination-bullet-custom',
+      bulletActiveClass: 'swiper-pagination-bullet-custom-active'
+    }}
     on:swiper={e => {
       const [swiper] = e.detail;
       window.addEventListener('pictureGroup_load', e => {
@@ -47,9 +53,14 @@
             swiper.loopDestroy();
             swiper.loopCreate();
             swiper.update();
+            themeColor = contents.articles[swiper.realIndex].themeColor;
           });
         }
       });
+    }}
+    on:realIndexChange={e => {
+      const [swiper] = e.detail[0];
+      themeColor = contents.articles[swiper.realIndex].themeColor;
     }}
     loopedSlides={contents.articles.length}
     controller={{ control: controlledSwiper }}
@@ -73,6 +84,38 @@
   :global(.slide-hero .swiper-slide)
     text-align center
     width auto
+
+  :global(.swiper-pagination-bullet-custom)
+    width 1em
+    height 1em
+    display inline-block
+    margin 0 0.333em
+    border-radius 33.3%
+    border 1px solid #888
+    box-sizing border-box
+    background-color transparent
+    opacity 0.5
+    transition opacity 200ms ease 0ms, transform var(--transitionDuration) ease-in-out 0ms
+    transform rotate(0deg)
+    &:before
+      content ''
+      display block
+      width 100%
+      height 100%
+      border-radius 33.3%
+      box-sizing border-box
+      border 1px solid #fff
+      background-color var(--themeColor)
+      transition background-color 200ms ease 0ms
+
+  :global(.swiper-pagination-bullet-custom-active)
+    background-color var(--themeColor)
+    border none
+    transform rotate(90deg)
+    opacity 1
+    &:before
+      border none
+
   .slide-hero
     position relative
     &:before, &:after
