@@ -116,7 +116,7 @@ header
   align-items center
   justify-content space-between
   transform translateZ(999999999px)
-  width 100vw
+  width 100%
   padding calc(var(--base-size) / 6) calc(var(--base-size) / 2 + env(safe-area-inset-right)) calc(var(--base-size) / 6) calc(var(--base-size) / 2 +  env(safe-area-inset-left))
   height var(--base-size)
   box-sizing border-box
@@ -201,12 +201,12 @@ header
   background-color transparent
   cursor pointer
   height 100%
-  width 100vw
+  width 100%
   left -100vw
   top 0
   @media screen and (orientation: portrait)
     height 100vh
-    width 100vw
+    width 100%
     left -100vw
     top 0
 
