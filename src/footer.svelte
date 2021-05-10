@@ -94,7 +94,7 @@
   }
   footer
     box-sizing border-box
-    width 100vw
+    width 100%
     display flex
     justify-content space-around
     align-items stretch
