@@ -77,7 +77,7 @@
 
 <style lang="stylus">
 :root
-  --base-size calc(7vh + env(safe-area-inset-top))
+  --base-size calc(3.5rem + env(safe-area-inset-top))
   --base-size-vw 1.2vw
   --navigation-width 70vw
   --ui-bg rgba(255,255,255,0.7)

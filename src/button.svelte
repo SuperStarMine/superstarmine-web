@@ -27,7 +27,7 @@
 a, button
   margin: 0 10% 0
   box-sizing: border-box
-  border: none
+  border solid 1px var(--textColor)
   border-radius: 0.5ch
   padding: 0.5ch
   font-size: 1em
@@ -37,6 +37,11 @@ a, button
   flex-wrap wrap
   color: #fff
   background-color: var(--themeColor)
+  position relative
+  transition filter 200ms ease-out 0ms
+  filter none
+  &:hover
+    filter brightness(0.8)
 </style>
 
 {#if isAnchor}
