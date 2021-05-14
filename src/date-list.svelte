@@ -53,6 +53,9 @@
   .title-container
     padding 2ch
     margin-right calc(9ch + 1em + 2em)
+    @media (max-aspect-ratio: 1/1)
+      margin-right 0
+      margin-bottom 2em
 
   time
     position absolute
