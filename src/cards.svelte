@@ -148,22 +148,22 @@
         animation unflipBackface 600ms ease 0ms both
     @keyframes flipBackface
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))  rotate(180deg)
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) + 180deg))
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg) rotate(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(360deg) rotate(360deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(360deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(360deg) rotate(360deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(360deg)
     @keyframes unflipBackface
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))  rotate(360deg)
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(calc(var(--rotateY) - 180deg))
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotate(360deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg) rotate(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(-180deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg) rotate(180deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(-180deg)
   :global(.backface_logo_picture)
     width 30%
     height auto
@@ -192,22 +192,22 @@
         animation unflip 600ms ease 0ms both
     @keyframes flip
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY)) rotate(0deg)
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotate(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg) rotate(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(180deg) rotate(180deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(180deg)
     @keyframes unflip
       0%
-        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY)) rotate(180deg)
+        transform perspective(600px) translateZ(20px) rotateX(var(--rotateX)) rotateY(var(--rotateY))
       15%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg) rotate(180deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(180deg)
       85%
-        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotate(0deg)
+        transform perspective(600px) translateZ(100px) rotateX(0deg) rotateY(0deg)
       100%
-        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(0deg) rotate(0deg)
+        transform perspective(600px) translateZ(20px) rotateX(0deg) rotateY(0deg)
   .upper
     display: flex
     position: relative
