@@ -237,6 +237,8 @@
     width calc(100% / 3 - 2ch)
   :global(.card_left-img)
     border-radius 20% 20% 40% 20%
+    border solid 2px var(--backfaceColor)
+    box-sizing border-box
   .right
     width 100%
     margin-left 2ch
