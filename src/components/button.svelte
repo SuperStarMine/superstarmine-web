@@ -1,6 +1,7 @@
 <script>
-  export let target, disabled = false, marginLeft, marginRight, width = "45%", bg;
-  let isAnchor = RegExp("^https?:\/\/").test(target);
+  import { link } from 'svelte-spa-router';
+  export let target, disabled = false, spaMode, marginLeft, marginRight, width = "45%", bg;
+  let isAnchor = RegExp("\/").test(target);
   let style = "";
   if(!isAnchor){
     let event = new CustomEvent(target);
@@ -49,7 +50,11 @@ a, button
 </style>
 
 {#if isAnchor}
-  <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></a>
+  {#if spaMode}
+    <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled} use:link><slot></slot></a>
+  {:else}
+    <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></a>
+  {/if}
 {:else}
   <button on:click={!disabled ? target : 'javascript:void(0);'} class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></button>
 {/if}

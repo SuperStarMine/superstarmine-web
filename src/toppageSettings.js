@@ -42,8 +42,9 @@ export const settings = [
             {
               popup: 'ただいま準備中',
               title: '公式サイトに行く',
-              target: 'https://superstarmine.ga/necromance/',
-              disabled: true
+              target: '/necromance/',
+              spaMode: true,
+              disabled: false
             }
           ],
           slides: [

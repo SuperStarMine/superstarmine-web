@@ -89,7 +89,7 @@
               {#if button.popup}
                 <div class="popup {button.disabled ? 'disabled' : ''}">{button.popup}</div>
               {/if}
-              <Button target={button.target} bg="#0a6afa" width="auto" disabled={button.disabled}>
+              <Button target={button.target} bg="#0a6afa" width="auto" disabled={button.disabled} spaMode={button.spaMode}>
                 {#if Array.isArray(button.title)}
                   {#each button.title as title}
                     <span class="break-scope">{title}</span>
@@ -174,7 +174,7 @@
             {#if button.popup}
               <div class="popup {button.disabled ? 'disabled' : ''}">{button.popup}</div>
             {/if}
-            <Button target={button.target} bg="#0a6afa" width="calc(var(--standardWidth) * 0.45)" disabled={button.disabled}>
+            <Button target={button.target} bg="#0a6afa" width="calc(var(--standardWidth) * 0.45)" disabled={button.disabled} spaMode={button.spaMode}>
               {#if Array.isArray(button.title)}
                 {#each button.title as title}
                   <span class="break-scope">{title}</span>

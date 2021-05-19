@@ -1,13 +1,17 @@
 <script>
   import Router from 'svelte-spa-router';
-  import Index from './pages/index.svelte'
+  import Index from './pages/index.svelte';
+  import Necromance from './pages/necromance.svelte'
+  import NotFound from './pages/notfound.svelte'
 
   let loadAnalytics = location.pathname == '/' ? false : true;
   addEventListener('pictureGroup_load', e => setTimeout(() => loadAnalytics = e.detail == 'slideHero'));
 
   const routes = {
-    '/': Index
-  }
+    '/': Index,
+    '/necromance/': Necromance,
+    '*': NotFound
+  };
 </script>
 
 <svelte:head>
