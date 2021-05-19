@@ -42,10 +42,14 @@ a, button
   filter none
   &:hover
     filter brightness(0.8)
+  &:disabled, &.disabled
+    &:hover
+      filter none
+      cursor not-allowed
 </style>
 
 {#if isAnchor}
-  <a href="{target}" style="{style}" {disabled}><slot></slot></a>
+  <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></a>
 {:else}
-  <button on:click={target} style="{style}" {disabled}><slot></slot></button>
+  <button on:click={!disabled ? target : 'javascript:void(0);'} class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></button>
 {/if}

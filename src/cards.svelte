@@ -44,7 +44,7 @@
         e => {
           const cardClass = e.currentTarget.querySelector('.card').classList;
           const backfaceClass = e.currentTarget.querySelector('.backface').classList;
-          if(!cardClass.contains('isFliping')){
+          if(!cardClass.contains('isFliping') && !(e.currentTarget.querySelector('.card .lower').contains(e.target))){
             cardClass.add('isFliping');
             backfaceClass.add('isFliping');
             setTimeout(() => {
@@ -237,6 +237,8 @@
     width calc(100% / 3 - 2ch)
   :global(.card_left-img)
     border-radius 20% 20% 40% 20%
+    border solid 2px var(--backfaceColor)
+    box-sizing border-box
   .right
     width 100%
     margin-left 2ch
@@ -261,6 +263,7 @@
     &.iconOnly
       &:before
         content var(--popupContent)
+        pointer-events none
         white-space nowrap
         display block
         position absolute
