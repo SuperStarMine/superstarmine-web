@@ -263,6 +263,7 @@
     &.iconOnly
       &:before
         content var(--popupContent)
+        pointer-events none
         white-space nowrap
         display block
         position absolute
