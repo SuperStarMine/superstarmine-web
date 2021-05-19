@@ -11,7 +11,7 @@ const d = new Date(Date.now() + 3600 * 9);
 let hash;
 try {
   fs.readdirSync('src').forEach(v => {
-    hash += sha256(fs.readFileSync(`src/${v}`));
+    if(/\./.test(v))hash += sha256(fs.readFileSync(`src/${v}`));
   });
   hash += sha256(fs.readFileSync('global.stylus'));
   hash = sha256(hash).slice(0, 6);

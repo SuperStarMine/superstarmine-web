@@ -1,9 +1,9 @@
 <script>
-  import Button from "./button.svelte";
-  import Yframe from "./youtube-iframe.svelte";
+  import Button from "../components/button.svelte";
+  import Yframe from "../components/youtube-iframe.svelte";
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade } from 'swiper';
-  import { sync } from './sync-store.js';
+  import { sync } from '../sync-store.js';
   import Color from 'color';
   export let pairId, globalSettings, contents, standardWidth;
   const transitionDuration = globalSettings.transitionDuration,

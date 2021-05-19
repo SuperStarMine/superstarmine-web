@@ -1,8 +1,8 @@
 <script>
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade, Pagination } from 'swiper';
-  import { sync } from './sync-store.js';
-  import Picture from "./picture.svelte";
+  import { sync } from '../sync-store.js';
+  import Picture from "../components/picture.svelte";
   export let contents, pairId, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;

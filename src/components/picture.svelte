@@ -1,5 +1,5 @@
 <script>
-  import { sync } from './sync-store.js';
+  import { sync } from '../sync-store.js';
   export let
     contents,
     globalSettings,
