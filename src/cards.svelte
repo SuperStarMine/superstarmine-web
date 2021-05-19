@@ -44,7 +44,7 @@
         e => {
           const cardClass = e.currentTarget.querySelector('.card').classList;
           const backfaceClass = e.currentTarget.querySelector('.backface').classList;
-          if(!cardClass.contains('isFliping')){
+          if(!cardClass.contains('isFliping') && !(e.currentTarget.querySelector('.card .lower').contains(e.target))){
             cardClass.add('isFliping');
             backfaceClass.add('isFliping');
             setTimeout(() => {
