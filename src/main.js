@@ -443,16 +443,16 @@ const app = new App({
                   id: 'MachiCollider'
                 },
                 {
-                  name: 'facebook',
-                  id: 'MachiCollider'
-                },
-                {
                   name: 'note',
                   id: 'machikou_mk2'
+                },
+                {
+                  name: 'qiita',
+                  id: 'Machikof'
                 }
               ],
-              backfaceColor: '#ffffff',
-              backfaceLogoBrightness: 0
+              backfaceColor: '#E03D16',
+              backfaceLogoBrightness: 10
             },
             {
               name: 'いーだ',
@@ -607,6 +607,26 @@ const app = new App({
                 },
               ],
               backfaceColor: '#e8a127',
+              backfaceLogoBrightness: 10
+            },
+            {
+              name: 'NEO',
+              imageId: 'neo',
+              post: [
+                'エフェクト',
+                'サウンドデザイン'
+              ],
+              accounts: [
+                {
+                  name: 'twitter',
+                  id: 'neo_97m'
+                },
+                {
+                  name: 'github',
+                  id: 'NEON1212121'
+                },
+              ],
+              backfaceColor: '#7de8bd',
               backfaceLogoBrightness: 10
             }
           ]
