@@ -172,9 +172,9 @@
         <div class="buttons mobile">
           {#each article.buttons as button}
             {#if button.popup}
-              <div class="popup">{button.popup}</div>
+              <div class="popup {button.disabled ? 'disabled' : ''}">{button.popup}</div>
             {/if}
-            <Button target={button.target} bg="#0a6afa" width="calc(var(--standardWidth) * 0.45)">
+            <Button target={button.target} bg="#0a6afa" width="calc(var(--standardWidth) * 0.45)" disabled={button.disabled}>
               {#if Array.isArray(button.title)}
                 {#each button.title as title}
                   <span class="break-scope">{title}</span>
@@ -326,12 +326,15 @@
     flex-direction column
     justify-content center
     align-items center
+    --themeColor #0a6afa
     .popup
       font-size 0.75em
       font-weight 300
       white-space nowrap
       position relative
-      color #0a6afa
+      color var(--themeColor)
+      &.disabled
+        --themeColor #aaa
       &:before, &:after
         content ''
         display block
@@ -341,7 +344,7 @@
         top 0
         bottom 0
         margin auto
-        background-color #0a6afa
+        background-color var(--themeColor)
         border-radius 0.5px
       &:before
         left -1ch
