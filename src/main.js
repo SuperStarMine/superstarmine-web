@@ -67,9 +67,10 @@ const app = new App({
               ],
               buttons: [
                 {
-                  popup: 'Boothにて販売中',
-                  title: '体験版を見てみる',
-                  target: 'https://superstarmine.booth.pm/items/2618292'
+                  popup: 'ただいま準備中',
+                  title: '公式サイトに行く',
+                  target: 'https://superstarmine.ga/necromance/',
+                  disabled: true
                 }
               ],
               slides: [
