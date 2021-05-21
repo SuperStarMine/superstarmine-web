@@ -93,7 +93,18 @@
       <p class="mincho">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
       <p class="mincho">魔女伝説を調べる民俗学者の貴方はある日、森の中で少女に出会う。 ネクロマンスと名乗る奇妙な少女は尊大な態度で言い放つ──</p>
       <div class="talk-style-layout">
-
+        <Picture pictureClass="necromance_character_illustration_picture" imgClass="necromance_character_illustration" sizes="{$sync.standardWidth}vw" {globalSettings} imageId="necromance_character_illustration" width="4299" height="6071" loadLazy={true}/>
+        <div>
+          <div>
+            <p class="mincho em">「アンタ、魔女にキョーミあるんでしょ?</p>
+            <p class="mincho em">いいわ、アタシが連れてってあげる!」</p>
+          </div>
+          <div>
+            <p class="mincho">彼女の追う“魔女”とは?</p>
+            <p class="mincho">ネクロマンスに隠された過去とは?</p>
+            <p class="mincho">そして明らかになる、魔女伝説の全容とは──</p>
+          </div>
+        </div>
       </div>
     </section>
   </article>
@@ -155,12 +166,27 @@
     padding 3em 0
 
   .story
-    p
+    >p
       width 80%
       margin 0 auto
       text-align center
-    p+p
+    >p+p
       margin-top 1em
+
+    .talk-style-layout
+      display flex
+      align-items center
+      :global(.necromance_character_illustration_picture)
+        flex 0 0 30%
+      :global(.necromance_character_illustration)
+        width 100%
+        height auto
+      div
+        flex-basis 100%
+        div+div
+          margin-top 1em
+        p
+          margin 0
 
   .serif
     font-family nocturne-serif;
