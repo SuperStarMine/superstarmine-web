@@ -249,6 +249,8 @@
           height auto
     .spacer
       flex 0 0 5%
+      @media (min-aspect-ratio: 16/9)
+        flex 0 0 25%
     :global(#twitter-widget-0)
       flex 1 1 100%
       width 100% !important
