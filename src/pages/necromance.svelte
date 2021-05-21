@@ -199,8 +199,11 @@
 
   article
     width var(--standardWidth)
-    margin 0 auto
-    padding 3em 0
+    padding 3em calc((100vw - var(--standardWidth)) / 2)
+    background-image url("/img/checker.svg")
+    background-repeat repeat
+    background-position center
+    background-size: 5% auto;
 
   .story
     >p
