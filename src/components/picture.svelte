@@ -1,8 +1,8 @@
 <script>
   import { sync } from '../sync-store.js';
+  import { globalSettings } from '../globalSettings.js';
   export let
-    contents,
-    globalSettings,
+    contents = {},
     imageId,
     sizes = "100vw",
     alt = `${imageId}の画像`,
