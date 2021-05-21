@@ -38,7 +38,7 @@
   }
 </script>
 
-<footer style="--itemsCount: {(() => {let count = 0;Object.keys(contents).forEach(v => count += v == 'copyright' ? 1 : 2);return count})()}">
+<footer style="--itemsCount: {(() => {let count = 0;Object.keys(contents).forEach(v => count += v == 'copyright' ? 1 : 2);return count})()};{contents.transparent ? '--ui-bg: transparent;' : ''}">
   {#if contents.copyright}
     <section class="copyright">
       <div>
@@ -59,7 +59,7 @@
       <div>
         The source code of this web site is licensed under a {licenses[contents.codeLicense.license]}{contents.codeLicense.linkLabel && contents.codeLicense.url ? ' and available at ' : '.'}
         {#if contents.codeLicense.linkLabel && contents.codeLicense.url}
-          <a href={contents.codeLicense.url}>{contents.codeLicense.linkLabel}</a>.
+          <a href={contents.codeLicense.url} style="{contents.anchorColor ? `color: ${contents.anchorColor}` : ''}">{contents.codeLicense.linkLabel}</a>.
         {/if}
       </div>
     </section>
@@ -67,7 +67,7 @@
       <div>
         このWebサイトのソースコードは{licenses[contents.codeLicense.license]}ライセンスの下で提供されて{contents.codeLicense.linkLabel && contents.codeLicense.url ? 'おり、' : 'います。'}
         {#if contents.codeLicense.linkLabel && contents.codeLicense.url}
-          <a href={contents.codeLicense.url}>{contents.codeLicense.linkLabel}</a>から入手して利用できます。
+          <a href={contents.codeLicense.url} style="{contents.anchorColor ? `color: ${contents.anchorColor}` : ''}">{contents.codeLicense.linkLabel}</a>から入手して利用できます。
         {/if}
       </div>
     </section>
@@ -75,12 +75,12 @@
   {#if contents.assetsLicense.ccType}
     <section class="creative-commons">
       <div>
-        <a rel="license" href="http://creativecommons.org/licenses/{contents.assetsLicense.ccType}/4.0/"><img alt="Creative Commons License" style="border-width:0;display:inline-block;vertical-align:middle;margin-right: 1ch;" src="https://i.creativecommons.org/l/{contents.assetsLicense.ccType}/4.0/80x15.png" width="80" height="15" loading="lazy"/></a>All non-source code resources such as images and videos are licensed under a <a rel="license" href="http://creativecommons.org/licenses/{contents.assetsLicense.ccType}/4.0/">Creative Commons {contents.assetsLicense.ccType.match(/by/i) ? 'Attribution' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 1 ? '-' : ''}{contents.assetsLicense.ccType.match(/nc/i) ? 'NonCommercial' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 2 ? '-' : ''}{contents.assetsLicense.ccType.match(/nd/i) ? 'NoDerivatives' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 3 ? '-' : ''}{contents.assetsLicense.ccType.match(/sa/i) ? 'ShareAlike' : ''} 4.0 International License</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/{contents.assetsLicense.ccType}/4.0/"><img alt="Creative Commons License" style="border-width:0;display:inline-block;vertical-align:middle;margin-right: 1ch;" src="https://i.creativecommons.org/l/{contents.assetsLicense.ccType}/4.0/80x15.png" width="80" height="15" loading="lazy"/></a>All non-source code resources such as images and videos are licensed under a <a rel="license" href="http://creativecommons.org/licenses/{contents.assetsLicense.ccType}/4.0/" style="{contents.anchorColor ? `color: ${contents.anchorColor}` : ''}">Creative Commons {contents.assetsLicense.ccType.match(/by/i) ? 'Attribution' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 1 ? '-' : ''}{contents.assetsLicense.ccType.match(/nc/i) ? 'NonCommercial' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 2 ? '-' : ''}{contents.assetsLicense.ccType.match(/nd/i) ? 'NoDerivatives' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 3 ? '-' : ''}{contents.assetsLicense.ccType.match(/sa/i) ? 'ShareAlike' : ''} 4.0 International License</a>.
       </div>
     </section>
     <section class="creative-commons">
       <div>
-        <a rel="license" href="https://creativecommons.org/licenses/{contents.assetsLicense.ccType}/4.0/deed.ja"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0;display:inline-block;vertical-align:middle;margin-right: 1ch;" src="https://i.creativecommons.org/l/{contents.assetsLicense.ccType}/4.0/80x15.png" width="80" height="15" loading="lazy"/></a>全てのソースコード以外の画像や動画などのリソースは <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/deed.ja">クリエイティブ・コモンズ {contents.assetsLicense.ccType.match(/by/i) ? '表示' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 1 ? ' - ' : ''}{contents.assetsLicense.ccType.match(/nc/i) ? '非営利' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 2 ? ' - ' : ''}{contents.assetsLicense.ccType.match(/nd/i) ? '改変禁止' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 3 ? ' - ' : ''}{contents.assetsLicense.ccType.match(/sa/i) ? '継承' : ''} 4.0 国際 ライセンス</a>の下に提供されています。
+        <a rel="license" href="https://creativecommons.org/licenses/{contents.assetsLicense.ccType}/4.0/deed.ja"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0;display:inline-block;vertical-align:middle;margin-right: 1ch;" src="https://i.creativecommons.org/l/{contents.assetsLicense.ccType}/4.0/80x15.png" width="80" height="15" loading="lazy"/></a>全てのソースコード以外の画像や動画などのリソースは <a rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/deed.ja" style="{contents.anchorColor ? `color: ${contents.anchorColor}` : ''}">クリエイティブ・コモンズ {contents.assetsLicense.ccType.match(/by/i) ? '表示' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 1 ? ' - ' : ''}{contents.assetsLicense.ccType.match(/nc/i) ? '非営利' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 2 ? ' - ' : ''}{contents.assetsLicense.ccType.match(/nd/i) ? '改変禁止' : ''}{contents.assetsLicense.ccType.match(/-/gi).length >= 3 ? ' - ' : ''}{contents.assetsLicense.ccType.match(/sa/i) ? '継承' : ''} 4.0 国際 ライセンス</a>の下に提供されています。
       </div>
     </section>
   {/if}
