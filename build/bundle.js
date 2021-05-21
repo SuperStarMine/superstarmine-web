@@ -49150,45 +49150,45 @@ var app = (function () {
     			video.autoplay = true;
     			video.playsInline = true;
     			video.muted = true;
-    			add_location(video, file$2, 75, 4, 2700);
+    			add_location(video, file$2, 78, 4, 2742);
     			attr_dev(div0, "class", "filter-layer svelte-173uqqn");
-    			add_location(div0, file$2, 76, 4, 2765);
+    			add_location(div0, file$2, 79, 4, 2807);
     			attr_dev(div1, "class", "video-hero svelte-173uqqn");
-    			add_location(div1, file$2, 74, 2, 2671);
+    			add_location(div1, file$2, 77, 2, 2713);
     			attr_dev(h20, "class", "serif copy svelte-173uqqn");
-    			add_location(h20, file$2, 81, 6, 3009);
+    			add_location(h20, file$2, 84, 6, 3051);
     			attr_dev(div2, "class", "youtube-embed svelte-173uqqn");
-    			add_location(div2, file$2, 82, 6, 3046);
+    			add_location(div2, file$2, 85, 6, 3088);
     			attr_dev(section0, "class", "pv");
-    			add_location(section0, file$2, 80, 4, 2982);
+    			add_location(section0, file$2, 83, 4, 3024);
     			attr_dev(h21, "class", "serif copy svelte-173uqqn");
-    			add_location(h21, file$2, 87, 6, 3304);
+    			add_location(h21, file$2, 90, 6, 3346);
     			attr_dev(span0, "class", "break-scope");
-    			add_location(span0, file$2, 88, 30, 3368);
+    			add_location(span0, file$2, 91, 30, 3410);
     			attr_dev(span1, "class", "break-scope");
-    			add_location(span1, file$2, 88, 66, 3404);
+    			add_location(span1, file$2, 91, 66, 3446);
     			attr_dev(span2, "class", "em svelte-173uqqn");
-    			add_location(span2, file$2, 88, 105, 3443);
+    			add_location(span2, file$2, 91, 105, 3485);
     			attr_dev(span3, "class", "break-scope");
-    			add_location(span3, file$2, 88, 133, 3471);
+    			add_location(span3, file$2, 91, 133, 3513);
     			attr_dev(span4, "class", "break-scope");
-    			add_location(span4, file$2, 88, 171, 3509);
+    			add_location(span4, file$2, 91, 171, 3551);
     			attr_dev(h3, "class", "mincho copy svelte-173uqqn");
-    			add_location(h3, file$2, 88, 6, 3344);
+    			add_location(h3, file$2, 91, 6, 3386);
     			attr_dev(p0, "class", "mincho svelte-173uqqn");
-    			add_location(p0, file$2, 89, 6, 3559);
+    			add_location(p0, file$2, 92, 6, 3601);
     			attr_dev(p1, "class", "mincho svelte-173uqqn");
-    			add_location(p1, file$2, 90, 6, 3683);
+    			add_location(p1, file$2, 93, 6, 3725);
     			attr_dev(div3, "class", "talk-style-layout");
-    			add_location(div3, file$2, 91, 6, 3772);
+    			add_location(div3, file$2, 94, 6, 3814);
     			attr_dev(section1, "class", "story svelte-173uqqn");
-    			add_location(section1, file$2, 86, 4, 3274);
+    			add_location(section1, file$2, 89, 4, 3316);
     			attr_dev(article, "class", "svelte-173uqqn");
-    			add_location(article, file$2, 79, 2, 2968);
+    			add_location(article, file$2, 82, 2, 3010);
     			set_style(main, "--transitionDuration", globalSettings.transitionDuration + "ms");
     			set_style(main, "--standardWidth", /*$sync*/ ctx[0].standardWidth + "vw");
     			attr_dev(main, "class", "svelte-173uqqn");
-    			add_location(main, file$2, 72, 0, 2505);
+    			add_location(main, file$2, 75, 0, 2547);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -49354,13 +49354,13 @@ var app = (function () {
     		})(document);
     	});
 
-    	const hls = new HLS();
+    	const hls = new HLS({ "startFragPrefetch": true });
 
     	if (HLS.isSupported()) {
     		hls.loadSource(videoSourceUrl);
     	}
 
-    	addEventListener("DOMContentLoaded", () => {
+    	onMount(() => {
     		const video = document.querySelector("video.hero");
 
     		if (HLS.isSupported()) {
@@ -49389,6 +49389,7 @@ var app = (function () {
     		Footer,
     		Picture,
     		HLS,
+    		onMount,
     		Yframe: Youtube_iframe,
     		globalSettings,
     		sync,

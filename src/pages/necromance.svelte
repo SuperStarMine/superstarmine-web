@@ -3,6 +3,7 @@
   import Footer from "../components/footer.svelte";
   import Picture from "../components/picture.svelte"
   import HLS from "hls.js";
+  import { onMount } from 'svelte';
   import Yframe from "../components/youtube-iframe.svelte";
   import { globalSettings } from '../globalSettings.js';
   import { sync } from '../sync-store.js';
@@ -48,11 +49,13 @@
   });
 
   const videoSourceUrl = '../../video/necromance_hero.m3u8';
-  const hls = new HLS();
+  const hls = new HLS({
+    "startFragPrefetch": true
+  });
   if (HLS.isSupported()) {
     hls.loadSource(videoSourceUrl);
   }
-  addEventListener('DOMContentLoaded', () => {
+  onMount(() => {
     const video = document.querySelector("video.hero");
     if(HLS.isSupported()){
       hls.attachMedia(video);
