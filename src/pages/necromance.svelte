@@ -213,13 +213,13 @@
     .talk-style-layout
       display flex
       align-items center
+      justify-content space-around
       :global(.necromance_character_illustration_picture)
         flex 0 0 30%
       :global(.necromance_character_illustration)
         width 100%
         height auto
       div
-        flex-basis 100%
         div+div
           margin-top 1em
         p
