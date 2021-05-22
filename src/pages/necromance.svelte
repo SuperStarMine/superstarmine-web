@@ -240,8 +240,13 @@
 
   .article-footer
     display flex
-    background-color #2c2643
+    @media (max-aspect-ratio: 3/4)
+      display block
+    width 100%
+    box-sizing border-box
+    overflow-x scroll
     padding 0 calc((100vw - var(--standardWidth)) / 2)
+    background-color #2c2643
     .info
       flex 1 1 100%
       display flex
@@ -263,9 +268,11 @@
           width 100%
           height auto
     .spacer
-      flex 0 0 5%
       @media (min-aspect-ratio: 16/9)
         flex 0 0 25%
+      flex 0 0 5%
+      @media (max-aspect-ratio: 3/4)
+        height 2em
     :global(#twitter-widget-0)
       flex 1 1 100%
       width 100% !important
