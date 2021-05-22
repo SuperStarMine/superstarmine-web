@@ -162,9 +162,10 @@
     background-color #1a1629
     color white
 
-  .youtube-embed
-    width 80%
-    margin 0 auto
+  @media (min-aspect-ratio: 3/4)
+    .youtube-embed
+      width 80%
+      margin 0 auto
 
   .video-hero
     position relative
@@ -212,9 +213,10 @@
 
   .story
     >p
-      width 80%
-      margin 0 auto
       text-align center
+      @media (min-aspect-ratio: 3/4)
+        width 80%
+        margin 0 auto
     >p+p
       margin-top 1em
 
