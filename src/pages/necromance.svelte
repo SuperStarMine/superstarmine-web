@@ -16,10 +16,9 @@
       aspectRatio: { width: 157213, height: 60041 },
       imageExtensionsShort: ['svg'],
       items: [
-        {id: 'top', label: '作品'},
-        {id: 'news', label: 'ニュース'},
-        {id: 'about', label: 'チームについて'},
-        {id: 'members', label: 'メンバー'}
+        {id: 'pv', label: 'PV'},
+        {id: 'story', label: 'ストーリー'},
+        {id: 'info', label: '情報'}
       ]
     }
   },
@@ -82,13 +81,13 @@
   </div>
   <div class="article-background">
     <article>
-      <section class="pv">
+      <section class="pv" id="pv">
         <h2 class="serif copy">PV</h2>
         <div class="youtube-embed">
           <Yframe contents={{}} {globalSettings} id='kQc84ApB2OM' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
         </div>
       </section>
-      <section class="story">
+      <section class="story" id="story">
         <h2 class="serif copy">STORY</h2>
         <h3 class="mincho copy"><span class="break-scope">「その</span><span class="break-scope">ヒトの子は、</span><span class="em break-scope">“魔女”</span><span class="break-scope">と呼ぶには</span><span class="break-scope">幼すぎた」</span></h3>
         <p class="mincho">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
@@ -111,7 +110,7 @@
     </article>
     <div class="background-transition"></div>
   </div>
-  <section class="article-footer">
+  <section class="article-footer" id="info">
     <div class="info">
       <table class="specs">
         <tr>
