@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <script>
+    if(/\/#\//.test(location)){
+      addEventListener('load' ,() => history.replaceState('','',location.hash == '#/' ? '/' : location.hash.slice(location.hash.length * -1 + 2)))
+    }else if(location.pathname != '/'){
+      location.replace(`${location.origin}/#${location.pathname}`);
+    }
+  </script>
+  <title>SUPER STAR MINE - スーパースターマイン</title>
+</head>
+<body>
+  この画面から変化しない場合は再読み込みをお試しください。
+</body>
+</html>
