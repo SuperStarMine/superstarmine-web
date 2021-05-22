@@ -33,8 +33,8 @@
       assetsLicense: {
         ccType: 'by-nd'
       },
-      transparent: true,
-      anchorColor: '#f2b807'
+      anchorColor: '#f2b807',
+      backgroundColor: '#2c2643'
   }
 
   addEventListener('load', () => {
@@ -80,71 +80,74 @@
     <div class="filter-layer"></div>
     <Picture imgClass="necromance_logo" sizes="{$sync.standardWidth}vw" {globalSettings} imageId="necromance_logo" width="1643" height="630" loadLazy={true}/>
   </div>
-  <article>
-    <section class="pv">
-      <h2 class="serif copy">PV</h2>
-      <div class="youtube-embed">
-        <Yframe contents={{}} {globalSettings} id='kQc84ApB2OM' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
-      </div>
-    </section>
-    <section class="story">
-      <h2 class="serif copy">STORY</h2>
-      <h3 class="mincho copy"><span class="break-scope">「その</span><span class="break-scope">ヒトの子は、</span><span class="em">“魔女”</span><span class="break-scope">と呼ぶには</span><span class="break-scope">幼すぎた」</span></h3>
-      <p class="mincho">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
-      <p class="mincho">魔女伝説を調べる民俗学者の貴方はある日、森の中で少女に出会う。 ネクロマンスと名乗る奇妙な少女は尊大な態度で言い放つ──</p>
-      <div class="talk-style-layout">
-        <Picture pictureClass="necromance_character_illustration_picture" imgClass="necromance_character_illustration" sizes="{$sync.standardWidth * 0.3}vw" {globalSettings} imageId="necromance_character_illustration" width="4299" height="6071" loadLazy={true}/>
-        <div>
+  <div class="article-background">
+    <article>
+      <section class="pv">
+        <h2 class="serif copy">PV</h2>
+        <div class="youtube-embed">
+          <Yframe contents={{}} {globalSettings} id='kQc84ApB2OM' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
+        </div>
+      </section>
+      <section class="story">
+        <h2 class="serif copy">STORY</h2>
+        <h3 class="mincho copy"><span class="break-scope">「その</span><span class="break-scope">ヒトの子は、</span><span class="em">“魔女”</span><span class="break-scope">と呼ぶには</span><span class="break-scope">幼すぎた」</span></h3>
+        <p class="mincho">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
+        <p class="mincho">魔女伝説を調べる民俗学者の貴方はある日、森の中で少女に出会う。 ネクロマンスと名乗る奇妙な少女は尊大な態度で言い放つ──</p>
+        <div class="talk-style-layout">
+          <Picture pictureClass="necromance_character_illustration_picture" imgClass="necromance_character_illustration" sizes="{$sync.standardWidth * 0.3}vw" {globalSettings} imageId="necromance_character_illustration" width="4299" height="6071" loadLazy={true}/>
           <div>
-            <p class="mincho em">「アンタ、魔女にキョーミあるんでしょ?</p>
-            <p class="mincho em">いいわ、アタシが連れてってあげる!」</p>
-          </div>
-          <div>
-            <p class="mincho">彼女の追う“魔女”とは?</p>
-            <p class="mincho">ネクロマンスに隠された過去とは?</p>
-            <p class="mincho">そして明らかになる、魔女伝説の全容とは──</p>
+            <div>
+              <p class="mincho em">「アンタ、魔女にキョーミあるんでしょ?</p>
+              <p class="mincho em">いいわ、アタシが連れてってあげる!」</p>
+            </div>
+            <div>
+              <p class="mincho">彼女の追う“魔女”とは?</p>
+              <p class="mincho">ネクロマンスに隠された過去とは?</p>
+              <p class="mincho">そして明らかになる、魔女伝説の全容とは──</p>
+            </div>
           </div>
         </div>
+      </section>
+    </article>
+    <div class="background-transition"></div>
+  </div>
+  <section class="article-footer">
+    <div class="info">
+      <table class="specs">
+        <tr>
+          <td>タイトル</td>
+          <td>
+            <span class="break-scope">れーぞく！</span>
+            <span class="break-scope">ネクロマンスちゃん</span>
+          </td>
+        </tr>
+        <tr>
+          <td>プラットフォーム</td>
+          <td>Windows / Mac</td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td>
+            <span class="break-scope">れーぞく</span>
+            <span class="break-scope">全方位</span>
+            <span class="break-scope">シューティング</span>
+          </td>
+        </tr>
+        <tr>
+          <td>プレイ人数</td>
+          <td>1人</td>
+        </tr>
+      </table>
+      <div class="production">
+        制作
+        <Picture imgClass="necromance_ssm-logo" sizes="{$sync.standardWidth}vw"
+        contents={{imageExtensionsShort: ['svg']}}
+        {globalSettings} imageId="ssm-logo-landscape-white" width="157213" height="60041" loadLazy={true}/>
       </div>
-    </section>
-    <section class="article-footer">
-      <div class="info">
-        <table class="specs">
-          <tr>
-            <td>タイトル</td>
-            <td>
-              <span class="break-scope">れーぞく！</span>
-              <span class="break-scope">ネクロマンスちゃん</span>
-            </td>
-          </tr>
-          <tr>
-            <td>プラットフォーム</td>
-            <td>Windows / Mac</td>
-          </tr>
-          <tr>
-            <td>ジャンル</td>
-            <td>
-              <span class="break-scope">れーぞく</span>
-              <span class="break-scope">全方位</span>
-              <span class="break-scope">シューティング</span>
-            </td>
-          </tr>
-          <tr>
-            <td>プレイ人数</td>
-            <td>1人</td>
-          </tr>
-        </table>
-        <div class="production">
-          制作
-          <Picture imgClass="necromance_ssm-logo" sizes="{$sync.standardWidth}vw"
-          contents={{imageExtensionsShort: ['svg']}}
-          {globalSettings} imageId="ssm-logo-landscape-white" width="157213" height="60041" loadLazy={true}/>
-        </div>
-      </div>
-      <div class="spacer"></div>
-      <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </section>
-  </article>
+    </div>
+    <div class="spacer"></div>
+    <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </section>
   <Footer contents={footerConfig}/>
 </main>
 
@@ -156,7 +159,7 @@
 
   main
     width 100%
-    background-color #2c2643
+    background-color #1a1629
     color white
 
   .youtube-embed
@@ -197,13 +200,15 @@
       width calc(var(--standardWidth))
       height auto
 
-  article
-    width var(--standardWidth)
-    padding 3em calc((100vw - var(--standardWidth)) / 2)
+  .article-background
     background-image url("/img/checker.svg")
     background-repeat repeat
     background-position center
     background-size: 5% auto;
+
+  article
+    width var(--standardWidth)
+    padding 3em calc((100vw - var(--standardWidth)) / 2)
 
   .story
     >p
@@ -228,8 +233,15 @@
         p
           margin 0
 
+  .background-transition
+    height 18em
+    width 100vw
+    background linear-gradient(#1a162900 0%, rgba(22,19,34,1) 80%, rgba(44,38,67,1) 100%)
+
   .article-footer
     display flex
+    background-color #2c2643
+    padding 0 calc((100vw - var(--standardWidth)) / 2)
     .info
       flex 1 1 100%
       display flex

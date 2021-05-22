@@ -38,7 +38,7 @@
   }
 </script>
 
-<footer style="--itemsCount: {(() => {let count = 0;Object.keys(contents).forEach(v => count += v == 'copyright' ? 1 : 2);return count})()};{contents.transparent ? '--ui-bg: transparent;' : ''}">
+<footer style="--itemsCount: {(() => {let count = 0;Object.keys(contents).forEach(v => count += v == 'copyright' ? 1 : 2);return count})()};{contents.transparent || contents.backgroundColor ? `--ui-bg: ${contents.transparent ? "transparent" : contents.backgroundColor};` : ''}">
   {#if contents.copyright}
     <section class="copyright">
       <div>
