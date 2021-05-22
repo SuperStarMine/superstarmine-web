@@ -20,8 +20,15 @@
   globalSettings.standardWidths.forEach((v, i, array) => {
     if(v.mediaQuery && v.mediaQuery != 'default') {
       let media = matchMedia(`(${v.mediaQuery})`);
-      media.addEventListener('change', e => $sync.standardWidth = e.matches ? v.value : defautlStandardWidth);
-      if(media.matches) $sync.standardWidth = v.value;
+      try {
+        media.addEventListener('change', e => $sync.standardWidth = e.matches ? v.value : defautlStandardWidth);
+      } catch (e1) {
+        try {
+          media.addEventListener(e => $sync.standardWidth = e.matches ? v.value : defautlStandardWidth);
+        } catch (e2) {
+          console.error(e2);
+        }
+      }
     }
     if(i == array.length - 1 && !$sync.standardWidth) $sync.standardWidth = defautlStandardWidth;
   });
