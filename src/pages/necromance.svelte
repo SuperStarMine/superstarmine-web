@@ -47,7 +47,7 @@
     })(document)
   });
 
-  const videoSourceUrl = '../../video/necromance_hero.m3u8';
+  const videoSourceUrl = 'https://dev.superstarmine.ga/video/necromance_hero.m3u8';
   const hls = new HLS({
     "startFragPrefetch": true
   });
