@@ -15,6 +15,7 @@ vendorarg(prop, arg)
 html,body
   margin 0
   width 100%
+  min-height 100%
   vendor(text-size-adjust, 100%)
   font-family -apple-system, 'BlinkMacSystemFont', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
 

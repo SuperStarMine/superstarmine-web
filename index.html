@@ -3,14 +3,21 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    if(/\/#\//.test(location)){
+      addEventListener('load' ,() => history.replaceState('','',location.hash == '#/' ? '/' : location.hash.slice(location.hash.length * -1 + 2)))
+    }else if(location.pathname != '/'){
+      location.replace(`${location.origin}/#${location.pathname}`);
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="ゲーム開発を主軸にテクノロジーとエンタメの融合を目指す学生団体、スーパースターマイン">
   <title>SUPER STAR MINE - スーパースターマイン</title>
 
-  <link rel="icon" href="./favicon.ico?h=c326d7">
-  <link rel="stylesheet" href="./global.css?h=dad978">
-  <link rel="stylesheet" href="./build/bundle.css?h=ecc389">
-  <script defer src="./build/bundle.js?h=88f104"></script>
+  <link rel="icon" href="/favicon.ico?h=c326d7">
+  <link rel="stylesheet" href="/global.css?h=9cd188">
+  <link rel="stylesheet" href="/build/bundle.css?h=1581b1">
+  <script defer src="/build/bundle.js?h=0e3e8f"></script>
 
   <meta property="og:title" content="SUPER STAR MINE - スーパースターマイン">
   <meta name="description" content="ゲーム開発を主軸にテクノロジーとエンタメの融合を目指す学生団体、スーパースターマイン">
