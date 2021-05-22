@@ -44,7 +44,7 @@ export const settings = [
               title: '公式サイトに行く',
               target: '/necromance/',
               spaMode: true,
-              disabled: false
+              disabled: true
             }
           ],
           slides: [

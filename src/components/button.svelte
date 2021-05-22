@@ -50,7 +50,7 @@ a, button
 </style>
 
 {#if isAnchor}
-  {#if spaMode}
+  {#if spaMode && !disabled}
     <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled} use:link><slot></slot></a>
   {:else}
     <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></a>
