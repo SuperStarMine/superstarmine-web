@@ -71,7 +71,6 @@
     video.addEventListener('canplay',() => video.play());
 
     const twitterObserver = new IntersectionObserver(e => {
-      console.log(e);
       if(e[0].isIntersecting && !loadTwitterWidget){
         loadTwitterWidget = true;
         twitterObserver.unobserve(document.querySelector('.twitter-timeline'));
@@ -80,6 +79,20 @@
       rootMargin: '50%'
     });
     twitterObserver.observe(document.querySelector('.twitter-timeline'));
+
+    const scrollSpawner = new IntersectionObserver(e => {
+      e.forEach(v => {
+        if(v.isIntersecting){
+          v.target.classList.add('spawned');
+          scrollSpawner.unobserve(v.target);
+        }
+      })
+    },{
+      rootMargin: '-40%'
+    });
+    document.querySelectorAll('.spawn').forEach(v => {
+      scrollSpawner.observe(v);
+    })
   });
 </script>
 
@@ -95,24 +108,24 @@
   <div class="article-background">
     <article>
       <section class="pv" id="pv">
-        <h2 class="serif copy">PV</h2>
-        <div class="youtube-embed">
+        <h2 class="serif copy spawn">PV</h2>
+        <div class="youtube-embed spawn">
           <Yframe contents={{}} {globalSettings} id='kQc84ApB2OM' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
         </div>
       </section>
       <section class="story" id="story">
-        <h2 class="serif copy">STORY</h2>
-        <h3 class="mincho copy"><span class="break-scope">「その</span><span class="break-scope">ヒトの子は、</span><span class="em break-scope">“魔女”</span><span class="break-scope">と呼ぶには</span><span class="break-scope">幼すぎた」</span></h3>
-        <p class="mincho">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
-        <p class="mincho">魔女伝説を調べる民俗学者の貴方はある日、森の中で少女に出会う。 ネクロマンスと名乗る奇妙な少女は尊大な態度で言い放つ──</p>
-        <div class="talk-style-layout">
+        <h2 class="serif copy spawn">STORY</h2>
+        <h3 class="mincho copy spawn"><span class="break-scope">「その</span><span class="break-scope">ヒトの子は、</span><span class="em break-scope">“魔女”</span><span class="break-scope">と呼ぶには</span><span class="break-scope">幼すぎた」</span></h3>
+        <p class="mincho spawn">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
+        <p class="mincho spawn">魔女伝説を調べる民俗学者の貴方はある日、森の中で少女に出会う。 ネクロマンスと名乗る奇妙な少女は尊大な態度で言い放つ──</p>
+        <div class="talk-style-layout spawn">
           <Picture pictureClass="necromance_character_illustration_picture" imgClass="necromance_character_illustration" sizes="{$sync.standardWidth * 0.3}vw" {globalSettings} imageId="necromance_character_illustration" width="4299" height="6071" loadLazy={true}/>
           <div>
-            <div>
+            <div class="spawn">
               <p class="mincho em">「アンタ、魔女にキョーミあるんでしょ?</p>
               <p class="mincho em">いいわ、アタシが連れてってあげる!」</p>
             </div>
-            <div>
+            <div class="spawn">
               <p class="mincho">彼女の追う“魔女”とは?</p>
               <p class="mincho">ネクロマンスに隠された過去とは?</p>
               <p class="mincho">そして明らかになる、魔女伝説の全容とは──</p>
@@ -177,11 +190,6 @@
     background-color #1a1629
     color white
 
-  @media (min-aspect-ratio: 3/4)
-    .youtube-embed
-      width 80%
-      margin 0 auto
-
   .video-hero
     position relative
     &:before
@@ -216,6 +224,11 @@
       width calc(var(--standardWidth))
       height auto
 
+  @media (min-aspect-ratio: 3/4)
+    .youtube-embed
+      width 80%
+      margin 0 auto
+
   .article-background
     background-image url("/img/checker.svg")
     background-repeat repeat
@@ -226,7 +239,20 @@
     width var(--standardWidth)
     padding 3em calc((100vw - var(--standardWidth)) / 2)
 
+  .spawn
+    opacity 0
+    transition all var(--transitionDuration) ease 0ms
+
+  .pv
+    .spawn
+      transform scale(0.9) translateY(10%)
+
   .story
+    .spawn
+      &:nth-child(odd)
+        transform translateX(-30%)
+      &:nth-child(even)
+        transform translateX(30%)
     >p
       text-align center
       @media (min-aspect-ratio: 3/4)
@@ -314,4 +340,8 @@
 
   .em
     color #f2b807
+
+  :global(.spawned)
+    transform none !important
+    opacity 1 !important
 </style>
