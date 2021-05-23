@@ -82,13 +82,14 @@
 
     const scrollSpawner = new IntersectionObserver(e => {
       e.forEach(v => {
+        console.log(v.target.textContent);
         if(v.isIntersecting){
           v.target.classList.add('spawned');
           scrollSpawner.unobserve(v.target);
         }
       })
     },{
-      rootMargin: '-40%'
+      rootMargin: '-40% 0px'
     });
     document.querySelectorAll('.spawn').forEach(v => {
       scrollSpawner.observe(v);
