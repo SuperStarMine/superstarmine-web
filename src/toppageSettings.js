@@ -602,6 +602,20 @@ export const settings = [
           ],
           backfaceColor: '#7de8bd',
           backfaceLogoBrightness: 10
+        },
+        {
+          name: 'すぎのこ',
+          post: [
+            '3Dモデラー',
+          ],
+          accounts: [
+            {
+              name: 'twitter',
+              id: 'ucSzlqTS3y78lIN'
+            }
+          ],
+          backfaceColor: '#145866',
+          backfaceLogoBrightness: 10
         }
       ]
     }
