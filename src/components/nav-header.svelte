@@ -202,13 +202,8 @@ header
   cursor pointer
   height 100%
   width 100%
-  left -100vw
+  left -100%
   top 0
-  @media screen and (orientation: portrait)
-    height 100vh
-    width 100%
-    left -100vw
-    top 0
 
 .header_button_checkbox
   display none
