@@ -236,12 +236,15 @@
     background-size: 5% auto;
 
   article
-    width var(--standardWidth)
+    width 100%
+    box-sizing border-box
     padding 3em calc((100vw - var(--standardWidth)) / 2)
+    overflow hidden
 
   .spawn
     opacity 0
     transition all var(--transitionDuration) ease 0ms
+
 
   .pv
     .spawn
@@ -278,7 +281,7 @@
 
   .background-transition
     height 18em
-    width 100vw
+    width 100%
     background linear-gradient(#1a162900 0%, rgba(22,19,34,1) 80%, rgba(44,38,67,1) 100%)
 
   .article-footer
@@ -287,7 +290,7 @@
       display block
     width 100%
     box-sizing border-box
-    overflow-x scroll
+    overflow-x hidden
     padding 0 calc((100vw - var(--standardWidth)) / 2)
     background-color #2c2643
     .info
