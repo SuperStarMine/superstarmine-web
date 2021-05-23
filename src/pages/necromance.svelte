@@ -54,6 +54,8 @@
   if (HLS.isSupported()) {
     hls.loadSource(videoSourceUrl);
   }
+
+  let loadTwitterWidget = false;
   onMount(() => {
     const video = document.querySelector("video.hero");
     if(HLS.isSupported()){
@@ -67,6 +69,17 @@
     video.load();
     video.addEventListener('loadedmetadata',() => video.play());
     video.addEventListener('canplay',() => video.play());
+
+    const twitterObserver = new IntersectionObserver(e => {
+      console.log(e);
+      if(e[0].isIntersecting && !loadTwitterWidget){
+        loadTwitterWidget = true;
+        twitterObserver.unobserve(document.querySelector('.twitter-timeline'));
+      }
+    },{
+      rootMargin: '50%'
+    });
+    twitterObserver.observe(document.querySelector('.twitter-timeline'));
   });
 </script>
 
@@ -145,7 +158,10 @@
       </div>
     </div>
     <div class="spacer"></div>
-    <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a>
+    {#if loadTwitterWidget}
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    {/if}
   </section>
   <Footer contents={footerConfig}/>
 </main>
