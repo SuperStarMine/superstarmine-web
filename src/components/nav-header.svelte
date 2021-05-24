@@ -261,15 +261,15 @@ header
 
 .game-background
   position fixed
-  z-index 1
+  z-index 10000
   opacity 0
   pointer-events none
   height 100vh
   width 100%
   background-color #000
-  transition opacity ease var(--transitionDuration) 0ms
-  &.shown
-    opacity 0.5
+  transition opacity 1s ease 1s
+:global(.game-background.shown)
+  opacity 0.5 !important
 
 :global(.header_logo)
   width auto
