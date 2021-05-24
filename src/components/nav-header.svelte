@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import BezierEasing from 'bezier-easing';
   import Picture from "./picture.svelte";
   export let contents, globalSettings;
 
@@ -42,17 +43,146 @@
     );
   }
 
-  onMount(() => setTimeout(() => document.getElementById('header_button_checkbox').checked = false, 2000));
+  const gameProps = {
+    engaged: false,
+    startTime: null,
+    lastTime: null,
+    keyPressed: null,
+    command: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"],
+    commandsCount: 0,
+    backgroundElement: null,
+    field: {
+      width: 0,
+      height: 0,
+      origin: {
+        x: null,
+        y: null
+      }
+    },
+    arrow: {
+      element: null,
+      width: 0,
+      height: 0,
+      speed: 10,
+      x: 0,
+      y: 0,
+      r: 0,
+      offset: {
+        x: null,
+        y: null
+      }
+    },
+    launch: {
+      launching: false,
+      launched: false,
+      distance: 0,
+      duration: 2000,
+      turn: {
+        turning: false,
+        startTime: null,
+        startPoint: {
+          x: 0,
+          y: 0
+        },
+        radius: 0
+      }
+    }
+  }
+
+  const customEasing = BezierEasing(.25,-0.4,.75,1);
+
+  function handleKeyDown(e) {
+    if(gameProps.engaged){
+      gameProps.keyPressed = e.key
+    }else if (e.key == gameProps.command[gameProps.commandsCount] && checkbox.checked) {
+      if (++gameProps.commandsCount == gameProps.command.length) {
+        requestAnimationFrame(gameInit);
+        gameProps.engaged = true;
+        gameProps.backgroundElement.classList.add('shown');
+      }
+    } else commandsCount = 0;
+  }
+
+  onMount(() => {
+    checkbox = document.getElementById('header_button_checkbox')
+    setTimeout(() => {
+      checkbox.checked = false
+    }, 2000);
+  });
+  function gameInit() {
+    gameProps.arrow.width = gameProps.arrow.element.getBoundingClientRect().width;
+    gameProps.arrow.height = gameProps.arrow.element.getBoundingClientRect().height;
+    gameProps.arrow.offset.x = gameProps.arrow.element.getBoundingClientRect().x;
+    gameProps.arrow.offset.y = gameProps.arrow.element.getBoundingClientRect().y;
+    gameProps.field.width = visualViewport.width;
+    gameProps.field.height = visualViewport.height;
+    gameProps.field.origin.x = gameProps.field.width - gameProps.arrow.element.getBoundingClientRect().x
+    gameProps.field.origin.y = gameProps.field.height / 2;
+    gameProps.launch.turn.radius = (gameProps.field.height - gameProps.arrow.offset.y) / 4;
+    gameProps.launch.turn.startPoint.x = -(gameProps.field.width - ((gameProps.field.width - gameProps.arrow.offset.x) * 2) - gameProps.launch.turn.radius);
+    gameProps.launch.turn.startPoint.y = gameProps.arrow.offset.y;
+    gameProps.launch.distance = gameProps.launch.turn.radius * Math.PI + Math.abs(gameProps.launch.turn.startPoint.x);
+    requestAnimationFrame(gameUpdate);
+  }
+
+  function map_range(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+  }
+
+  function gameUpdate(time) {
+    if(gameProps.startTime == null){
+      gameProps.startTime = time;
+    }
+    if(!gameProps.launch.launched){
+      if(time - gameProps.startTime < gameProps.launch.duration){
+        if(!gameProps.launch.turn.turning){
+          gameProps.arrow.x = -(customEasing((time - gameProps.startTime) / gameProps.launch.duration) * gameProps.launch.distance);
+          if(gameProps.arrow.x < gameProps.launch.turn.startPoint.x){
+            gameProps.launch.turn.turning = true;
+            gameProps.launch.turn.startTime = time;
+          }
+        }else{
+          gameProps.arrow.x = Math.cos( map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0.5, 1.5) * Math.PI) * gameProps.launch.turn.radius + gameProps.launch.turn.startPoint.x;
+          gameProps.arrow.y = Math.sin( map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0.5, 1.5) * Math.PI) * -gameProps.launch.turn.radius + gameProps.launch.turn.startPoint.y + gameProps.launch.turn.radius;
+          gameProps.arrow.r = map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0, -180)
+        }
+      }else gameProps.launch.launched = true;
+    }else{
+      switch(gameProps.keyPressed){
+        case 'w':
+          gameProps.arrow.y -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60
+          break;
+        case 'a':
+          gameProps.arrow.x -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60
+          break;
+        case 's':
+          gameProps.arrow.y += gameProps.arrow.speed * (time - gameProps.lastTime) / 60
+          break;
+        case 'd':
+          gameProps.arrow.x += gameProps.arrow.speed * (time - gameProps.lastTime) / 60
+          break;
+        default:
+          break;
+      }
+    }
+    gameProps.lastTime = time;
+    checkbox.checked = true;
+    requestAnimationFrame(gameUpdate);
+  }
 </script>
+
+<svelte:window on:keydown={handleKeyDown} on:keyup={e => {if(e.key == gameProps.keyPressed) gameProps.keyPressed = null}}/>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
   <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" pictureClass="header_picture" imgClass="header_logo" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
   <input type="checkbox" class="ui_button header_button_checkbox" checked name="header_button_checkbox" id="header_button_checkbox" bind:this={checkbox}>
   <label for="header_button_checkbox" class="header_button" title="クリックするとナビゲーションを開閉できます">
-    <svg class="header_button_svg" viewbox="0 0 24 24">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
-    </svg>
+    <div class="header_button_svg-wrapper" style="--arrow-x:{gameProps.arrow.x}px;--arrow-y:{gameProps.arrow.y}px;--arrow-r:{gameProps.arrow.r}deg;" bind:this={gameProps.arrow.element}>
+      <svg class="header_button_svg" viewbox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" stroke="#444"/>
+      </svg>
+    </div>
   </label>
   <nav class="header_navigation">
     <label for="header_button_checkbox" class="header_navigation_close_button">
@@ -74,6 +204,7 @@
     </div>
   </nav>
 </header>
+<div class="game-background" bind:this={gameProps.backgroundElement}></div>
 
 <style lang="stylus">
 :root
@@ -127,6 +258,18 @@ header
     color var(--text-color)
   vendor(backdrop-filter, blur(10px))
   z-index 1000
+
+.game-background
+  position fixed
+  z-index 1
+  opacity 0
+  pointer-events none
+  height 100vh
+  width 100%
+  background-color #000
+  transition opacity ease var(--transitionDuration) 0ms
+  &.shown
+    opacity 0.5
 
 :global(.header_logo)
   width auto
@@ -183,7 +326,16 @@ header
   }
 }
 
+.header_button_svg-wrapper
+  display flex
+  justify-content center
+  align-items center
+  height 100%
+  z-index 8000
+  transform translate(var(--arrow-x), var(--arrow-y)) rotate(var(--arrow-r))
+
 .header_button_svg
+  margin auto 0
   height 60%
   transform translate(0, -2%)
   z-index 8000
@@ -320,7 +472,7 @@ header
   & .header_close_area
     display block
 
-#header_button_checkbox:checked ~ .header_button > svg
+#header_button_checkbox:checked ~ .header_button svg
   animation-name rotate_svg
   animation-duration 150ms
   animation-timing-function ease-in
