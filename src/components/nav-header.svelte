@@ -47,7 +47,12 @@
     engaged: false,
     startTime: null,
     lastTime: null,
-    keyPressed: null,
+    keysPressed: {
+      w: false,
+      a: false,
+      s: false,
+      d: false
+    },
     command: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"],
     commandsCount: 0,
     backgroundElement: null,
@@ -93,7 +98,29 @@
 
   function handleKeyDown(e) {
     if(gameProps.engaged){
-      gameProps.keyPressed = e.key
+      if(Object.keys(gameProps.keysPressed).includes(e.key)){
+        gameProps.keysPressed[e.key] = true;
+        if(gameProps.keysPressed.w && gameProps.keysPressed.s){
+          switch(e.key){
+            case 'w':
+              gameProps.keysPressed.s = false;
+              break;
+            case 's':
+              gameProps.keysPressed.w = false;
+              break;
+          }
+        }
+        if(gameProps.keysPressed.a && gameProps.keysPressed.d){
+          switch(e.key){
+            case 'a':
+              gameProps.keysPressed.d = false;
+              break;
+            case 'd':
+              gameProps.keysPressed.a = false;
+              break;
+          }
+        }
+      }
     }else if (e.key == gameProps.command[gameProps.commandsCount] && checkbox.checked) {
       if (++gameProps.commandsCount == gameProps.command.length) {
         requestAnimationFrame(gameInit);
@@ -148,22 +175,10 @@
         }
       }else gameProps.launch.launched = true;
     }else{
-      switch(gameProps.keyPressed){
-        case 'w':
-          gameProps.arrow.y -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60
-          break;
-        case 'a':
-          gameProps.arrow.x -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60
-          break;
-        case 's':
-          gameProps.arrow.y += gameProps.arrow.speed * (time - gameProps.lastTime) / 60
-          break;
-        case 'd':
-          gameProps.arrow.x += gameProps.arrow.speed * (time - gameProps.lastTime) / 60
-          break;
-        default:
-          break;
-      }
+      if(gameProps.keysPressed.w) gameProps.arrow.y -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.a) gameProps.arrow.x -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.s) gameProps.arrow.y += gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.d) gameProps.arrow.x += gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
     }
     gameProps.lastTime = time;
     checkbox.checked = true;
@@ -171,7 +186,7 @@
   }
 </script>
 
-<svelte:window on:keydown={handleKeyDown} on:keyup={e => {if(e.key == gameProps.keyPressed) gameProps.keyPressed = null}}/>
+<svelte:window on:keydown={handleKeyDown} on:keyup={e => {if(Object.keys(gameProps.keysPressed).includes(e.key)) gameProps.keysPressed[e.key] = false}}/>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
   <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" pictureClass="header_picture" imgClass="header_logo" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
