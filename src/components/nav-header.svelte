@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import BezierEasing from 'bezier-easing';
   import Picture from "./picture.svelte";
   export let contents, globalSettings;
 
@@ -42,17 +43,197 @@
     );
   }
 
-  onMount(() => setTimeout(() => document.getElementById('header_button_checkbox').checked = false, 2000));
+  const gameProps = {
+    engaged: false,
+    startTime: null,
+    lastTime: null,
+    keysPressed: {
+      w: false,
+      a: false,
+      s: false,
+      d: false
+    },
+    command: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"],
+    commandsCount: 0,
+    backgroundElement: null,
+    field: {
+      width: 0,
+      height: 0,
+      origin: {
+        x: null,
+        y: null
+      }
+    },
+    arrow: {
+      element: null,
+      width: 0,
+      height: 0,
+      speed: 20,
+      x: 0,
+      y: 0,
+      r: 0,
+      offset: {
+        x: null,
+        y: null
+      }
+    },
+    obstacles:{
+      lastAdded: null,
+      interval: 1000,
+      duration: 2000,
+      parent: null,
+      elements: []
+    },
+    launch: {
+      launching: false,
+      launched: false,
+      distance: 0,
+      duration: 2000,
+      turn: {
+        turning: false,
+        startTime: null,
+        startPoint: {
+          x: 0,
+          y: 0
+        },
+        radius: 0
+      }
+    }
+  }
+
+  const customEasing = BezierEasing(.25,-0.4,.75,1);
+
+  function handleKeyDown(e) {
+    if(gameProps.engaged){
+      if(Object.keys(gameProps.keysPressed).includes(e.key)){
+        gameProps.keysPressed[e.key] = true;
+        if(gameProps.keysPressed.w && gameProps.keysPressed.s){
+          switch(e.key){
+            case 'w':
+              gameProps.keysPressed.s = false;
+              break;
+            case 's':
+              gameProps.keysPressed.w = false;
+              break;
+          }
+        }
+        if(gameProps.keysPressed.a && gameProps.keysPressed.d){
+          switch(e.key){
+            case 'a':
+              gameProps.keysPressed.d = false;
+              break;
+            case 'd':
+              gameProps.keysPressed.a = false;
+              break;
+          }
+        }
+      }
+    }else if (e.key == gameProps.command[gameProps.commandsCount] && checkbox.checked) {
+      if (++gameProps.commandsCount == gameProps.command.length) {
+        requestAnimationFrame(gameInit);
+        gameProps.engaged = true;
+        gameProps.backgroundElement.classList.add('shown');
+      }
+    } else gameProps.commandsCount = 0;
+  }
+
+  let arrowCollision;
+  onMount(() => {
+    checkbox = document.getElementById('header_button_checkbox')
+    setTimeout(() => {
+      checkbox.checked = false
+    }, 2000);
+  });
+  function gameInit() {
+    gameProps.arrow.width = gameProps.arrow.element.getBoundingClientRect().width;
+    gameProps.arrow.height = gameProps.arrow.element.getBoundingClientRect().height;
+    gameProps.arrow.offset.x = gameProps.arrow.element.getBoundingClientRect().x;
+    gameProps.arrow.offset.y = gameProps.arrow.element.getBoundingClientRect().y;
+    arrowCollision = new IntersectionObserver(e => {
+      e.forEach(v => {
+        if(v.isIntersecting){
+          alert('Game over!');
+        }
+      })
+    },{
+      root: gameProps.arrow.element
+    });
+    gameProps.field.width = visualViewport.width;
+    gameProps.field.height = visualViewport.height;
+    gameProps.field.origin.x = gameProps.field.width - gameProps.arrow.element.getBoundingClientRect().x
+    gameProps.field.origin.y = gameProps.field.height / 2;
+    gameProps.launch.turn.radius = (gameProps.field.height - gameProps.arrow.offset.y) / 4;
+    gameProps.launch.turn.startPoint.x = -(gameProps.field.width - ((gameProps.field.width - gameProps.arrow.offset.x) * 2) - gameProps.launch.turn.radius);
+    gameProps.launch.turn.startPoint.y = gameProps.arrow.offset.y;
+    gameProps.launch.distance = gameProps.launch.turn.radius * Math.PI + Math.abs(gameProps.launch.turn.startPoint.x);
+    requestAnimationFrame(gameUpdate);
+  }
+
+
+
+  function map_range(value, low1, high1, low2, high2) {
+    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+  }
+
+  function gameUpdate(time) {
+    if(gameProps.startTime == null){
+      gameProps.startTime = time;
+    }
+    if(!gameProps.launch.launched){
+      if(time - gameProps.startTime < gameProps.launch.duration){
+        if(!gameProps.launch.turn.turning){
+          gameProps.arrow.x = -(customEasing((time - gameProps.startTime) / gameProps.launch.duration) * gameProps.launch.distance);
+          if(gameProps.arrow.x < gameProps.launch.turn.startPoint.x){
+            gameProps.launch.turn.turning = true;
+            gameProps.launch.turn.startTime = time;
+          }
+        }else{
+          gameProps.arrow.x = Math.cos( map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0.5, 1.5) * Math.PI) * gameProps.launch.turn.radius + gameProps.launch.turn.startPoint.x;
+          gameProps.arrow.y = Math.sin( map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0.5, 1.5) * Math.PI) * -gameProps.launch.turn.radius + gameProps.launch.turn.startPoint.y + gameProps.launch.turn.radius;
+          gameProps.arrow.r = map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0, -180)
+        }
+      }else gameProps.launch.launched = true;
+    }else{
+      if(gameProps.keysPressed.w) gameProps.arrow.y -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.a) gameProps.arrow.x -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.s) gameProps.arrow.y += gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.d) gameProps.arrow.x += gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.obstacles.lastAdded == null) gameProps.obstacles.lastAdded = time - gameProps.obstacles.interval;
+      if(time - gameProps.obstacles.lastAdded >= gameProps.obstacles.interval){
+        const obstacle = {}
+        obstacle.element = document.createElement('div');
+        obstacle.element.classList.add('game-obstacle');
+        obstacle.element.style.setProperty('--gameFieldWidth', gameProps.field.width + 'px');
+        obstacle.element.style.setProperty('--angle', Math.random() * 360 - 180 + 'deg');
+        obstacle.element.style.setProperty('--StartY', Math.random() * (gameProps.field.height + 100) - 100 + 'px');
+        obstacle.element.style.setProperty('--EndY', Math.random() * (gameProps.field.height + 100) - 100 + 'px');
+        obstacle.element.style.setProperty('--rotation', Math.random() * 360 * 4 - 360 * 2 + 'deg');
+        arrowCollision.observe(obstacle.element);
+        gameProps.obstacles.lastAdded = time;
+        obstacle.destroyAt = gameProps.obstacles.lastAdded + gameProps.obstacles.duration;
+        gameProps.obstacles.parent.appendChild(obstacle.element);
+        gameProps.obstacles.elements.push(obstacle);
+      }
+      gameProps.obstacles.elements.forEach(v => {if(time > v.destroyAt) v.element.remove()});
+    }
+    gameProps.lastTime = time;
+    checkbox.checked = true;
+    requestAnimationFrame(gameUpdate);
+  }
 </script>
+
+<svelte:window on:keydown={handleKeyDown} on:keyup={e => {if(Object.keys(gameProps.keysPressed).includes(e.key)) gameProps.keysPressed[e.key] = false}}/>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
   <Picture click={() => triggerSmoothScroll('top')} title="クリックするとページの先頭に戻ります" pictureClass="header_picture" imgClass="header_logo" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
   <input type="checkbox" class="ui_button header_button_checkbox" checked name="header_button_checkbox" id="header_button_checkbox" bind:this={checkbox}>
   <label for="header_button_checkbox" class="header_button" title="クリックするとナビゲーションを開閉できます">
-    <svg class="header_button_svg" viewbox="0 0 24 24">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
-    </svg>
+    <div class="header_button_svg-wrapper" style="--arrow-x:{gameProps.arrow.x}px;--arrow-y:{gameProps.arrow.y}px;--arrow-r:{gameProps.arrow.r}deg;" bind:this={gameProps.arrow.element}>
+      <svg class="header_button_svg" viewbox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" stroke="#444"/>
+      </svg>
+    </div>
   </label>
   <nav class="header_navigation">
     <label for="header_button_checkbox" class="header_navigation_close_button">
@@ -74,6 +255,8 @@
     </div>
   </nav>
 </header>
+<div class="game-background" bind:this={gameProps.backgroundElement}></div>
+<div bind:this={gameProps.obstacles.parent}></div>
 
 <style lang="stylus">
 :root
@@ -127,6 +310,36 @@ header
     color var(--text-color)
   vendor(backdrop-filter, blur(10px))
   z-index 1000
+
+.game-background
+  position fixed
+  z-index 10000
+  opacity 0
+  pointer-events none
+  height 100vh
+  width 100%
+  background-color #000
+  transition opacity 1s ease 1s
+:global(.game-background.shown)
+  opacity 0.5 !important
+
+:global(.game-obstacle)
+  position fixed
+  z-index 20000
+  pointer-events none
+  width 100px
+  height 100px
+  background-color #fff
+  top 0
+  right 0
+  transform translateX(100px) rotate(var(--angle))
+  animation move-obstacle 2s linear both
+
+@keyframes -global-move-obstacle
+  from
+    transform translate(100px, var(--StartY)) rotate(0deg)
+  to
+    transform translate(calc(var(--gameFieldWidth) * -1), var(--EndY)) rotate(var(--rotation))
 
 :global(.header_logo)
   width auto
@@ -183,7 +396,16 @@ header
   }
 }
 
+.header_button_svg-wrapper
+  display flex
+  justify-content center
+  align-items center
+  height 100%
+  z-index 8000
+  transform translate(var(--arrow-x), var(--arrow-y)) rotate(var(--arrow-r))
+
 .header_button_svg
+  margin auto 0
   height 60%
   transform translate(0, -2%)
   z-index 8000
@@ -202,13 +424,8 @@ header
   cursor pointer
   height 100%
   width 100%
-  left -100vw
+  left -100%
   top 0
-  @media screen and (orientation: portrait)
-    height 100vh
-    width 100%
-    left -100vw
-    top 0
 
 .header_button_checkbox
   display none
@@ -325,7 +542,7 @@ header
   & .header_close_area
     display block
 
-#header_button_checkbox:checked ~ .header_button > svg
+#header_button_checkbox:checked ~ .header_button svg
   animation-name rotate_svg
   animation-duration 150ms
   animation-timing-function ease-in
