@@ -372,7 +372,7 @@ header
 
 .game-background
   position fixed
-  z-index 10000
+  z-index 10
   opacity 0
   pointer-events none
   height 100vh
