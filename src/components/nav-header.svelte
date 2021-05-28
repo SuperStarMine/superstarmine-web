@@ -204,20 +204,24 @@
     }else{
       const delta = gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
       if(gameProps.keysPressed.w){
-        gameProps.arrow.y -= delta;
-        gameProps.arrow.collision.translate(0, -(delta));
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[0].y - delta < 0 ? gameProps.arrow.speed : 0);
+        gameProps.arrow.y -= deltaFixed;
+        gameProps.arrow.collision.translate(0, -deltaFixed);
       }
       if(gameProps.keysPressed.a){
-        gameProps.arrow.x -= delta;
-        gameProps.arrow.collision.translate(-(delta),0);
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[0].x - delta < 0 ? gameProps.arrow.speed : 0);
+        gameProps.arrow.x -= deltaFixed;
+        gameProps.arrow.collision.translate(-deltaFixed,0);
       }
       if(gameProps.keysPressed.s){
-        gameProps.arrow.y += delta;
-        gameProps.arrow.collision.translate(0, delta);
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[2].y + delta > gameProps.field.height ? gameProps.arrow.speed : 0);
+        gameProps.arrow.y += deltaFixed;
+        gameProps.arrow.collision.translate(0, deltaFixed);
       }
       if(gameProps.keysPressed.d){
-        gameProps.arrow.x += delta;
-        gameProps.arrow.collision.translate(delta, 0);
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[1].x + delta > gameProps.field.width ? gameProps.arrow.speed : 0);
+        gameProps.arrow.x += deltaFixed;
+        gameProps.arrow.collision.translate(deltaFixed, 0);
       }
       if(gameProps.obstacles.lastAdded == null) gameProps.obstacles.lastAdded = time - gameProps.obstacles.interval;
       if(time - gameProps.obstacles.lastAdded >= gameProps.obstacles.interval){
