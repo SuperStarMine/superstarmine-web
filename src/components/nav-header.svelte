@@ -161,16 +161,16 @@
       new SAT.Vector(gameProps.arrow.width, gameProps.arrow.height / 2),
       new SAT.Vector(0, gameProps.arrow.height)
     ]);
-    gameProps.field.width = visualViewport.width;
-    gameProps.field.height = visualViewport.height;
+    gameProps.field.width = innerWidth;
+    gameProps.field.height = innerHeight;
     gameProps.field.origin.x = gameProps.field.width - gameProps.arrow.x
     gameProps.field.origin.y = gameProps.field.height / 2;
     gameProps.launch.turn.radius = (gameProps.field.height - gameProps.arrow.offset.y) / 4;
     gameProps.launch.turn.startPoint.x = -(gameProps.field.width - ((gameProps.field.width - gameProps.arrow.offset.x) * 2) - gameProps.launch.turn.radius);
     gameProps.launch.turn.startPoint.y = gameProps.arrow.offset.y;
     gameProps.launch.distance = gameProps.launch.turn.radius * Math.PI + Math.abs(gameProps.launch.turn.startPoint.x);
-    gameProps.obstacles.width = visualViewport.width / 7;
-    gameProps.obstacles.height = visualViewport.width / 7;
+    gameProps.obstacles.width = gameProps.field.width / 7;
+    gameProps.obstacles.height = gameProps.field.width / 7;
     requestAnimationFrame(gameUpdate);
   }
 
