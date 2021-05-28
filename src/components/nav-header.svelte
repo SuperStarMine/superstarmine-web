@@ -87,6 +87,8 @@
       lastAdded: null,
       interval: 500,
       duration: 2000,
+      width: 200,
+      height: 200,
       parent: null,
       elements: []
     },
@@ -167,6 +169,8 @@
     gameProps.launch.turn.startPoint.x = -(gameProps.field.width - ((gameProps.field.width - gameProps.arrow.offset.x) * 2) - gameProps.launch.turn.radius);
     gameProps.launch.turn.startPoint.y = gameProps.arrow.offset.y;
     gameProps.launch.distance = gameProps.launch.turn.radius * Math.PI + Math.abs(gameProps.launch.turn.startPoint.x);
+    gameProps.obstacles.width = visualViewport.width / 7;
+    gameProps.obstacles.height = visualViewport.width / 7;
     requestAnimationFrame(gameUpdate);
   }
 
@@ -221,19 +225,21 @@
         obstacle.element = document.createElement('div');
         obstacle.element.classList.add('game-obstacle');
         obstacle.element.style.setProperty('--gameFieldWidth', gameProps.field.width + 'px');
+        obstacle.element.style.setProperty('--width', gameProps.obstacles.width + 'px');
+        obstacle.element.style.setProperty('--height', gameProps.obstacles.height + 'px');
         obstacle.angle = Math.random() * 360 - 180;
         obstacle.element.style.setProperty('--angle', obstacle.angle + 'deg');
         obstacle.rotation = Math.random() * 360 * 4 - 360 * 2;
         obstacle.element.style.setProperty('--rotation', obstacle.rotation + 'deg');
-        obstacle.startY = Math.random() * (gameProps.field.height + 100) - 50;
+        obstacle.startY = Math.random() * (gameProps.field.height + gameProps.obstacles.height) - gameProps.obstacles.height / 2;
         obstacle.element.style.setProperty('--StartY', obstacle.startY + 'px');
-        obstacle.endY = Math.random() * (gameProps.field.height + 100) - 100;
+        obstacle.endY = Math.random() * (gameProps.field.height + gameProps.obstacles.height) - gameProps.obstacles.height;
         obstacle.element.style.setProperty('--EndY', obstacle.endY + 'px');
         obstacle.element.style.setProperty('--duration', gameProps.obstacles.duration + 'ms');
-        obstacle.collision = new SAT.Box(new SAT.Vector(gameProps.field.width, obstacle.startY), 100, 100).toPolygon();
-        obstacle.collision.translate(-50, -50);
+        obstacle.collision = new SAT.Box(new SAT.Vector(gameProps.field.width, obstacle.startY), gameProps.obstacles.width, gameProps.obstacles.height).toPolygon();
+        obstacle.collision.translate(-gameProps.obstacles.width / 2, -gameProps.obstacles.height / 2);
         obstacle.collision.rotate(-1 * obstacle.angle * (Math.PI / 180));
-        obstacle.collision.translate(50, 50);
+        obstacle.collision.translate(gameProps.obstacles.width / 2, gameProps.obstacles.height / 2);
         gameProps.obstacles.lastAdded = time;
         obstacle.addedAt = time;
         obstacle.destroyAt = time + gameProps.obstacles.duration;
@@ -248,10 +254,10 @@
       gameProps.obstacles.elements.forEach(v => {
         const transformRatio = (time - v.addedAt) / gameProps.obstacles.duration;
         const timePassed = time - gameProps.lastTime;
-        v.collision.setOffset(new SAT.Vector(-transformRatio * (gameProps.field.width + 100), transformRatio * (v.endY - v.startY)));
-        v.collision.translate(-50, -50);
+        v.collision.setOffset(new SAT.Vector(-transformRatio * (gameProps.field.width + gameProps.obstacles.width), transformRatio * (v.endY - v.startY)));
+        v.collision.translate(-gameProps.obstacles.width / 2, -gameProps.obstacles.height / 2);
         v.collision.rotate(-timePassed * v.rotation);
-        v.collision.translate(50, 50);
+        v.collision.translate(gameProps.obstacles.width / 2, gameProps.obstacles.height / 2);
         const tmp = gameProps.hit;
         gameProps.hit = (SAT.testPolygonPolygon(v.collision, gameProps.arrow.collision, new SAT.Response()) || gameProps.hit) && !gameProps.wasHit;
         if(gameProps.hit && !tmp){
@@ -376,17 +382,17 @@ header
   position fixed
   z-index 20000
   pointer-events none
-  width 100px
-  height 100px
+  width var(--width)
+  height var(--height)
   background-color #fff
   top 0
   right 0
-  transform translateX(100px) rotate(var(--angle))
+  transform translateX(var(--width)) rotate(var(--angle))
   animation move-obstacle var(--duration) linear both
 
 @keyframes -global-move-obstacle
   from
-    transform translate(100px, var(--StartY)) rotate(var(--angle))
+    transform translate(var(--width), var(--StartY)) rotate(var(--angle))
   to
     transform translate(calc(var(--gameFieldWidth) * -1), var(--EndY)) rotate(calc(var(--rotation) + var(--angle)))
 
