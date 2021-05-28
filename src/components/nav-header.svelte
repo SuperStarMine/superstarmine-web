@@ -85,8 +85,8 @@
     },
     obstacles:{
       lastAdded: null,
-      interval: 10000,
-      duration: 10000,
+      interval: 500,
+      duration: 2000,
       parent: null,
       elements: []
     },
@@ -222,21 +222,18 @@
         obstacle.element.classList.add('game-obstacle');
         obstacle.element.style.setProperty('--gameFieldWidth', gameProps.field.width + 'px');
         obstacle.angle = Math.random() * 360 - 180;
-        obstacle.angle = 0;
         obstacle.element.style.setProperty('--angle', obstacle.angle + 'deg');
         obstacle.rotation = Math.random() * 360 * 4 - 360 * 2;
-        obstacle.rotation = 0;
         obstacle.element.style.setProperty('--rotation', obstacle.rotation + 'deg');
         obstacle.startY = Math.random() * (gameProps.field.height + 100) - 50;
         obstacle.element.style.setProperty('--StartY', obstacle.startY + 'px');
         obstacle.endY = Math.random() * (gameProps.field.height + 100) - 100;
         obstacle.element.style.setProperty('--EndY', obstacle.endY + 'px');
         obstacle.element.style.setProperty('--duration', gameProps.obstacles.duration + 'ms');
-        obstacle.collision = new SAT.Box(new SAT.Vector(gameProps.field.width + 50, obstacle.startY + 50), 100, 100).toPolygon();
-        obstacle.collision.setOffset(new SAT.Vector(-50, -50));
+        obstacle.collision = new SAT.Box(new SAT.Vector(gameProps.field.width, obstacle.startY), 100, 100).toPolygon();
+        obstacle.collision.translate(-50, -50);
         obstacle.collision.rotate(-1 * obstacle.angle * (Math.PI / 180));
-        obstacle.element.textContent = Math.round(obstacle.angle)
-        // obstacle.collision.setOffset(new SAT.Vector(gameProps.field.width - 50, obstacle.startY - 50));
+        obstacle.collision.translate(50, 50);
         gameProps.obstacles.lastAdded = time;
         obstacle.addedAt = time;
         obstacle.destroyAt = time + gameProps.obstacles.duration;
@@ -251,19 +248,15 @@
       gameProps.obstacles.elements.forEach(v => {
         const transformRatio = (time - v.addedAt) / gameProps.obstacles.duration;
         const timePassed = time - gameProps.lastTime;
-        v.collision.translate(-1 * timePassed * (gameProps.field.width + 100) / gameProps.obstacles.duration, timePassed * (v.endY - v.startY) / gameProps.obstacles.duration);
-        // v.collision.rotate()
-        // v.collision.setAngle((v.rotation * transformRatio + v.angle) * -1 * (Math.PI / 180));
+        v.collision.setOffset(new SAT.Vector(-transformRatio * (gameProps.field.width + 100), transformRatio * (v.endY - v.startY)));
+        v.collision.translate(-50, -50);
+        v.collision.rotate(-timePassed * v.rotation);
+        v.collision.translate(50, 50);
         const tmp = gameProps.hit;
         gameProps.hit = (SAT.testPolygonPolygon(v.collision, gameProps.arrow.collision, new SAT.Response()) || gameProps.hit) && !gameProps.wasHit;
         if(gameProps.hit && !tmp){
-          v.element.textContent = "Hit!!"
           v.element.style.backgroundColor = '#f00'
         }
-        //else{
-        //   v.element.textContent = v.angle;
-        //   v.element.style.backgroundColor = '#fff'
-        // }
       });
     }
     gameProps.lastTime = time;
@@ -307,6 +300,7 @@
 </header>
 <div class="game-background" bind:this={gameProps.backgroundElement} style="--bg: {gameProps.hit ? '#f73f22' : '#000'}"></div>
 <div bind:this={gameProps.obstacles.parent}></div>
+<!-- <div class="game-debug">{gameProps.debug ? JSON.stringify(gameProps.debug) : ''}</div> -->
 
 <style lang="stylus">
 :root
@@ -360,6 +354,11 @@ header
     color var(--text-color)
   vendor(backdrop-filter, blur(10px))
   z-index 1000
+
+.game-debug
+  position fixed
+  background-color #fff8
+  z-index 10000000
 
 .game-background
   position fixed
