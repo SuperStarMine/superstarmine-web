@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import BezierEasing from 'bezier-easing';
+  import SAT from 'sat';
   import Picture from "./picture.svelte";
   export let contents, globalSettings;
 
@@ -47,6 +48,8 @@
     engaged: false,
     startTime: null,
     lastTime: null,
+    hit: false,
+    wasHit: false,
     keysPressed: {
       w: false,
       a: false,
@@ -56,6 +59,7 @@
     command: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"],
     commandsCount: 0,
     backgroundElement: null,
+    debug: null,
     field: {
       width: 0,
       height: 0,
@@ -66,9 +70,11 @@
     },
     arrow: {
       element: null,
+      svgElement: null,
       width: 0,
       height: 0,
       speed: 20,
+      collision: null,
       x: 0,
       y: 0,
       r: 0,
@@ -79,8 +85,10 @@
     },
     obstacles:{
       lastAdded: null,
-      interval: 1000,
+      interval: 500,
       duration: 2000,
+      width: 200,
+      height: 200,
       parent: null,
       elements: []
     },
@@ -137,7 +145,6 @@
     } else gameProps.commandsCount = 0;
   }
 
-  let arrowCollision;
   onMount(() => {
     checkbox = document.getElementById('header_button_checkbox')
     setTimeout(() => {
@@ -145,37 +152,35 @@
     }, 2000);
   });
   function gameInit() {
-    gameProps.arrow.width = gameProps.arrow.element.getBoundingClientRect().width;
-    gameProps.arrow.height = gameProps.arrow.element.getBoundingClientRect().height;
-    gameProps.arrow.offset.x = gameProps.arrow.element.getBoundingClientRect().x;
-    gameProps.arrow.offset.y = gameProps.arrow.element.getBoundingClientRect().y;
-    arrowCollision = new IntersectionObserver(e => {
-      e.forEach(v => {
-        if(v.isIntersecting){
-          alert('Game over!');
-        }
-      })
-    },{
-      root: gameProps.arrow.element
-    });
+    gameProps.arrow.width = gameProps.arrow.svgElement.getBoundingClientRect().width;
+    gameProps.arrow.height = gameProps.arrow.svgElement.getBoundingClientRect().height;
+    gameProps.arrow.offset.x = gameProps.arrow.svgElement.getBoundingClientRect().x;
+    gameProps.arrow.offset.y = gameProps.arrow.svgElement.getBoundingClientRect().y;
+    gameProps.arrow.collision = new SAT.Polygon(new SAT.Vector(), [
+      new SAT.Vector(),
+      new SAT.Vector(gameProps.arrow.width, gameProps.arrow.height / 2),
+      new SAT.Vector(0, gameProps.arrow.height)
+    ]);
     gameProps.field.width = visualViewport.width;
     gameProps.field.height = visualViewport.height;
-    gameProps.field.origin.x = gameProps.field.width - gameProps.arrow.element.getBoundingClientRect().x
+    gameProps.field.origin.x = gameProps.field.width - gameProps.arrow.x
     gameProps.field.origin.y = gameProps.field.height / 2;
     gameProps.launch.turn.radius = (gameProps.field.height - gameProps.arrow.offset.y) / 4;
     gameProps.launch.turn.startPoint.x = -(gameProps.field.width - ((gameProps.field.width - gameProps.arrow.offset.x) * 2) - gameProps.launch.turn.radius);
     gameProps.launch.turn.startPoint.y = gameProps.arrow.offset.y;
     gameProps.launch.distance = gameProps.launch.turn.radius * Math.PI + Math.abs(gameProps.launch.turn.startPoint.x);
+    gameProps.obstacles.width = visualViewport.width / 7;
+    gameProps.obstacles.height = visualViewport.width / 7;
     requestAnimationFrame(gameUpdate);
   }
-
-
 
   function map_range(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
   }
 
   function gameUpdate(time) {
+    gameProps.wasHit = gameProps.hit;
+    gameProps.hit = false;
     if(gameProps.startTime == null){
       gameProps.startTime = time;
     }
@@ -192,29 +197,77 @@
           gameProps.arrow.y = Math.sin( map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0.5, 1.5) * Math.PI) * -gameProps.launch.turn.radius + gameProps.launch.turn.startPoint.y + gameProps.launch.turn.radius;
           gameProps.arrow.r = map_range(customEasing((time - gameProps.startTime) / gameProps.launch.duration), customEasing((gameProps.launch.turn.startTime - gameProps.startTime) / gameProps.launch.duration), 1, 0, -180)
         }
-      }else gameProps.launch.launched = true;
+      }else{
+        gameProps.launch.launched = true;
+        gameProps.arrow.collision.translate(gameProps.arrow.svgElement.getBoundingClientRect().x, gameProps.arrow.svgElement.getBoundingClientRect().y)
+      }
     }else{
-      if(gameProps.keysPressed.w) gameProps.arrow.y -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
-      if(gameProps.keysPressed.a) gameProps.arrow.x -= gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
-      if(gameProps.keysPressed.s) gameProps.arrow.y += gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
-      if(gameProps.keysPressed.d) gameProps.arrow.x += gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      const delta = gameProps.arrow.speed * (time - gameProps.lastTime) / 60;
+      if(gameProps.keysPressed.w){
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[0].y - delta < 0 ? gameProps.arrow.speed : 0);
+        gameProps.arrow.y -= deltaFixed;
+        gameProps.arrow.collision.translate(0, -deltaFixed);
+      }
+      if(gameProps.keysPressed.a){
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[0].x - delta < 0 ? gameProps.arrow.speed : 0);
+        gameProps.arrow.x -= deltaFixed;
+        gameProps.arrow.collision.translate(-deltaFixed,0);
+      }
+      if(gameProps.keysPressed.s){
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[2].y + delta > gameProps.field.height ? gameProps.arrow.speed : 0);
+        gameProps.arrow.y += deltaFixed;
+        gameProps.arrow.collision.translate(0, deltaFixed);
+      }
+      if(gameProps.keysPressed.d){
+        const deltaFixed = delta - (gameProps.arrow.collision.calcPoints[1].x + delta > gameProps.field.width ? gameProps.arrow.speed : 0);
+        gameProps.arrow.x += deltaFixed;
+        gameProps.arrow.collision.translate(deltaFixed, 0);
+      }
       if(gameProps.obstacles.lastAdded == null) gameProps.obstacles.lastAdded = time - gameProps.obstacles.interval;
       if(time - gameProps.obstacles.lastAdded >= gameProps.obstacles.interval){
         const obstacle = {}
         obstacle.element = document.createElement('div');
         obstacle.element.classList.add('game-obstacle');
         obstacle.element.style.setProperty('--gameFieldWidth', gameProps.field.width + 'px');
-        obstacle.element.style.setProperty('--angle', Math.random() * 360 - 180 + 'deg');
-        obstacle.element.style.setProperty('--StartY', Math.random() * (gameProps.field.height + 100) - 100 + 'px');
-        obstacle.element.style.setProperty('--EndY', Math.random() * (gameProps.field.height + 100) - 100 + 'px');
-        obstacle.element.style.setProperty('--rotation', Math.random() * 360 * 4 - 360 * 2 + 'deg');
-        arrowCollision.observe(obstacle.element);
+        obstacle.element.style.setProperty('--width', gameProps.obstacles.width + 'px');
+        obstacle.element.style.setProperty('--height', gameProps.obstacles.height + 'px');
+        obstacle.angle = Math.random() * 360 - 180;
+        obstacle.element.style.setProperty('--angle', obstacle.angle + 'deg');
+        obstacle.rotation = Math.random() * 360 * 4 - 360 * 2;
+        obstacle.element.style.setProperty('--rotation', obstacle.rotation + 'deg');
+        obstacle.startY = Math.random() * (gameProps.field.height + gameProps.obstacles.height) - gameProps.obstacles.height / 2;
+        obstacle.element.style.setProperty('--StartY', obstacle.startY + 'px');
+        obstacle.endY = Math.random() * (gameProps.field.height + gameProps.obstacles.height) - gameProps.obstacles.height;
+        obstacle.element.style.setProperty('--EndY', obstacle.endY + 'px');
+        obstacle.element.style.setProperty('--duration', gameProps.obstacles.duration + 'ms');
+        obstacle.collision = new SAT.Box(new SAT.Vector(gameProps.field.width, obstacle.startY), gameProps.obstacles.width, gameProps.obstacles.height).toPolygon();
+        obstacle.collision.translate(-gameProps.obstacles.width / 2, -gameProps.obstacles.height / 2);
+        obstacle.collision.rotate(-1 * obstacle.angle * (Math.PI / 180));
+        obstacle.collision.translate(gameProps.obstacles.width / 2, gameProps.obstacles.height / 2);
         gameProps.obstacles.lastAdded = time;
-        obstacle.destroyAt = gameProps.obstacles.lastAdded + gameProps.obstacles.duration;
+        obstacle.addedAt = time;
+        obstacle.destroyAt = time + gameProps.obstacles.duration;
         gameProps.obstacles.parent.appendChild(obstacle.element);
         gameProps.obstacles.elements.push(obstacle);
       }
-      gameProps.obstacles.elements.forEach(v => {if(time > v.destroyAt) v.element.remove()});
+      gameProps.obstacles.elements.forEach(v => {if(time > v.destroyAt){
+          v.element.remove();
+          gameProps.obstacles.elements = gameProps.obstacles.elements.filter(w => w !== v);
+        }
+      });
+      gameProps.obstacles.elements.forEach(v => {
+        const transformRatio = (time - v.addedAt) / gameProps.obstacles.duration;
+        const timePassed = time - gameProps.lastTime;
+        v.collision.setOffset(new SAT.Vector(-transformRatio * (gameProps.field.width + gameProps.obstacles.width), transformRatio * (v.endY - v.startY)));
+        v.collision.translate(-gameProps.obstacles.width / 2, -gameProps.obstacles.height / 2);
+        v.collision.rotate(-timePassed * v.rotation);
+        v.collision.translate(gameProps.obstacles.width / 2, gameProps.obstacles.height / 2);
+        const tmp = gameProps.hit;
+        gameProps.hit = (SAT.testPolygonPolygon(v.collision, gameProps.arrow.collision, new SAT.Response()) || gameProps.hit) && !gameProps.wasHit;
+        if(gameProps.hit && !tmp){
+          v.element.style.backgroundColor = '#f00'
+        }
+      });
     }
     gameProps.lastTime = time;
     checkbox.checked = true;
@@ -231,7 +284,7 @@
     <div class="header_button_svg-wrapper" style="--arrow-x:{gameProps.arrow.x}px;--arrow-y:{gameProps.arrow.y}px;--arrow-r:{gameProps.arrow.r}deg;" bind:this={gameProps.arrow.element}>
       <svg class="header_button_svg" viewbox="0 0 24 24">
         <path d="M0 0h24v24H0z" fill="none" />
-        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" stroke="#444"/>
+        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" bind:this={gameProps.arrow.svgElement} stroke="#444"/>
       </svg>
     </div>
   </label>
@@ -255,8 +308,9 @@
     </div>
   </nav>
 </header>
-<div class="game-background" bind:this={gameProps.backgroundElement}></div>
+<div class="game-background" bind:this={gameProps.backgroundElement} style="--bg: {gameProps.hit ? '#f73f22' : '#000'}"></div>
 <div bind:this={gameProps.obstacles.parent}></div>
+<!-- <div class="game-debug">{gameProps.debug ? JSON.stringify(gameProps.debug) : ''}</div> -->
 
 <style lang="stylus">
 :root
@@ -311,6 +365,11 @@ header
   vendor(backdrop-filter, blur(10px))
   z-index 1000
 
+.game-debug
+  position fixed
+  background-color #fff8
+  z-index 10000000
+
 .game-background
   position fixed
   z-index 10000
@@ -318,7 +377,7 @@ header
   pointer-events none
   height 100vh
   width 100%
-  background-color #000
+  background-color var(--bg)
   transition opacity 1s ease 1s
 :global(.game-background.shown)
   opacity 0.5 !important
@@ -327,19 +386,19 @@ header
   position fixed
   z-index 20000
   pointer-events none
-  width 100px
-  height 100px
+  width var(--width)
+  height var(--height)
   background-color #fff
   top 0
   right 0
-  transform translateX(100px) rotate(var(--angle))
-  animation move-obstacle 2s linear both
+  transform translateX(var(--width)) rotate(var(--angle))
+  animation move-obstacle var(--duration) linear both
 
 @keyframes -global-move-obstacle
   from
-    transform translate(100px, var(--StartY)) rotate(0deg)
+    transform translate(var(--width), var(--StartY)) rotate(var(--angle))
   to
-    transform translate(calc(var(--gameFieldWidth) * -1), var(--EndY)) rotate(var(--rotation))
+    transform translate(calc(var(--gameFieldWidth) * -1), var(--EndY)) rotate(calc(var(--rotation) + var(--angle)))
 
 :global(.header_logo)
   width auto
