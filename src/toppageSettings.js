@@ -472,10 +472,10 @@ export const settings = [
             'CGモデラー'
           ],
           accounts: [
-            // {
-            //   name: 'twitter',
-            //   id: 'hibiki_cube'
-            // },
+            {
+              name: 'twitter',
+              id: 'hibiki_cube'
+            },
             {
               name: 'github',
               id: 'HIBIKI-CUBE'
