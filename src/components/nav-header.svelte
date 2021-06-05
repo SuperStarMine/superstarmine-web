@@ -279,7 +279,7 @@
 <svelte:window on:keydown={handleKeyDown} on:keyup={e => {if(Object.keys(gameProps.keysPressed).includes(e.key)) gameProps.keysPressed[e.key] = false}}/>
 
 <header bind:this={header} title="{window.CSS.supports(`(backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px)) or (-moz-backdrop-filter:blur(10px)`) ? "" : "Firefoxをお使いの方はabout:configを開いてbackdrop-filterを有効にすると他のブラウザーと同じ見た目にすることができます。"}" style="--itemsCount: {contents.items.length};">
-  <Picture click={() => location.pathname == "/" ? triggerSmoothScroll('top') : location.assign(location.origin)} title="クリックすると{location.pathname == "/" && location.hash == "" ? "ページの先頭" : "トップページ"}に移動します" pictureClass="header_picture" imgClass="header_logo" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
+  <Picture click={() => location.pathname == "/" && location.hash == "" ? triggerSmoothScroll('top') : location.assign(location.origin)} title="クリックすると{location.pathname == "/" && location.hash == "" ? "ページの先頭" : "トップページ"}に移動します" pictureClass="header_picture" imgClass="header_logo" {contents} {globalSettings} imageId={contents.imageId} width={contents.aspectRatio.width} height={contents.aspectRatio.height}/>
   <input type="checkbox" class="ui_button header_button_checkbox" checked name="header_button_checkbox" id="header_button_checkbox" bind:this={checkbox}>
   <label for="header_button_checkbox" class="header_button" title="クリックするとナビゲーションを開閉できます">
     <div class="header_button_svg-wrapper" style="--arrow-x:{gameProps.arrow.x}px;--arrow-y:{gameProps.arrow.y}px;--arrow-r:{gameProps.arrow.r}deg;" bind:this={gameProps.arrow.element}>
