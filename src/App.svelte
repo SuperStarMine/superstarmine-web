@@ -6,8 +6,9 @@
   import Necromance from './pages/necromance.svelte';
   import NotFound from './pages/notfound.svelte';
 
-  let loadAnalytics = location.pathname == '/' ? false : true;
-  addEventListener('pictureGroup_load', e => setTimeout(() => loadAnalytics = e.detail == 'slideHero'));
+  let loadAnalytics = location.hostname != 'localhost';
+  // let loadAnalytics = location.pathname == '/' ? false : true;
+  // addEventListener('pictureGroup_load', e => setTimeout(() => loadAnalytics = e.detail == 'slideHero'));
 
   const routes = {
     '/': Index,
