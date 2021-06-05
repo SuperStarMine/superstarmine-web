@@ -38,7 +38,6 @@
   textContent =  {
     world: [
       {text: '伝承の 時代から 幾星霜——'},
-      {text: '何人も 寄りつかぬ 険阻な 山々に 囲まれた 広大な 樹林、 “フレーダーマオスの森”。'},
       {text: '屈強な 木々が 生い茂る その 森には、 だれもが 怖じ恐れる 妖女が 棲む という 言伝がある。'},
       {text: '彼の者は 人々に、 畏怖を 込めて こう呼ばれた—— \\“\\魔女\\”\\と。'}
     ],
@@ -235,6 +234,7 @@
     width 100%
     background-color #1a1629
     color white
+    font-size 1.2em
 
   .video-hero
     position relative
@@ -304,6 +304,9 @@
   :global(.world-img)
     width 70%
 
+  section + section
+    margin-top 12em
+
   .story
     .spawn
       &:nth-child(odd)
@@ -370,15 +373,15 @@
     font-family AkazukinPop
     font-style normal
     font-weight 800
-    font-size 4em
+    font-size 10vw
     color white
     vendor(text-stroke, 2px #000)
     text-shadow 2px 2px 0px #F2B807
     transform-origin center
     .system-container:nth-child(even) &
-      transform scale(calc(2.25 / 6)) rotate(6deg) translateY(calc((var(--standardWidth) * 0.7 / 16 * 9 * 1.5 + 2.25em) * -1))
+      transform scale(0.3) rotate(6deg) translateY(calc((var(--standardWidth) * 0.7 / 16 * 9 * 2.5 + 10vw * 0.3) * -1))
     .system-container:nth-child(odd) &
-      transform scale(calc(2.25/6)) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 1.5 + 2.25em) * -1))
+      transform scale(0.3) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 2.5 + 10vw * 0.3) * -1))
     white-space nowrap
 
   .background-transition
