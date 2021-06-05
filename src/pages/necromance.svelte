@@ -1,5 +1,6 @@
 <script>
   import Nheader from "../components/nav-header.svelte";
+  import Button from "../components/button.svelte"
   import Footer from "../components/footer.svelte";
   import Picture from "../components/picture.svelte"
   import HLS from "hls.js";
@@ -111,7 +112,6 @@
 <Nheader contents={headerConfig.contents} {globalSettings}/>
 
 <main style="--transitionDuration: {globalSettings.transitionDuration}ms;--standardWidth: {$sync.standardWidth}vw">
-  <!-- svelte-ignore a11y-media-has-caption -->
   <div class="video-hero">
     <video class="hero" loop autoplay playsinline muted></video>
     <div class="filter-layer"></div>
@@ -174,16 +174,30 @@
         </div>
       </section>
     </article>
-    <div class="background-transition"></div>
+    <section class="twitter">
+      <Picture imgClass="twitter-bg-img center" {globalSettings} imageId="necromance-scenery" loadLazy={true}/>
+      <div class="content">
+        <h2 class="copy">公式Twitter</h2>
+        <a class="twitter-timeline" data-width="300" data-height="600" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a>
+        {#if loadTwitterWidget}
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        {/if}
+        <Button Class="necromance-twitter-button" bg="#1da1f3" target="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton">
+          <img class="twitter-icon" src="{globalSettings.imageDirectory}twitter.svg" alt="Twitterのアイコン" width="2499" height="2032">
+          フォロー
+        </Button>
+      </div>
+      <div class="background-transition"></div>
+    </section>
   </div>
   <section class="article-footer" id="info">
+    <Picture imgClass="footer-necromance_logo" {globalSettings} imageId="necromance_logo" width="1643" height="630" loadLazy={true}/>
     <div class="info">
       <table class="specs">
         <tr>
           <td>タイトル</td>
-          <td>
-            <span class="break-scope">れーぞく！</span>
-            <span class="break-scope">ネクロマンスちゃん</span>
+          <td class="use-wbr">
+            れーぞく！<wbr>ネクロマンスちゃん
           </td>
         </tr>
         <tr>
@@ -192,29 +206,28 @@
         </tr>
         <tr>
           <td>ジャンル</td>
-          <td>
-            <span class="break-scope">れーぞく</span>
-            <span class="break-scope">全方位</span>
-            <span class="break-scope">シューティング</span>
+          <td class="use-wbr">
+            れーぞく<wbr>全方位<wbr>シューティング
           </td>
         </tr>
         <tr>
           <td>プレイ人数</td>
           <td>1人</td>
         </tr>
+        <tr>
+          <td>制作</td>
+          <td>スーパー<wbr>スターマイン</td>
+        </tr>
       </table>
-      <div class="production">
-        制作
-        <Picture imgClass="necromance_ssm-logo" sizes="{$sync.standardWidth}vw"
-        contents={{imageExtensionsShort: ['svg']}}
-        {globalSettings} imageId="ssm-logo-landscape-white" width="157213" height="60041" loadLazy={true}/>
-      </div>
     </div>
-    <div class="spacer"></div>
-    <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a>
-    {#if loadTwitterWidget}
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    {/if}
+    <section class="share">
+      <Button Class="necromance-share-buttons" bg="#1da1f3" target="https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan">
+        <img class="share-icon" src="{globalSettings.imageDirectory}twitter.svg" alt="Twitterのアイコン" width="2499" height="2032">
+      </Button>
+      <Button Class="necromance-share-buttons" bg="#1877f2" target="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button">
+        <img class="share-icon" src="{globalSettings.imageDirectory}facebook.svg" alt="Facebookのアイコン" width="971" height="965">
+      </Button>
+    </section>
   </section>
   <Footer contents={footerConfig}/>
 </main>
@@ -321,21 +334,6 @@
     >p+p
       margin-top 1em
 
-    .talk-style-layout
-      display flex
-      align-items center
-      justify-content space-around
-      :global(.necromance_character_illustration_picture)
-        flex 0 0 30%
-      :global(.necromance_character_illustration)
-        width 100%
-        height auto
-      div
-        div+div
-          margin-top 1em
-        p
-          margin 0
-
   .character_profile
     display flex
     justify-content space-between
@@ -384,20 +382,65 @@
       transform scale(0.3) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 2.5 + 10vw * 0.3) * -1))
     white-space nowrap
 
+  .twitter
+    position relative
+
+    .content
+      display flex
+      flex-direction column
+      position relative
+      padding calc((100% - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 4) 0
+
+    :global(#twitter-widget-0)
+      width calc(var(--standardWidth) * var(--footerStandardWidthCoefficient)) !important
+      margin 0 calc((100% - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 2) !important
+      height 100vmin !important
+
+    :global(.twitter-bg-img)
+      width 100%
+      height 100%
+      object-fit cover
+      position absolute
+      filter blur(2px) brightness(0.7)
+      transform scale(1.01)
+      top 0
+
+    :global(.necromance-twitter-button)
+      display inline-block
+      margin 1em auto !important
+      width auto !important
+      padding 0.5em
+
+    .twitter-icon
+      width auto
+      height 1em
+      display inline-block
+
   .background-transition
-    height 18em
+    position relative
+    bottom -11px
+    height 6em
     width 100%
     background linear-gradient(#1a162900 0%, rgba(22,19,34,1) 80%, rgba(44,38,67,1) 100%)
 
+  :root
+    --footerStandardWidthCoefficient 0.5
+    @media screen and (orientation: portrait)
+      --footerStandardWidthCoefficient 0.7
+
   .article-footer
     display flex
-    @media (max-aspect-ratio: 3/4)
-      display block
+    flex-direction column
     width 100%
     box-sizing border-box
     overflow-x hidden
-    padding 0 calc((100vw - var(--standardWidth)) / 2)
+    padding 0 calc((100vw - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 2)
     background-color #2c2643
+
+    :global(.footer-necromance_logo)
+      width 100%
+      height auto
+
     .info
       flex 1 1 100%
       display flex
@@ -412,23 +455,20 @@
             text-align center
             background-color #413c56
             padding 0.5em 1ch
-      .production
-        text-align center
-        font-weight 500
-        :global(.necromance_ssm-logo)
-          width 100%
-          height auto
-    .spacer
-      @media (min-aspect-ratio: 16/9)
-        flex 0 0 25%
-      flex 0 0 5%
-      @media (max-aspect-ratio: 3/4)
-        height 2em
-    :global(#twitter-widget-0)
-      flex 1 1 100%
-      width 100% !important
-      height auto
 
+    .share
+      text-align center
+
+      :global(.necromance-share-buttons)
+        display inline-block
+        margin 0 !important
+        width 2em !important
+        height 2em
+        padding 0.5em
+
+      .share-icon
+        width auto
+        height 100%
 
   .serif
     font-family nocturne-serif;
