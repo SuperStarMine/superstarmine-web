@@ -216,7 +216,8 @@
         </tr>
         <tr>
           <td>制作</td>
-          <td>スーパー<wbr>スターマイン</td>
+          <!-- svelte-ignore a11y-invalid-attribute -->
+          <td><a href="javascript:location.assign(location.origin);" style="color:white;text-decoration:underline">スーパー<wbr>スターマイン</a></td>
         </tr>
       </table>
     </div>

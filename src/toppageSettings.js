@@ -43,8 +43,7 @@ export const settings = [
               popup: 'ただいま準備中',
               title: '公式サイトに行く',
               target: '/necromance/',
-              spaMode: true,
-              disabled: true
+              spaMode: true
             }
           ],
           slides: [
