@@ -434,7 +434,7 @@
     width 100%
     box-sizing border-box
     overflow-x hidden
-    padding 0 calc((100vw - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 2)
+    padding calc(11px + 5em) calc((100vw - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 2)
     background-color #2c2643
 
     :global(.footer-necromance_logo)
