@@ -316,7 +316,7 @@
 <style lang="stylus">
 :root
   --base-size calc(3.5rem + env(safe-area-inset-top))
-  --base-size-vw 1.2vw
+  --base-size-vw 1vw
   --navigation-width 70vw
   --ui-bg rgba(255,255,255,0.7)
   @supports not ((backdrop-filter blur(10px)) or (-webkit-backdrop-filter blur(10px)) or (-moz-backdrop-filter blur(10px)))
