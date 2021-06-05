@@ -34,6 +34,18 @@
       },
       anchorColor: '#f2b807',
       backgroundColor: '#2c2643'
+  },
+  textContent =  {
+    world: [
+      {text: '伝承の 時代から 幾星霜——'},
+      {text: '屈強な 木々が 生い茂る その 森には、 だれもが 怖じ恐れる 妖女が 棲む という 言伝がある。'},
+      {text: '彼の者は 人々に、 畏怖を 込めて こう呼ばれた—— \\“\\魔女\\”\\と。'}
+    ],
+    story: [
+      {text: '魔女伝説の 調査のため、 森を 訪れた 民俗学者 の男。 しかし 現れたのは、 『自称』 天才魔女 の女の子！？'},
+      {text: '「アンタ、 魔女に キョーミ あるんでしょ？ いいわ、 アタシが 連れてって あげる！」', color: '#f2b807'},
+      {text: '謎の少女と 学者は 魔女伝説の 全容を 明らかにするため、 魔物 うごめく 森の奥を 目指す——！。'}
+    ]
   }
 
   addEventListener('load', () => {
@@ -108,29 +120,57 @@
   <div class="article-background">
     <article>
       <section class="pv" id="pv">
-        <h2 class="serif copy spawn">PV</h2>
+        <h2 class="copy spawn">PV</h2>
         <div class="youtube-embed spawn">
           <Yframe contents={{}} {globalSettings} id='kQc84ApB2OM' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
         </div>
       </section>
-      <section class="story" id="story">
-        <h2 class="serif copy spawn">STORY</h2>
-        <h3 class="mincho copy spawn"><span class="break-scope">「その</span><span class="break-scope">ヒトの子は、</span><span class="em break-scope">“魔女”</span><span class="break-scope">と呼ぶには</span><span class="break-scope">幼すぎた」</span></h3>
-        <p class="mincho spawn">遥か昔──人々の畏怖の対象は悪魔と契約せし者、“魔女”であった。 だが印刷術が発達すると、魔女の脅威は瞬く間に王国中に広まる。 いつしか歴史から姿を消した魔女たちは忘れ去られ、伝説となった。</p>
-        <p class="mincho spawn">魔女伝説を調べる民俗学者の貴方はある日、森の中で少女に出会う。 ネクロマンスと名乗る奇妙な少女は尊大な態度で言い放つ──</p>
-        <div class="talk-style-layout spawn">
-          <Picture pictureClass="necromance_character_illustration_picture" imgClass="necromance_character_illustration" sizes="{$sync.standardWidth * 0.3}vw" {globalSettings} imageId="necromance_character_illustration" width="4299" height="6071" loadLazy={true}/>
-          <div>
-            <div class="spawn">
-              <p class="mincho em">「アンタ、魔女にキョーミあるんでしょ?</p>
-              <p class="mincho em">いいわ、アタシが連れてってあげる!」</p>
+      {#each Object.keys(textContent) as section}
+        <section class="{section} center use-wbr" id={section}>
+          <h2 class="copy spawn">{section.toUpperCase()}</h2>
+          {#if section.toLowerCase() == 'world'}
+            <Picture imgClass="world-img center" {globalSettings} imageId="necromance-scenery" loadLazy={true}/>
+          {/if}
+          {#each textContent[section] as content}
+            <p class="spawn" style={content.color ? 'color: ' + content.color : ''}>
+              {#each content.text.split(' ').map(v => v.replace(/\\/g, ' ')) as unit}
+                {unit}<wbr>
+              {/each}
+            </p>
+          {/each}
+        </section>
+      {/each}
+      <section class="character" id="character">
+        <h2 class="copy spawn">CHARACTERS</h2>
+        <div class="character_profile spawn">
+          <Picture imgClass="character_profile-img" pictureClass="character_profile-picture" {globalSettings} imageId="necromance_smile_alpha" loadLazy={true}/>
+          <div class="character_profile-text">
+            <div class="character_profile-text-name">
+              <h3>ネクロマンス</h3>
+              <span>NECROMANCE</span>
             </div>
-            <div class="spawn">
-              <p class="mincho">彼女の追う“魔女”とは?</p>
-              <p class="mincho">ネクロマンスに隠された過去とは?</p>
-              <p class="mincho">そして明らかになる、魔女伝説の全容とは──</p>
+            <div class="character_profile-text-description">
+              <p>胸元と頭のリボンがトレードマークの女の子。14歳くらいに見える。</p>
+              <p>尊大な態度とそれに不釣り合いな体躯で、学者の前に現れる。</p>
+              <p>とある魔女を恨み、復讐を誓っているらしいが——。</p>
             </div>
           </div>
+        </div>
+        <p class="center">さらに個性豊かなキャラクターが続々登場！</p>
+      </section>
+      <section class="system" id="system">
+        <h2 class="copy spawn">SYSTEM</h2>
+        <div class="system-container spawn">
+          <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system1" loadLazy={true}/>
+          <div class="system-text">敵弾をスレスレで避けて“れーぞく”！</div>
+        </div>
+        <div class="system-container spawn">
+          <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system2" loadLazy={true}/>
+          <div class="system-text">ド派手な魔法で敵を一掃！</div>
+        </div>
+        <div class="system-container spawn">
+          <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system3" loadLazy={true}/>
+          <div class="system-text">ステージの最後には凶悪な魔物が！</div>
         </div>
       </section>
     </article>
@@ -185,10 +225,16 @@
     -webkit-{prop} args
     -moz-{prop} args
 
+  @font-face {
+    font-family 'AkazukinPop'
+    src url(/font/AkazukinPOP.otf)
+  }
+
   main
     width 100%
     background-color #1a1629
     color white
+    font-size 1.2em
 
   .video-hero
     position relative
@@ -241,14 +287,25 @@
     padding 3em calc((100vw - var(--standardWidth)) / 2)
     overflow hidden
 
+  .use-wbr
+    word-break keep-all
+
+  .center
+    text-align center
+
   .spawn
     opacity 0
     transition all var(--transitionDuration) ease 0ms
 
-
   .pv
     .spawn
       transform scale(0.9) translateY(10%)
+
+  :global(.world-img)
+    width 70%
+
+  section + section
+    margin-top 12em
 
   .story
     .spawn
@@ -278,6 +335,54 @@
           margin-top 1em
         p
           margin 0
+
+  .character_profile
+    display flex
+    justify-content space-between
+    align-items flex-start
+
+  :global(.character_profile-picture)
+    flex 0 0 30%
+
+  :global(.character_profile-img)
+    width 100%
+    height auto
+
+  .character_profile-text
+    flex 0 0 65%
+    & h3
+      font-size 2em
+      margin 0.5em 0
+      color #f2b807
+
+  .system-container
+    display flex
+    flex-direction column
+
+  :global(.system-picture)
+    width 70%
+    .system-container:nth-child(even) &
+      align-self flex-start
+    .system-container:nth-child(odd) &
+      align-self flex-end
+
+  :global(.system-img)
+    width 100%
+
+  .system-text
+    font-family AkazukinPop
+    font-style normal
+    font-weight 800
+    font-size 10vw
+    color white
+    vendor(text-stroke, 2px #000)
+    text-shadow 2px 2px 0px #F2B807
+    transform-origin center
+    .system-container:nth-child(even) &
+      transform scale(0.3) rotate(6deg) translateY(calc((var(--standardWidth) * 0.7 / 16 * 9 * 2.5 + 10vw * 0.3) * -1))
+    .system-container:nth-child(odd) &
+      transform scale(0.3) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 2.5 + 10vw * 0.3) * -1))
+    white-space nowrap
 
   .background-transition
     height 18em
