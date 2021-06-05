@@ -40,7 +40,7 @@ export const settings = [
           ],
           buttons: [
             {
-              popup: 'ただいま準備中',
+              popup: '今すぐアクセス',
               title: '公式サイトに行く',
               target: '/necromance/',
               spaMode: true
