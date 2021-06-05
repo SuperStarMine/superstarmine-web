@@ -410,6 +410,7 @@
       margin 1em auto !important
       width auto !important
       padding 0.5em
+      font-family AkazukinPop
 
     .twitter-icon
       width auto
