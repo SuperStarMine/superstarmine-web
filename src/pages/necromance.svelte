@@ -18,7 +18,11 @@
       imageExtensionsShort: ['svg'],
       items: [
         {id: 'pv', label: 'PV'},
+        {id: 'world', label: '世界観'},
         {id: 'story', label: 'ストーリー'},
+        {id: 'characters', label: 'キャラクター'},
+        {id: 'system', label: 'システム'},
+        {id: 'twitter', label: '公式Twitter'},
         {id: 'info', label: '情報'}
       ]
     }
@@ -140,7 +144,7 @@
           {/each}
         </section>
       {/each}
-      <section class="character" id="character">
+      <section class="characters" id="characters">
         <h2 class="copy spawn">CHARACTERS</h2>
         <div class="character_profile spawn">
           <Picture imgClass="character_profile-img" pictureClass="character_profile-picture" {globalSettings} imageId="necromance_smile_alpha" loadLazy={true}/>
@@ -174,7 +178,7 @@
         </div>
       </section>
     </article>
-    <section class="twitter">
+    <section class="twitter" id="twitter">
       <Picture imgClass="twitter-bg-img center" {globalSettings} imageId="necromance-scenery" loadLazy={true}/>
       <div class="content">
         <h2 class="copy">公式Twitter</h2>
