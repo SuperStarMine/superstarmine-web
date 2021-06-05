@@ -1,8 +1,7 @@
 <script>
   import { link } from 'svelte-spa-router';
-  export let target, disabled = false, spaMode, marginLeft, marginRight, width = "45%", bg;
+  export let target, disabled = false, spaMode, marginLeft, marginRight, width = "45%", bg, style = "", Class;
   let isAnchor = RegExp("\/").test(target);
-  let style = "";
   if(!isAnchor){
     let event = new CustomEvent(target);
     target = function(){
@@ -10,11 +9,11 @@
     }
   }
   if(!marginLeft && !marginRight) {
-    style = "margin-left: 0;margin-right: 0;"
+    style = style + "margin-left: 0;margin-right: 0;"
   }else if(!marginRight) {
-    style = "margin-right: 0;"
+    style = style + "margin-right: 0;"
   }else if(!marginLeft) {
-    style = "margin-left: 0;"
+    style = style + "margin-left: 0;"
   }
   if(disabled){
     style = style + "--themeColor: #aaa;";
@@ -51,10 +50,10 @@ a, button
 
 {#if isAnchor}
   {#if spaMode && !disabled}
-    <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled} use:link><slot></slot></a>
+    <a href="{!disabled ? target : 'javascript:void(0);'}" class="{Class} {disabled ? 'disabled' : ''}" style="{style}" {disabled} use:link><slot></slot></a>
   {:else}
-    <a href="{!disabled ? target : 'javascript:void(0);'}" class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></a>
+    <a href="{!disabled ? target : 'javascript:void(0);'}" class="{Class} {disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></a>
   {/if}
 {:else}
-  <button on:click={!disabled ? target : 'javascript:void(0);'} class="{disabled ? 'disabled' : ''}" style="{style}" {disabled}><slot></slot></button>
+  <button on:click={!disabled ? target : 'javascript:void(0);'} class="{disabled ? 'disabled' : ''} {Class}" style="{style}" {disabled}><slot></slot></button>
 {/if}

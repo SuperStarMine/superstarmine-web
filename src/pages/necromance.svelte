@@ -1,5 +1,6 @@
 <script>
   import Nheader from "../components/nav-header.svelte";
+  import Button from "../components/button.svelte"
   import Footer from "../components/footer.svelte";
   import Picture from "../components/picture.svelte"
   import HLS from "hls.js";
@@ -174,6 +175,20 @@
         </div>
       </section>
     </article>
+    <section class="twitter">
+      <Picture imgClass="twitter-bg-img center" {globalSettings} imageId="necromance-scenery" loadLazy={true}/>
+      <div class="content">
+        <h2 class="copy">公式Twitter</h2>
+        <a class="twitter-timeline" data-width="300" data-height="600" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a>
+        {#if loadTwitterWidget}
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        {/if}
+        <Button Class="necromance-twitter-button" bg="#1da1f3" target="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton">
+          <img class="twitter-icon" src="{globalSettings.imageDirectory}twitter.svg" alt="Twitterのアイコン" width="2499" height="2032">
+          フォロー
+        </Button>
+      </div>
+    </section>
     <div class="background-transition"></div>
   </div>
   <section class="article-footer" id="info">
@@ -211,10 +226,6 @@
       </div>
     </div>
     <div class="spacer"></div>
-    <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a>
-    {#if loadTwitterWidget}
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    {/if}
   </section>
   <Footer contents={footerConfig}/>
 </main>
@@ -321,21 +332,6 @@
     >p+p
       margin-top 1em
 
-    .talk-style-layout
-      display flex
-      align-items center
-      justify-content space-around
-      :global(.necromance_character_illustration_picture)
-        flex 0 0 30%
-      :global(.necromance_character_illustration)
-        width 100%
-        height auto
-      div
-        div+div
-          margin-top 1em
-        p
-          margin 0
-
   .character_profile
     display flex
     justify-content space-between
@@ -384,6 +380,40 @@
       transform scale(0.3) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 2.5 + 10vw * 0.3) * -1))
     white-space nowrap
 
+  .twitter
+    position relative
+
+    .content
+      display flex
+      flex-direction column
+      position relative
+      padding calc((100% - var(--standardWidth) * 0.7) / 4) 0
+
+    :global(#twitter-widget-0)
+      width calc(var(--standardWidth) * 0.7) !important
+      margin 0 calc((100% - var(--standardWidth) * 0.7) / 2) !important
+      height 100vmin !important
+
+    :global(.twitter-bg-img)
+      width 100%
+      height 100%
+      object-fit cover
+      position absolute
+      filter blur(2px) brightness(0.7)
+      transform scale(1.01)
+      top 0
+
+    :global(.necromance-twitter-button)
+      display inline-block
+      margin 1em auto !important
+      width auto !important
+      padding 0.5em
+
+    .twitter-icon
+      width auto
+      height 1em
+      display inline-block
+
   .background-transition
     height 18em
     width 100%
@@ -424,10 +454,6 @@
       flex 0 0 5%
       @media (max-aspect-ratio: 3/4)
         height 2em
-    :global(#twitter-widget-0)
-      flex 1 1 100%
-      width 100% !important
-      height auto
 
 
   .serif
