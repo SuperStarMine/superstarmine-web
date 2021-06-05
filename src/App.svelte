@@ -7,14 +7,22 @@
   import NotFound from './pages/notfound.svelte';
 
   let loadAnalytics = location.hostname != 'localhost';
-  // let loadAnalytics = location.pathname == '/' ? false : true;
-  // addEventListener('pictureGroup_load', e => setTimeout(() => loadAnalytics = e.detail == 'slideHero'));
 
   const routes = {
     '/': Index,
     '/necromance/': Necromance,
     '*': NotFound
   };
+
+  function analyticsLoader() {
+    if(loadAnalytics){
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158103398-1',{ 'page_path': location.pathname + location.hash });
+    }
+  }
 
   $sync.standardWidth = null;
   const defautlStandardWidth = globalSettings.standardWidths[globalSettings.standardWidths.findIndex(v=> v.mediaQuery == 'default')].value;
@@ -39,14 +47,7 @@
   {#if loadAnalytics}
     <link rel="preconnect" href="https://www.google-analytics.com">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158103398-1"></script>
-    <script async>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-158103398-1');
-    </script>
   {/if}
 </svelte:head>
 
-<Router {routes} />
+<Router {routes} on:routeLoaded={analyticsLoader}/>
