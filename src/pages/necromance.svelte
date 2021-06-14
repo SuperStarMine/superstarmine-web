@@ -126,7 +126,7 @@
       <section class="pv" id="pv">
         <h2 class="copy spawn">PV</h2>
         <div class="youtube-embed spawn">
-          <Yframe contents={{}} {globalSettings} id='kQc84ApB2OM' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
+          <Yframe contents={{}} {globalSettings} id='foh7rj5YI_E' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
         </div>
       </section>
       {#each Object.keys(textContent) as section}
