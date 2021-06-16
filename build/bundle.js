@@ -50966,7 +50966,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (135:10) {#if section.toLowerCase() == 'world'}
+    // (136:10) {#if section.toLowerCase() == 'world'}
     function create_if_block_1(ctx) {
     	let picture;
     	let current;
@@ -51008,14 +51008,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(135:10) {#if section.toLowerCase() == 'world'}",
+    		source: "(136:10) {#if section.toLowerCase() == 'world'}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (140:14) {#each content.text.split(' ').map(v => v.replace(/\\/g, ' ')) as unit}
+    // (141:14) {#each content.text.split(' ').map(v => v.replace(/\\/g, ' ')) as unit}
     function create_each_block_5(ctx) {
     	let t_value = /*unit*/ ctx[20] + "";
     	let t;
@@ -51026,7 +51026,7 @@ var app = (function () {
     			t = text$1(t_value);
     			wbr = element("wbr");
     			attr_dev(wbr, "class", "svelte-xg79cg");
-    			add_location(wbr, file$2, 140, 22, 5348);
+    			add_location(wbr, file$2, 141, 22, 5368);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51043,14 +51043,14 @@ var app = (function () {
     		block,
     		id: create_each_block_5.name,
     		type: "each",
-    		source: "(140:14) {#each content.text.split(' ').map(v => v.replace(/\\\\/g, ' ')) as unit}",
+    		source: "(141:14) {#each content.text.split(' ').map(v => v.replace(/\\\\/g, ' ')) as unit}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (138:10) {#each textContent[section] as content}
+    // (139:10) {#each textContent[section] as content}
     function create_each_block_4(ctx) {
     	let p;
     	let each_value_5 = /*content*/ ctx[17].text.split(" ").map(func);
@@ -51075,7 +51075,7 @@ var app = (function () {
     			? "color: " + /*content*/ ctx[17].color
     			: "");
 
-    			add_location(p, file$2, 138, 12, 5167);
+    			add_location(p, file$2, 139, 12, 5187);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -51119,14 +51119,14 @@ var app = (function () {
     		block,
     		id: create_each_block_4.name,
     		type: "each",
-    		source: "(138:10) {#each textContent[section] as content}",
+    		source: "(139:10) {#each textContent[section] as content}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (132:6) {#each Object.keys(textContent) as section}
+    // (133:6) {#each Object.keys(textContent) as section}
     function create_each_block_3(ctx) {
     	let section;
     	let h2;
@@ -51159,10 +51159,10 @@ var app = (function () {
     			}
 
     			attr_dev(h2, "class", "copy spawn svelte-xg79cg");
-    			add_location(h2, file$2, 133, 10, 4875);
+    			add_location(h2, file$2, 134, 10, 4895);
     			attr_dev(section, "class", "" + (/*section*/ ctx[14] + " center use-wbr" + " svelte-xg79cg"));
     			attr_dev(section, "id", /*section*/ ctx[14]);
-    			add_location(section, file$2, 132, 8, 4809);
+    			add_location(section, file$2, 133, 8, 4829);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -51225,14 +51225,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3.name,
     		type: "each",
-    		source: "(132:6) {#each Object.keys(textContent) as section}",
+    		source: "(133:6) {#each Object.keys(textContent) as section}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (170:12) {#each ["敵弾を", "スレスレで", "避けて", "“れーぞく”！"] as chunk}
+    // (171:12) {#each ["敵弾を", "スレスレで", "避けて", "“れーぞく”！"] as chunk}
     function create_each_block_2(ctx) {
     	let t;
     	let wbr;
@@ -51242,7 +51242,7 @@ var app = (function () {
     			t = text$1(/*chunk*/ ctx[7]);
     			wbr = element("wbr");
     			attr_dev(wbr, "class", "onPortrait svelte-xg79cg");
-    			add_location(wbr, file$2, 170, 21, 6662);
+    			add_location(wbr, file$2, 171, 21, 6682);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51259,14 +51259,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(170:12) {#each [\\\"敵弾を\\\", \\\"スレスレで\\\", \\\"避けて\\\", \\\"“れーぞく”！\\\"] as chunk}",
+    		source: "(171:12) {#each [\\\"敵弾を\\\", \\\"スレスレで\\\", \\\"避けて\\\", \\\"“れーぞく”！\\\"] as chunk}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (178:12) {#each ["ド派手な", "魔法で", "敵を", "一掃！"] as chunk}
+    // (179:12) {#each ["ド派手な", "魔法で", "敵を", "一掃！"] as chunk}
     function create_each_block_1(ctx) {
     	let t;
     	let wbr;
@@ -51276,7 +51276,7 @@ var app = (function () {
     			t = text$1(/*chunk*/ ctx[7]);
     			wbr = element("wbr");
     			attr_dev(wbr, "class", "onPortrait svelte-xg79cg");
-    			add_location(wbr, file$2, 178, 21, 7042);
+    			add_location(wbr, file$2, 179, 21, 7062);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51293,14 +51293,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(178:12) {#each [\\\"ド派手な\\\", \\\"魔法で\\\", \\\"敵を\\\", \\\"一掃！\\\"] as chunk}",
+    		source: "(179:12) {#each [\\\"ド派手な\\\", \\\"魔法で\\\", \\\"敵を\\\", \\\"一掃！\\\"] as chunk}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (186:12) {#each ["ステージの", "最後には", "凶悪な", "魔物が！"] as chunk}
+    // (187:12) {#each ["ステージの", "最後には", "凶悪な", "魔物が！"] as chunk}
     function create_each_block(ctx) {
     	let t;
     	let wbr;
@@ -51310,7 +51310,7 @@ var app = (function () {
     			t = text$1(/*chunk*/ ctx[7]);
     			wbr = element("wbr");
     			attr_dev(wbr, "class", "onPortrait svelte-xg79cg");
-    			add_location(wbr, file$2, 186, 21, 7426);
+    			add_location(wbr, file$2, 187, 21, 7446);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51327,14 +51327,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(186:12) {#each [\\\"ステージの\\\", \\\"最後には\\\", \\\"凶悪な\\\", \\\"魔物が！\\\"] as chunk}",
+    		source: "(187:12) {#each [\\\"ステージの\\\", \\\"最後には\\\", \\\"凶悪な\\\", \\\"魔物が！\\\"] as chunk}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (198:8) {#if loadTwitterWidget}
+    // (199:8) {#if loadTwitterWidget}
     function create_if_block$1(ctx) {
     	let script;
     	let script_src_value;
@@ -51346,7 +51346,7 @@ var app = (function () {
     			if (script.src !== (script_src_value = "https://platform.twitter.com/widgets.js")) attr_dev(script, "src", script_src_value);
     			attr_dev(script, "charset", "utf-8");
     			attr_dev(script, "class", "svelte-xg79cg");
-    			add_location(script, file$2, 198, 10, 7988);
+    			add_location(script, file$2, 199, 10, 8008);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, script, anchor);
@@ -51360,14 +51360,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(198:8) {#if loadTwitterWidget}",
+    		source: "(199:8) {#if loadTwitterWidget}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (201:8) <Button Class="necromance-twitter-button" bg="#1da1f3" target="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton">
+    // (202:8) <Button Class="necromance-twitter-button" bg="#1da1f3" target="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton">
     function create_default_slot_2(ctx) {
     	let img;
     	let img_src_value;
@@ -51382,7 +51382,7 @@ var app = (function () {
     			attr_dev(img, "alt", "Twitterのアイコン");
     			attr_dev(img, "width", "2499");
     			attr_dev(img, "height", "2032");
-    			add_location(img, file$2, 201, 10, 8421);
+    			add_location(img, file$2, 202, 10, 8441);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -51399,14 +51399,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(201:8) <Button Class=\\\"necromance-twitter-button\\\" bg=\\\"#1da1f3\\\" target=\\\"https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton\\\">",
+    		source: "(202:8) <Button Class=\\\"necromance-twitter-button\\\" bg=\\\"#1da1f3\\\" target=\\\"https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (241:6) <Button Class="necromance-share-buttons" bg="#1da1f3" target="https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan">
+    // (242:6) <Button Class="necromance-share-buttons" bg="#1da1f3" target="https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan">
     function create_default_slot_1(ctx) {
     	let img;
     	let img_src_value;
@@ -51419,7 +51419,7 @@ var app = (function () {
     			attr_dev(img, "alt", "Twitterのアイコン");
     			attr_dev(img, "width", "2499");
     			attr_dev(img, "height", "2032");
-    			add_location(img, file$2, 241, 8, 10894);
+    			add_location(img, file$2, 242, 8, 10914);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -51434,14 +51434,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(241:6) <Button Class=\\\"necromance-share-buttons\\\" bg=\\\"#1da1f3\\\" target=\\\"https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan\\\">",
+    		source: "(242:6) <Button Class=\\\"necromance-share-buttons\\\" bg=\\\"#1da1f3\\\" target=\\\"https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (244:6) <Button Class="necromance-share-buttons" bg="#1877f2" target="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button">
+    // (245:6) <Button Class="necromance-share-buttons" bg="#1877f2" target="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button">
     function create_default_slot(ctx) {
     	let img;
     	let img_src_value;
@@ -51454,7 +51454,7 @@ var app = (function () {
     			attr_dev(img, "alt", "Facebookのアイコン");
     			attr_dev(img, "width", "971");
     			attr_dev(img, "height", "965");
-    			add_location(img, file$2, 244, 8, 11271);
+    			add_location(img, file$2, 245, 8, 11291);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -51469,7 +51469,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(244:6) <Button Class=\\\"necromance-share-buttons\\\" bg=\\\"#1877f2\\\" target=\\\"https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button\\\">",
+    		source: "(245:6) <Button Class=\\\"necromance-share-buttons\\\" bg=\\\"#1877f2\\\" target=\\\"https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button\\\">",
     		ctx
     	});
 
@@ -51936,135 +51936,135 @@ var app = (function () {
     			video.autoplay = true;
     			video.playsInline = true;
     			video.muted = true;
-    			add_location(video, file$2, 119, 4, 4130);
+    			add_location(video, file$2, 120, 4, 4150);
     			attr_dev(div0, "class", "filter-layer svelte-xg79cg");
-    			add_location(div0, file$2, 120, 4, 4195);
+    			add_location(div0, file$2, 121, 4, 4215);
     			attr_dev(div1, "class", "video-hero svelte-xg79cg");
-    			add_location(div1, file$2, 118, 2, 4101);
+    			add_location(div1, file$2, 119, 2, 4121);
     			attr_dev(h20, "class", "copy svelte-xg79cg");
-    			add_location(h20, file$2, 126, 8, 4488);
+    			add_location(h20, file$2, 127, 8, 4508);
     			attr_dev(div2, "class", "youtube-embed svelte-xg79cg");
-    			add_location(div2, file$2, 127, 8, 4521);
+    			add_location(div2, file$2, 128, 8, 4541);
     			attr_dev(section0, "class", "pv svelte-xg79cg");
     			attr_dev(section0, "id", "pv");
-    			add_location(section0, file$2, 125, 6, 4451);
+    			add_location(section0, file$2, 126, 6, 4471);
     			attr_dev(h21, "class", "copy spawn svelte-xg79cg");
-    			add_location(h21, file$2, 147, 8, 5503);
+    			add_location(h21, file$2, 148, 8, 5523);
     			attr_dev(h3, "class", "svelte-xg79cg");
-    			add_location(h3, file$2, 152, 14, 5864);
+    			add_location(h3, file$2, 153, 14, 5884);
     			attr_dev(span, "class", "svelte-xg79cg");
-    			add_location(span, file$2, 153, 14, 5894);
+    			add_location(span, file$2, 154, 14, 5914);
     			attr_dev(div3, "class", "character_profile-text-name svelte-xg79cg");
-    			add_location(div3, file$2, 151, 12, 5808);
+    			add_location(div3, file$2, 152, 12, 5828);
     			attr_dev(p0, "class", "svelte-xg79cg");
-    			add_location(p0, file$2, 156, 14, 6012);
+    			add_location(p0, file$2, 157, 14, 6032);
     			attr_dev(p1, "class", "svelte-xg79cg");
-    			add_location(p1, file$2, 157, 14, 6066);
+    			add_location(p1, file$2, 158, 14, 6086);
     			attr_dev(p2, "class", "svelte-xg79cg");
-    			add_location(p2, file$2, 158, 14, 6116);
+    			add_location(p2, file$2, 159, 14, 6136);
     			attr_dev(div4, "class", "character_profile-text-description svelte-xg79cg");
-    			add_location(div4, file$2, 155, 12, 5949);
+    			add_location(div4, file$2, 156, 12, 5969);
     			attr_dev(div5, "class", "character_profile-text svelte-xg79cg");
-    			add_location(div5, file$2, 150, 10, 5759);
+    			add_location(div5, file$2, 151, 10, 5779);
     			attr_dev(div6, "class", "character_profile spawn svelte-xg79cg");
-    			add_location(div6, file$2, 148, 8, 5550);
+    			add_location(div6, file$2, 149, 8, 5570);
     			attr_dev(p3, "class", "center svelte-xg79cg");
-    			add_location(p3, file$2, 162, 8, 6207);
+    			add_location(p3, file$2, 163, 8, 6227);
     			attr_dev(section1, "class", "characters svelte-xg79cg");
     			attr_dev(section1, "id", "characters");
-    			add_location(section1, file$2, 146, 6, 5450);
+    			add_location(section1, file$2, 147, 6, 5470);
     			attr_dev(h22, "class", "copy spawn svelte-xg79cg");
-    			add_location(h22, file$2, 165, 8, 6318);
+    			add_location(h22, file$2, 166, 8, 6338);
     			attr_dev(div7, "class", "system-text use-wbr svelte-xg79cg");
-    			add_location(div7, file$2, 168, 10, 6543);
+    			add_location(div7, file$2, 169, 10, 6563);
     			attr_dev(div8, "class", "system-container spawn svelte-xg79cg");
-    			add_location(div8, file$2, 166, 8, 6361);
+    			add_location(div8, file$2, 167, 8, 6381);
     			attr_dev(div9, "class", "system-text use-wbr svelte-xg79cg");
-    			add_location(div9, file$2, 176, 10, 6929);
+    			add_location(div9, file$2, 177, 10, 6949);
     			attr_dev(div10, "class", "system-container spawn svelte-xg79cg");
-    			add_location(div10, file$2, 174, 8, 6747);
+    			add_location(div10, file$2, 175, 8, 6767);
     			attr_dev(div11, "class", "system-text use-wbr svelte-xg79cg");
-    			add_location(div11, file$2, 184, 10, 7309);
+    			add_location(div11, file$2, 185, 10, 7329);
     			attr_dev(div12, "class", "system-container spawn svelte-xg79cg");
-    			add_location(div12, file$2, 182, 8, 7127);
+    			add_location(div12, file$2, 183, 8, 7147);
     			attr_dev(section2, "class", "system svelte-xg79cg");
     			attr_dev(section2, "id", "system");
-    			add_location(section2, file$2, 164, 6, 6273);
+    			add_location(section2, file$2, 165, 6, 6293);
     			attr_dev(article, "class", "svelte-xg79cg");
-    			add_location(article, file$2, 124, 4, 4435);
+    			add_location(article, file$2, 125, 4, 4455);
     			attr_dev(h23, "class", "copy svelte-xg79cg");
-    			add_location(h23, file$2, 195, 8, 7726);
+    			add_location(h23, file$2, 196, 8, 7746);
     			attr_dev(a0, "class", "twitter-timeline svelte-xg79cg");
     			attr_dev(a0, "data-width", "300");
     			attr_dev(a0, "data-height", "600");
     			attr_dev(a0, "data-theme", "dark");
     			attr_dev(a0, "href", "https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw");
-    			add_location(a0, file$2, 196, 8, 7766);
+    			add_location(a0, file$2, 197, 8, 7786);
     			attr_dev(div13, "class", "content svelte-xg79cg");
-    			add_location(div13, file$2, 194, 6, 7696);
+    			add_location(div13, file$2, 195, 6, 7716);
     			attr_dev(div14, "class", "background-transition svelte-xg79cg");
-    			add_location(div14, file$2, 205, 6, 8595);
+    			add_location(div14, file$2, 206, 6, 8615);
     			attr_dev(section3, "class", "twitter svelte-xg79cg");
     			attr_dev(section3, "id", "twitter");
-    			add_location(section3, file$2, 192, 4, 7539);
+    			add_location(section3, file$2, 193, 4, 7559);
     			attr_dev(div15, "class", "article-background svelte-xg79cg");
-    			add_location(div15, file$2, 123, 2, 4398);
+    			add_location(div15, file$2, 124, 2, 4418);
     			attr_dev(td0, "class", "svelte-xg79cg");
-    			add_location(td0, file$2, 213, 10, 8914);
+    			add_location(td0, file$2, 214, 10, 8934);
     			attr_dev(wbr0, "class", "svelte-xg79cg");
-    			add_location(wbr0, file$2, 215, 17, 8976);
+    			add_location(wbr0, file$2, 216, 17, 8996);
     			attr_dev(td1, "class", "use-wbr svelte-xg79cg");
-    			add_location(td1, file$2, 214, 10, 8938);
+    			add_location(td1, file$2, 215, 10, 8958);
     			attr_dev(tr0, "class", "svelte-xg79cg");
-    			add_location(tr0, file$2, 212, 8, 8899);
+    			add_location(tr0, file$2, 213, 8, 8919);
     			attr_dev(td2, "class", "svelte-xg79cg");
-    			add_location(td2, file$2, 219, 10, 9044);
+    			add_location(td2, file$2, 220, 10, 9064);
     			attr_dev(td3, "class", "svelte-xg79cg");
-    			add_location(td3, file$2, 220, 10, 9072);
+    			add_location(td3, file$2, 221, 10, 9092);
     			attr_dev(tr1, "class", "svelte-xg79cg");
-    			add_location(tr1, file$2, 218, 8, 9029);
+    			add_location(tr1, file$2, 219, 8, 9049);
     			attr_dev(td4, "class", "svelte-xg79cg");
-    			add_location(td4, file$2, 223, 10, 9132);
+    			add_location(td4, file$2, 224, 10, 9152);
     			attr_dev(wbr1, "class", "svelte-xg79cg");
-    			add_location(wbr1, file$2, 225, 16, 9193);
+    			add_location(wbr1, file$2, 226, 16, 9213);
     			attr_dev(wbr2, "class", "svelte-xg79cg");
-    			add_location(wbr2, file$2, 225, 24, 9201);
+    			add_location(wbr2, file$2, 226, 24, 9221);
     			attr_dev(td5, "class", "use-wbr svelte-xg79cg");
-    			add_location(td5, file$2, 224, 10, 9156);
+    			add_location(td5, file$2, 225, 10, 9176);
     			attr_dev(tr2, "class", "svelte-xg79cg");
-    			add_location(tr2, file$2, 222, 8, 9117);
+    			add_location(tr2, file$2, 223, 8, 9137);
     			attr_dev(td6, "class", "svelte-xg79cg");
-    			add_location(td6, file$2, 229, 10, 9267);
+    			add_location(td6, file$2, 230, 10, 9287);
     			attr_dev(td7, "class", "svelte-xg79cg");
-    			add_location(td7, file$2, 230, 10, 9292);
+    			add_location(td7, file$2, 231, 10, 9312);
     			attr_dev(tr3, "class", "svelte-xg79cg");
-    			add_location(tr3, file$2, 228, 8, 9252);
+    			add_location(tr3, file$2, 229, 8, 9272);
     			attr_dev(td8, "class", "svelte-xg79cg");
-    			add_location(td8, file$2, 233, 10, 9341);
+    			add_location(td8, file$2, 234, 10, 9361);
     			attr_dev(wbr3, "class", "svelte-xg79cg");
-    			add_location(wbr3, file$2, 235, 119, 9528);
+    			add_location(wbr3, file$2, 236, 119, 9548);
     			attr_dev(a1, "href", "javascript:location.assign(location.origin);");
     			set_style(a1, "color", "white");
     			set_style(a1, "text-decoration", "underline");
     			attr_dev(a1, "class", "svelte-xg79cg");
-    			add_location(a1, file$2, 235, 14, 9423);
+    			add_location(a1, file$2, 236, 14, 9443);
     			attr_dev(td9, "class", "svelte-xg79cg");
-    			add_location(td9, file$2, 235, 10, 9419);
+    			add_location(td9, file$2, 236, 10, 9439);
     			attr_dev(tr4, "class", "svelte-xg79cg");
-    			add_location(tr4, file$2, 232, 8, 9326);
+    			add_location(tr4, file$2, 233, 8, 9346);
     			attr_dev(table, "class", "specs svelte-xg79cg");
-    			add_location(table, file$2, 211, 6, 8869);
+    			add_location(table, file$2, 212, 6, 8889);
     			attr_dev(div16, "class", "info svelte-xg79cg");
-    			add_location(div16, file$2, 210, 4, 8844);
+    			add_location(div16, file$2, 211, 4, 8864);
     			attr_dev(section4, "class", "share svelte-xg79cg");
-    			add_location(section4, file$2, 239, 4, 9593);
+    			add_location(section4, file$2, 240, 4, 9613);
     			attr_dev(section5, "class", "article-footer svelte-xg79cg");
     			attr_dev(section5, "id", "info");
-    			add_location(section5, file$2, 208, 2, 8663);
+    			add_location(section5, file$2, 209, 2, 8683);
     			set_style(main, "--transitionDuration", globalSettings.transitionDuration + "ms");
     			set_style(main, "--standardWidth", /*$sync*/ ctx[1].standardWidth + "vw");
     			attr_dev(main, "class", "svelte-xg79cg");
-    			add_location(main, file$2, 117, 0, 3983);
+    			add_location(main, file$2, 118, 0, 4003);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -52479,6 +52479,7 @@ var app = (function () {
     	let loadTwitterWidget = false;
 
     	onMount(() => {
+    		scrollTo(0, 0);
     		const video = document.querySelector("video.hero");
 
     		if (HLS.isSupported()) {

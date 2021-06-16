@@ -74,6 +74,7 @@
 
   let loadTwitterWidget = false;
   onMount(() => {
+    scrollTo(0, 0);
     const video = document.querySelector("video.hero");
     if(HLS.isSupported()){
       hls.attachMedia(video);
