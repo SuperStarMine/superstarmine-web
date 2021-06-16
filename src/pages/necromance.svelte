@@ -124,8 +124,8 @@
   <div class="article-background">
     <article>
       <section class="pv" id="pv">
-        <h2 class="copy spawn">PV</h2>
-        <div class="youtube-embed spawn">
+        <h2 class="copy">PV</h2>
+        <div class="youtube-embed">
           <Yframe contents={{}} {globalSettings} id='foh7rj5YI_E' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
         </div>
       </section>
@@ -458,9 +458,7 @@
     background linear-gradient(#1a162900 0%, rgba(22,19,34,1) 80%, rgba(44,38,67,1) 100%)
 
   :root
-    --footerStandardWidthCoefficient 0.5
-    @media screen and (orientation: portrait)
-      --footerStandardWidthCoefficient 0.7
+    --footerStandardWidthCoefficient 0.7
 
   .article-footer
     display flex

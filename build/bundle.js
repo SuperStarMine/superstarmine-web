@@ -51025,8 +51025,8 @@ var app = (function () {
     		c: function create() {
     			t = text$1(t_value);
     			wbr = element("wbr");
-    			attr_dev(wbr, "class", "svelte-447t0i");
-    			add_location(wbr, file$2, 140, 22, 5360);
+    			attr_dev(wbr, "class", "svelte-xg79cg");
+    			add_location(wbr, file$2, 140, 22, 5348);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51069,13 +51069,13 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(p, "class", "spawn svelte-447t0i");
+    			attr_dev(p, "class", "spawn svelte-xg79cg");
 
     			attr_dev(p, "style", /*content*/ ctx[17].color
     			? "color: " + /*content*/ ctx[17].color
     			: "");
 
-    			add_location(p, file$2, 138, 12, 5179);
+    			add_location(p, file$2, 138, 12, 5167);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -51158,11 +51158,11 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(h2, "class", "copy spawn svelte-447t0i");
-    			add_location(h2, file$2, 133, 10, 4887);
-    			attr_dev(section, "class", "" + (/*section*/ ctx[14] + " center use-wbr" + " svelte-447t0i"));
+    			attr_dev(h2, "class", "copy spawn svelte-xg79cg");
+    			add_location(h2, file$2, 133, 10, 4875);
+    			attr_dev(section, "class", "" + (/*section*/ ctx[14] + " center use-wbr" + " svelte-xg79cg"));
     			attr_dev(section, "id", /*section*/ ctx[14]);
-    			add_location(section, file$2, 132, 8, 4821);
+    			add_location(section, file$2, 132, 8, 4809);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -51241,8 +51241,8 @@ var app = (function () {
     		c: function create() {
     			t = text$1(/*chunk*/ ctx[7]);
     			wbr = element("wbr");
-    			attr_dev(wbr, "class", "onPortrait svelte-447t0i");
-    			add_location(wbr, file$2, 170, 21, 6674);
+    			attr_dev(wbr, "class", "onPortrait svelte-xg79cg");
+    			add_location(wbr, file$2, 170, 21, 6662);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51275,8 +51275,8 @@ var app = (function () {
     		c: function create() {
     			t = text$1(/*chunk*/ ctx[7]);
     			wbr = element("wbr");
-    			attr_dev(wbr, "class", "onPortrait svelte-447t0i");
-    			add_location(wbr, file$2, 178, 21, 7054);
+    			attr_dev(wbr, "class", "onPortrait svelte-xg79cg");
+    			add_location(wbr, file$2, 178, 21, 7042);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51309,8 +51309,8 @@ var app = (function () {
     		c: function create() {
     			t = text$1(/*chunk*/ ctx[7]);
     			wbr = element("wbr");
-    			attr_dev(wbr, "class", "onPortrait svelte-447t0i");
-    			add_location(wbr, file$2, 186, 21, 7438);
+    			attr_dev(wbr, "class", "onPortrait svelte-xg79cg");
+    			add_location(wbr, file$2, 186, 21, 7426);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -51345,8 +51345,8 @@ var app = (function () {
     			script.async = true;
     			if (script.src !== (script_src_value = "https://platform.twitter.com/widgets.js")) attr_dev(script, "src", script_src_value);
     			attr_dev(script, "charset", "utf-8");
-    			attr_dev(script, "class", "svelte-447t0i");
-    			add_location(script, file$2, 198, 10, 8000);
+    			attr_dev(script, "class", "svelte-xg79cg");
+    			add_location(script, file$2, 198, 10, 7988);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, script, anchor);
@@ -51377,12 +51377,12 @@ var app = (function () {
     		c: function create() {
     			img = element("img");
     			t = text$1("\n          フォロー");
-    			attr_dev(img, "class", "twitter-icon svelte-447t0i");
+    			attr_dev(img, "class", "twitter-icon svelte-xg79cg");
     			if (img.src !== (img_src_value = "" + (globalSettings.imageDirectory + "twitter.svg"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Twitterのアイコン");
     			attr_dev(img, "width", "2499");
     			attr_dev(img, "height", "2032");
-    			add_location(img, file$2, 201, 10, 8433);
+    			add_location(img, file$2, 201, 10, 8421);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -51414,12 +51414,12 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			img = element("img");
-    			attr_dev(img, "class", "share-icon svelte-447t0i");
+    			attr_dev(img, "class", "share-icon svelte-xg79cg");
     			if (img.src !== (img_src_value = "" + (globalSettings.imageDirectory + "twitter.svg"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Twitterのアイコン");
     			attr_dev(img, "width", "2499");
     			attr_dev(img, "height", "2032");
-    			add_location(img, file$2, 241, 8, 10906);
+    			add_location(img, file$2, 241, 8, 10894);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -51449,12 +51449,12 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			img = element("img");
-    			attr_dev(img, "class", "share-icon svelte-447t0i");
+    			attr_dev(img, "class", "share-icon svelte-xg79cg");
     			if (img.src !== (img_src_value = "" + (globalSettings.imageDirectory + "facebook.svg"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Facebookのアイコン");
     			attr_dev(img, "width", "971");
     			attr_dev(img, "height", "965");
-    			add_location(img, file$2, 244, 8, 11283);
+    			add_location(img, file$2, 244, 8, 11271);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -51931,139 +51931,139 @@ var app = (function () {
     			create_component(button2.$$.fragment);
     			t65 = space();
     			create_component(footer.$$.fragment);
-    			attr_dev(video, "class", "hero svelte-447t0i");
+    			attr_dev(video, "class", "hero svelte-xg79cg");
     			video.loop = true;
     			video.autoplay = true;
     			video.playsInline = true;
     			video.muted = true;
     			add_location(video, file$2, 119, 4, 4130);
-    			attr_dev(div0, "class", "filter-layer svelte-447t0i");
+    			attr_dev(div0, "class", "filter-layer svelte-xg79cg");
     			add_location(div0, file$2, 120, 4, 4195);
-    			attr_dev(div1, "class", "video-hero svelte-447t0i");
+    			attr_dev(div1, "class", "video-hero svelte-xg79cg");
     			add_location(div1, file$2, 118, 2, 4101);
-    			attr_dev(h20, "class", "copy spawn svelte-447t0i");
+    			attr_dev(h20, "class", "copy svelte-xg79cg");
     			add_location(h20, file$2, 126, 8, 4488);
-    			attr_dev(div2, "class", "youtube-embed spawn svelte-447t0i");
-    			add_location(div2, file$2, 127, 8, 4527);
-    			attr_dev(section0, "class", "pv svelte-447t0i");
+    			attr_dev(div2, "class", "youtube-embed svelte-xg79cg");
+    			add_location(div2, file$2, 127, 8, 4521);
+    			attr_dev(section0, "class", "pv svelte-xg79cg");
     			attr_dev(section0, "id", "pv");
     			add_location(section0, file$2, 125, 6, 4451);
-    			attr_dev(h21, "class", "copy spawn svelte-447t0i");
-    			add_location(h21, file$2, 147, 8, 5515);
-    			attr_dev(h3, "class", "svelte-447t0i");
-    			add_location(h3, file$2, 152, 14, 5876);
-    			attr_dev(span, "class", "svelte-447t0i");
-    			add_location(span, file$2, 153, 14, 5906);
-    			attr_dev(div3, "class", "character_profile-text-name svelte-447t0i");
-    			add_location(div3, file$2, 151, 12, 5820);
-    			attr_dev(p0, "class", "svelte-447t0i");
-    			add_location(p0, file$2, 156, 14, 6024);
-    			attr_dev(p1, "class", "svelte-447t0i");
-    			add_location(p1, file$2, 157, 14, 6078);
-    			attr_dev(p2, "class", "svelte-447t0i");
-    			add_location(p2, file$2, 158, 14, 6128);
-    			attr_dev(div4, "class", "character_profile-text-description svelte-447t0i");
-    			add_location(div4, file$2, 155, 12, 5961);
-    			attr_dev(div5, "class", "character_profile-text svelte-447t0i");
-    			add_location(div5, file$2, 150, 10, 5771);
-    			attr_dev(div6, "class", "character_profile spawn svelte-447t0i");
-    			add_location(div6, file$2, 148, 8, 5562);
-    			attr_dev(p3, "class", "center svelte-447t0i");
-    			add_location(p3, file$2, 162, 8, 6219);
-    			attr_dev(section1, "class", "characters svelte-447t0i");
+    			attr_dev(h21, "class", "copy spawn svelte-xg79cg");
+    			add_location(h21, file$2, 147, 8, 5503);
+    			attr_dev(h3, "class", "svelte-xg79cg");
+    			add_location(h3, file$2, 152, 14, 5864);
+    			attr_dev(span, "class", "svelte-xg79cg");
+    			add_location(span, file$2, 153, 14, 5894);
+    			attr_dev(div3, "class", "character_profile-text-name svelte-xg79cg");
+    			add_location(div3, file$2, 151, 12, 5808);
+    			attr_dev(p0, "class", "svelte-xg79cg");
+    			add_location(p0, file$2, 156, 14, 6012);
+    			attr_dev(p1, "class", "svelte-xg79cg");
+    			add_location(p1, file$2, 157, 14, 6066);
+    			attr_dev(p2, "class", "svelte-xg79cg");
+    			add_location(p2, file$2, 158, 14, 6116);
+    			attr_dev(div4, "class", "character_profile-text-description svelte-xg79cg");
+    			add_location(div4, file$2, 155, 12, 5949);
+    			attr_dev(div5, "class", "character_profile-text svelte-xg79cg");
+    			add_location(div5, file$2, 150, 10, 5759);
+    			attr_dev(div6, "class", "character_profile spawn svelte-xg79cg");
+    			add_location(div6, file$2, 148, 8, 5550);
+    			attr_dev(p3, "class", "center svelte-xg79cg");
+    			add_location(p3, file$2, 162, 8, 6207);
+    			attr_dev(section1, "class", "characters svelte-xg79cg");
     			attr_dev(section1, "id", "characters");
-    			add_location(section1, file$2, 146, 6, 5462);
-    			attr_dev(h22, "class", "copy spawn svelte-447t0i");
-    			add_location(h22, file$2, 165, 8, 6330);
-    			attr_dev(div7, "class", "system-text use-wbr svelte-447t0i");
-    			add_location(div7, file$2, 168, 10, 6555);
-    			attr_dev(div8, "class", "system-container spawn svelte-447t0i");
-    			add_location(div8, file$2, 166, 8, 6373);
-    			attr_dev(div9, "class", "system-text use-wbr svelte-447t0i");
-    			add_location(div9, file$2, 176, 10, 6941);
-    			attr_dev(div10, "class", "system-container spawn svelte-447t0i");
-    			add_location(div10, file$2, 174, 8, 6759);
-    			attr_dev(div11, "class", "system-text use-wbr svelte-447t0i");
-    			add_location(div11, file$2, 184, 10, 7321);
-    			attr_dev(div12, "class", "system-container spawn svelte-447t0i");
-    			add_location(div12, file$2, 182, 8, 7139);
-    			attr_dev(section2, "class", "system svelte-447t0i");
+    			add_location(section1, file$2, 146, 6, 5450);
+    			attr_dev(h22, "class", "copy spawn svelte-xg79cg");
+    			add_location(h22, file$2, 165, 8, 6318);
+    			attr_dev(div7, "class", "system-text use-wbr svelte-xg79cg");
+    			add_location(div7, file$2, 168, 10, 6543);
+    			attr_dev(div8, "class", "system-container spawn svelte-xg79cg");
+    			add_location(div8, file$2, 166, 8, 6361);
+    			attr_dev(div9, "class", "system-text use-wbr svelte-xg79cg");
+    			add_location(div9, file$2, 176, 10, 6929);
+    			attr_dev(div10, "class", "system-container spawn svelte-xg79cg");
+    			add_location(div10, file$2, 174, 8, 6747);
+    			attr_dev(div11, "class", "system-text use-wbr svelte-xg79cg");
+    			add_location(div11, file$2, 184, 10, 7309);
+    			attr_dev(div12, "class", "system-container spawn svelte-xg79cg");
+    			add_location(div12, file$2, 182, 8, 7127);
+    			attr_dev(section2, "class", "system svelte-xg79cg");
     			attr_dev(section2, "id", "system");
-    			add_location(section2, file$2, 164, 6, 6285);
-    			attr_dev(article, "class", "svelte-447t0i");
+    			add_location(section2, file$2, 164, 6, 6273);
+    			attr_dev(article, "class", "svelte-xg79cg");
     			add_location(article, file$2, 124, 4, 4435);
-    			attr_dev(h23, "class", "copy svelte-447t0i");
-    			add_location(h23, file$2, 195, 8, 7738);
-    			attr_dev(a0, "class", "twitter-timeline svelte-447t0i");
+    			attr_dev(h23, "class", "copy svelte-xg79cg");
+    			add_location(h23, file$2, 195, 8, 7726);
+    			attr_dev(a0, "class", "twitter-timeline svelte-xg79cg");
     			attr_dev(a0, "data-width", "300");
     			attr_dev(a0, "data-height", "600");
     			attr_dev(a0, "data-theme", "dark");
     			attr_dev(a0, "href", "https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw");
-    			add_location(a0, file$2, 196, 8, 7778);
-    			attr_dev(div13, "class", "content svelte-447t0i");
-    			add_location(div13, file$2, 194, 6, 7708);
-    			attr_dev(div14, "class", "background-transition svelte-447t0i");
-    			add_location(div14, file$2, 205, 6, 8607);
-    			attr_dev(section3, "class", "twitter svelte-447t0i");
+    			add_location(a0, file$2, 196, 8, 7766);
+    			attr_dev(div13, "class", "content svelte-xg79cg");
+    			add_location(div13, file$2, 194, 6, 7696);
+    			attr_dev(div14, "class", "background-transition svelte-xg79cg");
+    			add_location(div14, file$2, 205, 6, 8595);
+    			attr_dev(section3, "class", "twitter svelte-xg79cg");
     			attr_dev(section3, "id", "twitter");
-    			add_location(section3, file$2, 192, 4, 7551);
-    			attr_dev(div15, "class", "article-background svelte-447t0i");
+    			add_location(section3, file$2, 192, 4, 7539);
+    			attr_dev(div15, "class", "article-background svelte-xg79cg");
     			add_location(div15, file$2, 123, 2, 4398);
-    			attr_dev(td0, "class", "svelte-447t0i");
-    			add_location(td0, file$2, 213, 10, 8926);
-    			attr_dev(wbr0, "class", "svelte-447t0i");
-    			add_location(wbr0, file$2, 215, 17, 8988);
-    			attr_dev(td1, "class", "use-wbr svelte-447t0i");
-    			add_location(td1, file$2, 214, 10, 8950);
-    			attr_dev(tr0, "class", "svelte-447t0i");
-    			add_location(tr0, file$2, 212, 8, 8911);
-    			attr_dev(td2, "class", "svelte-447t0i");
-    			add_location(td2, file$2, 219, 10, 9056);
-    			attr_dev(td3, "class", "svelte-447t0i");
-    			add_location(td3, file$2, 220, 10, 9084);
-    			attr_dev(tr1, "class", "svelte-447t0i");
-    			add_location(tr1, file$2, 218, 8, 9041);
-    			attr_dev(td4, "class", "svelte-447t0i");
-    			add_location(td4, file$2, 223, 10, 9144);
-    			attr_dev(wbr1, "class", "svelte-447t0i");
-    			add_location(wbr1, file$2, 225, 16, 9205);
-    			attr_dev(wbr2, "class", "svelte-447t0i");
-    			add_location(wbr2, file$2, 225, 24, 9213);
-    			attr_dev(td5, "class", "use-wbr svelte-447t0i");
-    			add_location(td5, file$2, 224, 10, 9168);
-    			attr_dev(tr2, "class", "svelte-447t0i");
-    			add_location(tr2, file$2, 222, 8, 9129);
-    			attr_dev(td6, "class", "svelte-447t0i");
-    			add_location(td6, file$2, 229, 10, 9279);
-    			attr_dev(td7, "class", "svelte-447t0i");
-    			add_location(td7, file$2, 230, 10, 9304);
-    			attr_dev(tr3, "class", "svelte-447t0i");
-    			add_location(tr3, file$2, 228, 8, 9264);
-    			attr_dev(td8, "class", "svelte-447t0i");
-    			add_location(td8, file$2, 233, 10, 9353);
-    			attr_dev(wbr3, "class", "svelte-447t0i");
-    			add_location(wbr3, file$2, 235, 119, 9540);
+    			attr_dev(td0, "class", "svelte-xg79cg");
+    			add_location(td0, file$2, 213, 10, 8914);
+    			attr_dev(wbr0, "class", "svelte-xg79cg");
+    			add_location(wbr0, file$2, 215, 17, 8976);
+    			attr_dev(td1, "class", "use-wbr svelte-xg79cg");
+    			add_location(td1, file$2, 214, 10, 8938);
+    			attr_dev(tr0, "class", "svelte-xg79cg");
+    			add_location(tr0, file$2, 212, 8, 8899);
+    			attr_dev(td2, "class", "svelte-xg79cg");
+    			add_location(td2, file$2, 219, 10, 9044);
+    			attr_dev(td3, "class", "svelte-xg79cg");
+    			add_location(td3, file$2, 220, 10, 9072);
+    			attr_dev(tr1, "class", "svelte-xg79cg");
+    			add_location(tr1, file$2, 218, 8, 9029);
+    			attr_dev(td4, "class", "svelte-xg79cg");
+    			add_location(td4, file$2, 223, 10, 9132);
+    			attr_dev(wbr1, "class", "svelte-xg79cg");
+    			add_location(wbr1, file$2, 225, 16, 9193);
+    			attr_dev(wbr2, "class", "svelte-xg79cg");
+    			add_location(wbr2, file$2, 225, 24, 9201);
+    			attr_dev(td5, "class", "use-wbr svelte-xg79cg");
+    			add_location(td5, file$2, 224, 10, 9156);
+    			attr_dev(tr2, "class", "svelte-xg79cg");
+    			add_location(tr2, file$2, 222, 8, 9117);
+    			attr_dev(td6, "class", "svelte-xg79cg");
+    			add_location(td6, file$2, 229, 10, 9267);
+    			attr_dev(td7, "class", "svelte-xg79cg");
+    			add_location(td7, file$2, 230, 10, 9292);
+    			attr_dev(tr3, "class", "svelte-xg79cg");
+    			add_location(tr3, file$2, 228, 8, 9252);
+    			attr_dev(td8, "class", "svelte-xg79cg");
+    			add_location(td8, file$2, 233, 10, 9341);
+    			attr_dev(wbr3, "class", "svelte-xg79cg");
+    			add_location(wbr3, file$2, 235, 119, 9528);
     			attr_dev(a1, "href", "javascript:location.assign(location.origin);");
     			set_style(a1, "color", "white");
     			set_style(a1, "text-decoration", "underline");
-    			attr_dev(a1, "class", "svelte-447t0i");
-    			add_location(a1, file$2, 235, 14, 9435);
-    			attr_dev(td9, "class", "svelte-447t0i");
-    			add_location(td9, file$2, 235, 10, 9431);
-    			attr_dev(tr4, "class", "svelte-447t0i");
-    			add_location(tr4, file$2, 232, 8, 9338);
-    			attr_dev(table, "class", "specs svelte-447t0i");
-    			add_location(table, file$2, 211, 6, 8881);
-    			attr_dev(div16, "class", "info svelte-447t0i");
-    			add_location(div16, file$2, 210, 4, 8856);
-    			attr_dev(section4, "class", "share svelte-447t0i");
-    			add_location(section4, file$2, 239, 4, 9605);
-    			attr_dev(section5, "class", "article-footer svelte-447t0i");
+    			attr_dev(a1, "class", "svelte-xg79cg");
+    			add_location(a1, file$2, 235, 14, 9423);
+    			attr_dev(td9, "class", "svelte-xg79cg");
+    			add_location(td9, file$2, 235, 10, 9419);
+    			attr_dev(tr4, "class", "svelte-xg79cg");
+    			add_location(tr4, file$2, 232, 8, 9326);
+    			attr_dev(table, "class", "specs svelte-xg79cg");
+    			add_location(table, file$2, 211, 6, 8869);
+    			attr_dev(div16, "class", "info svelte-xg79cg");
+    			add_location(div16, file$2, 210, 4, 8844);
+    			attr_dev(section4, "class", "share svelte-xg79cg");
+    			add_location(section4, file$2, 239, 4, 9593);
+    			attr_dev(section5, "class", "article-footer svelte-xg79cg");
     			attr_dev(section5, "id", "info");
-    			add_location(section5, file$2, 208, 2, 8675);
+    			add_location(section5, file$2, 208, 2, 8663);
     			set_style(main, "--transitionDuration", globalSettings.transitionDuration + "ms");
     			set_style(main, "--standardWidth", /*$sync*/ ctx[1].standardWidth + "vw");
-    			attr_dev(main, "class", "svelte-447t0i");
+    			attr_dev(main, "class", "svelte-xg79cg");
     			add_location(main, file$2, 117, 0, 3983);
     		},
     		l: function claim(nodes) {
