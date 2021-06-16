@@ -166,15 +166,27 @@
         <h2 class="copy spawn">SYSTEM</h2>
         <div class="system-container spawn">
           <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system1" loadLazy={true}/>
-          <div class="system-text">敵弾をスレスレで避けて“れーぞく”！</div>
+          <div class="system-text use-wbr">
+            {#each ["敵弾を", "スレスレで", "避けて", "“れーぞく”！"] as chunk}
+              {chunk}<wbr class="onPortrait">
+            {/each}
+          </div>
         </div>
         <div class="system-container spawn">
           <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system2" loadLazy={true}/>
-          <div class="system-text">ド派手な魔法で敵を一掃！</div>
+          <div class="system-text use-wbr">
+            {#each ["ド派手な", "魔法で", "敵を", "一掃！"] as chunk}
+              {chunk}<wbr class="onPortrait">
+            {/each}
+          </div>
         </div>
         <div class="system-container spawn">
           <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system3" loadLazy={true}/>
-          <div class="system-text">ステージの最後には凶悪な魔物が！</div>
+          <div class="system-text use-wbr">
+            {#each ["ステージの", "最後には", "凶悪な", "魔物が！"] as chunk}
+              {chunk}<wbr class="onPortrait">
+            {/each}
+          </div>
         </div>
       </section>
     </article>
@@ -341,14 +353,20 @@
 
   .character_profile
     display flex
+    @media screen and (orientation: portrait)
+      flex-direction column
     justify-content space-between
     align-items flex-start
 
   :global(.character_profile-picture)
-    flex 0 0 30%
+    @media screen and (orientation: landscape)
+      flex 0 0 30%
 
   :global(.character_profile-img)
     width 100%
+    @media screen and (orientation: portrait)
+      width 80%
+      margin 0 10%
     height auto
 
   .character_profile-text
@@ -380,12 +398,19 @@
     color white
     vendor(text-stroke, 2px #000)
     text-shadow 2px 2px 0px #F2B807
-    transform-origin center
-    .system-container:nth-child(even) &
-      transform scale(0.3) rotate(6deg) translateY(calc((var(--standardWidth) * 0.7 / 16 * 9 * 2.5 + 10vw * 0.3) * -1))
-    .system-container:nth-child(odd) &
-      transform scale(0.3) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 2.5 + 10vw * 0.3) * -1))
-    white-space nowrap
+    @media screen and (orientation: portrait)
+      vendor(text-stroke, 1.5px #000)
+      font-size 1.5em
+      margin 0.75em 0 1.5em
+      .system-container:nth-child(odd) &
+        text-align right
+    @media screen and (orientation: landscape)
+      transform-origin center
+      .system-container:nth-child(even) &
+        transform scale(0.3) rotate(6deg) translateY(calc((var(--standardWidth) * 0.7 / 16 * 9 * 2.5 + 10vw * 0.3) * -1))
+      .system-container:nth-child(odd) &
+        transform scale(0.3) rotate(-6deg) translateX(calc((var(--standardWidth) * 0.7 / 2 * 1.5) * -1)) translateY(calc((var(--standardWidth) * 0.7 /16 * 9 * 2.5 + 10vw * 0.3) * -1))
+      white-space nowrap
 
   .twitter
     position relative
@@ -399,6 +424,9 @@
     :global(#twitter-widget-0)
       width calc(var(--standardWidth) * var(--footerStandardWidthCoefficient)) !important
       margin 0 calc((100% - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 2) !important
+      @media screen and (orientation: portrait)
+        width var(--standardWidth) !important
+        margin 0 calc((100% - var(--standardWidth)) / 2) !important
       height 100vmin !important
 
     :global(.twitter-bg-img)
@@ -441,6 +469,8 @@
     box-sizing border-box
     overflow-x hidden
     padding calc(11px + 5em) calc((100vw - var(--standardWidth) * var(--footerStandardWidthCoefficient)) / 2)
+    @media screen and (orientation: portrait)
+      padding calc(11px + 5em) calc((100vw - var(--standardWidth)) / 2)
     background-color #2c2643
 
     :global(.footer-necromance_logo)
@@ -455,7 +485,14 @@
       .specs
         width 100%
         border-spacing 0.5em 1ch
+        @media screen and (orientation: portrait)
+          border-spacing 1ch 0
+          margin 1em 0
         td
+          @media screen and (orientation: portrait)
+            display block
+            text-align center
+            padding 0.5em
           &:first-child
             white-space nowrap
             text-align center
@@ -488,9 +525,15 @@
 
   .copy
     font-size 3em
+    @media screen and (orientation: portrait)
+      font-size 2em
     text-align center
     h3&
       font-size calc(3em * 40/48)
+
+  .onPortrait
+    @media screen and (orientation: landscape)
+      display none
 
   .em
     color #f2b807
