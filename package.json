@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "rollup -c;tools/cache-busting.sh",
-    "dev": "rollup -c -w",
-    "svelte-check": "svelte-check",
-    "start": "sirv ./ --single --host",
-    "lint": "eslint . --ext .js,.svelte"
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "format": "prettier --write --plugin-search-dir=. .",
+    "old:build": "rollup -c;tools/cache-busting.sh",
+    "old:dev": "rollup -c -w",
+    "old:svelte-check": "svelte-check",
+    "old:start": "sirv ./ --single --host",
+    "old:lint": "eslint . --ext .js,.svelte"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",

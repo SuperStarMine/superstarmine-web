@@ -1,8 +1,9 @@
 <script>
+  // @ts-nocheck
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade, Pagination } from 'swiper';
-  import { sync } from '../sync-store.js';
-  import Picture from "../components/picture.svelte";
+  import { sync } from '$lib/stores/sync.js';
+  import Picture from '../components/picture.svelte';
   export let contents, pairId, globalSettings, standardWidth;
 
   const transitionDuration = globalSettings.transitionDuration;
@@ -11,27 +12,45 @@
   SwiperCore.use([Controller, EffectFade, Pagination]);
 
   let controlledSwiper = null;
-  addEventListener('controllee_load', e => {
+  addEventListener('controllee_load', (e) => {
     setTimeout(() => {
       controlledSwiper = e.detail == pairId ? $sync.controlledSwiper : undefined;
     });
   });
 
-  const preloadWidth = contents.articles.map(u => {
-    return globalSettings.imageSizes.find(v => v > (document.body.getBoundingClientRect().width * (standardWidth / 100) * (devicePixelRatio || 1) / 16 * 9 / u.aspectRatio.height * u.aspectRatio.width)) || globalSettings.imageSizes.slice(-1)[0];
+  const preloadWidth = contents.articles.map((u) => {
+    return (
+      globalSettings.imageSizes.find(
+        (v) =>
+          v >
+          ((((document.body.getBoundingClientRect().width *
+            (standardWidth / 100) *
+            (devicePixelRatio || 1)) /
+            16) *
+            9) /
+            u.aspectRatio.height) *
+            u.aspectRatio.width
+      ) || globalSettings.imageSizes.slice(-1)[0]
+    );
   });
 </script>
 
 <svelte:head>
   {#each contents.articles as article, i}
-    <link rel="preload" href="/img/{article.imageId}@{preloadWidth[i]}w.webp" as="image">
+    <link rel="preload" href="/img/{article.imageId}@{preloadWidth[i]}w.webp" as="image" />
   {/each}
-  <link rel="preload" href="/swiper-bundle.min.css" as="style">
-  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
+  <link rel="preload" href="/swiper-bundle.min.css" as="style" />
+  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css" />
 </svelte:head>
 
 <div class="slide-hero" style="--themeColor:{themeColor}">
-  <img class="arrow left" src="/img/arrow.svg" alt="左のスライドへ" width='309.94' height='355.04'>
+  <img
+    class="arrow left"
+    src="/img/arrow.svg"
+    alt="左のスライドへ"
+    width="309.94"
+    height="355.04"
+  />
   <Swiper
     centeredSlides={true}
     spaceBetween={4}
@@ -43,12 +62,12 @@
     pagination={{
       clickable: true,
       bulletClass: 'swiper-pagination-bullet-custom',
-      bulletActiveClass: 'swiper-pagination-bullet-custom-active'
+      bulletActiveClass: 'swiper-pagination-bullet-custom-active',
     }}
-    on:swiper={e => {
+    on:swiper={(e) => {
       const [swiper] = e.detail;
-      window.addEventListener('pictureGroup_load', e => {
-        if(e.detail == 'slideHero'){
+      window.addEventListener('pictureGroup_load', (e) => {
+        if (e.detail == 'slideHero') {
           setTimeout(() => {
             swiper.loopDestroy();
             swiper.loopCreate();
@@ -58,7 +77,7 @@
         }
       });
     }}
-    on:realIndexChange={e => {
+    on:realIndexChange={(e) => {
       const [swiper] = e.detail[0];
       themeColor = contents.articles[swiper.realIndex].themeColor;
     }}
@@ -67,11 +86,30 @@
   >
     {#each contents.articles as article}
       <SwiperSlide>
-        <Picture imgClass="slide-img" sizes="{standardWidth / 16 * 9 / article.aspectRatio.height * article.aspectRatio.width}vw" {contents} {globalSettings} imageId={article.imageId} width={article.aspectRatio.width} height={article.aspectRatio.height} useTiny={true} loadLazy={false} groupId="slideHero" groupImagesCount={contents.articles.length * 2}/>
+        <Picture
+          imgClass="slide-img"
+          sizes="{(((standardWidth / 16) * 9) / article.aspectRatio.height) *
+            article.aspectRatio.width}vw"
+          {contents}
+          {globalSettings}
+          imageId={article.imageId}
+          width={article.aspectRatio.width}
+          height={article.aspectRatio.height}
+          useTiny={true}
+          loadLazy={false}
+          groupId="slideHero"
+          groupImagesCount={contents.articles.length * 2}
+        />
       </SwiperSlide>
     {/each}
   </Swiper>
-  <img class="arrow right" src="/img/arrow.svg" alt="右のスライドへ" width='309.94' height='355.04'>
+  <img
+    class="arrow right"
+    src="/img/arrow.svg"
+    alt="右のスライドへ"
+    width="309.94"
+    height="355.04"
+  />
 </div>
 
 <style lang="stylus">

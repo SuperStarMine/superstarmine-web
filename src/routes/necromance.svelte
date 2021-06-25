@@ -1,72 +1,104 @@
 <script>
-  import Nheader from "../components/nav-header.svelte";
-  import Button from "../components/button.svelte"
-  import Footer from "../components/footer.svelte";
-  import Picture from "../components/picture.svelte"
-  import HLS from "hls.js";
+  // @ts-nocheck
+  import Nheader from '$lib/components/nav-header.svelte';
+  import Button from '$lib/components/button.svelte';
+  import Footer from '$lib/components/footer.svelte';
+  import Picture from '$lib/components/picture.svelte';
+  import HLS from 'hls.js';
   import { onMount } from 'svelte';
-  import Yframe from "../components/youtube-iframe.svelte";
+  import Yframe from '$lib/components/youtube-iframe.svelte';
   import { globalSettings } from '../globalSettings.js';
-  import { sync } from '../sync-store.js';
+  import { sync } from '$lib/stores/sync.js';
 
   const headerConfig = {
-    sectionType: 'navHeader',
-    themeColor: '#fff',
-    contents: {
-      imageId: 'ssm-logo-landscape',
-      aspectRatio: { width: 157213, height: 60041 },
-      imageExtensionsShort: ['svg'],
-      items: [
-        {id: 'pv', label: 'PV'},
-        {id: 'world', label: '世界観'},
-        {id: 'story', label: 'ストーリー'},
-        {id: 'characters', label: 'キャラクター'},
-        {id: 'system', label: 'システム'},
-        {id: 'twitter', label: '公式Twitter'},
-        {id: 'info', label: '情報'}
-      ]
-    }
-  },
-  footerConfig = {
-    copyright: ['&copy; 2021', 'HIBIKI CUBE', 'スーパースターマイン'],
+      sectionType: 'navHeader',
+      themeColor: '#fff',
+      contents: {
+        imageId: 'ssm-logo-landscape',
+        aspectRatio: { width: 157213, height: 60041 },
+        imageExtensionsShort: ['svg'],
+        items: [
+          { id: 'pv', label: 'PV' },
+          { id: 'world', label: '世界観' },
+          { id: 'story', label: 'ストーリー' },
+          { id: 'characters', label: 'キャラクター' },
+          { id: 'system', label: 'システム' },
+          { id: 'twitter', label: '公式Twitter' },
+          { id: 'info', label: '情報' },
+        ],
+      },
+    },
+    footerConfig = {
+      copyright: ['&copy; 2021', 'HIBIKI CUBE', 'スーパースターマイン'],
       codeLicense: {
         license: 'mpl-2.0',
         linkLabel: 'GitHub',
         url: 'https://github.com/HIBIKI-CUBE/superstarmine-web',
       },
       assetsLicense: {
-        ccType: 'by-nd'
+        ccType: 'by-nd',
       },
       anchorColor: '#f2b807',
-      backgroundColor: '#2c2643'
-  },
-  textContent =  {
-    world: [
-      {text: '伝承の 時代から 幾星霜——'},
-      {text: '屈強な 木々が 生い茂る その 森には、 だれもが 怖じ恐れる 妖女が 棲む という 言伝がある。'},
-      {text: '彼の者は 人々に、 畏怖を 込めて こう呼ばれた—— \\“\\魔女\\”\\と。'}
-    ],
-    story: [
-      {text: '魔女伝説の 調査のため、 森を 訪れた 民俗学者 の男。 しかし 現れたのは、 『自称』 天才魔女 の女の子！？'},
-      {text: '「アンタ、 魔女に キョーミ あるんでしょ？ いいわ、 アタシが 連れてって あげる！」', color: '#f2b807'},
-      {text: '謎の少女と 学者は 魔女伝説の 全容を 明らかにするため、 魔物 うごめく 森の奥を 目指す——！。'}
-    ]
-  }
+      backgroundColor: '#2c2643',
+    },
+    textContent = {
+      world: [
+        { text: '伝承の 時代から 幾星霜——' },
+        {
+          text: '屈強な 木々が 生い茂る その 森には、 だれもが 怖じ恐れる 妖女が 棲む という 言伝がある。',
+        },
+        { text: '彼の者は 人々に、 畏怖を 込めて こう呼ばれた—— \\“\\魔女\\”\\と。' },
+      ],
+      story: [
+        {
+          text: '魔女伝説の 調査のため、 森を 訪れた 民俗学者 の男。 しかし 現れたのは、 『自称』 天才魔女 の女の子！？',
+        },
+        {
+          text: '「アンタ、 魔女に キョーミ あるんでしょ？ いいわ、 アタシが 連れてって あげる！」',
+          color: '#f2b807',
+        },
+        {
+          text: '謎の少女と 学者は 魔女伝説の 全容を 明らかにするため、 魔物 うごめく 森の奥を 目指す——！。',
+        },
+      ],
+    };
 
   addEventListener('load', () => {
-    (d => {
+    ((d) => {
       var config = {
-        kitId: 'egn6fhp',
-        scriptTimeout: 3000,
-        async: !0
-      },
-      h=d.documentElement,t=setTimeout(()=>{h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=!1,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=!0;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=!0;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document)
+          kitId: 'egn6fhp',
+          scriptTimeout: 3000,
+          async: !0,
+        },
+        h = d.documentElement,
+        t = setTimeout(() => {
+          h.className = h.className.replace(/\bwf-loading\b/g, '') + ' wf-inactive';
+        }, config.scriptTimeout),
+        tk = d.createElement('script'),
+        f = !1,
+        s = d.getElementsByTagName('script')[0],
+        a;
+      h.className += ' wf-loading';
+      tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+      tk.async = !0;
+      tk.onload = tk.onreadystatechange = function () {
+        a = this.readyState;
+        if (f || (a && a != 'complete' && a != 'loaded')) return;
+        f = !0;
+        clearTimeout(t);
+        try {
+          Typekit.load(config);
+        } catch (e) {}
+      };
+      s.parentNode.insertBefore(tk, s);
+    })(document);
   });
 
-  const videoSourceUrl = (location.hostname == 'localhost' ? '' : 'https://dev.superstarmine.ga') + '/video/necromance_hero.m3u8';
+  const videoSourceUrl =
+    (location.hostname == 'localhost' ? '' : 'https://dev.superstarmine.ga') +
+    '/video/necromance_hero.m3u8';
   const hls = new HLS({
-    "startFragPrefetch": true
+    startFragPrefetch: true,
   });
   if (HLS.isSupported()) {
     hls.loadSource(videoSourceUrl);
@@ -75,71 +107,103 @@
   let loadTwitterWidget = false;
   onMount(() => {
     scrollTo(0, 0);
-    const video = document.querySelector("video.hero");
-    if(HLS.isSupported()){
+    const video = document.querySelector('video.hero');
+    if (HLS.isSupported()) {
       hls.attachMedia(video);
       hls.on(HLS.Events.MEDIA_ATTACHED, () => {
         video.play();
       });
-    }else if(video.canPlayType('application/vnd.apple.mpegurl')) {
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = videoSourceUrl;
     }
     video.load();
-    video.addEventListener('loadedmetadata',() => video.play());
-    video.addEventListener('canplay',() => video.play());
+    video.addEventListener('loadedmetadata', () => video.play());
+    video.addEventListener('canplay', () => video.play());
 
-    const twitterObserver = new IntersectionObserver(e => {
-      if(e[0].isIntersecting && !loadTwitterWidget){
-        loadTwitterWidget = true;
-        twitterObserver.unobserve(document.querySelector('.twitter-timeline'));
+    const twitterObserver = new IntersectionObserver(
+      (e) => {
+        if (e[0].isIntersecting && !loadTwitterWidget) {
+          loadTwitterWidget = true;
+          twitterObserver.unobserve(document.querySelector('.twitter-timeline'));
+        }
+      },
+      {
+        rootMargin: '50%',
       }
-    },{
-      rootMargin: '50%'
-    });
+    );
     twitterObserver.observe(document.querySelector('.twitter-timeline'));
 
-    const scrollSpawner = new IntersectionObserver(e => {
-      e.forEach(v => {
-        if(v.isIntersecting){
-          v.target.classList.add('spawned');
-          scrollSpawner.unobserve(v.target);
-        }
-      })
-    },{
-      rootMargin: '-40% 0px'
-    });
-    document.querySelectorAll('.spawn').forEach(v => {
+    const scrollSpawner = new IntersectionObserver(
+      (e) => {
+        e.forEach((v) => {
+          if (v.isIntersecting) {
+            v.target.classList.add('spawned');
+            scrollSpawner.unobserve(v.target);
+          }
+        });
+      },
+      {
+        rootMargin: '-40% 0px',
+      }
+    );
+    document.querySelectorAll('.spawn').forEach((v) => {
       scrollSpawner.observe(v);
-    })
+    });
   });
 </script>
 
-<Nheader contents={headerConfig.contents} {globalSettings}/>
+<svelte:head>
+  <title>れーぞく！ネクロマンスちゃん - SUPER STARMINE</title>
+</svelte:head>
 
-<main style="--transitionDuration: {globalSettings.transitionDuration}ms;--standardWidth: {$sync.standardWidth}vw">
+<Nheader contents={headerConfig.contents} {globalSettings} />
+
+<main
+  style="--transitionDuration: {globalSettings.transitionDuration}ms;--standardWidth: {$sync.standardWidth}vw"
+>
   <div class="video-hero">
-    <video class="hero" loop autoplay playsinline muted></video>
-    <div class="filter-layer"></div>
-    <Picture imgClass="necromance_logo" sizes="{$sync.standardWidth}vw" {globalSettings} imageId="necromance_logo" width="1643" height="630" loadLazy={true}/>
+    <video class="hero" loop autoplay playsinline muted />
+    <div class="filter-layer" />
+    <Picture
+      imgClass="necromance_logo"
+      sizes="{$sync.standardWidth}vw"
+      {globalSettings}
+      imageId="necromance_logo"
+      width="1643"
+      height="630"
+      loadLazy={true}
+    />
   </div>
   <div class="article-background">
     <article>
       <section class="pv" id="pv">
         <h2 class="copy">PV</h2>
         <div class="youtube-embed">
-          <Yframe contents={{}} {globalSettings} id='foh7rj5YI_E' sizes='@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth * 0.975) / 2}vw'/>
+          <Yframe
+            contents={{}}
+            {globalSettings}
+            id="foh7rj5YI_E"
+            sizes="@media (orientation: portrait) {$sync.standardWidth}vw, {($sync.standardWidth *
+              0.975) /
+              2}vw"
+          />
         </div>
       </section>
       {#each Object.keys(textContent) as section}
         <section class="{section} center use-wbr" id={section}>
           <h2 class="copy spawn">{section.toUpperCase()}</h2>
           {#if section.toLowerCase() == 'world'}
-            <Picture imgClass="world-img center" {globalSettings} imageId="necromance-scenery" loadLazy={true}/>
+            <Picture
+              imgClass="world-img center"
+              {globalSettings}
+              imageId="necromance-scenery"
+              loadLazy={true}
+            />
           {/if}
           {#each textContent[section] as content}
             <p class="spawn" style={content.color ? 'color: ' + content.color : ''}>
-              {#each content.text.split(' ').map(v => v.replace(/\\/g, ' ')) as unit}
-                {unit}<wbr>
+              {#each content.text.split(' ').map((v) => v.replace(/\\/g, ' ')) as unit}
+                {unit}<wbr />
               {/each}
             </p>
           {/each}
@@ -148,7 +212,13 @@
       <section class="characters" id="characters">
         <h2 class="copy spawn">CHARACTERS</h2>
         <div class="character_profile spawn">
-          <Picture imgClass="character_profile-img" pictureClass="character_profile-picture" {globalSettings} imageId="necromance_smile_alpha" loadLazy={true}/>
+          <Picture
+            imgClass="character_profile-img"
+            pictureClass="character_profile-picture"
+            {globalSettings}
+            imageId="necromance_smile_alpha"
+            loadLazy={true}
+          />
           <div class="character_profile-text">
             <div class="character_profile-text-name">
               <h3>ネクロマンス</h3>
@@ -166,55 +236,102 @@
       <section class="system" id="system">
         <h2 class="copy spawn">SYSTEM</h2>
         <div class="system-container spawn">
-          <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system1" loadLazy={true}/>
+          <Picture
+            imgClass="system-img"
+            pictureClass="system-picture"
+            {globalSettings}
+            imageId="necromance-system1"
+            loadLazy={true}
+          />
           <div class="system-text use-wbr">
-            {#each ["敵弾を", "スレスレで", "避けて", "“れーぞく”！"] as chunk}
-              {chunk}<wbr class="onPortrait">
+            {#each ['敵弾を', 'スレスレで', '避けて', '“れーぞく”！'] as chunk}
+              {chunk}<wbr class="onPortrait" />
             {/each}
           </div>
         </div>
         <div class="system-container spawn">
-          <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system2" loadLazy={true}/>
+          <Picture
+            imgClass="system-img"
+            pictureClass="system-picture"
+            {globalSettings}
+            imageId="necromance-system2"
+            loadLazy={true}
+          />
           <div class="system-text use-wbr">
-            {#each ["ド派手な", "魔法で", "敵を", "一掃！"] as chunk}
-              {chunk}<wbr class="onPortrait">
+            {#each ['ド派手な', '魔法で', '敵を', '一掃！'] as chunk}
+              {chunk}<wbr class="onPortrait" />
             {/each}
           </div>
         </div>
         <div class="system-container spawn">
-          <Picture imgClass="system-img" pictureClass="system-picture" {globalSettings} imageId="necromance-system3" loadLazy={true}/>
+          <Picture
+            imgClass="system-img"
+            pictureClass="system-picture"
+            {globalSettings}
+            imageId="necromance-system3"
+            loadLazy={true}
+          />
           <div class="system-text use-wbr">
-            {#each ["ステージの", "最後には", "凶悪な", "魔物が！"] as chunk}
-              {chunk}<wbr class="onPortrait">
+            {#each ['ステージの', '最後には', '凶悪な', '魔物が！'] as chunk}
+              {chunk}<wbr class="onPortrait" />
             {/each}
           </div>
         </div>
       </section>
     </article>
     <section class="twitter" id="twitter">
-      <Picture imgClass="twitter-bg-img center" {globalSettings} imageId="necromance-scenery" loadLazy={true}/>
+      <Picture
+        imgClass="twitter-bg-img center"
+        {globalSettings}
+        imageId="necromance-scenery"
+        loadLazy={true}
+      />
       <div class="content">
         <h2 class="copy">公式Twitter</h2>
-        <a class="twitter-timeline" data-width="300" data-height="600" data-theme="dark" href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw">ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a>
+        <a
+          class="twitter-timeline"
+          data-width="300"
+          data-height="600"
+          data-theme="dark"
+          href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw"
+          >ゲーム『れーぞく！ネクロマンスちゃん』公式アカウントのツイート</a
+        >
         {#if loadTwitterWidget}
           <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         {/if}
-        <Button Class="necromance-twitter-button" bg="#1da1f3" target="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton">
-          <img class="twitter-icon" src="{globalSettings.imageDirectory}twitter.svg" alt="Twitterのアイコン" width="2499" height="2032">
+        <Button
+          Class="necromance-twitter-button"
+          bg="#1da1f3"
+          target="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonType%3DFollowButton%26query%3D%2540necromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&region=follow_link&screen_name=necromance_chan&tw_p=followbutton"
+        >
+          <img
+            class="twitter-icon"
+            src="{globalSettings.imageDirectory}twitter.svg"
+            alt="Twitterのアイコン"
+            width="2499"
+            height="2032"
+          />
           フォロー
         </Button>
       </div>
-      <div class="background-transition"></div>
+      <div class="background-transition" />
     </section>
   </div>
   <section class="article-footer" id="info">
-    <Picture imgClass="footer-necromance_logo" {globalSettings} imageId="necromance_logo" width="1643" height="630" loadLazy={true}/>
+    <Picture
+      imgClass="footer-necromance_logo"
+      {globalSettings}
+      imageId="necromance_logo"
+      width="1643"
+      height="630"
+      loadLazy={true}
+    />
     <div class="info">
       <table class="specs">
         <tr>
           <td>タイトル</td>
           <td class="use-wbr">
-            れーぞく！<wbr>ネクロマンスちゃん
+            れーぞく！<wbr />ネクロマンスちゃん
           </td>
         </tr>
         <tr>
@@ -224,7 +341,7 @@
         <tr>
           <td>ジャンル</td>
           <td class="use-wbr">
-            れーぞく<wbr>全方位<wbr>シューティング
+            れーぞく<wbr />全方位<wbr />シューティング
           </td>
         </tr>
         <tr>
@@ -234,20 +351,45 @@
         <tr>
           <td>制作</td>
           <!-- svelte-ignore a11y-invalid-attribute -->
-          <td><a href="javascript:location.assign(location.origin);" style="color:white;text-decoration:underline">スーパー<wbr>スターマイン</a></td>
+          <td
+            ><a
+              href="javascript:location.assign(location.origin);"
+              style="color:white;text-decoration:underline">スーパー<wbr />スターマイン</a
+            ></td
+          >
         </tr>
       </table>
     </div>
     <section class="share">
-      <Button Class="necromance-share-buttons" bg="#1da1f3" target="https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan">
-        <img class="share-icon" src="{globalSettings.imageDirectory}twitter.svg" alt="Twitterのアイコン" width="2499" height="2032">
+      <Button
+        Class="necromance-share-buttons"
+        bg="#1da1f3"
+        target="https://twitter.com/intent/tweet?hashtags=ぞくロマ%20%23れーぞくネクロマンスちゃん&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3D%25E3%2581%259E%25E3%2581%258F%25E3%2583%25AD%25E3%2583%259E%2520%2523%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%26buttonRecommendation%3Dnecromance_chan%26buttonText%3D%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25E5%2585%25A8%25E6%2596%25B9%25E4%25BD%258DSTG%25E3%2580%258E%25E3%2582%258C%25E3%2583%25BC%25E3%2581%259E%25E3%2581%258F%25EF%25BC%2581%25E3%2583%258D%25E3%2582%25AF%25E3%2583%25AD%25E3%2583%259E%25E3%2583%25B3%25E3%2582%25B9%25E3%2581%25A1%25E3%2582%2583%25E3%2582%2593%25E3%2580%258F%25E5%2585%25AC%25E5%25BC%258F%25E3%2582%25B5%25E3%2582%25A4%25E3%2583%2588%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fsuperstarmine.ga%252Fnecromance%252F%26buttonVia%3Dnecromance_chan%26widget%3DButton&ref_src=twsrc%5Etfw&related=necromance_chan&text=れーぞく全方位STG『れーぞく！ネクロマンスちゃん』公式サイト&tw_p=tweetbutton&url=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&via=necromance_chan"
+      >
+        <img
+          class="share-icon"
+          src="{globalSettings.imageDirectory}twitter.svg"
+          alt="Twitterのアイコン"
+          width="2499"
+          height="2032"
+        />
       </Button>
-      <Button Class="necromance-share-buttons" bg="#1877f2" target="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button">
-        <img class="share-icon" src="{globalSettings.imageDirectory}facebook.svg" alt="Facebookのアイコン" width="971" height="965">
+      <Button
+        Class="necromance-share-buttons"
+        bg="#1877f2"
+        target="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fsuperstarmine.ga%2Fnecromance%2F&display=popup&ref=plugin&src=share_button"
+      >
+        <img
+          class="share-icon"
+          src="{globalSettings.imageDirectory}facebook.svg"
+          alt="Facebookのアイコン"
+          width="971"
+          height="965"
+        />
       </Button>
     </section>
   </section>
-  <Footer contents={footerConfig}/>
+  <Footer contents={footerConfig} />
 </main>
 
 <style lang="stylus">

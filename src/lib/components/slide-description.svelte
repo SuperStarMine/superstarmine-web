@@ -1,48 +1,70 @@
 <script>
-  import Button from "../components/button.svelte";
-  import Yframe from "../components/youtube-iframe.svelte";
+  import Button from '../components/button.svelte';
+  import Yframe from '../components/youtube-iframe.svelte';
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import SwiperCore, { Controller, EffectFade } from 'swiper';
-  import { sync } from '../sync-store.js';
+  import { sync } from '$lib/stores/sync.js';
   import Color from 'color';
   export let pairId, globalSettings, contents, standardWidth;
   const transitionDuration = globalSettings.transitionDuration,
-        backgroundColor = contents.articles.map(v => Color(v.themeColor).lightness(95).desaturate(0.3).hex());
+    backgroundColor = contents.articles.map((v) =>
+      Color(v.themeColor).lightness(95).desaturate(0.3).hex()
+    );
 
   SwiperCore.use([Controller, EffectFade]);
 
-  const setControlledSwiper = e => {
-      const [swiper] = e.detail;
-      $sync.controlledSwiper = null
-      // set Controller swiper instance
-      window.addEventListener('pictureGroup_load', e => {
-        if(e.detail == 'slideHero'){
-          swiper.update();
-          $sync.controlledSwiper = swiper;
-          dispatchEvent(new CustomEvent('controllee_load', {detail: pairId}));
-        }
-      });
-  }
+  const setControlledSwiper = (e) => {
+    const [swiper] = e.detail;
+    $sync.controlledSwiper = null;
+    // set Controller swiper instance
+    window.addEventListener('pictureGroup_load', (e) => {
+      if (e.detail == 'slideHero') {
+        swiper.update();
+        $sync.controlledSwiper = swiper;
+        dispatchEvent(new CustomEvent('controllee_load', { detail: pairId }));
+      }
+    });
+  };
 
   //Adobe font loading
-  addEventListener('pictureGroup_load', e => {
-    if(e.detail == 'slideHero'){
-      (d => {
+  addEventListener('pictureGroup_load', (e) => {
+    if (e.detail == 'slideHero') {
+      ((d) => {
         var config = {
-          kitId: 'egn6fhp',
-          scriptTimeout: 3000,
-          async: !0
-        },
-        h=d.documentElement,t=setTimeout(()=>{h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=!1,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=!0;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=!0;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-      })(document)
+            kitId: 'egn6fhp',
+            scriptTimeout: 3000,
+            async: !0,
+          },
+          h = d.documentElement,
+          t = setTimeout(() => {
+            h.className = h.className.replace(/\bwf-loading\b/g, '') + ' wf-inactive';
+          }, config.scriptTimeout),
+          tk = d.createElement('script'),
+          f = !1,
+          s = d.getElementsByTagName('script')[0],
+          a;
+        h.className += ' wf-loading';
+        tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+        tk.async = !0;
+        tk.onload = tk.onreadystatechange = function () {
+          a = this.readyState;
+          if (f || (a && a != 'complete' && a != 'loaded')) return;
+          f = !0;
+          clearTimeout(t);
+          try {
+            Typekit.load(config);
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s);
+      })(document);
     }
   });
 </script>
 
 <svelte:head>
-  <link rel="preconnect" href="https://p.typekit.net/">
-  <link rel="preload" href="/swiper-bundle.min.css" as="style">
-  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css">
+  <link rel="preconnect" href="https://p.typekit.net/" />
+  <link rel="preload" href="/swiper-bundle.min.css" as="style" />
+  <link rel="stylesheet" type="text/css" href="/swiper-bundle.min.css" />
 </svelte:head>
 
 <Swiper
@@ -55,14 +77,18 @@
   speed={transitionDuration}
   loop={true}
   loopAdditionalSlides={contents.articles.length - 1}
-  effect='fade'
-  fadeEffect={{crossFade: true}}
+  effect="fade"
+  fadeEffect={{ crossFade: true }}
   on:swiper={setControlledSwiper}
   on:snapIndexChange={() => window.dispatchEvent(new CustomEvent('slide'))}
 >
   {#each contents.articles as article, i}
     <SwiperSlide>
-      <div class="slide-container" style="--backgroundColor: {backgroundColor[i]};--themeColor: {contents.articles[i].themeColor}">
+      <div
+        class="slide-container"
+        style="--backgroundColor: {backgroundColor[i]};--themeColor: {contents.articles[i]
+          .themeColor}"
+      >
         <div class="title-container">
           <div class="headline">
             <span class="subtitle">
@@ -72,7 +98,7 @@
                 {/each}
               {:else}
                 {article.subtitle}
-            {/if}
+              {/if}
             </span>
             <span class="title">
               {#if Array.isArray(article.title)}
@@ -89,7 +115,13 @@
               {#if button.popup}
                 <div class="popup {button.disabled ? 'disabled' : ''}">{button.popup}</div>
               {/if}
-              <Button target={button.target} bg="#0a6afa" width="auto" disabled={button.disabled} spaMode={button.spaMode}>
+              <Button
+                target={button.target}
+                bg="#0a6afa"
+                width="auto"
+                disabled={button.disabled}
+                spaMode={button.spaMode}
+              >
                 {#if Array.isArray(button.title)}
                   {#each button.title as title}
                     <span class="break-scope">{title}</span>
@@ -115,8 +147,15 @@
               >
                 {#each article.slides as slide}
                   <SwiperSlide>
-                    {#if slide.type == "youtube"}
-                      <Yframe {contents} {globalSettings} id={slide.id} sizes='@media (orientation: portrait) {standardWidth}vw, {(standardWidth * 0.975) / 2}vw'/>
+                    {#if slide.type == 'youtube'}
+                      <Yframe
+                        {contents}
+                        {globalSettings}
+                        id={slide.id}
+                        sizes="@media (orientation: portrait) {standardWidth}vw, {(standardWidth *
+                          0.975) /
+                          2}vw"
+                      />
                     {/if}
                   </SwiperSlide>
                 {/each}
@@ -140,7 +179,12 @@
                     <span class="tag">制作時期</span>
                     {#each article.specs.times as time, i}
                       <!-- svelte-ignore component-name-lowercase -->
-                      <time class="break-scope" datetime="{(time.year ? ("0000"+time.year).slice(-4) : "") + (time.month ? "-" + ("00"+time.month).slice(-2) : "") + (time.day ? "-" + ("00"+time.day).slice(-2) : "")}">
+                      <time
+                        class="break-scope"
+                        datetime={(time.year ? ('0000' + time.year).slice(-4) : '') +
+                          (time.month ? '-' + ('00' + time.month).slice(-2) : '') +
+                          (time.day ? '-' + ('00' + time.day).slice(-2) : '')}
+                      >
                         {#if time.year}
                           {time.year}年{!(time.month || time.day) ? time.annotation : ''}
                         {/if}
@@ -151,7 +195,7 @@
                           {time.day}日{time.annotation}
                         {/if}
                       </time>
-                      {i+1 != article.specs.times.length ? ', ' : ''}
+                      {i + 1 != article.specs.times.length ? ', ' : ''}
                     {/each}
                   </div>
                 {/if}
@@ -160,7 +204,11 @@
                     <span class="tag">対応プラットフォーム</span>
                     {#each article.specs.platforms as platform, i}
                       <span class="break-scope">
-                        {platform.name} {platform.version || ""}{platform.orLater ? "以降" : ""}{i+1 != article.specs.platforms.length ? ',' : ''}
+                        {platform.name}
+                        {platform.version || ''}{platform.orLater ? '以降' : ''}{i + 1 !=
+                        article.specs.platforms.length
+                          ? ','
+                          : ''}
                       </span>
                     {/each}
                   </div>
@@ -174,7 +222,13 @@
             {#if button.popup}
               <div class="popup {button.disabled ? 'disabled' : ''}">{button.popup}</div>
             {/if}
-            <Button target={button.target} bg="#0a6afa" width="calc(var(--standardWidth) * 0.45)" disabled={button.disabled} spaMode={button.spaMode}>
+            <Button
+              target={button.target}
+              bg="#0a6afa"
+              width="calc(var(--standardWidth) * 0.45)"
+              disabled={button.disabled}
+              spaMode={button.spaMode}
+            >
               {#if Array.isArray(button.title)}
                 {#each button.title as title}
                   <span class="break-scope">{title}</span>
