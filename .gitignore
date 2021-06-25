@@ -110,3 +110,4 @@ public
 # SvelteKit file
 /.svelte-kit
 /package
+build/
