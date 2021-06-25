@@ -1,0 +1,9 @@
+{
+  "stylelint.customSyntax": "stylelint-plugin-stylus/custom-syntax",
+  "stylelint.validate": [
+    "stylus"
+  ],
+  "eslint.validate": [
+    "svelte"
+  ],
+}
