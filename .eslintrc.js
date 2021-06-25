@@ -10,7 +10,8 @@ module.exports = {
     node: true
   },
   extends: [
-    'eslint:recommended'
+    'eslint:recommended',
+    'prettier'
   ],
   plugins: [
     'svelte3'
