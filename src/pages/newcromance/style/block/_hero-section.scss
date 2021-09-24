@@ -1,0 +1,166 @@
+@use "../break";
+
+/*
+  ヒーローセクション
+*/
+
+@mixin pos_left($width, $top, $left) {
+  width: $width;
+  top: $top;
+  left: $left;
+}
+
+@mixin pos_right($width, $top, $right) {
+  width: $width;
+  top: $top;
+  right: $right;
+}
+
+.hero-section {
+  width: 100%;
+  height: 720px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../img/HERO_BG.png");
+  background-size: cover;
+  background-position: center center;
+  z-index: -3;
+  position: relative;
+  padding: 0;
+
+  @include break.tab {
+    height: 600px;
+  }
+
+  @include break.sm {
+    height: 500px;
+  }
+
+  &__elements {
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    @include break.tab {
+      max-width: 600px;
+    }
+    @include break.sm {
+      max-width: 320px;
+    }
+  }
+
+  &__shape-divider {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+
+  %anime01 {
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  %anime02 {
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-delay: 1s;
+    animation-fill-mode: both;
+  }
+
+  %anime03 {
+    animation-name: bounceIn;
+    animation-timing-function: cubic-bezier(0.91, 1.79, 0.01, 1.13);
+    animation-duration: 300ms;
+    animation-delay: 1.5s;
+    animation-fill-mode: both;
+  }
+
+  &__logo {
+    position: absolute;
+    height: auto;
+    @extend %anime03;
+    @include break.pc {
+      @include pos_left(680px, 329px, 300px);
+    }
+    @include break.tab {
+      @include pos_left(580px, 284px, 10px);
+    }
+    @include break.sm {
+      @include pos_left(300px, 280px, 10px);
+    }
+  }
+  &__necromance {
+    position: absolute;
+    z-index: -1;
+    @extend %anime02;
+    @include break.pc {
+      @include pos_left(503px, 30px, 388px);
+    }
+    @include break.tab {
+      @include pos_left(413px, 34px, 93px);
+    }
+    @include break.sm {
+      @include pos_left(320px, 61px, 0px);
+    }
+  }
+  &__enemy01 {
+    position: absolute;
+    z-index: -2;
+    @extend %anime01;
+    @include break.pc {
+      @include pos_left(209px, 132px, 158px);
+    }
+    @include break.tab {
+      @include pos_left(131px, 63px, 42px);
+    }
+    @include break.sm {
+      @include pos_left(55px, 112px, 20px);
+    }
+  }
+  &__enemy02 {
+    position: absolute;
+    z-index: -2;
+    @extend %anime01;
+    @include break.pc {
+      @include pos_right(201px, 105px, 345px);
+    }
+    @include break.tab {
+      @include pos_right(109px, 47px, 105px);
+    }
+    @include break.sm {
+      @include pos_right(71px, 84px, 42px);
+    }
+  }
+  &__enemy03 {
+    position: absolute;
+    z-index: -2;
+    @extend %anime01;
+    @include break.pc {
+      @include pos_right(267px, 317px, 38px);
+    }
+    @include break.tab {
+      @include pos_right(159px, 163px, 15px);
+    }
+    @include break.sm {
+      @include pos_right(85px, 178px, 10px);
+    }
+  }
+  &__enemy04 {
+    position: absolute;
+    z-index: -2;
+    @extend %anime01;
+    @include break.pc {
+      @include pos_left(108px, 349px, 123px);
+    }
+    @include break.tab {
+      @include pos_left(108px, 207px, 19px);
+    }
+    @include break.sm {
+      @include pos_left(44px, 178px, 10px);
+    }
+  }
+}
