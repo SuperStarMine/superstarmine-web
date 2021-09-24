@@ -1,0 +1,121 @@
+@use "break";
+
+/*
+  typography
+*/
+
+// 背景付きテキスト
+.filled-sentence {
+  &--english {
+    p {
+      letter-spacing: 0 !important;
+    }
+  }
+
+  p {
+    font-size: 1.125em;
+    line-height: 200%;
+    font-weight: bold;
+    font-feature-settings: "palt";
+    letter-spacing: 2px;
+    padding: 0 5px;
+    display: table;
+
+    &[data-align="left"] {
+      margin-right: auto !important;
+    }
+
+    &[data-align="right"] {
+      margin-left: auto !important;
+    }
+
+    &[data-align="center"] {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    &[data-slidein="left"] {
+      animation-name: slideInLeft;
+      animation-duration: 0.6s;
+      animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &[data-slidein="right"] {
+      animation-name: slideInRight;
+      animation-duration: 0.6s;
+      animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    span {
+      color: #111;
+      display: inline-block;
+      position: relative;
+      // thanks: https://ponsyon.com/archives/4623
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -5px;
+        top: 0;
+        right: -5px;
+        background-color: #ffffff;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+// 帽子をかぶったヘッダー
+.heading {
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  margin: 29px 0 2.5em 0;
+  overflow: visible;
+  z-index: 1;
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  h2 {
+    font-family: "buena-park-jf", serif;
+    text-transform: uppercase;
+    font-size: 3em;
+    line-height: 1em;
+    letter-spacing: 1px;
+    z-index: 3;
+    @include break.sm {
+      font-size: 9vw;
+    }
+  }
+  span {
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+
+  &::after {
+    z-index: -1;
+    position: absolute;
+    width: 91.5px;
+    height: 58px;
+    top: -29px;
+    right: -30px;
+    display: block;
+    content: "";
+    background-color: #1e1054;
+    -webkit-mask: url("../img/necromance_heading_hat.svg");
+    mask: url("../img/necromance_heading_hat.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    user-select: none;
+  }
+}
