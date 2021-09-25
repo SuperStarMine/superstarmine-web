@@ -5,7 +5,7 @@
     "build": "run-s build:necro build:svelte",
     "build:svelte": "rollup -c;tools/cache-busting.sh",
     "build:necro": "sass src/pages/newcromance/style/main.scss:src/pages/newcromance/style/style.css --style compressed",
-    "dev": "run-s dev:necro dev:svelte",
+    "dev": "run-p dev:necro dev:svelte",
     "dev:svelte": "rollup -c -w",
     "dev:necro": "sass --watch src/pages/newcromance/style/main.scss:src/pages/newcromance/style/style.css",
     "svelte-check": "svelte-check",
