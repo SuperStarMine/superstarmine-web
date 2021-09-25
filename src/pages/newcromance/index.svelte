@@ -216,14 +216,21 @@
       </p>
     </div>
   </section>
-  <!--<section class="section system-section">
-        <div class="content">
-          <div class="heading">
-            <h2>SYSTEM</h2>
-            <span>ゲームシステム</span>
-          </div>
-        </div>
-      </section>-->
+  <section class="section system-section">
+    <div class="content">
+      <div class="heading">
+        <h2>SYSTEM</h2>
+        <span>ゲームシステム</span>
+      </div>
+      <br />
+      <img src="/src/pages/newcromance/img/system_01.png" width="500px" />
+      <p class="system-section__text">敵弾をスレスレで避けて“れーぞく”！</p>
+      <img src="/src/pages/newcromance/img/system_02.png" width="500px" />
+      <p class="system-section__text">スキルを発動してステージを攻略しよう！</p>
+      <img src="/src/pages/newcromance/img/system_03.png" width="500px" />
+      <p class="system-section__text">ステージの最後には凶悪な魔物が！</p>
+    </div>
+  </section>
   <section class="section discord-section">
     <div class="content">
       <div class="heading">
@@ -251,14 +258,30 @@
       </a>
     </div>
   </section>
-  <!--<section class="section twitter-section">
-        <div class="content">
-          <div class="heading">
-            <h2>TWITTER</h2>
-            <span>ツイッター</span>
-          </div>
-        </div>
-      </section>-->
+  <section class="section twitter-section">
+    <div class="content">
+      <p class="twitter-section__followText">Twitterもフォローしてね！</p>
+      <a
+        class="twitter-timeline"
+        data-width="400"
+        data-height="400"
+        data-chrome="noheader nofooter noborders"
+        href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw"
+        >Tweets by necromance_chan</a
+      ><br />
+      <a
+        class="button button--twitter"
+        style="margin-top: 60px;"
+        href="https://twitter.com/necromance_chan"
+      >
+        Twitter をフォローする
+      </a>
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"></script>
+    </div>
+  </section>
 </main>
 <div class="share-section">
   <div class="share-section__dialogue">
