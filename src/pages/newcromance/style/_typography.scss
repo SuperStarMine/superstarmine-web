@@ -35,15 +35,23 @@
     }
 
     &[data-slidein="left"] {
-      animation-name: slideInLeft;
-      animation-duration: 0.6s;
-      animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      &.animation {
+        animation-name: slideInLeft;
+        animation-duration: 0.6s;
+        animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+        animation-fill-mode: both;
+      }
     }
 
     &[data-slidein="right"] {
-      animation-name: slideInRight;
-      animation-duration: 0.6s;
-      animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+      &.animation {
+        animation-name: slideInRight;
+        animation-duration: 0.6s;
+        animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+        animation-fill-mode: both;
+      }
     }
 
     span {
