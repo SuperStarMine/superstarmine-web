@@ -1,8 +1,8 @@
 <script>
   import Lines from "../../components/lines.svelte";
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
   let mounted = false;
-  onMount(() => mounted = true);
+  onMount(() => (mounted = true));
 </script>
 
 <svelte:head>
@@ -21,8 +21,7 @@
   <script
     async
     src="https://platform.twitter.com/widgets.js"
-    charset="utf-8"
-  ></script>
+    charset="utf-8"></script>
 </svelte:head>
 <nav class="nav">
   <div class="nav__left">
@@ -40,31 +39,74 @@
   </div>
 </nav>
 <section class="section hero-section">
-  <div class="hero-section__elements">
-    <img
-      class="hero-section__logo"
-      src="/src/pages/newcromance/img/ぞくロマロゴ_Ver3.png"
-    />
-    <img
-      class="hero-section__necromance"
-      src="/src/pages/newcromance/img/necromance.png"
-    />
-    <img
-      class="hero-section__enemy01"
-      src="/src/pages/newcromance/img/enemy01.png"
-    />
-    <img
-      class="hero-section__enemy02"
-      src="/src/pages/newcromance/img/enemy02.png"
-    />
-    <img
-      class="hero-section__enemy03"
-      src="/src/pages/newcromance/img/enemy03.png"
-    />
-    <img
-      class="hero-section__enemy04"
-      src="/src/pages/newcromance/img/enemy04.png"
-    />
+  <div class="hero-section__elements-wrapper">
+    <div class="hero-section__elements">
+      <img
+        class="hero-section__layer01"
+        src="/src/pages/newcromance/img/keyvisual/01.png"
+        alt="キービジュアル01"
+      />
+      <img
+        class="hero-section__layer02"
+        src="/src/pages/newcromance/img/keyvisual/02.png"
+        alt="キービジュアル02"
+      />
+      <img
+        class="hero-section__layer03"
+        src="/src/pages/newcromance/img/keyvisual/03.png"
+        alt="キービジュアル03"
+      />
+      <img
+        class="hero-section__layer04"
+        src="/src/pages/newcromance/img/keyvisual/04.png"
+        alt="キービジュアル04"
+      />
+      <img
+        class="hero-section__layer05"
+        src="/src/pages/newcromance/img/keyvisual/05.png"
+        alt="キービジュアル05"
+      />
+      <img
+        class="hero-section__layer06"
+        src="/src/pages/newcromance/img/keyvisual/06.png"
+        alt="キービジュアル06"
+      />
+      <img
+        class="hero-section__layer07"
+        src="/src/pages/newcromance/img/keyvisual/07.png"
+        alt="キービジュアル07"
+      />
+      <img
+        class="hero-section__layer08"
+        src="/src/pages/newcromance/img/keyvisual/08.png"
+        alt="キービジュアル08"
+      />
+      <img
+        class="hero-section__layer09"
+        src="/src/pages/newcromance/img/keyvisual/09.png"
+        alt="キービジュアル09"
+      />
+      <img
+        class="hero-section__layer10"
+        src="/src/pages/newcromance/img/keyvisual/10.png"
+        alt="キービジュアル10"
+      />
+      <img
+        class="hero-section__layer11"
+        src="/src/pages/newcromance/img/keyvisual/11.png"
+        alt="キービジュアル11"
+      />
+      <img
+        class="hero-section__layer12"
+        src="/src/pages/newcromance/img/keyvisual/12.png"
+        alt="キービジュアル12"
+      />
+      <img
+        class="hero-section__logo"
+        src="/src/pages/newcromance/img/ぞくロマロゴ_Ver3.png"
+        alt="ロゴ"
+      />
+    </div>
   </div>
   <div class="hero-section__shape-divider">
     <svg
@@ -106,23 +148,25 @@
       <ul class="news-section__list">
         <li class="news-item">
           <time class="news-item__date" datetime="2020-09-27">2021/09/27</time>
-          <p class="news-item__heading">
-            公式サイトをリニューアルしました！
-          </p>
+          <p class="news-item__heading">公式サイトをリニューアルしました！</p>
           <p class="news-item__text">新しいサイトを宜しくお願いします！</p>
         </li>
         <li class="news-item">
           <a href="https://youtu.be/c9WYyPyVM18?t=165">
-            <time class="news-item__date" datetime="2020-09-27">2021/06/05</time>
+            <time class="news-item__date" datetime="2020-09-27">2021/06/05</time
+            >
             <p class="news-item__heading">
               INDIE Live Expo 2021にてご紹介いただきました！
             </p>
-            <p class="news-item__text">リンク先のYouTube動画でぜひご確認ください！</p>
+            <p class="news-item__text">
+              リンク先のYouTube動画でぜひご確認ください！
+            </p>
           </a>
         </li>
         <li class="news-item">
           <a href="https://www.4gamer.net/games/999/G999905/20201228102/">
-            <time class="news-item__date" datetime="2020-12-19">2020/12/19</time>
+            <time class="news-item__date" datetime="2020-12-19">2020/12/19</time
+            >
             <p class="news-item__heading">
               ゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞、話題賞を受賞しました！
             </p>
@@ -279,7 +323,8 @@
         data-height="400"
         data-chrome="noheader nofooter noborders"
         href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw"
-        >Tweets by necromance_chan</a><br />
+        >Tweets by necromance_chan</a
+      ><br />
       <a
         class="button button--twitter"
         style="margin-top: 60px;"
