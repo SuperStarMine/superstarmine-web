@@ -1,5 +1,8 @@
 <script>
   import Lines from "../../components/lines.svelte";
+  import { onMount } from 'svelte';
+  let mounted = false;
+  onMount(() => mounted = true);
 </script>
 
 <svelte:head>
@@ -15,6 +18,11 @@
   />
   <link rel="stylesheet" href="https://use.typekit.net/lkm8uks.css" />
   <link rel="stylesheet" href="/src/pages/newcromance/style/style.css" />
+  <script
+    async
+    src="https://platform.twitter.com/widgets.js"
+    charset="utf-8"
+  ></script>
 </svelte:head>
 <nav class="nav">
   <div class="nav__left">
@@ -271,11 +279,7 @@
         data-height="400"
         data-chrome="noheader nofooter noborders"
         href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw"
-        >Tweets by necromance_chan</a
-      ><script
-        async
-        src="https://platform.twitter.com/widgets.js"
-        charset="utf-8"></script><br />
+        >Tweets by necromance_chan</a><br />
       <a
         class="button button--twitter"
         style="margin-top: 60px;"
