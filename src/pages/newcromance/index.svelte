@@ -97,25 +97,29 @@
       </div>
       <ul class="news-section__list">
         <li class="news-item">
-          <span class="news-item__date">2021/09/01</span>
+          <time class="news-item__date" datetime="2020-09-27">2021/09/27</time>
           <p class="news-item__heading">
-            れーぞく！ネクロマンスちゃん 特設サイトをリニューアルしました！
+            公式サイトをリニューアルしました！
           </p>
           <p class="news-item__text">新しいサイトを宜しくお願いします！</p>
         </li>
         <li class="news-item">
-          <span class="news-item__date">2021/09/01</span>
-          <p class="news-item__heading">
-            れーぞく！ネクロマンスちゃん 特設サイトをリニューアルしました！
-          </p>
-          <p class="news-item__text">新しいサイトを宜しくお願いします！</p>
+          <a href="https://youtu.be/c9WYyPyVM18?t=165">
+            <time class="news-item__date" datetime="2020-09-27">2021/06/05</time>
+            <p class="news-item__heading">
+              INDIE Live Expo 2021にてご紹介いただきました！
+            </p>
+            <p class="news-item__text">リンク先のYouTube動画でぜひご確認ください！</p>
+          </a>
         </li>
         <li class="news-item">
-          <span class="news-item__date">2021/09/01</span>
-          <p class="news-item__heading">
-            れーぞく！ネクロマンスちゃん 特設サイトをリニューアルしました！
-          </p>
-          <p class="news-item__text">新しいサイトを宜しくお願いします！</p>
+          <a href="https://www.4gamer.net/games/999/G999905/20201228102/">
+            <time class="news-item__date" datetime="2020-12-19">2020/12/19</time>
+            <p class="news-item__heading">
+              ゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞、話題賞を受賞しました！
+            </p>
+            <p class="news-item__text">詳細はリンク先の記事をご覧ください！</p>
+          </a>
         </li>
       </ul>
     </div>

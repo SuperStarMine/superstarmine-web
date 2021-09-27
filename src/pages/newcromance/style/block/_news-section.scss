@@ -16,6 +16,9 @@
 .news-item {
   padding: 1.5em 0;
   border-top: 0.5px dashed #e2e2e4;
+  &>a {
+    display: block;
+  }
 
   &:first-child {
     border-top: none;
