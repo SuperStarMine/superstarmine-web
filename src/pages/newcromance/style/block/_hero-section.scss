@@ -210,14 +210,14 @@
   &__layer12 {
     // 左敵-赤
     position: absolute;
-    @include pos(180.18, 429.26, 12.13);
+    @include pos(180.18, 342, 0);
     @extend %anime04;
   }
 
   &__logo {
     // ロゴ
     position: absolute;
-    @include pos(480, 471, 120);
+    @include pos(580, 450, 70);
     @extend %anime07;
   }
 }

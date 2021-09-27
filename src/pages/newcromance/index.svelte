@@ -47,11 +47,6 @@
         alt="キービジュアル01"
       />
       <img
-        class="hero-section__layer02"
-        src="/src/pages/newcromance/img/keyvisual/02.png"
-        alt="キービジュアル02"
-      />
-      <img
         class="hero-section__layer03"
         src="/src/pages/newcromance/img/keyvisual/03.png"
         alt="キービジュアル03"
@@ -105,6 +100,11 @@
         class="hero-section__logo"
         src="/src/pages/newcromance/img/ぞくロマロゴ_Ver3.png"
         alt="ロゴ"
+      />
+      <img
+        class="hero-section__layer02"
+        src="/src/pages/newcromance/img/keyvisual/02.png"
+        alt="キービジュアル02"
       />
     </div>
   </div>
