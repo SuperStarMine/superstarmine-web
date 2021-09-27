@@ -272,7 +272,10 @@
         data-chrome="noheader nofooter noborders"
         href="https://twitter.com/necromance_chan?ref_src=twsrc%5Etfw"
         >Tweets by necromance_chan</a
-      ><br />
+      ><script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"></script><br />
       <a
         class="button button--twitter"
         style="margin-top: 60px;"
@@ -280,10 +283,6 @@
       >
         Twitter をフォローする
       </a>
-      <script
-        async
-        src="https://platform.twitter.com/widgets.js"
-        charset="utf-8"></script>
     </div>
   </section>
 </main>
