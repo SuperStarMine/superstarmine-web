@@ -1,11 +1,27 @@
 <script>
+  import IntersectionObserver from "svelte-intersection-observer";
   /** 半角スペースで分割した文字列 */
-  export let string = ""
+  export let string = "";
+  export let align = "";
+  export let slideIn = "";
+  export let className = "";
+  let element;
+  let intersecting;
 </script>
 
-{#each string.split(" ") as chunk}
-  <span>{chunk}</span>
-{/each}
+<IntersectionObserver once {element} bind:intersecting>
+  <p
+    data-align={align}
+    data-slidein={slideIn}
+    bind:this={element}
+    class:animation={intersecting}
+    class={className}
+  >
+    {#each string.split(" ") as chunk}
+      <span>{chunk}</span>
+    {/each}
+  </p>
+</IntersectionObserver>
 
 <style lang="stylus">
   span

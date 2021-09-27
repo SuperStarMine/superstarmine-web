@@ -13,10 +13,10 @@
   padding: 20px 0;
   gap: 80px;
   justify-content: center;
+  flex-wrap: wrap;
 
   @include break.sm {
     gap: 20px;
-    flex-wrap: wrap;
   }
 
   &__dialogue {
