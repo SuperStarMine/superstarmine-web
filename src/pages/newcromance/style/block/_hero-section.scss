@@ -4,16 +4,15 @@
   ヒーローセクション
 */
 
-@mixin pos_left($width, $top, $left) {
-  width: $width;
-  top: $top;
-  left: $left;
-}
-
-@mixin pos_right($width, $top, $right) {
-  width: $width;
-  top: $top;
-  right: $right;
+@mixin pos($width, $top, $left) {
+  width: #{$width}px;
+  top: #{$top}px;
+  left: #{$left}px;
+  @media screen and (max-width: 720px) {
+    width: calc($width / 720 * 100vw);
+    top: calc($top / 720 * 100vw);
+    left: calc($left / 720 * 100vw);
+  }
 }
 
 .hero-section {
@@ -27,26 +26,29 @@
   position: relative;
   padding: 0;
 
-  @include break.tab {
+  @media screen and (max-width: 600px) {
     height: 600px;
   }
 
-  @include break.sm {
-    height: 500px;
+  @media screen and (max-width: 400px) {
+    height: 400px;
+  }
+
+  &__elements-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__elements {
-    height: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
+    height: 100vw;
+    width: 100vw;
+    max-width: 720px;
+    max-height: 720px;
     position: relative;
     overflow: hidden;
-    @include break.tab {
-      max-width: 600px;
-    }
-    @include break.sm {
-      max-width: 320px;
-    }
   }
 
   &__shape-divider {
@@ -56,6 +58,7 @@
   }
 
   %anime01 {
+    // 魔法陣
     animation-name: fadeIn;
     animation-timing-function: ease-in;
     animation-duration: 0.3s;
@@ -64,7 +67,8 @@
   }
 
   %anime02 {
-    animation-name: fadeIn;
+    // ネクロマンスちゃん
+    animation-name: slideFadeUp;
     animation-timing-function: ease-in;
     animation-duration: 0.3s;
     animation-delay: 1s;
@@ -72,95 +76,148 @@
   }
 
   %anime03 {
-    animation-name: bounceIn;
-    animation-timing-function: cubic-bezier(0.91, 1.79, 0.01, 1.13);
-    animation-duration: 300ms;
+    // ボス
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
     animation-delay: 1.5s;
     animation-fill-mode: both;
   }
 
-  &__logo {
+  %anime04 {
+    // 敵
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
+  }
+
+  %anime05 {
+    // 玉
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-delay: 2.5s;
+    animation-fill-mode: both;
+  }
+
+  %anime06 {
+    // エフェクト
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-delay: 3s;
+    animation-fill-mode: both;
+  }
+
+  %anime07 {
+    // ロゴ
+    animation-name: bounceIn;
+    animation-timing-function: cubic-bezier(0.91, 1.79, 0.01, 1.13);
+    animation-duration: 300ms;
+    animation-delay: 3.5s;
+    animation-fill-mode: both;
+  }
+
+  %anime-kirakira {
+    animation-name: kirakira;
+    animation-timing-function: ease-in;
+    animation-duration: 4s;
+    animation-delay: 4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: backwards;
+  }
+
+  &__layer01 {
+    // ボス
     position: absolute;
-    height: auto;
+    @include pos(708.05, 0, 5.98);
     @extend %anime03;
-    @include break.pc {
-      @include pos_left(680px, 329px, 300px);
-    }
-    @include break.tab {
-      @include pos_left(580px, 284px, 10px);
-    }
-    @include break.sm {
-      @include pos_left(300px, 280px, 10px);
-    }
   }
-  &__necromance {
+
+  &__layer02 {
+    // キラキラ
     position: absolute;
-    z-index: -1;
+    @include pos(687.48, 250.84, 10.55);
+    @extend %anime06;
+    @extend %anime-kirakira;
+  }
+
+  &__layer03 {
+    // 右敵-青
+    position: absolute;
+    @include pos(178.24, 230.8, 514.51);
+    @extend %anime04;
+  }
+
+  &__layer04 {
+    // 魔法陣1
+    position: absolute;
+    @include pos(409.57, 592.03, 155.21);
+    @extend %anime01;
+  }
+
+  &__layer05 {
+    // 魔法陣2
+    position: absolute;
+    @include pos(438.05, 591.5, 139.92);
+    @extend %anime01;
+  }
+
+  &__layer06 {
+    // 魔法陣3
+    position: absolute;
+    @include pos(466.88, 583.77, 128.14);
+    @extend %anime01;
+  }
+
+  &__layer07 {
+    // 衝撃波奥
+    position: absolute;
+    @include pos(493.95, 454.92, 113.03);
+    @extend %anime06;
+  }
+
+  &__layer08 {
+    // 弾1-青
+    position: absolute;
+    @include pos(394.08, 183.52, 128.14);
+    @extend %anime05;
+  }
+
+  &__layer09 {
+    // ネクロマンスちゃん
+    position: absolute;
+    @include pos(334.16, 263.67, 177.89);
     @extend %anime02;
-    @include break.pc {
-      @include pos_left(503px, 30px, 388px);
-    }
-    @include break.tab {
-      @include pos_left(413px, 34px, 93px);
-    }
-    @include break.sm {
-      @include pos_left(320px, 61px, 0px);
-    }
   }
-  &__enemy01 {
+
+  &__layer10 {
+    // 弾2-赤
     position: absolute;
-    z-index: -2;
-    @extend %anime01;
-    @include break.pc {
-      @include pos_left(209px, 132px, 158px);
-    }
-    @include break.tab {
-      @include pos_left(131px, 63px, 42px);
-    }
-    @include break.sm {
-      @include pos_left(55px, 112px, 20px);
-    }
+    @include pos(345.59, 416.95, 225);
+    @extend %anime05;
   }
-  &__enemy02 {
+
+  &__layer11 {
+    // 衝撃波手前
     position: absolute;
-    z-index: -2;
-    @extend %anime01;
-    @include break.pc {
-      @include pos_right(201px, 105px, 345px);
-    }
-    @include break.tab {
-      @include pos_right(109px, 47px, 105px);
-    }
-    @include break.sm {
-      @include pos_right(71px, 84px, 42px);
-    }
+    @include pos(642.3, 516.27, 38.85);
+    @extend %anime06;
   }
-  &__enemy03 {
+
+  &__layer12 {
+    // 左敵-赤
     position: absolute;
-    z-index: -2;
-    @extend %anime01;
-    @include break.pc {
-      @include pos_right(267px, 317px, 38px);
-    }
-    @include break.tab {
-      @include pos_right(159px, 163px, 15px);
-    }
-    @include break.sm {
-      @include pos_right(85px, 178px, 10px);
-    }
+    @include pos(180.18, 342, 0);
+    @extend %anime04;
   }
-  &__enemy04 {
+
+  &__logo {
+    // ロゴ
     position: absolute;
-    z-index: -2;
-    @extend %anime01;
-    @include break.pc {
-      @include pos_left(108px, 349px, 123px);
-    }
-    @include break.tab {
-      @include pos_left(108px, 207px, 19px);
-    }
-    @include break.sm {
-      @include pos_left(44px, 178px, 10px);
-    }
+    @include pos(580, 450, 70);
+    @extend %anime07;
   }
 }
