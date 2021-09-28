@@ -97,14 +97,14 @@
         alt="キービジュアル12"
       />
       <img
-        class="hero-section__logo"
-        src="/src/pages/newcromance/img/ぞくロマロゴ_Ver3.png"
-        alt="ロゴ"
-      />
-      <img
         class="hero-section__layer02"
         src="/src/pages/newcromance/img/keyvisual/02.png"
         alt="キービジュアル02"
+      />
+      <img
+        class="hero-section__logo"
+        src="/src/pages/newcromance/img/ぞくロマロゴ_Ver3.png"
+        alt="ロゴ"
       />
     </div>
   </div>
