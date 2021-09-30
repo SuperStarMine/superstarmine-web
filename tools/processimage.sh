@@ -1,6 +1,6 @@
 #!/bin/bash
 
-which -s convert
+which convert
 if [ "$?" != "0" ]; then
   echo 'Setup imagemagick first.'
   exit 1
