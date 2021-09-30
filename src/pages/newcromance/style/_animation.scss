@@ -49,6 +49,39 @@
   }
 }
 
+@keyframes slideFadeLeft {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFadeRight {
+  0% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFadeRotate {
+  0% {
+    transform: rotate(-10deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
 @keyframes kirakira {
   0% {
     opacity: 0;
