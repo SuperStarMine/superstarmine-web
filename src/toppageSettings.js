@@ -49,7 +49,7 @@ export const settings = [
           slides: [
             {
               type: 'youtube',
-              id: 'foh7rj5YI_E'
+              id: 'jLoTKRXC-X0'
             }
           ],
           specs: {
