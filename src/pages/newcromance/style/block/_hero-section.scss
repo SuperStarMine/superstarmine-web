@@ -85,19 +85,28 @@
     animation-fill-mode: both;
   }
 
-  %anime04 {
-    // 敵
-    animation-name: fadeIn;
+  %anime04-left {
+    // 左敵
+    animation-name: slideFadeLeft;
     animation-timing-function: ease-in;
     animation-duration: 0.3s;
     animation-delay: 2s;
     animation-fill-mode: both;
   }
 
+  %anime04-right {
+    // 右敵
+    animation-name: slideFadeRight;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
+  }transform: rotate(0deg);
+
   %anime05 {
     // 玉
-    animation-name: fadeIn;
-    animation-timing-function: ease-in;
+    animation-name: slideFadeRotate;
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
     animation-duration: 0.3s;
     animation-delay: 2.5s;
     animation-fill-mode: both;
@@ -106,7 +115,7 @@
   %anime06 {
     // エフェクト
     animation-name: fadeIn;
-    animation-timing-function: ease-in;
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
     animation-duration: 0.3s;
     animation-delay: 3s;
     animation-fill-mode: both;
@@ -152,7 +161,7 @@
     position: absolute;
     opacity: 0;
     @include pos(178.24, 230.8, 514.51);
-    @extend %anime04;
+    @extend %anime04-right;
   }
 
   &__layer04 {
@@ -224,7 +233,7 @@
     position: absolute;
     opacity: 0;
     @include pos(180.18, 342, 0);
-    @extend %anime04;
+    @extend %anime04-left;
   }
 
   &__logo {
