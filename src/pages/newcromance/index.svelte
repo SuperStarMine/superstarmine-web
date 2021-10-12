@@ -25,7 +25,9 @@
 </svelte:head>
 <nav class="nav">
   <div class="nav__left">
-    <img class="nav__logo" src="/src/pages/newcromance/img/SSM_LOGO.png" />
+    <a href="/">
+      <img class="nav__logo" alt="サークルロゴ" src="/src/pages/newcromance/img/ssm_logo_color_white.png" />
+    </a>
   </div>
   <div class="nav__right">
     <div class="nav__menu-button" style="display:none;">
@@ -376,7 +378,7 @@
   <div class="content">
     <img
       class="footer__circle-logo"
-      src="/src/pages/newcromance/img/新ロゴ_W_横_v2_a.png"
+      src="/src/pages/newcromance/img/ssm_logo_color_black.png"
       alt="サークルロゴ"
     />
     <p class="footer__copyright">
