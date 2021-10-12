@@ -25,7 +25,9 @@
 </svelte:head>
 <nav class="nav">
   <div class="nav__left">
-    <img class="nav__logo" src="/src/pages/newcromance/img/SSM_LOGO.png" />
+    <a href="/">
+      <img class="nav__logo" alt="サークルロゴ" src="/src/pages/newcromance/img/ssm_logo_color_white.png" />
+    </a>
   </div>
   <div class="nav__right">
     <div class="nav__menu-button" style="display:none;">
@@ -202,13 +204,13 @@
           />
         </div>
         <div class="world-section__block01__img">
-          <img src="/src/pages/newcromance/img/enemies.png" />
+          <img src="/src/pages/newcromance/img/enemies.png" alt="敵" />
         </div>
       </div>
       <div style="height: 80px;" />
       <div class="world-section__block02">
         <div class="world-section__block02__img">
-          <img src="/src/pages/newcromance/img/necromance_doya.png" />
+          <img src="/src/pages/newcromance/img/necromance_doya.png" alt="ドヤ顔のネクロマンスちゃん" />
         </div>
         <div class="filled-sentence">
           <Lines
@@ -253,6 +255,7 @@
           <div class="character__figure">
             <img
               src="/src/pages/newcromance/img/Necromance_smile_alpha_shadow.png"
+              alt="笑顔のネクロマンスちゃん"
             />
           </div>
           <div class="character__description">
@@ -279,11 +282,11 @@
         <span>ゲームシステム</span>
       </div>
       <br />
-      <img src="/src/pages/newcromance/img/system_01.png" width="500px" />
+      <img src="/src/pages/newcromance/img/system_01.png" width="500px" alt="ゲームシステム説明イラスト01" />
       <p class="system-section__text">敵弾をスレスレで避けて“れーぞく”！</p>
-      <img src="/src/pages/newcromance/img/system_02.png" width="500px" />
+      <img src="/src/pages/newcromance/img/system_02.png" width="500px" alt="ゲームシステム説明イラスト02" />
       <p class="system-section__text">スキルを発動してステージを攻略しよう！</p>
-      <img src="/src/pages/newcromance/img/system_03.png" width="500px" />
+      <img src="/src/pages/newcromance/img/system_03.png" width="500px" alt="ゲームシステム説明イラスト03" />
       <p class="system-section__text">ステージの最後には凶悪な魔物が！</p>
     </div>
   </section>
@@ -340,10 +343,11 @@
     <img
       class="share-section__mini-necromance"
       src="/src/pages/newcromance/img/mini_necromance.png"
+      alt="ミニネクロマンスちゃん"
     />
     <img
       class="share-section__text"
-      src="/src/pages/newcromance/img/シェアしなさいよね！.png"
+      src="/src/pages/newcromance/img/please_share_text.png"
       alt="シェアしなさいよね！"
     />
   </div>
@@ -376,7 +380,7 @@
   <div class="content">
     <img
       class="footer__circle-logo"
-      src="/src/pages/newcromance/img/新ロゴ_W_横_v2_a.png"
+      src="/src/pages/newcromance/img/ssm_logo_color_black.png"
       alt="サークルロゴ"
     />
     <p class="footer__copyright">
