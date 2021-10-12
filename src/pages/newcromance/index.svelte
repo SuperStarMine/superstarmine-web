@@ -204,13 +204,13 @@
           />
         </div>
         <div class="world-section__block01__img">
-          <img src="/src/pages/newcromance/img/enemies.png" />
+          <img src="/src/pages/newcromance/img/enemies.png" alt="敵" />
         </div>
       </div>
       <div style="height: 80px;" />
       <div class="world-section__block02">
         <div class="world-section__block02__img">
-          <img src="/src/pages/newcromance/img/necromance_doya.png" />
+          <img src="/src/pages/newcromance/img/necromance_doya.png" alt="ドヤ顔のネクロマンスちゃん" />
         </div>
         <div class="filled-sentence">
           <Lines
@@ -255,6 +255,7 @@
           <div class="character__figure">
             <img
               src="/src/pages/newcromance/img/Necromance_smile_alpha_shadow.png"
+              alt="笑顔のネクロマンスちゃん"
             />
           </div>
           <div class="character__description">
@@ -281,11 +282,11 @@
         <span>ゲームシステム</span>
       </div>
       <br />
-      <img src="/src/pages/newcromance/img/system_01.png" width="500px" />
+      <img src="/src/pages/newcromance/img/system_01.png" width="500px" alt="ゲームシステム説明イラスト01" />
       <p class="system-section__text">敵弾をスレスレで避けて“れーぞく”！</p>
-      <img src="/src/pages/newcromance/img/system_02.png" width="500px" />
+      <img src="/src/pages/newcromance/img/system_02.png" width="500px" alt="ゲームシステム説明イラスト02" />
       <p class="system-section__text">スキルを発動してステージを攻略しよう！</p>
-      <img src="/src/pages/newcromance/img/system_03.png" width="500px" />
+      <img src="/src/pages/newcromance/img/system_03.png" width="500px" alt="ゲームシステム説明イラスト03" />
       <p class="system-section__text">ステージの最後には凶悪な魔物が！</p>
     </div>
   </section>
@@ -342,10 +343,11 @@
     <img
       class="share-section__mini-necromance"
       src="/src/pages/newcromance/img/mini_necromance.png"
+      alt="ミニネクロマンスちゃん"
     />
     <img
       class="share-section__text"
-      src="/src/pages/newcromance/img/シェアしなさいよね！.png"
+      src="/src/pages/newcromance/img/please_share_text.png"
       alt="シェアしなさいよね！"
     />
   </div>
