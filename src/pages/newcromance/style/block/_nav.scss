@@ -10,6 +10,10 @@
   position: fixed;
   z-index: 100;
 
+  a {
+    cursor: pointer;
+  }
+
   &__logo {
     max-height: 50px;
   }
