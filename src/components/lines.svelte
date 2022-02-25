@@ -14,7 +14,7 @@
     data-align={align}
     data-slidein={slideIn}
     bind:this={element}
-    class:animation={intersecting}
+    class:animation={true}
     class={className}
   >
     {#each string.split(" ") as chunk}

@@ -26,7 +26,11 @@
 <nav class="nav">
   <div class="nav__left">
     <a href="/">
-      <img class="nav__logo" alt="サークルロゴ" src="/src/pages/newcromance/img/ssm_logo_color_white.png" />
+      <img
+        class="nav__logo"
+        alt="サークルロゴ"
+        src="/src/pages/newcromance/img/ssm_logo_color_white.png"
+      />
     </a>
   </div>
   <div class="nav__right">
@@ -149,7 +153,17 @@
       </div>
       <ul class="news-section__list">
         <li class="news-item">
-          <time class="news-item__date" datetime="2020-09-27">2021/09/27</time>
+          <time class="news-item__date" datetime="2022-02-25">2022/02/25</time>
+          <p class="news-item__heading">
+            一部環境でテキストが表示されない不具合を修正しました
+          </p>
+          <p class="news-item__text">
+            Chrome
+            ブラウザをお使いの場合、本ページ内のテキストが表示されない不具合が発生しておりました。ご不便をおかけしてしまい申し訳ございません。
+          </p>
+        </li>
+        <li class="news-item">
+          <time class="news-item__date" datetime="2021-09-27">2021/09/27</time>
           <p class="news-item__heading">公式サイトをリニューアルしました！</p>
           <p class="news-item__text">新しいサイトを宜しくお願いします！</p>
         </li>
@@ -161,19 +175,25 @@
               INDIE Live Expo 2021にてご紹介いただきました！
             </p>
             <p class="news-item__text">
-              リンク先のYouTube動画でぜひご確認ください！
+              詳しくは<a
+                href="https://www.4gamer.net/games/999/G999905/20201228102/"
+                style="text-decoration:underline;cursor:pointer;"
+                >こちらの動画</a
+              >をチェック！
             </p>
           </a>
         </li>
         <li class="news-item">
-          <a href="https://www.4gamer.net/games/999/G999905/20201228102/">
-            <time class="news-item__date" datetime="2020-12-19">2020/12/19</time
-            >
-            <p class="news-item__heading">
-              ゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞、話題賞を受賞しました！
-            </p>
-            <p class="news-item__text">詳細はリンク先の記事をご覧ください！</p>
-          </a>
+          <time class="news-item__date" datetime="2020-12-19">2020/12/19</time>
+          <p class="news-item__heading">
+            ゲームクリエイター甲子園2020にて総合大賞3位、審査員特別賞、話題賞を受賞しました！
+          </p>
+          <p class="news-item__text">
+            詳細は<a
+              href="https://www.4gamer.net/games/999/G999905/20201228102/"
+              style="text-decoration:underline;cursor:pointer;">こちら</a
+            >の記事をご覧ください！
+          </p>
         </li>
       </ul>
     </div>
@@ -210,7 +230,10 @@
       <div style="height: 80px;" />
       <div class="world-section__block02">
         <div class="world-section__block02__img">
-          <img src="/src/pages/newcromance/img/necromance_doya.png" alt="ドヤ顔のネクロマンスちゃん" />
+          <img
+            src="/src/pages/newcromance/img/necromance_doya.png"
+            alt="ドヤ顔のネクロマンスちゃん"
+          />
         </div>
         <div class="filled-sentence">
           <Lines
@@ -282,11 +305,23 @@
         <span>ゲームシステム</span>
       </div>
       <br />
-      <img src="/src/pages/newcromance/img/system_01.png" width="500px" alt="ゲームシステム説明イラスト01" />
+      <img
+        src="/src/pages/newcromance/img/system_01.png"
+        width="500px"
+        alt="ゲームシステム説明イラスト01"
+      />
       <p class="system-section__text">敵弾をスレスレで避けて“れーぞく”！</p>
-      <img src="/src/pages/newcromance/img/system_02.png" width="500px" alt="ゲームシステム説明イラスト02" />
+      <img
+        src="/src/pages/newcromance/img/system_02.png"
+        width="500px"
+        alt="ゲームシステム説明イラスト02"
+      />
       <p class="system-section__text">スキルを発動してステージを攻略しよう！</p>
-      <img src="/src/pages/newcromance/img/system_03.png" width="500px" alt="ゲームシステム説明イラスト03" />
+      <img
+        src="/src/pages/newcromance/img/system_03.png"
+        width="500px"
+        alt="ゲームシステム説明イラスト03"
+      />
       <p class="system-section__text">ステージの最後には凶悪な魔物が！</p>
     </div>
   </section>
