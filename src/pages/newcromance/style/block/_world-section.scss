@@ -14,7 +14,7 @@
           margin-top: 10em;
         }
       }
-      p + p {
+      div + div {
         margin-top: 2em;
         @include break.sm {
           margin-top: 1em;
@@ -41,7 +41,7 @@
           margin-top: 10em;
         }
       }
-      p + p {
+      div + div {
         margin-top: 2em;
         @include break.sm {
           margin-top: 1em;
