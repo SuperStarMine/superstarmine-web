@@ -10,17 +10,18 @@
 </script>
 
 <IntersectionObserver once {element} bind:intersecting>
-  <p
-    data-align={align}
-    data-slidein={slideIn}
-    bind:this={element}
-    class:animation={true}
-    class={className}
-  >
-    {#each string.split(" ") as chunk}
-      <span>{chunk}</span>
-    {/each}
-  </p>
+  <div bind:this={element}>
+    <p
+      data-align={align}
+      data-slidein={slideIn}
+      class:animation={intersecting}
+      class={className}
+    >
+      {#each string.split(" ") as chunk}
+        <span>{chunk}</span>
+      {/each}
+    </p>
+  </div>
 </IntersectionObserver>
 
 <style lang="stylus">

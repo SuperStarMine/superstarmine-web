@@ -434,10 +434,15 @@
     </p>
     <p class="footer__license">
       全てのソースコード以外の画像や動画などのリソースは
-      クリエイティブ・コモンズ 表示 - 改変禁止 4.0 国際 ライセンス
+      <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.ja"
+        >クリエイティブ・コモンズ 表示 - 改変禁止 4.0 国際 ライセンス</a
+      >
       の下に提供されています。<br />
       All non-source code resources such as images and videos are licensed under
-      a Creative Commons Attribution-NoDerivatives 4.0 International License.
+      a
+      <a href="http://creativecommons.org/licenses/by-nd/4.0/">
+        Creative Commons Attribution-NoDerivatives 4.0 International License
+      </a>.
     </p>
   </div>
 </footer>
