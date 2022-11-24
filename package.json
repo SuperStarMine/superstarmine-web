@@ -9,7 +9,8 @@
     "dev:svelte": "rollup -c -w",
     "dev:necro": "sass --watch src/pages/newcromance/style/main.scss:src/pages/newcromance/style/style.css",
     "svelte-check": "svelte-check",
-    "start": "sirv ./ --single --host"
+    "start": "sirv ./ --single --host",
+    "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
