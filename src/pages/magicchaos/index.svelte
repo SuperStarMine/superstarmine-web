@@ -302,7 +302,7 @@ class="header_logo_magic"
       top: -5em
       height: 100vh
       height: 100svh
-      width: 100vw
+      width: 100%
       overflow: hidden
     img
       position: absolute
