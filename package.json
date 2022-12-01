@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "run-s build:necro build:svelte",
-    "build:svelte": "rollup -c;tools/cache-busting.sh",
+    "build:svelte": "rollup -c;tools/cache-busting.sh;tools/copy-public.sh",
     "build:necro": "sass src/pages/newcromance/style/main.scss:src/pages/newcromance/style/style.css --style compressed",
     "dev": "run-p dev:necro dev:svelte",
     "dev:svelte": "rollup -c -w",
