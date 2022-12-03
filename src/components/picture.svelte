@@ -9,7 +9,7 @@
     width,
     height,
     pictureClass,
-    imgClass,
+    imgClass = $$props.class,
     click,
     title,
     style,
