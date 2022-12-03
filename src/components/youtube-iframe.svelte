@@ -6,7 +6,7 @@
 </script>
 
 <div class="youtube-wrapper {load ? 'load' : ''}"  on:click={() => load = true}>
-  <Picture imgClass="description-youtube-thumbnail" {contents} {globalSettings} {sizes} imageId={id} width='16' height='9'/>
+  <img class="description-youtube-thumbnail" src="http://img.youtube.com/vi/{id}/maxresdefault.jpg" alt="動画のサムネイル" width='1280' height='720'>
   <img class="play-icon" src="/img/youtube.svg" alt="YouTubeの再生ボタン" width='44' height='31'>
   {#if load}
     <YouTube

@@ -4,6 +4,7 @@
   import { sync } from './sync-store.js';
   import Index from './pages/index.svelte';
   import Necromance from './pages/newcromance/index.svelte';
+  import Magicchaos from './pages/magicchaos/index.svelte';
   import NotFound from './pages/notfound.svelte';
 
   let loadAnalytics = location.hostname != 'localhost';
@@ -11,6 +12,7 @@
   const routes = {
     '/': Index,
     '/necromance/': Necromance,
+    '/magicchaos/': Magicchaos,
     '*': NotFound
   };
 
