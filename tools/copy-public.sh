@@ -7,6 +7,7 @@ cd $(cd $(dirname $BASH_SOURCE); pwd)
 pwd
 
 cd ../
+mkdir -p public
 cp index.html public/
 cp favicon.ico public/
 cp swiper-bundle.min.css public/
