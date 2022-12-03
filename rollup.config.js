@@ -9,21 +9,21 @@ const fs = require('fs');
 const sha256 = require('sha256');
 const d = new Date(Date.now() + 3600 * 9);
 let hash;
-try {
-  fs.readdirSync('src').forEach(v => {
-    if (/\./.test(v)) {
-      hash += sha256(fs.readFileSync(`src/${v}`));
-    } else {
-      fs.readdirSync('src/' + v).forEach(w => {
-        if (/\./.test(v)) hash += sha256(fs.readFileSync(`src/${v}/${w}`));
-      });
-    }
-  });
-  hash += sha256(fs.readFileSync('global.stylus'));
-  hash = sha256(hash).slice(0, 6);
-} catch (err) {
-  console.log(err)
-}
+// try {
+//   fs.readdirSync('src').forEach(v => {
+//     if (/\./.test(v)) {
+//       hash += sha256(fs.readFileSync(`src/${v}`));
+//     } else {
+//       fs.readdirSync('src/' + v).forEach(w => {
+//         if (/\./.test(v)) hash += sha256(fs.readFileSync(`src/${v}/${w}`));
+//       });
+//     }
+//   });
+//   hash += sha256(fs.readFileSync('global.stylus'));
+//   hash = sha256(hash).slice(0, 6);
+// } catch (err) {
+//   console.log(err)
+// }
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -54,7 +54,7 @@ export default {
     sourcemap: true,
     format: 'iife',
     name: 'app',
-    file: 'build/bundle.js'
+    file: 'public/build/bundle.js'
   },
   plugins: [
     svelte({
